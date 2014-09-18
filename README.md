@@ -1,10 +1,10 @@
 Algorithm
 =========
 
-# TopCoder.com
+# TopCoder
 http://community.topcoder.com/tc?module=MemberProfile&cr=22764304
 
-# SPOJ.pl
+# SPOJ
 http://www.spoj.com/users/my_zit/
 
 # Project Euler
