@@ -1,0 +1,161 @@
+    /* Author -> Ajay Somani
+    * Description - A c++ program to solve sudoku puzzles .. [ of size 9 x 9 ]
+    * Complexity - Exponential
+    *
+    * Input Format - First line contains in integer N which is the number of test cases or the number of puzzles that need to be solved.
+    * Then 9*N lines containing description of each of the N puzzles [ place a zero '0' to indicate an empty position ].
+    *
+    * Output Format - For each puzzle The output contains exactly 9 lines which contains the solution or 1 line saying
+    * "No Solution" if there is no solution to the puzzle. If there are more than one solution then the program outputs
+    * any of them.
+    *
+    * Sample Input -
+    * 1
+    * 1 0 3 0 0 0 7 8 0
+    * 4 5 0 0 8 0 1 2 0
+    * 7 0 9 1 0 3 4 5 0
+    * 0 3 0 5 0 4 0 0 0
+    * 5 6 4 0 0 0 2 3 0
+    * 8 0 0 2 0 1 5 6 0
+    * 3 1 2 0 4 5 0 7 0
+    * 6 0 5 9 7 0 3 1 0
+    * 0 0 0 0 0 0 0 0 0
+    *
+    * Sample Output -
+    * 1 2 3 4 5 6 7 8 9
+    * 4 5 6 7 8 9 1 2 3
+    * 7 8 9 1 2 3 4 5 6
+    * 2 3 1 5 6 4 8 9 7
+    * 5 6 4 8 9 7 2 3 1
+    * 8 9 7 2 3 1 5 6 4
+    * 3 1 2 6 4 5 9 7 8
+    * 6 4 5 9 7 8 3 1 2
+    * 9 7 8 3 1 2 6 4 5
+    *
+    */
+    #include<iostream>
+    #include<cstdio>
+    #include<cstring>
+    #include<cstdlib>
+    #include<cctype>
+    #include<algorithm>
+    #include<iterator>
+    #include<map>
+    #include<vector>
+    #include<list>
+    #include<set>
+    #include<queue>
+    #include<cassert>
+    #include<deque>
+    #include<stack>
+    #include<bitset>
+    #include<functional>
+    #include<numeric>
+    #include<utility>
+    #include<sstream>
+    #include<iomanip>
+    #include<string>
+    #include<cmath>
+    #include<ctime>
+    using namespace std;
+     
+    #define Debug 0
+    #define LET(x,a) __typeof(a) x(a)
+    #define IFOR(i,a,b) for(LET(i,a);i!=(b);++i)
+    #define EACH(it,v) IFOR(it,v.begin(),v.end())
+    #define FOR(i,a,b) for(int i=(int)(a) ; i < (int)(b);i++)
+    #define REP(i,n) FOR(i,0,n)
+    #define SZ size()
+    #define PB push_back
+    #define PF push_front
+     
+    #define V(x) vector< x >
+    typedef V(int) VI;
+    typedef V(VI) VII;
+    typedef V(string) VS;
+    typedef long long LL;
+    typedef long double LD;
+    typedef pair<int,int> PI;
+     
+    #define INF (int)(1e8)
+     
+    /* Actual Program starts here */
+    const int n = 9,sq = 3;/* size of the puzzle */
+    int N,gr[n][n]; /* number of test cases and the input matrix */
+    char a[n][n+1];
+    bool row[n][n],col[n][n],grid[n][n];
+    bool diagonal1[n], diagonal2[n];
+     
+    /* this method places/removes a number on/from a given position in the matrix */
+    void setIt(int i,int j,char c,bool s){
+    row[i][c-'A'] = col[j][c-'A'] = grid[(i/sq)*sq+(j/sq)][c-'A'] = s;
+    if (i == j) diagonal1[c-'A']=s;
+    else if(i == (8-j)) diagonal2[c-'A'] = s;
+    }
+    /* this method checks whether we can place a number on a particular position or not */
+    bool canBeSet(int i,int j,char c){
+    bool st = row[i][c-'A'] && col[j][c-'A'] && grid[(i/sq)*sq + (j/sq)][c-'A'];
+    if (i == j) st = (st && diagonal1[c-'A']);
+    if (i == 8 - j) st = (st && diagonal2[c-'A']);
+    return st;
+    }
+    /* A method to varify whether the solution we have found satisfies the constraints or not */
+    bool varify(){
+    /* if there is anything left that can be set than the solution is obviously incorrect */
+    REP(i,n) REP(j,n) if(row[i][j] || col[i][j] || grid[i][j])
+    return false;
+    REP (i,n) if (diagonal1[i] || diagonal2[i]) return false;
+    return true;
+    }
+    /* Recursive function to solve the puzzle */
+    bool solve(){
+    REP(i,n) REP(j,n) if(a[i][j] == '-'){
+    /* so we found an empty cell .. now determining what to do with it */
+    REP(k,n) if(canBeSet(i,j,k+'A')){
+    a[i][j] = k+'A';
+    setIt(i,j,k+'A',false);
+    if(solve()){
+    return true;
+    }
+    setIt(i,j,k+'A',true);
+    a[i][j] = '-';
+    }
+    return false;
+    }
+    /* all right !! we found a solution .. then varify it and print it */
+    //if(varify()){
+    REP(i,n){
+    REP(j,n) printf("%d",a[i][j]-'A'+1);
+    putchar(10);
+    }
+    return true;
+    //}
+    /* this doesn't solve the problem. So lets backtrack */
+    return false;
+    }
+     
+    int main(){
+    scanf("%d",&N);
+    while(N--){
+    /* inputing the values */
+    REP(i,n) {
+    scanf("%s", a[i]);
+    REP (j,n) a[i][j] = (a[i][j] == '.'?'-':a[i][j]-'1'+'A');
+    }
+    /* initialization of the matrices */
+    memset(row,true,sizeof(row));
+    memset(col,true,sizeof(col));
+    memset(grid,true,sizeof(grid));
+    memset(diagonal1, true, sizeof(diagonal1));
+    memset(diagonal2, true, sizeof(diagonal2));
+    REP(i,n) REP(j,n) if(a[i][j] != '-')
+    setIt(i,j,a[i][j],false);
+    /* solving it here */
+    if(!solve()) {
+    assert(0);
+    }
+    if(N)
+    putchar(10);
+    }
+    return 0;
+    }

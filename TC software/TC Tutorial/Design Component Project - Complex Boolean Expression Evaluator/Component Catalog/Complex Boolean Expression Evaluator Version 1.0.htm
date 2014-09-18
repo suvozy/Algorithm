@@ -1,0 +1,960 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <title>Catalogs of Java and .NET Components at TopCoder Software</title>
+    <link rel="stylesheet" type="text/css" href="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/tcs_style.css">
+    <link rel="stylesheet" type="text/css" href="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/coders.css">
+    <script language="JavaScript" type="text/javascript" src="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/javascript.js"></script>
+    
+
+
+<link rel="stylesheet" type="text/css" media="screen" href="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/screen.css">
+
+<!--[if IE]><link rel="stylesheet" type="text/css" href="/includes/screen-ie.css" /><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" type="text/css" href="/includes/screen-ie7.css" /><![endif]-->
+<!--[if IE 6]><link rel="stylesheet" type="text/css" href="/includes/screen-ie6.css" /><![endif]-->
+
+<script src="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/jquery-1.js" type="text/javascript"></script>
+<script src="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/preloadCssImages.js" language="javascript"></script>
+    <script type="text/javascript">
+			$(document).ready(function(){
+				//Run the script to preload images from CSS
+				$.preloadCssImages(); 
+			});
+	</script>
+<script src="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".expand-group").click(function(){
+		var active = $(this).next("ul");
+		var activeState = $(active).css("display");
+		
+		if (activeState == "none") {
+			$(active).slideDown();
+			$(".submenu").not(active).slideUp();
+			return false;
+		} 
+		else 
+		{
+			$(this).next("ul").slideUp();
+			return false;
+		}
+		});
+		
+	var randomImage = Math.floor(Math.random()*4);
+	
+	$("#banner img").attr({
+		src: "/images/rotated-image-" + randomImage +".png"
+	});
+	
+	$("#nav ul li").hoverIntent(function(){
+		$(this).children("ul").slideDown("fast");
+	}, function() {
+		$(this).children("ul").slideUp("fast");
+	});
+	
+	$("#nav ul ul li").hover(function() {
+		$(this).parents("#nav ul li").children('a').addClass("active-item");
+	}, function() {
+		$(this).parents("#nav ul li").children('a').removeClass("active-item");
+	});
+	
+});
+
+
+</script>
+
+<style type="text/css">
+.statusIconOff, .statusIconOn{ width: 25%; text-align: center; }
+.statusIconOff{ border-bottom:  1px solid #000000; }
+.statusIconOn{ border:  1px solid #000000; }
+.authorsHeader{ border-bottom:  1px solid #000000; margin-bottom: 3px; padding-bottom: 3px; float: left; width: 100% }
+</style>
+
+</head><body class="body">
+
+<!-- Header begins -->
+
+
+
+       
+
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="header">
+		<div class="wrapper">
+
+
+			<h1><a href="http://www.topcoder.com/" title="TopCoder Direct"><span>TopCoder Direct</span></a></h1>
+			<h2 id="ready_engage"><span>Ready.. ENGAGE</span></h2>
+
+
+
+			<div id="nav">
+				<h3 class="hide">Main Navigation</h3>
+				<ul>
+					<li class="left"><a href="http://www.topcoder.com/">TopCoder Home</a></li>
+					<li class="on"><a href="http://software.topcoder.com/">Engage</a>
+                    	<ul>
+                            <li><a href="http://www.topcoder.com/direct/">TopCoder Direct</a></li>
+                            <li><a href="http://software.topcoder.com/catalog/">Components</a></li>
+                            <li><a href="http://software.topcoder.com/TCD/platform-tools.jsp">Platform Tools</a></li>
+                            <li><a href="http://software.topcoder.com/TCD/training.jsp">Training &amp; Mentoring</a></li>
+                            <li><a href="http://software.topcoder.com/TCD/support.jsp">Support &amp; Maintenance</a></li>
+                            <li class="last-li"><a href="http://software.topcoder.com/contact.jsp">Contact Us</a></li>
+                        </ul>
+                    </li>
+					<li><a href="http://www.topcoder.com/tc">Compete</a>
+                    	<ul>
+                    	    <li><a href="http://www.topcoder.com/tc?module=ActiveContests&amp;pt=23">Conceptualization</a></li>
+                    	    <li><a href="http://www.topcoder.com/tc?module=ActiveContests&amp;pt=6">Specification</a></li>
+                    	    <li><a href="http://www.topcoder.com/tc?module=ActiveContests&amp;pt=7">Architecture</a></li>
+                            <li><a href="http://www.topcoder.com/tc?module=ViewActiveContests&amp;ph=112">Component Design</a></li>
+                            <li><a href="http://www.topcoder.com/tc?module=ViewActiveContests&amp;ph=113">Component Development</a></li>
+                            <li><a href="http://www.topcoder.com/tc?module=ViewAssemblyActiveContests">Assembly</a></li>
+							<li><a href="http://www.topcoder.com/longcontest/?module=ViewActiveContests">Marathon Matches</a></li>
+							<li><a href="http://www.topcoder.com/wiki/display/tc/Bug+Races">Bug Races</a></li>
+                            <li class="last-li"><a href="http://studio.topcoder.com/?module=ViewActiveContests">Studio Competitions</a></li>
+                    	</ul>
+                    </li>
+					<li><a href="http://studio.topcoder.com/">Studio</a>
+                    	<ul>
+                            <li><a href="http://studio.topcoder.com/?module=ViewActiveContests">Active Contests</a></li>
+                            <li><a href="http://www.topcoder.com/direct/">Launch a Contest</a></li>
+                            <li><a href="http://studio.topcoder.com/forums">Studio Forums</a></li>
+                            <li><a href="http://studio.topcoder.com/blog/">Studio Blog</a></li>
+                            <li><a href="http://studio.topcoder.com/?module=MyStudioHome">My Studio</a></li>
+                            <li class="last-li"><a href="http://studio.topcoder.com/?module=MyStudioHome">Contact Studio</a></li>
+                    	</ul>
+                    </li>
+					<li><a href="http://www.topcoder.com/tc">Community</a>
+                    	<ul>
+                            <li><a href="http://www.topcoder.com/reg/">Join TopCoder</a></li>
+                            <li><a href="http://www.topcoder.com/tc?module=MyHome">My TopCoder</a></li>
+                            <li><a href="http://forums.topcoder.com/">TopCoder Forums</a></li>
+                            <li class="last-li"><a href="http://studio.topcoder.com/forums">Studio Forums</a></li>
+                       	</ul>
+                    </li>
+
+				</ul>
+			</div><!-- #navigation ends -->
+
+
+			
+			<div id="nav_support">
+				<h3 class="hide">SUB Navigation</h3>
+				<ul>
+                	<li class="left"><a href="http://www.topcoder.com/tc?module=Static&amp;d1=about&amp;d2=index">About TopCoder</a></li>
+					<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=pressroom&amp;d2=index">News</a></li>
+					<li><a href="http://software.topcoder.com/contact.jsp">Contact Us</a></li>
+
+
+                           
+                            <li>
+               <a href="#">Hello, </a><a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=22764304" class="coderTextGreen">bitsits</a>
+               				</li>
+                            <li class="right">
+                            	<a href="http://software.topcoder.com/login.jsp?a=logout">Logout</a>
+                            </li>
+      						
+                    
+				</ul>
+			</div>
+
+		</div>
+	</div>
+
+
+<!-- Main Navigation bar begins -->
+
+
+
+<!-- Header ends -->
+
+<table class="middle" border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tbody><tr valign="top">
+
+<!-- Left Column begins -->
+        <td class="leftColumn" width="165">
+        
+
+
+
+            <table style="margin-left: 48px;" border="0" cellpadding="0" cellspacing="0" width="148">
+                <tbody><tr><td id="leftNavTitle">Component Search:</td></tr>
+                <tr>
+                    <td id="leftNavTitle">
+                        <table border="0" cellpadding="0" cellspacing="2">
+    <tbody><tr><form name="frmSiteSearch" action="/catalog/c_showroom_search.jsp" method="post"></form>
+        <input name="a" value="search" type="hidden">
+        <td valign="middle"><input class="searchForm" size="12" name="keywords" value="Search" maxlength="40" onfocus="javascript: if (document.frmSiteSearch.keywords.value=='Search') document.frmSiteSearch.keywords.value = '';" onblur="javascript: if (document.frmSiteSearch.keywords.value == '') document.frmSiteSearch.keywords.value = 'Search';" type="text"></td>
+
+<!-- uncomment this option when entire site search is implemented -->
+        <!-- <td valign="middle"><select name="target">
+            <option value="entire_site">Entire Site</option>
+            <option value="all_catalogs" selected>All Catalogs</option>
+            <option value="net_catalog">.NET Catalog</option>
+            <option value="java_catalog">Java Catalog</option> -->
+            <!-- <option value="forums">Forums</option>
+        </select></td>
+        <td valign="middle"><img src="/images/clear.gif" alt="" width="3" border="0" /></td> -->
+<!-- uncomment this option when forum search is implemented -->
+
+        <td align="left" valign="middle" width="99%"><input class="searchButton" name="go" value="Go" type="submit"></td>
+    </tr>
+    
+    <tr>
+        <td colspan="2" align="left" valign="middle">&nbsp;<a href="http://software.topcoder.com/search/c_advanced_search.jsp">Advanced Search</a></td>
+    </tr>
+</tbody></table>
+
+                    </td>
+                </tr>
+               </tbody></table>
+              
+  <div id="nav-sidebar">
+    <ul id="side-navigation">
+    	<li class="top-li"><a href="#" class="expand-group">Applications</a>
+			<ul class="submenu">
+            	<li><a href="http://software.topcoder.com/applications/index.jsp">Overview</a></li>
+                <li><a href="http://software.topcoder.com/applications/methodology.jsp">Methodology</a></li>
+            </ul> 
+        </li>
+        <li><a href="#" class="expand-group">Components</a>
+       	<ul class="submenu">
+            	<li><a href="http://software.topcoder.com/catalog/index.jsp">Find Components</a></li>
+                <li><a href="http://software.topcoder.com/components/index.jsp">What Are Components</a></li>
+                <li><a href="http://software.topcoder.com/components/methodology.jsp">Methodology</a></li>
+                <li><a href="http://software.topcoder.com/components/subscriptions.jsp">Subscriptions</a></li>
+                <li><a href="http://software.topcoder.com/components/request.jsp">Suggest a Component</a></li>
+            </ul>
+
+        </li>
+        <li><a href="#" class="expand-group">Customers</a>
+            <ul class="submenu">
+            	<li><a href="http://software.topcoder.com/customers/index.jsp">Our Customers</a></li>
+                <li><a href="http://software.topcoder.com/customers/casestudies.jsp">Case Studies</a></li>
+            </ul>
+        </li>
+        <li><a href="#" class="expand-group">Forums</a>
+        	<ul class="submenu">
+            	<li><a href="http://forums.topcoder.com/?module=Category&amp;categoryID=22">Software Forums</a></li>
+                <li><a href="http://forums.topcoder.com/">Member Forums</a></li>
+                <li><a href="http://studio.topcoder.com/forums">Studio Forums</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+            
+           
+        </td>
+<!-- Left Column ends -->
+
+<!-- Gutter 1 begins -->
+<!-- Gutter 1 ends -->
+
+
+
+<!-- Middle Column begins -->
+        <td style="padding: 15px;" width="99%">
+            <table style="padding-bottom: 15px;" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tbody><tr><td class="normal" colspan="2" style="padding-bottom: 15px;"><img src="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/hd_comp_catalog.png" alt="Component Catalogs" border="0"></td></tr>
+                <tr>
+                    <td colspan="2">
+                        <table style="padding-bottom: 15px;" border="0" cellpadding="0" cellspacing="0">
+                            <tbody><tr valign="middle">
+                                <td><img src="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/catpg_dotnet_logo.gif" alt="" border="0"></td>
+                                <td><img src="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/spacer.htm" alt="" border="0" width="5" height="17"></td>
+                                <td class="testHead2"><strong>Complex Boolean Expression Evaluator</strong> Version 1.0                 </td>
+                            </tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+<!-- Status Bar -->
+                <tr valign="top">
+               <td class="display" colspan="2"><strong>Status: </strong><br><br>
+               <table border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr>
+               <td class="statusIconOff"><img src="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/catpg_status_spec.gif" alt="Specification" border="0"></td>
+               <td class="statusIconOff"><img src="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/catpg_status_desarch.gif" alt="Design &amp; Architecture">
+               </td><td class="statusIconOff"><img src="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/catpg_status_devtest.gif" alt="Development &amp; Testing">
+               </td><td class="statusIconOn"><img src="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/catpg_status_complete.gif" alt="Complete"><br>
+               </td></tr></tbody></table>
+               </td>
+            </tr>
+<!-- Overview, Functionality -->
+                <tr valign="top">
+                    <td class="display" style="padding-right: 15px;" width="50%">
+                    	<br>
+                        <p><strong>Overview</strong><br>
+The Complex Boolean Expression Evaluator provides an expression
+evaluation system that allows for pluggable statement evaluations. This
+component will take an incoming string, use the internal evaluators to
+evaluate each expression found and return the Boolean result.<br>
+
+                        
+
+                        <br>
+
+                        
+
+                        Version 1.1 adds the ability to pre-parse expressions for more efficient evaluation.<br>
+
+                        
+
+                        <br>
+An application might use this component to create custom expression
+statements and combine these custom expressions into a complex
+statement. A stock analysis application might create some custom
+expressions to analyze the stocks history and then use this component
+to determine whether or not a stock should be bought or sold.<br>
+
+                        
+
+                        </p>
+						<br>
+                        <p><strong>Functionality</strong><br></p>
+                        <ul>
+
+                        
+                            <li>Provides complex boolean expression evaluation.</li>
+
+                        
+                            <li>Provides pluggable expression evaluation interface allowing for future function definition.</li>
+
+                        
+                            <li>Initial evaluators supported: math, regular expressions, count and contains.</li>
+
+                        
+                        </ul>
+
+                    </td>
+
+                    <td class="display" width="50%">
+<!-- Screen Shot -->
+                        
+
+<!-- Technologies -->
+                        
+						<br>
+                        <p><strong>Technologies</strong><br>
+
+                        
+                            .NET,&nbsp;
+                        
+                            C#
+                        </p>
+
+                        
+
+<!-- Authors -->
+                        
+						<br>
+                        <strong>Authors</strong>
+                   <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                         <tbody><tr valign="top">
+                            <td style="padding-right: 10px;" width="50%">
+                              <div class="authorsHeader">
+                                 <div style="float: right;">
+                                    
+                                        <a href="http://www.topcoder.com/tc?module=CompContestDetails&amp;compid=22833971&amp;vr=1&amp;ph=112" class="small">contest details</a>
+                                    
+                                 </div>
+                                 <font class="small">Designer(s):</font>
+                              </div>
+                                                
+                                 <a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=152342&amp;tab=des" class="coderTextRed">kyky</a>
+                              <br><br>
+                            </td>
+                            <td width="50%">
+                              <div class="authorsHeader">
+                                 <font class="small">Design Review Board:</font>
+                              </div>
+
+                                
+                                 <a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=278342&amp;tab=des" class="coderTextYellow">adic</a><br><a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=8369898&amp;tab=des" class="coderTextYellow">dfn</a><br><a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=11789293&amp;tab=des" class="coderTextRed">nhzp339</a>
+                                
+                              <br><br>
+                               </td>
+                            </tr>
+                            <tr valign="top">
+                               <td style="padding-right: 10px;">
+                              <div class="authorsHeader">
+                                 <div style="float: right;">
+                                    
+                                     <a href="http://www.topcoder.com/tc?module=CompContestDetails&amp;compid=22833971&amp;vr=1&amp;ph=113" class="small">contest details</a>
+                                    
+                                 </div>
+                                 <font class="small">Developer(s):</font>
+                              </div>
+
+
+                                  
+                                 <a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=21221008&amp;tab=dev" class="coderTextYellow">BLE</a>
+                                  
+                              <br><br>
+                               </td>
+                               <td>
+                              <div class="authorsHeader">
+                                 <font class="small">Development Review Board:</font>
+                              </div>
+                                  
+                                 <a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=20076717&amp;tab=dev" class="coderTextYellow">assistant</a><br><a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=19901317&amp;tab=dev" class="coderTextBlue">crazypigs</a><br><a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=11781622&amp;tab=dev" class="coderTextBlue">tuenm</a>
+                                  
+                              <br><br>
+                               </td>
+                            </tr>
+                   </tbody></table>
+                        
+                        <p><strong>Availability</strong><br>
+                        Version 1.0                 <br>
+
+
+
+
+                        <strong><a href="http://software.topcoder.com/tcs?module=ViewComponentTerms&amp;comp=22833971&amp;ver=1"><img src="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/catpg_download.jpg" alt="" border="0"></a></strong></p>
+
+
+                    </td>
+                </tr>
+
+               <tr>
+<!-- Documentation-->
+            </tr></tbody></table><table style="padding-bottom: 20px;" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tbody><tr><td align="left"><img src="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/catpg_document.gif" alt="Documentation" border="0" width="116" height="13">
+                      <font class="small"><a href="http://www.adobe.com/products/acrobat/readstep.html" target="_blank">Adobe Acrobat</a> is required to view TopCoder Software specification documentation.<br>
+                  </font><hr size="1" width="100%" noshade="noshade">
+<font class="small">                      <table border="0" cellpadding="10" cellspacing="0" width="100%">
+                          <tbody><tr>
+                              <td class="display" valign="top" width="33%">
+                                  <strong>Class Diagrams</strong><br>
+                              </td>
+                              <td class="display" valign="top" width="33%">
+                                  <strong>Use Case Diagrams</strong><br>
+                              </td>
+                              <td class="display" valign="top" width="33%">
+                                  <strong>Sequence Diagrams</strong><br>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td class="rightColOff" valign="top">
+                                  
+                                          
+                                      <a href="http://software.topcoder.com/catalog/document?id=26777263" target="_blank"> Expressions And Parsers</a><br>
+                                          
+                                      
+                                          
+                                      <a href="http://software.topcoder.com/catalog/document?id=26777265" target="_blank"> Main</a><br>
+                                          
+                                      
+                                          
+                                      <a href="http://software.topcoder.com/catalog/document?id=26777255" target="_blank"> Plugins</a><br>
+                                          
+                                      
+                              </td>
+                              <td class="rightColOff" valign="top">
+                                  
+                                          
+                                      <a href="http://software.topcoder.com/catalog/document?id=26777261" target="_blank">Main</a><br>
+                                          
+                                      
+                              </td>
+                              <td class="rightColOff" valign="top">
+                                  
+                                          
+                                      <a href="http://software.topcoder.com/catalog/document?id=26777262" target="_blank"> Collect References</a><br>
+                                          
+                                      
+                                          
+                                      <a href="http://software.topcoder.com/catalog/document?id=26777269" target="_blank"> Configuration</a><br>
+                                          
+                                      
+                                          
+                                      <a href="http://software.topcoder.com/catalog/document?id=26777271" target="_blank"> Evaluate Expression</a><br>
+                                          
+                                      
+                                          
+                                      <a href="http://software.topcoder.com/catalog/document?id=26777266" target="_blank"> Evaluate Expression-Based Plugins</a><br>
+                                          
+                                      
+                                          
+                                      <a href="http://software.topcoder.com/catalog/document?id=26777257" target="_blank"> Parse Expression</a><br>
+                                          
+                                      
+                              </td>
+                          </tr>
+                          <tr>
+                              <td class="display" valign="top">
+                                  <strong>Requirements</strong><br>
+                              </td>
+                              <td class="display" valign="top">
+                                  <strong>Developer Documentation</strong><br>
+                              </td>
+                              <td class="display" valign="top">
+                                  <strong>Scorecards</strong><br>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td class="rightColOff" valign="top">
+                                  
+                                          
+                                      <a href="http://software.topcoder.com/catalog/document?id=22834500" target="_blank">Requirements Specification</a><br>
+                                          
+                                      
+                                          
+                                      <a href="http://software.topcoder.com/catalog/document?id=26777259" target="_blank">Requirements Specification</a><br>
+                                          
+                                      
+                                          
+                                      <a href="http://software.topcoder.com/catalog/document?id=26777256" target="_blank">Component Specification</a><br>
+                                          
+                                      
+                                          
+                                      <a href="http://software.topcoder.com/catalog/document?id=26777264" target="_blank">Component Specification</a><br>
+                                          
+                                      
+                              </td>
+                              <td class="rightColOff" valign="top">
+                                  
+                                  None available at this time
+                                  
+                              </td>
+                              <td class="rightColOff" valign="top">
+                                  
+                                          
+                                      <a href="http://software.topcoder.com/review/actions/ViewAggregation.do?method=viewAggregation&amp;pid=22834077" target="_blank">Aggregate Design Scorecard</a><br>
+                                          
+                                      
+                                          
+                                      <a href="http://software.topcoder.com/review/actions/ViewAggregation.do?method=viewAggregation&amp;pid=23231807" target="_blank">Aggregate Development Scorecard</a><br>
+                                          
+                                      
+                              </td>
+                          </tr>
+                          <tr>
+                              <td class="display" colspan="3" valign="top">
+                                  <strong>Other</strong><br>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td class="rightColOff" colspan="3" valign="top">
+                                  
+                                          
+                                      <a href="http://software.topcoder.com/catalog/document?id=26777272" target="_blank">Other (misc)</a><br>
+                                          
+                                      
+                                          
+                                      <a href="http://software.topcoder.com/catalog/document?id=26777270" target="_blank">Other (misc)</a><br>
+                                          
+                                      
+                                          
+                                      <a href="http://software.topcoder.com/catalog/document?id=26777268" target="_blank">Other (misc)</a><br>
+                                          
+                                      
+                                          
+                                      <a href="http://software.topcoder.com/catalog/document?id=26777267" target="_blank">Other (misc)</a><br>
+                                          
+                                      
+                                          
+                                      <a href="http://software.topcoder.com/catalog/document?id=26777260" target="_blank">Other (misc)</a><br>
+                                          
+                                      
+                                          
+                                      <a href="http://software.topcoder.com/catalog/document?id=26777258" target="_blank">Other (misc)</a><br>
+                                          
+                                      
+
+                                     
+                              </td>
+                          </tr>
+                      </tbody></table>
+                    </font></td>
+                </tr>
+            </tbody></table>
+
+<!-- Component Dependencies -->
+            <table style="padding-bottom: 20px;" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tbody><tr><td align="left"><img src="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/catpg_compdep.gif" alt="Component Hierarchy" border="0" width="187" height="17"><br>
+                      <hr size="1" width="100%" noshade="noshade">
+                        <table border="0" cellpadding="0" cellspacing="0">
+
+
+        
+                            <tbody><tr valign="top">
+                                <td class="rightColDisplay"><a href="http://software.topcoder.com/catalog/c_component.jsp?comp=5904571">Configuration Manager</a></td>
+                            </tr>
+
+                            <tr valign="top">
+                                <td class="rightColDisplay"><a href="http://software.topcoder.com/catalog/c_component.jsp?comp=4311341">Logging Wrapper</a></td>
+                            </tr>
+
+                            <tr valign="top">
+                                <td class="rightColDisplay"><a href="http://software.topcoder.com/catalog/c_component.jsp?comp=14896778">Object Factory</a></td>
+                            </tr>
+
+                            <tr valign="top">
+                                <td class="rightColDisplay"><a href="http://software.topcoder.com/catalog/c_component.jsp?comp=6409333">Set</a></td>
+                            </tr>
+
+                            <tr valign="top">
+                                <td class="rightColDisplay"><a href="http://software.topcoder.com/catalog/c_component.jsp?comp=7351856">Simple Cache</a></td>
+                            </tr>
+
+                        </tbody></table>
+                    </td>
+                </tr>
+            </tbody></table>
+
+<!-- Enhancements -->
+            <table style="padding-bottom: 25px;" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tbody><tr><td align="left"><img src="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/catpg_enhance.gif" alt="Enhancements" border="0" width="113" height="13"><br>
+                      <hr size="1" width="100%" noshade="noshade">
+                        <table border="0" cellpadding="0" cellspacing="0">
+                            <tbody><tr valign="top">
+                                <td class="rightColDisplay"><a href="http://software.topcoder.com/components/request.jsp">Request an enhancement</a>.</td>
+                            </tr>
+                        </tbody></table>
+                    </td>
+                </tr>
+            </tbody></table>
+
+<!-- Forums for This Component -->
+           <table style="padding-bottom: 15px;" border="0" cellpadding="0" cellspacing="0" width="100%">
+<!-- Current Forums begin -->
+                <tbody><tr><td align="left"><img src="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/catpg_cforums.gif" alt="Current Forums" border="0" width="121" height="13">
+                      <font class="small">Participation in current forums requires user login and may require authorization</font><br>
+                  <hr size="1" width="100%" noshade="noshade">
+
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+                            <tbody><tr><td class="rightColOff">No active developer forum</td></tr>
+
+
+                            <tr><td height="5"><img src="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/clear.gif" alt="" border="0" width="10" height="5"></td></tr>
+
+                            <tr><td width="170"><img src="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/clear.gif" alt="" border="0" width="170" height="1"></td></tr>
+                        </tbody></table><br>
+                    </td>
+                </tr>
+<!-- Current Forums end -->
+
+<!-- Previous Forums begin -->
+
+                <tr><td align="left"><img src="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/catpg_pforums.gif" alt="Previous Forums" border="0" width="129" height="13">
+                	<hr size="1" width="100%" noshade="noshade">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+            
+                            <tbody><tr><td class="rightColDisplay"><a href="http://forums.topcoder.com/?module=Category&amp;categoryID=3391">Developer Forum Version 2.0</a></td></tr>
+            
+            
+                            <tr><td class="rightColDisplay"><a href="http://forums.topcoder.com/?module=Category&amp;categoryID=1503">Developer Forum Version 1.0</a></td></tr>
+            
+                            <tr><td height="5"><img src="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/clear.gif" alt="" border="0" width="10" height="5"></td></tr>
+                            <tr><td width="170"><img src="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/clear.gif" alt="" border="0" width="170" height="1"></td></tr>
+                        </tbody></table>
+                </td></tr>
+
+<!-- Previous Forums end -->
+            </tbody></table>
+
+        </td>
+<!-- Middle Column ends -->
+
+<!-- Gutter 2 begins -->
+<!-- Gutter removed due to cellspacing in middle column table -->
+<!-- Gutter 2 ends -->
+
+<!-- Right Column begins -->
+        <td width="170">
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tbody><tr><td height="10"><img src="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/clear.gif" alt="" border="0" width="10" height="10"></td></tr>
+                <tr><td>
+                
+
+
+
+
+<table cellpadding="0" cellspacing="0" width="170">
+    <tbody><tr><td colspan="2"><img src="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/clear.gif" alt="" border="0" width="1" height="6"></td></tr>
+    <tr><td colspan="2" align="right"><img src="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/right_nav_top.gif" alt="" border="0"></td></tr>
+    <tr><td class="topsTitle" colspan="2">Top 10 Most Downloaded Components*</td></tr>
+    <tr>
+        <td class="topsTitle">Name</td>
+        <td class="topsTitle" align="right">DL's</td>
+    </tr>
+        
+            <tr>
+                <td class="topsText" align="left"><a href="http://software.topcoder.com/catalog/c_component.jsp?comp=2300015&amp;ver=5" class="top">Java Logging Wrapper</a></td>
+                <td class="topsText" align="right">111</td>
+            </tr>
+        
+            <tr>
+                <td class="topsText" align="left"><a href="http://software.topcoder.com/catalog/c_component.jsp?comp=4311341&amp;ver=3" class="top">.NET Logging Wrapper</a></td>
+                <td class="topsText" align="right">109</td>
+            </tr>
+        
+            <tr>
+                <td class="topsText" align="left"><a href="http://software.topcoder.com/catalog/c_component.jsp?comp=5710093&amp;ver=2" class="top">Java Base Exception</a></td>
+                <td class="topsText" align="right">100</td>
+            </tr>
+        
+            <tr>
+                <td class="topsText" align="left"><a href="http://software.topcoder.com/catalog/c_component.jsp?comp=8595405&amp;ver=3" class="top">.NET Data Access Interface</a></td>
+                <td class="topsText" align="right">82</td>
+            </tr>
+        
+            <tr>
+                <td class="topsText" align="left"><a href="http://software.topcoder.com/catalog/c_component.jsp?comp=27036438&amp;ver=2" class="top">.NET Application Based Configuration</a></td>
+                <td class="topsText" align="right">63</td>
+            </tr>
+        
+            <tr>
+                <td class="topsText" align="left"><a href="http://software.topcoder.com/catalog/c_component.jsp?comp=11884906&amp;ver=7" class="top">Java Search Builder</a></td>
+                <td class="topsText" align="right">61</td>
+            </tr>
+        
+            <tr>
+                <td class="topsText" align="left"><a href="http://software.topcoder.com/catalog/c_component.jsp?comp=24631840&amp;ver=1" class="top">Java Configuration API</a></td>
+                <td class="topsText" align="right">50</td>
+            </tr>
+        
+            <tr>
+                <td class="topsText" align="left"><a href="http://software.topcoder.com/catalog/c_component.jsp?comp=12008069&amp;ver=3" class="top">.NET Search Builder</a></td>
+                <td class="topsText" align="right">46</td>
+            </tr>
+        
+            <tr>
+                <td class="topsText" align="left"><a href="http://software.topcoder.com/catalog/c_component.jsp?comp=4228093&amp;ver=5" class="top">Java Object Factory</a></td>
+                <td class="topsText" align="right">46</td>
+            </tr>
+        
+            <tr>
+                <td class="topsText" align="left"><a href="http://software.topcoder.com/catalog/c_component.jsp?comp=11924070&amp;ver=2" class="top">.NET Exception Manager</a></td>
+                <td class="topsText" align="right">45</td>
+            </tr>
+        
+    <tr><td colspan="2"><img src="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/right_nav_btm.gif" alt="" border="0"></td></tr>
+</tbody></table>
+<div class="small" align="right">*over the last 60 days</div>
+                
+
+
+
+
+<table cellpadding="0" cellspacing="0" width="170">
+    <tbody><tr><td colspan="2"><img src="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/clear.gif" alt="" border="0" width="1" height="6"></td></tr>
+    <tr><td colspan="2" align="right"><img src="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/right_nav_top.gif" alt="" border="0"></td></tr>
+    <tr><td class="topsTitle" colspan="2">Newly Released Components*</td></tr>
+    <tr>
+        <td class="topsTitle">Name</td>
+        <td class="topsTitle" align="right">Date</td>
+    </tr>
+        
+    <tr><td colspan="2"><img src="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/right_nav_btm.gif" alt="" border="0"></td></tr>
+</tbody></table>
+<div class="small" align="right">*most recent 15 components</div>
+              
+
+
+
+	
+
+
+<!-- Home Page begins -->
+    
+<!-- Home Page ends -->
+
+<!-- Component Page begins -->
+    
+            
+            <p><br></p>
+
+              </td></tr>
+            </tbody></table>
+        </td>
+<!--Right Column ends -->
+
+<!-- Gutter 3 begins -->
+        <td width="10"><img src="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/clear.gif" alt="" border="0" width="10" height="10"></td>
+<!-- Gutter 3 ends -->
+
+    </tr>
+</tbody></table>
+
+<!-- Footer begins -->
+
+
+
+
+
+
+
+
+
+    <div id="links">
+        <div class="wrapper">
+            <div class="col">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="http://software.topcoder.com/contact.jsp">Contact Us</a></li>
+					<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=about&amp;d2=privacy">Privacy Policy</a></li>
+                    <li><a href="http://topcoderblogs.com/direct/?page_id=24">Terms &amp; Conditions</a></li>
+                </ul>
+            </div>
+            
+            <div class="col">
+                <h4>About TopCoder</h4>
+                <ul>
+                    <li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=pressroom&amp;d2=mediaRequestForm">Public Relations</a></li>
+                    <li><a href="http://software.topcoder.com/TCD/rss.jsp">RSS Feeds</a></li>
+                    <li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=pressroom&amp;d2=index">Press Room</a></li>
+                    <li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=about&amp;d2=jobs">Working at TopCoder</a></li>
+                    <li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=about&amp;d2=terms">Legal Information</a></li>
+                </ul>
+            </div>
+            
+            <div class="col">
+                <h4>Platform Tools</h4>
+                <ul><li><a href="http://www.topcoder.com/wiki/display/tc/Upcoming+Contests">Pipeline</a></li>
+                    <li><a href="http://www.topcoder.com/wiki/display/tc/TopCoder+UML+Tool">UML Tool</a></li>
+                    <li><a href="http://forums.topcoder.com/?module=Category&amp;categoryID=22">TopCoder Forums</a></li>
+                    <li><a href="http://software.topcoder.com/catalog/index.jsp">Component Catalog</a></li>
+                    <li><a href="http://www.topcoder.com/wiki/">TopCoder Wiki</a></li>
+                </ul>
+          </div>
+            
+            <div class="col">
+                <h4>TopCoder Community</h4>
+                <ul>
+                    <li><a href="http://www.topcoder.com/tc">TopCoder Community Home</a></li>
+                    <li><a href="http://forums.topcoder.com/">TopCoder Forums</a></li>
+                    <li><a href="http://studio.topcoder.com/forums">Studio Forums</a></li>
+                </ul>
+            
+                <h4>TopCoder Blogs</h4>
+                <ul>
+                    <li><a href="http://www.topcoder.com/direct/blogs/">TopCoder Direct</a></li>
+                    <li><a href="http://studio.topcoder.com/blog/">Studio TopCoder</a></li>
+                </ul>
+            </div>
+            
+            <div class="col">
+                <h4>My Account</h4>
+                <ul>
+                    <li><a href="http://www.topcoder.com/reg/">TopCoder Registration</a></li>
+                    <li><a href="http://www.topcoder.com/tc?module=MyHome">Manage Profile</a></li>
+                    <li><a href="http://www.topcoder.com/dr">TopCoder Digital Run</a></li>
+                    <li><a href="http://studio.topcoder.com/?module=Static&amp;d1=digitalrun&amp;d2=2008v2&amp;d3=home">Studio Cup</a></li>
+                </ul>
+            </div>
+            
+            <div class="col">
+                <h4>Powered by TopCoder</h4>
+                <ul>
+                    <li><a href="http://software.topcoder.com/">TopCoder Direct</a></li>
+                    <li><a href="http://www.topcoder.com/">TopCoder.com</a></li>
+                    <li><a href="http://studio.topcoder.com/">Studio TopCoder</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="footer">
+        <div class="">
+            <p id="footer_1800"><strong>1-866-TopCoder or answers@topcoder.com</strong></p>
+
+            <p>TopCoder
+is the world's largest competitive software development community with
+more than 221,438 developers representing over 200 countries.</p>
+            
+            <p>Copyright ©2001-2009, TopCoder, Inc. All rights reserved.</p>
+        </div>
+    </div>
+
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="Complex%20Boolean%20Expression%20Evaluator%20Version%201.0_files/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-6340959-6");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<!-- Footer ends -->
+
+</body></html>

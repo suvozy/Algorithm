@@ -1,0 +1,48 @@
+/* The on menu located page edit button */
+.WikiPageMenuEditButton { width: 108px; height: 20px; font-size: 0px; color: white; text-decoration: none; background: url('/i/edit_small.gif'); display: block; float: left; margin: 13px 7px 0 0; }
+.WikiPageMenuEditButtonNoPermission { width: 108px; height: 20px; font-size: 0px; color: white; text-decoration: none; background: url('/i/edit_small_nopermission.gif'); display: block; float: left; margin: 13px 7px 0 0; }
+.WikiPageMenuEditButtonLocked { width: 108px; height: 20px; font-size: 0px; color: white; text-decoration: none; background: url('/i/edit_small_locked.gif'); display: block; float: left; margin: 13px 7px 0 0; }
+.WikiPageMenuEditButtonDisabled { width: 108px; height: 20px; font-size: 0px; color: white; text-decoration: none; background: url('/i/edit_small_disabled.gif'); display: block; float: left; margin: 13px 7px 0 0; }
+
+/* Page Menu components */
+.WikiPageMenuStar { margin-top: 10px; float: left; }
+.WikiPageMenuPermissionIcon { margin-top: 12px; margin-right: 2px; float: left; }
+.WikiPageMenuTitle { margin: 10px 8px 0 0; font-weight: normal; font-size: 20px; float: left; }
+
+.WikiActions a { font-size:  90%; }
+.WikiPageMenuEntries { float: left; }
+.WikiPageMenuEntries img { display: inline; }
+.WikiPageMenuEntries ul { margin: 0; padding: 4px 10px; list-style: none; }
+.WikiPageMenuEntries li { float: left; background: url("/i/tab_1l.gif") no-repeat left top; margin: 5px 1px 0 1px; padding: 0 0 0 5px; position: relative; top: 1px; }
+.WikiPageMenuEntries li a { float:left; display:block; background:url("/i/tab_1r.gif") no-repeat right top; padding: 5px 10px 5px 5px; }
+.WikiPageMenuEntries a:visited, .WikiPageMenuEntries a:link { color: #777; }
+.WikiPageMenuEntries .WikiPageMenuEntryOn { background-image:url("/i/tab_1l_on.gif"); }
+.WikiPageMenuEntries .WikiPageMenuEntryOff { border-bottom: 1px solid #DDD; }
+.WikiPageMenuEntries .WikiPageMenuEntryOn a { background-image: url("/i/tab_1r_on.gif"); padding-bottom: 5px; border-bottom: 1px solid #FFF; }
+.WikiPageMenuEntries .WikiPageMenuEntryOn a { color: #333; font-weight: bold; }
+
+.WikiPageSubMenuDisabled { display: none; }
+.WikiPageSubMenuEnabled { display: inline !important; }
+
+#WikiPageSubMenu { cursor: pointer;}
+#WikiPageSubMenu ul { z-index: 2; position: absolute; top: 26px; left: 0; list-style: none; width: 140px; background-color: #FFF; padding: 0; margin: 0; border-color: #DDD; border-style: solid; border-width: 1px 1px 0 1px; }
+#WikiPageSubMenu .WikiPageSubMenuEntry, #WikiPageSubMenu .WikiPageSubMenuEntryDisabled { width: 128px; background-image: none; padding: 4px 4px 4px 8px; border-bottom: 1px solid #DDD; margin: 0; float: left; background-color: #FFF; }
+#WikiPageSubMenu .WikiPageSubMenuEntry a { color: #000; font-weight: normal; background-image: none; padding: 0; border: 0; }
+#WikiPageSubMenu .WikiPageSubMenuEntryDisabled { color: #CCC; }
+#WikiPageSubMenu .WikiPageSubMenuEntry:hover { background-color: #EEE; }
+#WikiPageSubMenu .WikiPageSubMenuEntryDisabled:hover { background-color: #FFF; }
+#WikiPageSubMenuControl { padding-left: 5px; display: inline; }
+
+/* Notice and Banner styles */
+.WikiNotice { width: 95%; color: #833; padding: 2px; margin: 1em auto .5em auto;  background-position: 8px 50%; background-repeat: no-repeat; border: 1px solid #CCC; }
+
+.WikiSuccess { background-color: #CFC; background-image: url(/i/icon/rv/ok_16.png); border-color: #6B6; }
+.WikiWarning { background-color: #FFC; background-image: url(/i/icon/rv/warnings_16.png); border-color: #BB6; }
+.WikiError { background-color: #FCC; background-image: url(/i/icon/rv/close_a_16.png); border-color: #B66; }
+.WikiInfo { background-color: #CCF; background-image: url(/i/icon/rv/info_16.png); border-color: #66B; }
+
+.WikiNotice ul { list-style-type: none; margin: 0 0 0 32px; padding: 0; color: black !important; }
+.WikiNotice a { color: blue !important; }
+.WikiBanner { width: 95%; color: #000; background-color: #FFC; padding: 2px; margin: 1em auto .5em auto;  background-image: url(/i/icon/rv/info_16.png); background-position: 8px 50%; background-repeat: no-repeat; border: 1px solid #CCC; }
+.WikiBanner ul { list-style-type: none; margin: 0 0 0 32px; padding: 0; color: black !important; }
+.WikiBanner a { color: blue !important; }

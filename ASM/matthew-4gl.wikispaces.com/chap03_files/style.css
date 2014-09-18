@@ -1,0 +1,99 @@
+body {	
+	font-family  : arial;
+	background-color: #E2E5EC; }
+a, a:link, a:active, a:visited {
+	font-family: arial;
+	font-weight: bold;
+	text-decoration: none;
+	color: #394159; }
+a:hover {
+	font-family: arial;
+	font-weight: bold;
+	text-decoration: underline;
+	color: #6573B7; }
+a.light, a.light:link, a.light:active, a.light:visited {
+	font-family: tahoma;
+	font-weight: 500;
+	text-decoration: none;
+	color: #394159; }
+a.light:hover {
+	font-family: tahoma;
+	font-weight: 500;
+	text-decoration: underline;
+	color: #6573B7; }
+a.left, a.left:link, a.left:active, a.left:visited {
+	font-family: 'courier new';
+	font-weight: normal;
+	text-decoration: none;
+	color: #394159;
+	font-size: 11pt; }
+a.left:hover {
+	font-family: 'courier new';
+	font-weight: normal;
+	text-decoration: underline;
+	color: #FFFFFF;
+	font-size: 11pt; }
+a.small, a.small:link, a.small:active, a.small:visited {
+	font-family: tahoma;
+	text-decoration: none;
+	color: #8A91A6;
+	font-size: 10pt; }
+a.small:hover {
+	font-family: tahoma;
+	text-decoration: none;
+	color: #FFFFFF;
+	font-size: 10pt; }
+a.foot, a.foot:link, a.foot:active, a.foot:visited {
+	font-family: tahoma;
+	text-decoration: none;
+	color: #000000;
+	font-size: 8pt; }
+a.foot:hover {
+	font-family: tahoma;
+	text-decoration: none;
+	color: #FFFFFF;
+	font-size: 8pt; }
+
+code {	font-size:	12pt;
+	background-color: #CBCFD8; }
+blockquote.code {
+	font-family: courier, sans-serif;
+	border:          thin solid #C0C4D0;
+	color:           #000000;
+	background:      #C0C4D0;
+	margin-top:	5px;
+	margin-bottom:	5px;
+      border:         1 solid #A0A4B0; }
+blockquote.console {
+	font-family:	'courier new';
+	border:         thin solid #000000;
+	color:          #C0C4D0;
+	background:     #000000;
+	font-weight:	bold; }
+blockquote.term {
+	font-size:	10pt;
+	font-family: arial;
+	background:	#A7B9EC;
+	border:         1 solid #A0A4B0;
+	margin-left: 0;
+	margin-right: 0;}
+
+pre { margin: 0 0 0 0; }
+
+span.navigate {
+	font-family: arial;
+	font-weight: bold;
+	text-decoration: none;
+	color: #000000; }
+
+p.small {
+	font-family: tahoma;
+	color: #000000;
+	font-size: 70%; }
+
+p.newsbox { font-size: 	8pt; } 
+
+td.left { background: url(img/left_bg.gif) repeat-y ; }
+td.top_right { background: url(img/top_right.png) repeat-x bottom; }
+td.foot2 { background: url(img/foot_bg.gif) repeat-x bottom; }
+table.tut_tab tr { background-color: #CBCFD8; }

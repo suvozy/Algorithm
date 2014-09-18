@@ -1,0 +1,2038 @@
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-874">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>ROOM - FASM</title>
+</head>
+
+<body bgcolor="#C0C0C0">
+
+<blockquote>
+    <blockquote>
+        <p><font color="#004080" face="Tahoma" size="4"><strong>;fasm1.asm
+        <br>
+        <br>
+        ;;;;;;;;;;;;;;;;;;;<br>
+        ;.model small<br>
+        ;.code<br>
+        ;;;;;;;;;;;;;;;;;;;<br>
+        <br>
+        ;;;;;;;;;;;;;;;;;<br>
+        ;main PROC<br>
+        ;;;;;;;;;;;;;;;;;<br>
+        <br>
+        ;*******<br>
+        org 100h <br>
+        ;*******<br>
+        <br>
+        mov dl,'2'<br>
+        mov ah,2h<br>
+        int 21h<br>
+        <br>
+        mov dl,'x'<br>
+        mov ah,2h<br>
+        int 21h <br>
+        <br>
+        mov dl,'3'<br>
+        mov ah,2h<br>
+        int 21h<br>
+        <br>
+        mov dl,'='<br>
+        mov ah,2h<br>
+        int 21h<br>
+        <br>
+        mov al,2<br>
+        mov dl,3<br>
+        mul dl<br>
+        <br>
+        mov dl,al<br>
+        add dl,30h <br>
+        mov ah,2h<br>
+        int 21h<br>
+        <br>
+        mov dl,10<br>
+        mov ah,2h<br>
+        int 21h <br>
+        <br>
+        mov ah,4ch<br>
+        int 21h<br>
+        <br>
+        ;;;;;;;;;;;;;;;;;<br>
+        ;main ENDP<br>
+        ;<br>
+        ;END main<br>
+        ;;;;;;;;;;;;;;;;;</strong></font></p>
+        <p><font face="Tahoma" size="5"><strong>ASSEMBLY Program
+        Structure </strong></font></p>
+        <p><font color="#008000" face="Tahoma" size="3"><strong>;fasm1.asm<br>
+        <br>
+        org 100h<br>
+        .....<br>
+        mov ah,4ch<br>
+        int 21h</strong></font></p>
+        <p><font color="#008000" face="Tahoma" size="3"><strong><img src="room_fasm_files/fasm1.gif" height="285" width="401"><br>
+        </strong></font><font color="#0000FF" face="Tahoma"><strong>fasm1.com</strong></font></p>
+    </blockquote>
+</blockquote>
+
+<p><font face="Tahoma" size="5"><strong>Explanation</strong></font></p>
+
+<p><font face="Tahoma"><strong>Assembly Language Syntax:</strong><br>
+Program consist of statements, one per line. Each statement is
+either an instruction, which assembler translates into machine
+code, or an assembler directive, which instructs the assembler to
+perform some specific task, such as allocating memory space for
+variable or creating a procedure. Both instructions and
+Directives have up to four fields:<br>
+<strong><br>
+Statements</strong><br>
+• <em>Instruction</em> -- a statement that is executed by the
+processor at runtime<br>
+• <em>Directive</em> -- a statement that affects either the
+program listing or the way machine code is generated<br>
+<br>
+<strong>[identifier] [operation] [operands] [;comment]</strong><br>
+<br>
+Maximum of 132 characters per line<br>
+<br>
+<strong>Identifiers</strong><br>
+A name assigned to an item in the program for referencing<br>
+– Variable -- refers to address of a data item<br>
+<strong>COUNTER</strong> DB 0<br>
+– Label -- refers to the address of an instruction, procedure,
+or segment<br>
+<strong>MAIN </strong>PROC FAR</font></p>
+
+<p><font face="Tahoma">Example : <em>Instruction</em></font></p>
+
+<table border="1">
+    <tbody><tr>
+        <td><font face="Tahoma"><strong>Name</strong></font></td>
+        <td><font face="Tahoma"><strong>Operation</strong></font></td>
+        <td><font face="Tahoma"><strong>Operand</strong></font></td>
+        <td><font face="Tahoma"><strong>Comment</strong></font></td>
+    </tr>
+    <tr>
+        <td><font face="Tahoma"><strong>Start:</strong></font></td>
+        <td><font face="Tahoma"><strong>MOV</strong></font></td>
+        <td><font face="Tahoma"><strong>CX , 5</strong></font></td>
+        <td><font face="Tahoma"><strong>;Initialize counter</strong></font></td>
+    </tr>
+</tbody></table>
+
+<p><font face="Tahoma">Example : <em>Directive</em></font></p>
+
+<table border="1">
+    <tbody><tr>
+        <td><font face="Tahoma"><strong>Name</strong></font></td>
+        <td><font face="Tahoma"><strong>Operation</strong></font></td>
+        <td><font face="Tahoma"><strong>Operand</strong></font></td>
+        <td><font face="Tahoma"><strong>Comment</strong></font></td>
+    </tr>
+    <tr>
+        <td><font face="Tahoma"><strong>MAIN</strong></font></td>
+        <td><font face="Tahoma"><strong>PROC</strong></font></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+    </tr>
+</tbody></table>
+
+<p><font face="Tahoma">MAIN is the name , and the operation field
+contains PROC . This particular directive creates a procedure
+called MAIN.<br>
+<br>
+<strong>Operation field</strong> <strong>:</strong><br>
+For an instruction ,the operation field contains symbolic
+operation code (Op-code) . The assembler translates a symbolic op-code
+into machine code . Example <strong>MOV , ADD , SUB</strong></font></p>
+
+<p><font face="Tahoma">In an assembler directives, the operation
+field contains a pseudo-operation code ( pseudo-op) . pseudo- ops
+are not translated into machine code; rather, they simply tell
+the assembler to do something . Example <strong>PROC</strong> (
+create procedure)<br>
+<br>
+<strong>Operand Field :</strong><br>
+For an instruction, the operand field specifies the data that are
+to be acted on by operation . An instruction may have zero, one
+or two operands . <br>
+Example<strong> </strong></font></p>
+
+<p><font face="Tahoma"><strong>NOP</strong> ;no operand<br>
+<strong>INC AX</strong> ;one operand</font></p>
+
+<table border="1">
+    <tbody><tr>
+        <td><font face="Tahoma"><strong>ADD</strong></font></td>
+        <td><font face="Tahoma"><strong>WORD1,</strong></font></td>
+        <td><font face="Tahoma"><strong>2</strong></font></td>
+        <td><font face="Tahoma">;two operand </font></td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td><font face="Tahoma"><strong>Destination</strong></font></td>
+        <td><font face="Tahoma"><strong>Source</strong></font></td>
+        <td>&nbsp;</td>
+    </tr>
+</tbody></table>
+
+<p><a href="http://www.lib.ru.ac.th/knowledge/pcweb/assembly/chapter03_Coding.pdf"><font face="Tahoma">http://www.lib.ru.ac.th/knowledge/pcweb/assembly/chapter03_Coding.pdf</font></a><font face="Tahoma"> </font></p>
+
+<p><font face="Tahoma">When writing code, it is very helpful to
+use some comments to explain what is going on. A comment is a
+section of regular text that the assembler ignores when turning
+the assembly code into the machine code. In assembly, comments
+are usually denoted with a semicolon ";".<br>
+</font><a href="http://en.wikibooks.org/wiki/X86_Assembly/Comments"><font face="Tahoma">http://en.wikibooks.org/wiki/X86_Assembly/Comments</font></a><font face="Tahoma"> </font></p>
+
+<p><font color="#400040" face="Tahoma" size="3"><strong>;fasm1.asm
+</strong></font></p>
+
+<p><font face="Tahoma" size="3">Extension:<b> </b>ASM ( .<b> </b>ASM
+) <br>
+Description:<b><br>
+</b>ASM is the file extension for the Assembler Language source
+file. <br>
+</font><a href="http://www.liutilities.com/products/winbackup/filextlibrary/files/ASM/"><font face="Tahoma" size="3">http://www.liutilities.com/products/winbackup/filextlibrary/files/ASM/</font></a><font face="Tahoma" size="3"> </font></p>
+
+<p><font color="#400040" face="Tahoma" size="3"><strong>org 100h </strong></font></p>
+
+<p><font face="Tahoma">All .COM programs start at the <b>offset</b>
+</font><font face="Tahoma" size="2">address </font><font face="Tahoma">of <b>100h</b> (256 bytes).</font></p>
+
+<p><font color="#400040" face="Tahoma" size="3"><strong>mov dl,'2'<br>
+mov ah,2h<br>
+int 21h</strong></font></p>
+
+<p><font face="Tahoma">Moves the <strong>2</strong> character to
+register <strong>dl</strong>. Moves the value <strong>2h</strong>
+to register <strong>ah</strong>. This program uses <strong>2h</strong>
+function of the DOS <strong>21h</strong> interruption, prints
+character out from the register <strong>DL</strong>.</font></p>
+
+<p><font face="Tahoma" size="3">DOS Interrupt 21H</font><font face="Tahoma" size="1">&nbsp;</font></p>
+
+<ul type="disc">
+    <li><font face="Tahoma" size="3">Option 2 – Outputs a
+        single character to the monitor.</font><font face="Tahoma" size="1"> </font></li>
+    <li><font face="Tahoma" size="3">Registers used:</font><font face="Tahoma" size="1"> </font><ul type="disc">
+            <li><font face="Tahoma" size="3">AH = 2</font><font face="Tahoma" size="1"> </font></li>
+            <li><font face="Tahoma" size="3">DL = the character
+                to be displayed.</font><font face="Tahoma" size="1"> </font></li>
+        </ul>
+    </li>
+</ul>
+
+<p><a href="http://www.ece.lsu.edu/desouza/Classes/EE3751/Lab%203.pdf"><font face="Tahoma" size="3">http://www.ece.lsu.edu/desouza/Classes/EE3751/Lab%203.pdf</font></a></p>
+
+<p><font color="#400040" face="Tahoma" size="3"><strong>mov dl,'x'<br>
+mov ah,2h<br>
+int 21h</strong></font></p>
+
+<p><font face="Tahoma">Moves the <strong>x</strong> character to
+register <strong>dl</strong>. Moves the value <strong>2h</strong>
+to register <strong>ah</strong>. This program uses <strong>2h</strong>
+function of the DOS <strong>21h</strong> interruption, prints
+character out from the register <strong>DL</strong>.</font></p>
+
+<p><font color="#400040" face="Tahoma" size="3"><strong>mov dl,'3'<br>
+mov ah,2h<br>
+int 21h</strong></font></p>
+
+<p><font face="Tahoma">Moves the <strong>3</strong> character to
+register <strong>dl</strong>. Moves the value <strong>2h</strong>
+to register <strong>ah</strong>. This program uses <strong>2h</strong>
+function of the DOS <strong>21h</strong> interruption, prints
+character out from the register <strong>DL</strong>.</font></p>
+
+<p><font color="#400040" face="Tahoma" size="3"><strong>mov dl,'='<br>
+mov ah,2h<br>
+int 21h</strong></font></p>
+
+<p><font face="Tahoma">Moves the <strong>=</strong> character to
+register <strong>dl</strong>. Moves the value <strong>2h</strong>
+to register <strong>ah</strong>. This program uses <strong>2h</strong>
+function of the DOS <strong>21h</strong> interruption, prints
+character out from the register <strong>DL</strong>.</font></p>
+
+<p><font color="#400040" face="Tahoma" size="3"><strong>mov al,2<br>
+mov dl,3<br>
+mul dl</strong></font></p>
+
+<p><font face="Tahoma">Moves the value <strong>2</strong> to
+register <strong>al</strong>. Moves the value <strong>3 </strong>to
+register <strong>dl</strong>.<b> </b>Multiply<strong> 3 </strong>of
+register <strong>dl </strong>by<strong> 2 </strong>of register <strong>al</strong>
+and store result in register <strong>al</strong>. <br>
+</font><a href="http://comsci.liu.edu/%7Emurali/asm/Intro.htm"><font face="Tahoma">http://comsci.liu.edu/~murali/asm/Intro.htm</font></a><font face="Tahoma"> </font></p>
+
+<p><font face="Tahoma">MUL: Multiplies two unsigned integers (always
+positive) <br>
+Syntax: </font></p>
+
+<blockquote>
+    <p><font face="Tahoma"><strong>MUL register or variable</strong></font></p>
+</blockquote>
+
+<p><font face="Tahoma">This multiples AL or AX by the register or
+variable given. AL is multiplied if a byte sized operand is given
+and the result is stored in AX. If the operand is word sized AX
+is multiplied and the result is placed in DX:AX <br>
+</font><a href="http://burks.bton.ac.uk/burks/language/asm/asmtut/asm5.htm"><font face="Tahoma">http://burks.bton.ac.uk/burks/language/asm/asmtut/asm5.htm</font></a><font face="Tahoma"> </font></p>
+
+<p><font color="#400040" face="Tahoma" size="3"><strong>mov dl,al<br>
+add dl,30h <br>
+mov ah,2h<br>
+int 21h</strong></font></p>
+
+<p><font face="Tahoma">Moves the value result from register <strong>al</strong>
+to register <strong>dl</strong> and <b>add </b>the value <b>30h</b>
+to register <strong>dl </strong>to<strong> </strong>convert from
+binary number<b> </b>to ASCII decimal. Moves the value <strong>2h</strong>
+to register <strong>ah</strong>. This program uses <strong>2h</strong>
+function of the DOS <strong>21h</strong> interruption, prints
+character out from the register <strong>DL</strong>.</font></p>
+
+<p><font color="#400040" face="Tahoma" size="3"><strong>mov dl,10<br>
+mov ah,2h<br>
+int 21h</strong></font></p>
+
+<p><font face="Tahoma">Moves the value <strong>10 </strong>to
+register <strong>dl </strong>to use the ASCII code <b>10</b> used
+to start a new line on the printed page or screen. Moves the
+value <strong>2h</strong> to register <strong>ah</strong>. This
+program uses <strong>2h</strong> function of the DOS <strong>21h</strong>
+interruption, prints character out from the register <strong>DL</strong>.<br>
+</font><a href="http://www.softwareforeducation.com/sms32v50/sms32v50_manual/230-glossary.htm"><font face="Tahoma">http://www.softwareforeducation.com/sms32v50/sms32v50_manual/230-glossary.htm</font></a><font face="Tahoma"> </font></p>
+
+<p><font color="#400040" face="Tahoma" size="3"><strong>mov ah,4ch<br>
+int 21h</strong></font></p>
+
+<p><font face="Tahoma">Moves the value <strong>4ch</strong> to
+register <strong>ah</strong>. This program uses <strong>4ch</strong>
+function of the DOS <strong>21h</strong> interruption, returns
+the control to operating system.</font></p>
+
+<p><font face="Tahoma" size="3">DOS Interrupt 21H</font><font face="Tahoma" size="1">&nbsp;</font></p>
+
+<ul type="disc">
+    <li><font face="Tahoma" size="3">Option 4CH – Terminates a
+        process, by returning control to a parent process or to
+        DOS.</font> </li>
+    <li><font face="Tahoma" size="3">Registers used:</font><font face="Tahoma" size="1"> </font><ul type="disc">
+            <li><font face="Tahoma" size="3">AH =</font><font face="Tahoma" size="5"> </font><font face="Tahoma" size="3">4CH</font> </li>
+            <li><font face="Tahoma" size="3">DL = binary return
+                code.</font><font face="Tahoma" size="1"> </font></li>
+        </ul>
+    </li>
+</ul>
+
+<p><a href="http://www.ece.lsu.edu/desouza/Classes/EE3751/Lab%203.pdf"><font face="Tahoma" size="3">http://www.ece.lsu.edu/desouza/Classes/EE3751/Lab%203.pdf</font></a></p>
+
+<blockquote>
+    <blockquote>
+        <p><font color="#004080" face="Tahoma" size="4"><strong>;fasm2.asm
+        <br>
+        <br>
+        org 100h <br>
+        <br>
+        CALL multiplication <br>
+        <br>
+        mov ah,4ch<br>
+        int 21h <br>
+        <br>
+        multiplication:<br>
+        <br>
+        mov dl,'2'<br>
+        mov ah,2h<br>
+        int 21h<br>
+        <br>
+        mov dl,'x'<br>
+        mov ah,2h<br>
+        int 21h <br>
+        <br>
+        mov dl,'3'<br>
+        mov ah,2h<br>
+        int 21h<br>
+        <br>
+        mov dl,'='<br>
+        mov ah,2h<br>
+        int 21h<br>
+        <br>
+        mov al,2<br>
+        mov dl,3<br>
+        mul dl<br>
+        <br>
+        mov dl,al<br>
+        add dl,30h <br>
+        mov ah,2h<br>
+        int 21h<br>
+        <br>
+        mov dl,10<br>
+        mov ah,2h<br>
+        int 21h <br>
+        <br>
+        RET</strong></font></p>
+        <p><font face="Tahoma" size="5"><strong>ASSEMBLY Program
+        Structure </strong></font></p>
+        <p><font color="#008000" face="Tahoma" size="3"><strong>;fasm2.asm<br>
+        <br>
+        org 100h<br>
+        <br>
+        CALL </strong></font><font color="#008000" face="Tahoma"><strong>function_name</strong></font><font color="#008000" face="Tahoma" size="3"><strong><br>
+        <br>
+        mov ah,4ch<br>
+        int 21h<br>
+        <br>
+        </strong></font><font color="#008000" face="Tahoma"><strong>function_name</strong></font><font color="#008000" face="Tahoma" size="3"><strong>:<br>
+        .....<br>
+        RET</strong></font></p>
+        <p><font color="#008000" face="Tahoma" size="3"><strong><img src="room_fasm_files/fasm2.gif" height="285" width="401"><br>
+        </strong></font><font color="#0000FF" face="Tahoma"><strong>fasm2.com</strong></font></p>
+    </blockquote>
+</blockquote>
+
+<p><font face="Tahoma" size="5"><strong>Explanation</strong></font></p>
+
+<p><font face="Tahoma"><strong>CALL multiplication</strong></font></p>
+
+<p><font face="Tahoma" size="3">Use </font><font color="#000000" face="Tahoma" size="3"><strong>CALL </strong></font><font face="Tahoma">to call procedure (function) </font><font color="#000000" face="Tahoma" size="3"><strong>multiplication</strong></font><font face="Tahoma">.</font></p>
+
+<p><font face="Tahoma" size="3">A sub-program gives a name to a
+group of statements. It must be defined once and may be called as
+often as required. The <strong>call </strong>instruction invokes
+the sub-program that carries out its instructions. When finished,
+the program resumes at the instruction after the call instruction.
+<strong>Call</strong> and <strong>ret</strong> modify the
+contents of the Program Counter. Programs using sub-programs are
+easier to write and understand. <br>
+</font><a href="http://ict.tippinst.ie/%7Emmather/csh/Laboratories/Manuals/Assembler%20Laboratories%20Workbook.doc"><font face="Tahoma" size="3">http://ict.tippinst.ie/~mmather/csh/Laboratories/Manuals/Assembler%20Laboratories%20Workbook.doc</font></a><font face="Tahoma" size="3"> </font></p>
+
+<p><font face="Tahoma"><strong>multiplication:<br>
+.....<br>
+RET</strong></font></p>
+
+<p><font face="Tahoma"><strong>multiplication</strong> is the
+name. This particular directive creates a procedure called
+multiplication. <strong>RET</strong></font> <font face="Tahoma" size="3">instruction</font><font face="Tahoma"> returns from
+piece of code entered due to call instruction. <br>
+</font><a href="http://www.student.cs.uwaterloo.ca/%7Ecs452/tutorial.html"><font face="Tahoma">http://www.student.cs.uwaterloo.ca/~cs452/tutorial.html</font></a></p>
+
+<blockquote>
+    <blockquote>
+        <p><font color="#004080" face="Tahoma" size="4"><strong>;fasm3.asm
+        <br>
+        <br>
+        org 100h <br>
+        <br>
+        include 'fasm3a.asm'<br>
+        <br>
+        CALL multiplication <br>
+        <br>
+        mov ah,4ch<br>
+        int 21h</strong></font></p>
+        <p><font color="#004080" face="Tahoma" size="4"><strong>;fasm3a.asm
+        <br>
+        <br>
+        multiplication:<br>
+        <br>
+        mov dl,'2'<br>
+        mov ah,2h<br>
+        int 21h<br>
+        <br>
+        mov dl,'x'<br>
+        mov ah,2h<br>
+        int 21h <br>
+        <br>
+        mov dl,'3'<br>
+        mov ah,2h<br>
+        int 21h<br>
+        <br>
+        mov dl,'='<br>
+        mov ah,2h<br>
+        int 21h<br>
+        <br>
+        mov al,2<br>
+        mov dl,3<br>
+        mul dl<br>
+        <br>
+        mov dl,al<br>
+        add dl,30h <br>
+        mov ah,2h<br>
+        int 21h<br>
+        <br>
+        mov dl,10<br>
+        mov ah,2h<br>
+        int 21h <br>
+        <br>
+        RET</strong></font></p>
+        <p><font face="Tahoma" size="5"><strong>ASSEMBLY Program
+        Structure </strong></font></p>
+        <p><font color="#008000" face="Tahoma" size="3"><strong>;fasm3.asm<br>
+        <br>
+        org 100h<br>
+        <br>
+        include 'fasm3a.asm'<br>
+        <br>
+        CALL </strong></font><font color="#008000" face="Tahoma"><strong>function_name</strong></font><font color="#008000" face="Tahoma" size="3"><strong><br>
+        <br>
+        mov ah,4ch<br>
+        int 21h</strong></font></p>
+        <p><font color="#008000" face="Tahoma" size="3"><strong>;fasm3a.asm<br>
+        <br>
+        </strong></font><font color="#008000" face="Tahoma"><strong>function_name:</strong></font><font color="#008000" face="Tahoma" size="3"><strong><br>
+        .....<br>
+        RET</strong></font></p>
+        <p><font color="#008000" face="Tahoma" size="3"><strong><img src="room_fasm_files/fasm3.gif" height="285" width="401"><br>
+        </strong></font><font color="#0000FF" face="Tahoma"><strong>fasm3.com</strong></font></p>
+    </blockquote>
+</blockquote>
+
+<p><font face="Tahoma" size="5"><strong>Explanation</strong></font></p>
+
+<p><font face="Tahoma"><strong>fasm3.asm<br>
+include 'fasm3a.asm'</strong></font></p>
+
+<p><font face="Tahoma" size="3">Use <strong>include</strong> to
+include the </font><font face="Tahoma">Assembler source file</font><font face="Tahoma" size="3"> (</font><font face="Tahoma">.asm file) <strong>fasm3a.asm</strong></font><font face="Tahoma" size="3"> </font><font face="Tahoma">in </font><font face="Tahoma" size="3">the </font><font face="Tahoma">Assembler
+source file<strong> fasm3.asm</strong>.</font></p>
+
+<p><font color="#000000" face="Tahoma" size="3"><strong>CALL
+multiplication</strong></font></p>
+
+<p><font face="Tahoma" size="3">Use </font><font color="#000000" face="Tahoma" size="3"><strong>CALL </strong></font><font face="Tahoma">to call function </font><font color="#000000" face="Tahoma" size="3"><strong>multiplication</strong></font><font face="Tahoma">.</font></p>
+
+<p><font color="#000000" face="Tahoma" size="3"><strong>;fasm3a.asm<br>
+multiplication</strong></font><font color="#000000" face="Tahoma"><strong>:</strong></font><font color="#000000" face="Tahoma" size="3"><strong><br>
+.....<br>
+RET</strong></font></p>
+
+<p><font face="Tahoma"><strong>fasm3a.asm</strong> is </font><font face="Tahoma" size="3">the </font><font face="Tahoma">Assembler
+source file </font><font face="Terminal">contains</font><font face="Tahoma"> </font><font color="#000000" face="Tahoma" size="3"><strong>multiplication</strong></font><font face="Tahoma" size="3"> function</font><font face="Tahoma">
+source code.</font></p>
+
+<blockquote>
+    <blockquote>
+        <p><font color="#004080" face="Tahoma" size="4"><strong>;fasm4.asm<br>
+        <br>
+        org 100h<br>
+        jmp start<br>
+        <br>
+        x db '2' <br>
+        y db '3'<br>
+        z db ?<br>
+        <br>
+        start:<br>
+        <br>
+        CALL multiplication <br>
+        <br>
+        mov ah,4ch<br>
+        int 21h<br>
+        <br>
+        multiplication:<br>
+        <br>
+        mov dl,[x]<br>
+        mov ah,2h<br>
+        int 21h<br>
+        <br>
+        mov dl,'x'<br>
+        mov ah,2h<br>
+        int 21h <br>
+        <br>
+        mov dl,[y]<br>
+        mov ah,2h<br>
+        int 21h<br>
+        <br>
+        mov dl,'='<br>
+        mov ah,2h<br>
+        int 21h <br>
+        <br>
+        sub al,30h<br>
+        mov al,[x]<br>
+        sub al,30h<br>
+        mov dl,[y]<br>
+        mul dl<br>
+        <br>
+        sub al,30h<br>
+        mov [z],al<br>
+        sub al,30h<br>
+        mov dl,[z]<br>
+        mov ah,2h<br>
+        int 21h<br>
+        <br>
+        mov dl,10<br>
+        mov ah,2h<br>
+        int 21h <br>
+        <br>
+        RET</strong></font></p>
+        <p><font face="Tahoma" size="5"><strong>ASSEMBLY Program
+        Structure </strong></font></p>
+        <p><font color="#008000" face="Tahoma" size="3"><strong>;fasm4.asm<br>
+        <br>
+        org 100h<br>
+        jmp start<br>
+        <br>
+        variable_name db value<br>
+        <br>
+        start:<br>
+        <br>
+        CALL </strong></font><font color="#008000" face="Tahoma"><strong>function_name</strong></font><font color="#008000" face="Tahoma" size="3"><strong><br>
+        <br>
+        mov ah,4ch<br>
+        int 21h<br>
+        <br>
+        </strong></font><font color="#008000" face="Tahoma"><strong>function_name</strong></font><font color="#008000" face="Tahoma" size="3"><strong>:<br>
+        .....<br>
+        RET</strong></font></p>
+        <p><img src="room_fasm_files/fasm4.gif" height="285" width="401"><br>
+        <font color="#0000FF" face="Tahoma"><strong>fasm4.com</strong></font></p>
+    </blockquote>
+</blockquote>
+
+<p><font face="Tahoma" size="5"><strong>Explanation</strong></font></p>
+
+<p><font face="Tahoma" size="4"><strong>Global and Local
+variables</strong><br>
+</font><font face="Tahoma" size="3">Global</font><font face="Tahoma" size="2"> </font><font face="Tahoma">variables are declared
+external (outside of) to </font><font color="#400040" face="Tahoma" size="3">any function or block</font><font face="Tahoma">. </font><font face="Tahoma" size="3">Global</font><font face="Tahoma">
+variables are accessible anywhere in the program. Local variables
+are </font><font color="#400040" face="Tahoma" size="3">declared
+inside any function or block</font><font face="Tahoma">. Local
+variables can only be used inside</font><font color="#400040" face="Tahoma" size="3"> function or block</font><font face="Tahoma">.</font></p>
+
+<p><font face="Tahoma"><strong>jmp start</strong></font></p>
+
+<p><font face="Tahoma"><strong>JMP</strong> will make the program
+execution "jump" or "branch" to the specified
+label, just like a goto statement in a high-level langauge. <br>
+</font><a href="http://atrevida.comprenica.com/atrtut14.html"><font face="Tahoma">http://atrevida.comprenica.com/atrtut14.html</font></a><font face="Tahoma"> </font></p>
+
+<p><font face="Tahoma">The "Start:" is a label. "<strong>Start</strong>"
+refers to the memory address where the next instruction is at. <br>
+</font><a href="http://en.wikipedia.org/wiki/Jump_instruction"><font face="Tahoma">http://en.wikipedia.org/wiki/Jump_instruction</font></a><font face="Tahoma"> </font></p>
+
+<p><font face="Tahoma"><strong>x db '2' <br>
+y db '3'<br>
+z db ?</strong></font></p>
+
+<p><font face="Tahoma" size="3">The <strong>db</strong> directive
+stands for “<strong>define byte</strong>”, which tells the
+assembler to allocate a sequence of memory bytes to the data that
+follow. <strong>x</strong>,<strong>y</strong>,<strong>z</strong>
+are the names of the global variable to be stored in memory, and
+the db allocates memory to it in the size defined by the data
+following it.</font><font face="Tahoma"> Assign the value <strong>2</strong>
+to <strong>x</strong> the value <strong>3</strong> to <strong>y</strong></font><font face="Tahoma" size="3">.<br>
+</font><a href="http://www.cs.ucf.edu/%7Elboloni/Teaching/EEL3801C_Spring2004/slides/eel3801-1-assembly.ppt"><font face="Tahoma" size="3">http://www.cs.ucf.edu/~lboloni/Teaching/EEL3801C_Spring2004/slides/eel3801-1-assembly.ppt</font></a></p>
+
+<p><font face="Tahoma" size="3">A variable contents may be left
+undefined by using the <strong>question mark</strong> (<strong>?</strong>)
+operator. Or a numeric expression can initialise a variable with
+a value that is calculated at assembly time. <br>
+</font><a href="http://www.cis.strath.ac.uk/%7Edunc/archives/ay1999/teaching/llp/lectures/odd/part2.html"><font face="Tahoma" size="3">http://www.cis.strath.ac.uk/~dunc/archives/ay1999/teaching/llp/lectures/odd/part2.html</font></a><font face="Tahoma" size="3"> </font></p>
+
+<p><font face="Tahoma" size="3">The DB directive allocates and
+initializes a byte (8bits) of storage for each argument. Its
+format is, <br>
+<strong>name DB initialvalue,,,</strong> <br>
+</font><a href="http://goforit.unk.edu/asm/asm_5.htm"><font face="Tahoma" size="3">http://goforit.unk.edu/asm/asm_5.htm</font></a><font face="Tahoma" size="3"> <br>
+</font><a href="http://celtickane.com/programming/code/asmtutorial01.php"><font face="Tahoma" size="3">http://celtickane.com/programming/code/asmtutorial01.php</font></a><font face="Tahoma" size="3"> </font></p>
+
+<p><font face="Tahoma"><strong>start:</strong></font></p>
+
+<p><font face="Tahoma">The "<strong>Start:</strong>" is
+a label. "Start" refers to the memory address where the
+next instruction is at. <br>
+</font><a href="http://en.wikipedia.org/wiki/Jump_instruction"><font face="Tahoma">http://en.wikipedia.org/wiki/Jump_instruction</font></a><font face="Tahoma"> </font></p>
+
+<p><font face="Tahoma"><strong>mov dl,[x]<br>
+mov ah,2h<br>
+int 21h</strong></font></p>
+
+<p><font face="Tahoma">Moves the <strong>x</strong> variable to
+register <strong>dl</strong>. Moves the value <strong>2h</strong>
+to register <strong>ah</strong>. This program uses <strong>2h</strong>
+function of the DOS <strong>21h</strong> interruption, prints
+character out from the register <strong>DL</strong>.</font></p>
+
+<p><font face="Tahoma"><strong>mov dl,[y]<br>
+mov ah,2h<br>
+int 21h</strong></font></p>
+
+<p><font face="Tahoma">Moves the <strong>y</strong> variable to
+register <strong>dl</strong>. Moves the value <strong>2h</strong>
+to register <strong>ah</strong>. This program uses <strong>2h</strong>
+function of the DOS <strong>21h</strong> interruption, prints
+character out from the register <strong>DL</strong>.</font></p>
+
+<p><font face="Tahoma"><strong>sub al,30h<br>
+mov al,[x]<br>
+sub al,30h<br>
+mov dl,[y]<br>
+mul dl</strong></font></p>
+
+<p><font face="Tahoma"><b>Subtract </b>the value <b>30h</b> from
+register <strong>al </strong>to<strong> </strong>convert from
+ASCII decimal to binary number (ASCII to BCD). Moves the <strong>x</strong>
+variable to register <strong>al</strong>. Moves the <strong>y</strong>
+variable to register <strong>dl</strong>. <strong>Multiply 3 </strong>of
+the x<strong> </strong>varible of register <strong>dl </strong>by<strong>
+2 </strong>of<strong> </strong>the y<strong> </strong>varible of
+register <strong>al</strong> and store result in register al. </font><br>
+<a href="http://www.answers.com/topic/binary-coded-decimal"><font face="Tahoma">http://www.answers.com/topic/binary-coded-decimal</font></a><font face="Tahoma"> </font></p>
+
+<p><font face="Tahoma"><strong>sub al,30h<br>
+mov [z],al<br>
+sub al,30h<br>
+mov dl,[z]<br>
+mov ah,2h<br>
+int 21h</strong></font></p>
+
+<p><font face="Tahoma"><b>Subtract </b>the value <b>30h</b> from
+register <strong>al </strong>to<strong> </strong>convert from
+ASCII decimal to binary number (ASCII to BCD). Moves the value
+result of multiplication of 2 and 3 from register <strong>al</strong>
+to the <strong>z</strong> variable. Moves the <strong>z</strong>
+variable to register <strong>dl</strong>. Moves the value <strong>2h</strong>
+to register <strong>ah</strong>. This program uses <strong>2h</strong>
+function of the DOS <strong>21h</strong> interruption, prints
+character out from the register <strong>DL</strong>.</font></p>
+
+<blockquote>
+    <blockquote>
+        <p><font color="#004080" face="Tahoma" size="4"><strong>;fasm5.asm<br>
+        <br>
+        org 100h<br>
+        jmp start<br>
+        <br>
+        start:<br>
+        <br>
+        CALL multiplication <br>
+        <br>
+        mov ah,4ch<br>
+        int 21h<br>
+        <br>
+        multiplication:<br>
+        <br>
+        x db '2'<br>
+        y db '3'<br>
+        z db '?'<br>
+        <br>
+        mov dl,[x]<br>
+        mov ah,2h<br>
+        int 21h<br>
+        <br>
+        mov dl,'x'<br>
+        mov ah,2h<br>
+        int 21h <br>
+        <br>
+        mov dl,[y]<br>
+        mov ah,2h<br>
+        int 21h<br>
+        <br>
+        mov dl,'='<br>
+        mov ah,2h<br>
+        int 21h <br>
+        <br>
+        sub al,30h<br>
+        mov al,[x]<br>
+        sub al,30h<br>
+        mov dl,[y]<br>
+        mul dl<br>
+        <br>
+        sub al,30h<br>
+        mov [z],al<br>
+        sub al,30h<br>
+        mov dl,[z]<br>
+        mov ah,2h<br>
+        int 21h<br>
+        <br>
+        mov dl,10<br>
+        mov ah,2h<br>
+        int 21h <br>
+        <br>
+        RET</strong></font></p>
+        <p><font face="Tahoma" size="5"><strong>ASSEMBLY Program
+        Structure </strong></font></p>
+        <p><font color="#008000" face="Tahoma" size="3"><strong>;fasm5.asm<br>
+        <br>
+        org 100h<br>
+        jmp start<br>
+        <br>
+        start:<br>
+        <br>
+        CALL </strong></font><font color="#008000" face="Tahoma"><strong>function_name</strong></font><font color="#008000" face="Tahoma" size="3"><strong><br>
+        <br>
+        mov ah,4ch<br>
+        int 21h<br>
+        <br>
+        </strong></font><font color="#008000" face="Tahoma"><strong>function_name</strong></font><font color="#008000" face="Tahoma" size="3"><strong>:<br>
+        variable_name db value<br>
+        .....<br>
+        RET</strong></font></p>
+        <p><font color="#008000" face="Tahoma" size="3"><strong><img src="room_fasm_files/fasm5.gif" height="285" width="401"><br>
+        </strong></font><font color="#0000FF" face="Tahoma"><strong>fasm5.com</strong></font></p>
+    </blockquote>
+</blockquote>
+
+<p><font face="Tahoma" size="5"><strong>Explanation</strong></font></p>
+
+<p><font face="Tahoma"><strong>multiplication:<br>
+x db '2'<br>
+y db '3'<br>
+z db '?'</strong></font></p>
+
+<p><font color="#400040" face="Tahoma" size="3"><strong>x,y,z </strong>are
+the<strong> </strong></font><font face="Tahoma">variables defined
+within <strong>multiplication </strong></font><font color="#400040" face="Tahoma" size="3">function</font><font face="Tahoma"> is the local variables and can't be used outside
+the </font><font color="#400040" face="Tahoma" size="3">function</font><font face="Tahoma">. Assign the value <strong>2</strong> to <strong>x</strong>
+the value <strong>3</strong> to <strong>y</strong></font><font face="Tahoma" size="3">.</font><font face="Tahoma"> </font><font color="#400040" face="Tahoma" size="3"><strong>z </strong>are the<strong>
+</strong></font><font face="Tahoma">variable</font><font face="Tahoma" size="3"> undefined by using the <strong>question mark</strong>
+(<strong>?</strong>) operator. </font></p>
+
+<blockquote>
+    <blockquote>
+        <p><font color="#004080" face="Tahoma" size="4"><strong>;fasm6.asm<br>
+        <br>
+        org 100h<br>
+        jmp start<br>
+        <br>
+        input1 db 13,"$"<br>
+        input2 db 10,13,"$"<br>
+        output db 10,13,"$"<br>
+        x db ?<br>
+        y db ?<br>
+        z db ?<br>
+        <br>
+        start:<br>
+        <br>
+        CALL multiplication <br>
+        <br>
+        mov ah,4ch<br>
+        int 21h<br>
+        <br>
+        multiplication:<br>
+        <br>
+        ;input x<br>
+        mov dx,input1<br>
+        mov ah,9h<br>
+        int 21h<br>
+        <br>
+        mov ah,1h<br>
+        int 21h<br>
+        <br>
+        sub al,30h<br>
+        mov [x],al<br>
+        <br>
+        ;input y<br>
+        mov dx,input2<br>
+        mov ah,9h<br>
+        int 21h<br>
+        <br>
+        mov ah,1h<br>
+        int 21h<br>
+        <br>
+        sub al,30h<br>
+        mov [y],al<br>
+        <br>
+        ;output z<br>
+        mov dx,output<br>
+        mov ah,9h<br>
+        int 21h<br>
+        <br>
+        mov dl,[x]<br>
+        add dl,30h <br>
+        mov ah,2h<br>
+        int 21h<br>
+        <br>
+        mov dl,'x'<br>
+        mov ah,2<br>
+        int 21h<br>
+        <br>
+        mov dl,[y]<br>
+        add dl,30h <br>
+        mov ah,2h<br>
+        int 21h<br>
+        <br>
+        mov dl,'='<br>
+        mov ah,2h<br>
+        int 21h <br>
+        <br>
+        mov al,[x]<br>
+        mul [y]<br>
+        <br>
+        mov [z],al<br>
+        mov dl,[z]<br>
+        add dl,30h <br>
+        mov ah,2h<br>
+        int 21h<br>
+        <br>
+        mov dl,10<br>
+        mov ah,2h<br>
+        int 21h <br>
+        <br>
+        RET</strong></font></p>
+        <p><font face="Tahoma" size="5"><strong>ASSEMBLY Program
+        Structure </strong></font></p>
+        <p><font color="#008000" face="Tahoma" size="3"><strong>;fasm6.asm<br>
+        <br>
+        org 100h<br>
+        jmp start<br>
+        <br>
+        variable_name db value<br>
+        <br>
+        start:<br>
+        <br>
+        CALL </strong></font><font color="#008000" face="Tahoma"><strong>function_name</strong></font><font color="#008000" face="Tahoma" size="3"><strong><br>
+        <br>
+        mov ah,4ch<br>
+        int 21h<br>
+        <br>
+        </strong></font><font color="#008000" face="Tahoma"><strong>function_name</strong></font><font color="#008000" face="Tahoma" size="3"><strong>:<br>
+        .....<br>
+        RET</strong></font></p>
+        <p><font color="#008000" face="Tahoma" size="3"><strong><img src="room_fasm_files/fasm6.gif" height="285" width="401"><br>
+        </strong></font><font color="#0000FF" face="Tahoma"><strong>fasm6.com</strong></font></p>
+    </blockquote>
+</blockquote>
+
+<p><font face="Tahoma" size="5"><strong>Explanation</strong></font></p>
+
+<p><font face="Tahoma"><strong>input1 db 13,"$"<br>
+input2 db 10,13,"$"<br>
+output db 10,13,"$"<br>
+x db ?<br>
+y db ?<br>
+z db ?</strong></font></p>
+
+<p><font face="Tahoma"><strong>DB</strong> is short for declare
+byte and the <strong>input1</strong>, <strong>input2 </strong>and<strong>
+output </strong>are the array variables of bytes. The string has
+to be terminated with a dollar sign (<strong>$</strong>). <br>
+</font><a href="http://burks.bton.ac.uk/burks/language/asm/asmtut/asm3.htm"><font face="Tahoma">http://burks.bton.ac.uk/burks/language/asm/asmtut/asm3.htm</font></a><font face="Tahoma"> </font></p>
+
+<p><font face="Tahoma">Carriage Return, (ASCII <strong>13</strong>D)
+is the control character to bring the cursor to the start of a
+line. Line-feed (ASCII <strong>10</strong>D) is the control
+character that brings the cursor down to the next line on the
+screen. <br>
+</font><a href="http://www.cs.ucd.ie/staff/jcarthy/home//alp/alp2-3.html"><font face="Tahoma">http://www.cs.ucd.ie/staff/jcarthy/home//alp/alp2-3.html</font></a><font face="Tahoma"> </font></p>
+
+<p><font face="Tahoma">To print out a string with a newline at
+the end, you only need to need to add a linefeed character (<strong>10</strong>)
+to the end of the string in Linux. In DOS, you need both a
+linefeed and a carriage return (<strong>13</strong>). <br>
+</font><a href="http://docs.cs.up.ac.za/programming/asm/derick_tut/quickstart.html"><font face="Tahoma">http://docs.cs.up.ac.za/programming/asm/derick_tut/quickstart.html</font></a><font face="Tahoma"> </font></p>
+
+<p><font face="Tahoma" size="3">The <strong>db</strong> directive
+stands for “<strong>define byte</strong>”, which tells the
+assembler to allocate a sequence of memory bytes to the data that
+follow. <strong>x</strong>,<strong>y</strong>,<strong>z</strong>
+are the names of the global variable to be stored in memory, and
+the db allocates memory to it in the size defined by the data
+following it.</font><font face="Tahoma"> </font><font face="Tahoma" size="3"><br>
+</font><a href="http://www.cs.ucf.edu/%7Elboloni/Teaching/EEL3801C_Spring2004/slides/eel3801-1-assembly.ppt"><font face="Tahoma" size="3">http://www.cs.ucf.edu/~lboloni/Teaching/EEL3801C_Spring2004/slides/eel3801-1-assembly.ppt</font></a></p>
+
+<p><font face="Tahoma" size="3">The question mark (<strong>?</strong>)
+on the end means that the data isn't</font><font face="Tahoma" size="2"> </font><font face="Tahoma" size="3">initialised i.e.
+it has no value in to start with. <br>
+</font><a href="http://burks.bton.ac.uk/burks/language/asm/asmtut/asm3.htm"><font face="Tahoma" size="3">http://burks.bton.ac.uk/burks/language/asm/asmtut/asm3.htm</font></a><font face="Tahoma" size="3"> </font></p>
+
+<p><font face="Tahoma"><strong>;input x<br>
+mov dx,input1<br>
+mov ah,9h<br>
+int 21h</strong></font></p>
+
+<p><font face="Tahoma">Move <strong>input1</strong> into <strong>DX</strong>.<strong>
+</strong>Moves the value <strong>9h</strong> to register <strong>ah</strong>.
+This program uses <strong>9h</strong> function of the DOS <strong>21h</strong>
+interruption, </font><font face="Tahoma" size="3">write a
+character and its attribute at the cursor position </font><font face="Tahoma">from the register <strong>DX</strong>.</font></p>
+
+<p><font face="Tahoma" size="3">DOS Interrupt 21H</font><font face="Tahoma" size="1">&nbsp;</font></p>
+
+<ul type="disc">
+    <li><font face="Tahoma" size="3">Option 9H – Write a
+        character and its attribute at the cursor position.</font>
+    </li>
+</ul>
+
+<p><a href="http://www.ece.lsu.edu/desouza/Classes/EE3751/Lab%203.pdf"><font face="Tahoma" size="3">http://www.ece.lsu.edu/desouza/Classes/EE3751/Lab%203.pdf</font></a></p>
+
+<p><font face="Tahoma"><strong>mov ah,1h<br>
+int 21h</strong></font></p>
+
+<p><font face="Tahoma">Moves the value <strong>1h</strong> to
+register <strong>ah</strong>. This program uses 1<strong>h</strong>
+function of the DOS <strong>21h</strong> interruption keyboard
+input subprogram. <br>
+</font><a href="http://www.cs.ucd.ie/staff/jcarthy/home//alp/alp2-3.html"><font face="Tahoma">http://www.cs.ucd.ie/staff/jcarthy/home//alp/alp2-3.html</font></a><font face="Tahoma"> </font></p>
+
+<p><font face="Tahoma"><strong>sub al,30h<br>
+mov [x],al</strong></font></p>
+
+<p><font face="Tahoma"><b>Subtract </b>the value <b>30h</b> from
+register <strong>al </strong>to<strong> </strong>convert from
+ASCII decimal to binary number (ASCII to BCD). Moves the value
+from register <strong>al</strong> to the <strong>x</strong>
+variable.</font></p>
+
+<p><font face="Tahoma"><strong>;input y<br>
+mov dx,input2<br>
+mov ah,9h<br>
+int 21h</strong></font></p>
+
+<p><font face="Tahoma">Move <strong>input2</strong> into <strong>DX</strong>.<strong>
+</strong>Moves the value <strong>9h</strong> to register <strong>ah</strong>.
+This program uses <strong>9h</strong> function of the DOS <strong>21h</strong>
+interruption, </font><font face="Tahoma" size="3">write a
+character and its attribute at the cursor position </font><font face="Tahoma">from the register <strong>DX</strong>.</font></p>
+
+<p><font face="Tahoma"><strong>;output z<br>
+mov dx,output<br>
+mov ah,9h<br>
+int 21h</strong></font></p>
+
+<p><font face="Tahoma">Move <strong>output </strong>into <strong>DX</strong>.<strong>
+</strong>Moves the value <strong>9h</strong> to register <strong>ah</strong>.
+This program uses <strong>9h</strong> function of the DOS <strong>21h</strong>
+interruption, </font><font face="Tahoma" size="3">write a
+character and its attribute at the cursor position </font><font face="Tahoma">from the register <strong>DX</strong>.</font></p>
+
+<p><font face="Tahoma"><strong>mov dl,[x]<br>
+add dl,30h <br>
+mov ah,2h<br>
+int 21h</strong></font></p>
+
+<p><font face="Tahoma">Moves the <strong>x</strong> variable to
+register <strong>dl</strong>. <b>Add </b>the value <b>30h</b> to
+register <strong>dl </strong>to<strong> </strong>convert from
+binary number<b> </b>to ASCII decimal. Moves the value <strong>2h</strong>
+to register <strong>ah</strong>. This program uses <strong>2h</strong>
+function of the DOS <strong>21h</strong> interruption, prints
+character out from the register <strong>DL</strong>.</font></p>
+
+<p><font face="Tahoma"><strong>mov dl,[y]<br>
+.....<br>
+mov al,[x]<br>
+mul [y]</strong></font></p>
+
+<p><font face="Tahoma">Moves the <strong>y</strong> variable to
+register <strong>dl</strong>. Moves the <strong>x</strong>
+variable to register <strong>al</strong>. <strong>Multiply</strong>
+the value<strong> </strong>of the <strong>x </strong>varible of
+register <strong>al </strong>by<strong> </strong>the value<strong>
+</strong>of<strong> </strong>the <strong>y </strong>varible of
+register <strong>dl</strong> and store result in register al</font>.
+</p>
+
+<p><font face="Tahoma"><strong>mov [z],al<br>
+mov dl,[z]<br>
+add dl,30h <br>
+mov ah,2h<br>
+int 21h</strong></font></p>
+
+<p><font face="Tahoma">Moves the value result of multiplication
+of the value<strong> </strong>of the <strong>x </strong>varible
+and the value<strong> </strong>of<strong> </strong>the <strong>y </strong>varible
+from register <strong>al</strong> to the <strong>z</strong>
+variable. Moves the value<strong> </strong>of the <strong>z</strong>
+variable to register <strong>dl</strong>. <b>Add </b>the value <b>30h</b>
+to register <strong>dl </strong>to<strong> </strong>convert from
+binary number<b> </b>to ASCII decimal. Moves the value <strong>2h</strong>
+to register <strong>ah</strong>. This program uses <strong>2h</strong>
+function of the DOS <strong>21h</strong> interruption, prints
+character out from the register <strong>DL</strong>.</font></p>
+
+<blockquote>
+    <blockquote>
+        <p><font color="#004080" face="Tahoma" size="4"><strong>;fasm7.asm<br>
+        <br>
+        org 100h<br>
+        jmp start<br>
+        <br>
+        input1 db 13,"$"<br>
+        input2 db 10,13,"$"<br>
+        output db 10,13,"$"<br>
+        x db ?<br>
+        y db ?<br>
+        z db 2 dup(?),"$"<br>
+        <br>
+        start:<br>
+        <br>
+        CALL multiplication <br>
+        <br>
+        mov ah,4ch<br>
+        int 21h<br>
+        <br>
+        multiplication:<br>
+        <br>
+        ;input x<br>
+        mov dx,input1<br>
+        mov ah,9h<br>
+        int 21h<br>
+        <br>
+        mov ah,1h<br>
+        int 21h<br>
+        <br>
+        sub al,30h<br>
+        mov [x],al<br>
+        <br>
+        xor ax,ax<br>
+        int 16h<br>
+        cmp al,0dh<br>
+        <br>
+        ;input y<br>
+        mov dx,input2<br>
+        mov ah,9h<br>
+        int 21h<br>
+        <br>
+        mov ah,1h<br>
+        int 21h<br>
+        <br>
+        sub al,30h<br>
+        mov [y],al<br>
+        <br>
+        xor ax,ax<br>
+        int 16h<br>
+        cmp ax,0dh<br>
+        <br>
+        ;output z<br>
+        mov dx,output<br>
+        mov ah,9h<br>
+        int 21h<br>
+        <br>
+        mov dl,[x]<br>
+        add dl,30h <br>
+        mov ah,2h<br>
+        int 21h<br>
+        <br>
+        mov dl,'x'<br>
+        mov ah,2<br>
+        int 21h<br>
+        <br>
+        mov dl,[y]<br>
+        add dl,30h <br>
+        mov ah,2h<br>
+        int 21h<br>
+        <br>
+        mov dl,'='<br>
+        mov ah,2h<br>
+        int 21h <br>
+        <br>
+        mov al,[x]<br>
+        mul [y]<br>
+        <br>
+        aam<br>
+        add ax,3030h <br>
+        <br>
+        mov byte ptr z,ah<br>
+        mov byte ptr z+1,al<br>
+        <br>
+        lea dx,[z]<br>
+        mov ah,9h<br>
+        int 21h<br>
+        <br>
+        mov dl,10<br>
+        mov ah,2h<br>
+        int 21h <br>
+        <br>
+        RET</strong></font></p>
+        <p><font face="Tahoma" size="5"><strong>ASSEMBLY Program
+        Structure </strong></font></p>
+        <p><font color="#008000" face="Tahoma" size="3"><strong>;fasm7.asm<br>
+        <br>
+        org 100h<br>
+        jmp start<br>
+        <br>
+        variable_name db value<br>
+        <br>
+        start:<br>
+        <br>
+        CALL </strong></font><font color="#008000" face="Tahoma"><strong>function_name</strong></font><font color="#008000" face="Tahoma" size="3"><strong><br>
+        <br>
+        mov ah,4ch<br>
+        int 21h<br>
+        <br>
+        </strong></font><font color="#008000" face="Tahoma"><strong>function_name</strong></font><font color="#008000" face="Tahoma" size="3"><strong>:<br>
+        .....<br>
+        RET</strong></font></p>
+        <p><font color="#008000" face="Tahoma" size="3"><strong><img src="room_fasm_files/fasm7.gif" height="285" width="401"><br>
+        </strong></font><font color="#0000FF" face="Tahoma"><strong>fasm7.com</strong></font></p>
+    </blockquote>
+</blockquote>
+
+<p><font face="Tahoma" size="5"><strong>Explanation</strong></font></p>
+
+<p><font face="Tahoma"><strong>z db 2 dup(?),"$"</strong></font></p>
+
+<p><font face="Tahoma">Declare <strong>2</strong> uninitialized
+bytes starting at location <strong>z</strong> terminated with a
+dollar sign (<strong>$</strong>). </font></p>
+
+<p><font face="Tahoma">The <strong>n dup (XXX)</strong> operand
+tells the assembler to duplicate XXX n times. <br>
+</font><a href="http://appsrv.cse.cuhk.edu.hk/%7Ecsc2420/tutorial01/csc2420-1.doc"><font face="Tahoma">http://appsrv.cse.cuhk.edu.hk/~csc2420/tutorial01/csc2420-1.doc</font></a><font face="Tahoma"> </font></p>
+
+<p><font face="Tahoma">number DUP ( value(s) ) <br>
+number - number of duplicate to make (any constant value).<br>
+value - expression that DUP will duplicate.<br>
+</font><a href="http://ccs.mu.edu.ph/ASM/asm_tutorial_03.html"><font face="Tahoma">http://ccs.mu.edu.ph/ASM/asm_tutorial_03.html</font></a><font face="Tahoma"> </font></p>
+
+<p><font face="Tahoma"><strong>xor ax,ax<br>
+int 16h<br>
+cmp al,0dh</strong></font></p>
+
+<p><font face="Tahoma">This will clear the <b>AX</b> register,
+simply by doing the <b>XOR</b> operation on itself. This program
+uses 00h function of the DOS <strong>16h</strong> interruption,
+reads a character from the keyboard. Use the '<b>cmp</b>' command
+to compare the value with <b>0dh</b> or a <b>carriage return</b>
+character in ASCII.</font></p>
+
+<p><font face="Tahoma">Compare Command<br>
+<br>
+The Compare Command (CMP) compares the first item with the second
+setting and clearing flags automatically. The most recent compare
+is what conditional jumps use. You can compare two registers like
+this:<br>
+<br>
+<strong>cmp ax,bx</strong> ;Compares AX to BX </font></p>
+
+<p><a href="http://www.groovyweb.uklinux.net/?page_name=assembly%20language%20how%20to"><font face="Tahoma">http://www.groovyweb.uklinux.net/?page_name=assembly%20language%20how%20to</font></a><font face="Tahoma"> <br>
+</font><a href="http://packetstormsecurity.org/programming-tutorials/Assembly/online-tutorial/interruptions_files.html"><font face="Tahoma">http://packetstormsecurity.org/programming-tutorials/Assembly/online-tutorial/interruptions_files.html</font></a>
+<font face="CordiaUPC"><br>
+</font><a href="http://www.ee.iitm.ac.in/%7Esridhara/ec212_lab/Assembly_Lab_Manual.doc"><font face="Tahoma">http://www.ee.iitm.ac.in/~sridhara/ec212_lab/Assembly_Lab_Manual.doc</font></a><font face="Tahoma"> </font></p>
+
+<p><font face="Tahoma"><strong>aam </strong></font></p>
+
+<p><font face="Tahoma">AAM ASCII Adjust after Multiplication;
+Intel 80x86; corrects the result of a multiplication of two valid
+unpacked decimal numbers, the high order digit is left in <strong>AH</strong>,
+the low order digit in <strong>AL</strong>; sets or clears flags <br>
+</font><a href="http://www.osdata.com/topic/language/asm/bcdarith.htm"><font face="Tahoma">http://www.osdata.com/topic/language/asm/bcdarith.htm</font></a><font face="Tahoma"> </font></p>
+
+<p><font face="Tahoma"><strong>add ax,3030h</strong></font></p>
+
+<p><font face="Tahoma">Add '0' to both bytes (<strong>AH</strong>
+and <strong>AL</strong>) in <strong>AX</strong> to convert from
+BCD to ASCII.</font></p>
+
+<p><font face="Tahoma"><strong>mov byte ptr z,ah<br>
+mov byte ptr z+1,al</strong></font></p>
+
+<p><font face="Tahoma">Move the both bytes of the ASCII value
+from register <strong>ah</strong> and <strong>al</strong> into
+the <strong>byte </strong>at location <strong>z</strong>.</font></p>
+
+<p><font face="Tahoma"><strong>lea dx,[z]<br>
+mov ah,9h<br>
+int 21h</strong></font></p>
+
+<p><font face="Tahoma">Load effective address of <strong>z</strong>
+in <strong>dx</strong>. Moves the value <strong>9h</strong> to
+register <strong>ah</strong>. This program uses <strong>9h</strong>
+function of the DOS <strong>21h</strong> interruption, </font><font face="Tahoma" size="3">write a character and its attribute at the
+cursor position </font><font face="Tahoma">from the register <strong>DX</strong>.</font></p>
+
+<p><font face="Tahoma">The LEA instruction <br>
+<br>
+format:<br>
+<strong>LEA register,memory</strong> <br>
+<br>
+Load Effective Address loads the specified register with the
+offset of a memory location. <br>
+</font><a href="http://www.husseinsspace.com/teaching/udw/1996/asmnotes/chaptwo.htm"><font face="Tahoma">http://www.husseinsspace.com/teaching/udw/1996/asmnotes/chaptwo.htm</font></a><font face="Tahoma"> </font></p>
+
+<blockquote>
+    <blockquote>
+        <p><font color="#004080" face="Tahoma" size="4"><strong>;fasm8.asm<br>
+        <br>
+        org 100h<br>
+        jmp start<br>
+        <br>
+        input1 db 13,"Input: $"<br>
+        input2 db 10,13,"Input: $"<br>
+        output db 10,13,"Output: $"<br>
+        x db ?<br>
+        y db ?<br>
+        z db 2 dup(?),"$"<br>
+        <br>
+        start:<br>
+        <br>
+        CALL multiplication <br>
+        <br>
+        mov ah,4ch<br>
+        int 21h<br>
+        <br>
+        multiplication:<br>
+        <br>
+        ;input x<br>
+        mov dx,input1<br>
+        mov ah,9h<br>
+        int 21h<br>
+        <br>
+        mov ah,1h<br>
+        int 21h<br>
+        <br>
+        sub al,30h<br>
+        mov [x],al<br>
+        <br>
+        xor ax,ax<br>
+        int 16h<br>
+        cmp al,0dh<br>
+        <br>
+        ;input y<br>
+        mov dx,input2<br>
+        mov ah,9h<br>
+        int 21h<br>
+        <br>
+        mov ah,1h<br>
+        int 21h<br>
+        <br>
+        sub al,30h<br>
+        mov [y],al<br>
+        <br>
+        xor ax,ax<br>
+        int 16h<br>
+        cmp ax,0dh<br>
+        <br>
+        ;output z<br>
+        mov dx,output<br>
+        mov ah,9h<br>
+        int 21h<br>
+        <br>
+        mov dl,[x]<br>
+        add dl,30h <br>
+        mov ah,2h<br>
+        int 21h<br>
+        <br>
+        mov dl,'x'<br>
+        mov ah,2<br>
+        int 21h<br>
+        <br>
+        mov dl,[y]<br>
+        add dl,30h <br>
+        mov ah,2h<br>
+        int 21h<br>
+        <br>
+        mov dl,'='<br>
+        mov ah,2h<br>
+        int 21h <br>
+        <br>
+        mov al,[x]<br>
+        mul [y]<br>
+        <br>
+        aam<br>
+        add ax,3030h <br>
+        <br>
+        mov byte ptr z,ah<br>
+        mov byte ptr z+1,al<br>
+        <br>
+        lea dx,[z]<br>
+        mov ah,9h<br>
+        int 21h<br>
+        <br>
+        mov dl,10<br>
+        mov ah,2h<br>
+        int 21h <br>
+        <br>
+        RET</strong></font></p>
+        <p><font color="#004080" face="Tahoma" size="4"><strong><img src="room_fasm_files/fasm8.gif" height="285" width="401"><br>
+        </strong></font><font color="#0000FF" face="Tahoma"><strong>fasm8.com</strong></font></p>
+    </blockquote>
+</blockquote>
+
+<p><font face="Tahoma" size="5"><strong>Explanation</strong></font></p>
+
+<p><font face="Tahoma"><strong>input1 db 13,"Input: $"<br>
+input2 db 10,13,"Input: $"<br>
+output db 10,13,"Output: $"</strong></font></p>
+
+<p><font face="Tahoma"><strong>DB</strong> is short for declare
+byte and the <strong>input1</strong>, <strong>input2 </strong>and<strong>
+output </strong>are the array variables of bytes to the strings <strong>Input:
+</strong>and<strong> Output: </strong>terminated with a dollar
+sign (<strong>$</strong>).<br>
+</font><a href="http://burks.bton.ac.uk/burks/language/asm/asmtut/asm3.htm"><font face="Tahoma">http://burks.bton.ac.uk/burks/language/asm/asmtut/asm3.htm</font></a><font face="Tahoma"> </font></p>
+
+<blockquote>
+    <blockquote>
+        <p><font color="#004080" face="Tahoma" size="4"><strong>;fasm9.asm<br>
+        <br>
+        org 100h<br>
+        jmp start<br>
+        <br>
+        input1 db 13,"Input: $"<br>
+        input2 db 10,13,"Input: $"<br>
+        output db 10,13,"Output: $"<br>
+        x db ?<br>
+        y db ?<br>
+        z db 2 dup(?),"$"<br>
+        <br>
+        start:<br>
+        <br>
+        LOOP1:<br>
+        CALL multiplication <br>
+        jmp LOOP1<br>
+        <br>
+        mov ah,4ch<br>
+        int 21h<br>
+        <br>
+        multiplication:<br>
+        <br>
+        ;input x<br>
+        mov dx,input1<br>
+        mov ah,9h<br>
+        int 21h<br>
+        <br>
+        mov ah,1h<br>
+        int 21h<br>
+        <br>
+        sub al,30h<br>
+        mov [x],al<br>
+        <br>
+        xor ax,ax<br>
+        int 16h<br>
+        cmp al,0dh<br>
+        <br>
+        ;input y<br>
+        mov dx,input2<br>
+        mov ah,9h<br>
+        int 21h<br>
+        <br>
+        mov ah,1h<br>
+        int 21h<br>
+        <br>
+        sub al,30h<br>
+        mov [y],al<br>
+        <br>
+        xor ax,ax<br>
+        int 16h<br>
+        cmp ax,0dh<br>
+        <br>
+        ;output z<br>
+        mov dx,output<br>
+        mov ah,9h<br>
+        int 21h<br>
+        <br>
+        mov dl,[x]<br>
+        add dl,30h <br>
+        mov ah,2h<br>
+        int 21h<br>
+        <br>
+        mov dl,'x'<br>
+        mov ah,2<br>
+        int 21h<br>
+        <br>
+        mov dl,[y]<br>
+        add dl,30h <br>
+        mov ah,2h<br>
+        int 21h<br>
+        <br>
+        mov dl,'='<br>
+        mov ah,2h<br>
+        int 21h <br>
+        <br>
+        mov al,[x]<br>
+        mul [y]<br>
+        <br>
+        aam<br>
+        add ax,3030h <br>
+        <br>
+        mov byte ptr z,ah<br>
+        mov byte ptr z+1,al<br>
+        <br>
+        lea dx,[z]<br>
+        mov ah,9h<br>
+        int 21h<br>
+        <br>
+        mov dl,10<br>
+        mov ah,2h<br>
+        int 21h <br>
+        <br>
+        RET</strong></font></p>
+        <p><font color="#004080" face="Tahoma" size="4"><strong><img src="room_fasm_files/fasm9.gif" height="285" width="401"><br>
+        </strong></font><font color="#0000FF" face="Tahoma"><strong>fasm9.com</strong></font></p>
+    </blockquote>
+</blockquote>
+
+<p><font face="Tahoma" size="5"><strong>Explanation</strong></font></p>
+
+<p><font face="Tahoma"><strong>LOOP1:<br>
+.....<br>
+jmp LOOP1</strong></font></p>
+
+<p><font face="Tahoma">Use the <strong>JMP</strong> instruction
+to make the program jump to the specified label<strong> LOOP1:</strong>
+</font></p>
+
+<p><font face="Tahoma">The basic instruction that transfers
+control to another point in the program is JMP. <br>
+<br>
+The basic syntax of JMP instruction: <br>
+<br>
+<strong>JMP label</strong> <br>
+<br>
+To declare a label in your program, just type its name and add
+":" to the end, label can be any character combination
+but it cannot start with a number, for example here are 3 legal
+label definitions: <br>
+<br>
+<strong>label1:<br>
+label2:<br>
+a:</strong> </font></p>
+
+<p><a href="http://www.emu8086.com/assembly_language_tutorial_assembler_reference/asm_tutorial_07.html"><font face="Tahoma">http://www.emu8086.com/assembly_language_tutorial_assembler_reference/asm_tutorial_07.html</font></a><font face="Tahoma"> </font></p>
+
+<blockquote>
+    <blockquote>
+        <p><font color="#004080" face="Tahoma" size="4"><strong>;fasm10.asm<br>
+        <br>
+        org 100h<br>
+        jmp start<br>
+        <br>
+        R db 13,"ROOM$"<br>
+        L db 10,13,"Length: $"<br>
+        W db 10,13,"Width: $"<br>
+        F db 10,13,"FLOOR: $"<br>
+        length_of_room db ?<br>
+        width_of_room db ?<br>
+        floor db 2 dup(?),"$"<br>
+        <br>
+        start:<br>
+        <br>
+        Room_LOOP:<br>
+        CALL Room<br>
+        jmp Room_LOOP<br>
+        <br>
+        mov ah,4ch<br>
+        int 21h<br>
+        <br>
+        Room:<br>
+        <br>
+        mov dx,R<br>
+        mov ah,9h<br>
+        int 21h<br>
+        <br>
+        ;input length_of_room<br>
+        mov dx,L<br>
+        mov ah,9h<br>
+        int 21h<br>
+        <br>
+        mov ah,1h<br>
+        int 21h<br>
+        <br>
+        sub al,30h<br>
+        mov [length_of_room],al<br>
+        <br>
+        xor ax,ax<br>
+        int 16h<br>
+        cmp al,0dh<br>
+        <br>
+        ;input width_of_room<br>
+        mov dx,W<br>
+        mov ah,9h<br>
+        int 21h<br>
+        <br>
+        mov ah,1h<br>
+        int 21h<br>
+        <br>
+        sub al,30h<br>
+        mov [width_of_room],al<br>
+        <br>
+        xor ax,ax<br>
+        int 16h<br>
+        cmp ax,0dh<br>
+        <br>
+        ;output floor<br>
+        mov dx,F<br>
+        mov ah,9h<br>
+        int 21h<br>
+        <br>
+        mov al,[length_of_room]<br>
+        mul [width_of_room]<br>
+        <br>
+        aam<br>
+        add ax,3030h <br>
+        <br>
+        mov byte ptr floor,ah<br>
+        mov byte ptr floor+1,al<br>
+        <br>
+        lea dx,[floor]<br>
+        mov ah,9h<br>
+        int 21h<br>
+        <br>
+        mov dl,10<br>
+        mov ah,2h<br>
+        int 21h <br>
+        <br>
+        RET</strong></font></p>
+        <p><font color="#004080" face="Tahoma" size="4"><strong><img src="room_fasm_files/fasm10.gif" height="285" width="401"><br>
+        </strong></font><font color="#0000FF" face="Tahoma"><strong>fasm10.com</strong></font></p>
+    </blockquote>
+</blockquote>
+
+<p><font face="Tahoma" size="5"><strong>Explanation</strong></font></p>
+
+<p><font face="Tahoma"><strong>Room:<br>
+.....<br>
+RET</strong></font></p>
+
+<p><font face="Tahoma"><strong>Room</strong> is the name. This
+particular directive creates a procedure called room. <strong>RET</strong></font>
+<font face="Tahoma" size="3">instruction</font><font face="Tahoma"> returns from piece of code entered due to call
+instruction. <br>
+</font><a href="http://www.student.cs.uwaterloo.ca/%7Ecs452/tutorial.html"><font face="Tahoma">http://www.student.cs.uwaterloo.ca/~cs452/tutorial.html</font></a></p>
+
+<p><font face="Tahoma"><strong>R db 13,"ROOM$"<br>
+L db 10,13,"Length: $"<br>
+W db 10,13,"Width: $"<br>
+F db 10,13,"FLOOR: $"</strong></font></p>
+
+<p><font face="Tahoma"><strong>DB</strong> is short for declare
+byte and the <strong>R</strong>, <strong>L</strong>, <strong>W</strong>
+and<strong> F </strong>are the array variables of bytes to the
+strings <strong>ROOM</strong>, <strong>Length:</strong>,<strong>
+Width: </strong>and<strong> FLOOR: </strong>terminated with a
+dollar sign (<strong>$</strong>).<br>
+</font><a href="http://burks.bton.ac.uk/burks/language/asm/asmtut/asm3.htm"><font face="Tahoma">http://burks.bton.ac.uk/burks/language/asm/asmtut/asm3.htm</font></a><font face="Tahoma"> </font></p>
+
+<p><font face="Tahoma"><strong>length_of_room db ?<br>
+width_of_room db ?<br>
+floor db 2 dup(?),"$"</strong></font></p>
+
+<p><font face="Tahoma" size="3">The <strong>db</strong> directive
+stands for “<strong>define byte</strong>”, which tells the
+assembler to allocate a sequence of memory bytes to the data that
+follow. </font><font face="Tahoma"><strong>length_of_room</strong></font><font face="Tahoma" size="3">, </font><font face="Tahoma"><strong>width_of_room</strong></font><font face="Tahoma" size="3"> are the names of the global variable to
+be stored in memory, and the db allocates memory to it in the
+size defined by the data following it.</font><font face="Tahoma">
+</font><font face="Tahoma" size="3"><br>
+</font><a href="http://www.cs.ucf.edu/%7Elboloni/Teaching/EEL3801C_Spring2004/slides/eel3801-1-assembly.ppt"><font face="Tahoma" size="3">http://www.cs.ucf.edu/~lboloni/Teaching/EEL3801C_Spring2004/slides/eel3801-1-assembly.ppt</font></a></p>
+
+<p><font face="Tahoma" size="3">The question mark (<strong>?</strong>)
+on the end means that the data isn't</font><font face="Tahoma" size="2"> </font><font face="Tahoma" size="3">initialised i.e.
+it has no value in to start with. <br>
+</font><a href="http://burks.bton.ac.uk/burks/language/asm/asmtut/asm3.htm"><font face="Tahoma" size="3">http://burks.bton.ac.uk/burks/language/asm/asmtut/asm3.htm</font></a><font face="Tahoma" size="3"> </font></p>
+
+<p><font face="Tahoma">Declare <strong>2</strong> uninitialized
+bytes starting at location <strong>floor</strong> terminated with
+a dollar sign (<strong>$</strong>).</font> </p>
+
+<p><font face="Tahoma"><strong>mov dx,R<br>
+mov ah,9h<br>
+int 21h</strong></font></p>
+
+<p><font face="Tahoma">Move <strong>R</strong> into <strong>DX</strong>.<strong>
+</strong>Moves the value <strong>9h</strong> to register <strong>ah</strong>.
+This program uses <strong>9h</strong> function of the DOS <strong>21h</strong>
+interruption, </font><font face="Tahoma" size="3">write a
+character and its attribute at the cursor position </font><font face="Tahoma">from the register <strong>DX</strong>.</font></p>
+
+<p><font face="Tahoma"><strong>;input length_of_room<br>
+mov dx,L<br>
+mov ah,9h<br>
+int 21h</strong></font></p>
+
+<p><font face="Tahoma">Move <strong>L</strong> into <strong>DX</strong>.<strong>
+</strong>Moves the value <strong>9h</strong> to register <strong>ah</strong>.
+This program uses <strong>9h</strong> function of the DOS <strong>21h</strong>
+interruption, </font><font face="Tahoma" size="3">write a
+character and its attribute at the cursor position </font><font face="Tahoma">from the register <strong>DX</strong>.</font></p>
+
+<p><font face="Tahoma"><strong>;input width_of_room<br>
+mov dx,W<br>
+mov ah,9h<br>
+int 21h</strong></font></p>
+
+<p><font face="Tahoma">Move <strong>W</strong> into <strong>DX</strong>.<strong>
+</strong>Moves the value <strong>9h</strong> to register <strong>ah</strong>.
+This program uses <strong>9h</strong> function of the DOS <strong>21h</strong>
+interruption, </font><font face="Tahoma" size="3">write a
+character and its attribute at the cursor position </font><font face="Tahoma">from the register <strong>DX</strong>.</font></p>
+
+<p><font face="Tahoma"><strong>;output floor<br>
+mov dx,F<br>
+mov ah,9h<br>
+int 21h</strong></font></p>
+
+<p><font face="Tahoma">Move <strong>F</strong> into <strong>DX</strong>.<strong>
+</strong>Moves the value <strong>9h</strong> to register <strong>ah</strong>.
+This program uses <strong>9h</strong> function of the DOS <strong>21h</strong>
+interruption, </font><font face="Tahoma" size="3">write a
+character and its attribute at the cursor position </font><font face="Tahoma">from the register <strong>DX</strong>. </font></p>
+
+<blockquote>
+    <blockquote>
+        <p><font color="#004080" face="Tahoma" size="4"><strong>;fasm11.asm<br>
+        <br>
+        org 100h<br>
+        jmp start<br>
+        <br>
+        R db 13,"ROOM$"<br>
+        L db 10,13,"Length: $"<br>
+        W db 10,13,"Width: $"<br>
+        F db 10,13,"FLOOR: $"<br>
+        H db 10,13,"Height: $"<br>
+        WA db 10,13,"WALL: $"<br>
+        length_of_room db ?<br>
+        width_of_room db ?<br>
+        height_of_room db ?<br>
+        two db '2'<br>
+        length_plus_width db 2 dup(?)<br>
+        temp db 2 dup(?)<br>
+        floor db 2 dup(?),"$$"<br>
+        wall db 2 dup(?),"$$"<br>
+        <br>
+        start:<br>
+        <br>
+        Room_LOOP:<br>
+        CALL Room<br>
+        jmp Room_LOOP<br>
+        <br>
+        mov ah,4ch<br>
+        int 21h <br>
+        <br>
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;<br>
+        <br>
+        Room:<br>
+        <br>
+        CALL floor_of_room<br>
+        CALL wall_of_room<br>
+        <br>
+        mov dl,10<br>
+        mov ah,2h<br>
+        int 21h<br>
+        <br>
+        RET<br>
+        <br>
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;<br>
+        <br>
+        floor_of_room:<br>
+        <br>
+        mov dx,R<br>
+        mov ah,9h<br>
+        int 21h<br>
+        <br>
+        ;input length_of_room<br>
+        mov dx,L<br>
+        mov ah,9h<br>
+        int 21h<br>
+        <br>
+        mov ah,1h<br>
+        int 21h<br>
+        <br>
+        sub al,30h<br>
+        mov [length_of_room],al<br>
+        <br>
+        xor ax,ax<br>
+        int 16h<br>
+        cmp al,0dh<br>
+        <br>
+        ;input width_of_room<br>
+        mov dx,W<br>
+        mov ah,9h<br>
+        int 21h<br>
+        <br>
+        mov ah,1h<br>
+        int 21h<br>
+        <br>
+        sub al,30h<br>
+        mov [width_of_room],al<br>
+        <br>
+        xor ax,ax<br>
+        int 16h<br>
+        cmp al,0dh<br>
+        <br>
+        ;output floor<br>
+        mov dx,F<br>
+        mov ah,9h<br>
+        int 21h<br>
+        <br>
+        mov al,[length_of_room]<br>
+        mul [width_of_room]<br>
+        <br>
+        aam<br>
+        add ax,3030h <br>
+        <br>
+        mov byte ptr floor,ah<br>
+        mov byte ptr floor+1,al<br>
+        <br>
+        lea dx,[floor]<br>
+        mov ah,9h<br>
+        int 21h <br>
+        <br>
+        RET<br>
+        <br>
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;<br>
+        <br>
+        wall_of_room:<br>
+        <br>
+        ;input height_of_room<br>
+        mov dx,H<br>
+        mov ah,9h<br>
+        int 21h<br>
+        <br>
+        mov ah,1h<br>
+        int 21h<br>
+        <br>
+        sub al,30h<br>
+        mov [height_of_room],al<br>
+        <br>
+        xor ax,ax<br>
+        int 16h<br>
+        cmp al,0dh<br>
+        <br>
+        ;wall = 2*(length+width)*height<br>
+        xor ah,ah<br>
+        mov al,[length_of_room]<br>
+        add al,[width_of_room]<br>
+        <br>
+        aaa<br>
+        add ax,3030h <br>
+        <br>
+        mov byte ptr length_plus_width,ah<br>
+        mov byte ptr length_plus_width+1,al<br>
+        <br>
+        CALL MULT1<br>
+        CALL CONV1<br>
+        <br>
+        CALL MULT2<br>
+        CALL CONV2<br>
+        <br>
+        ;output wall<br>
+        mov dx,WA<br>
+        mov ah,9h<br>
+        int 21h<br>
+        <br>
+        lea dx,[wall]<br>
+        mov ah,9h<br>
+        int 21h <br>
+        <br>
+        mov byte ptr temp+1,0<br>
+        mov byte ptr wall+1,0<br>
+        <br>
+        RET<br>
+        <br>
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;<br>
+        <br>
+        ;multiply ASCII values<br>
+        MULT1:<br>
+        <br>
+        MOV CX,02 ;number of digits in multiplicand <br>
+        LEA SI,[length_plus_width+1] ;point multiplicand LSD<br>
+        LEA DI,[temp+1] ;point product LSD<br>
+        AND [two],0FH ;strip ASCII 2<br>
+        <br>
+        MULT1_LOOP:<br>
+        <br>
+        MOV AL,[SI] ;current ASCII digit<br>
+        AND AL,0FH ;strip ASCII 2<br>
+        MUL [two] ;multiply<br>
+        AAM ;ASCII adjust<br>
+        ADD AL,[DI] ;add to stored product<br>
+        AAA<br>
+        MOV [DI],AL<br>
+        DEC DI<br>
+        MOV[DI],AH ;store product carry<br>
+        DEC SI<br>
+        <br>
+        LOOP MULT1_LOOP<br>
+        <br>
+        RET<br>
+        <br>
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;<br>
+        <br>
+        ;convert binary to ASCII<br>
+        CONV1:<br>
+        <br>
+        LEA BX,[temp+1] ;point to least significant digit<br>
+        MOV CX,02 ;number of digits<br>
+        <br>
+        CONV1_LOOP:<br>
+        <br>
+        OR BYTE PTR BX,30H ;restore the 2's<br>
+        DEC BX<br>
+        <br>
+        LOOP CONV1_LOOP<br>
+        <br>
+        RET<br>
+        <br>
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;<br>
+        <br>
+        ;multiply ASCII values<br>
+        MULT2:<br>
+        <br>
+        MOV CX,02<br>
+        LEA SI,[temp+1]<br>
+        LEA DI,[wall+1]<br>
+        AND [height_of_room],0FH<br>
+        <br>
+        MULT2_LOOP:<br>
+        <br>
+        MOV AL,[SI]<br>
+        AND AL,0FH<br>
+        MUL [height_of_room]<br>
+        AAM <br>
+        ADD AL,[DI]<br>
+        AAA<br>
+        MOV [DI],AL<br>
+        DEC DI<br>
+        MOV[DI],AH<br>
+        DEC SI<br>
+        <br>
+        LOOP MULT2_LOOP<br>
+        <br>
+        RET<br>
+        <br>
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;<br>
+        <br>
+        ;convert binary to ASCII<br>
+        CONV2:<br>
+        <br>
+        LEA BX,[wall+1]<br>
+        MOV CX,02<br>
+        <br>
+        CONV2_LOOP:<br>
+        <br>
+        OR BYTE PTR BX,30H<br>
+        DEC BX<br>
+        <br>
+        LOOP CONV2_LOOP<br>
+        <br>
+        RET<br>
+        <br>
+        ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;</strong></font></p>
+        <p><font color="#004080" face="Tahoma" size="4"><strong><img src="room_fasm_files/fasm11.gif" height="285" width="401"><br>
+        </strong></font><font color="#0000FF" face="Tahoma"><strong>fasm11.com</strong></font></p>
+    </blockquote>
+</blockquote>
+
+<p><font face="Tahoma" size="5"><strong>Explanation</strong></font></p>
+
+<p><font face="Tahoma"><strong>floor_of_room:<br>
+.....<br>
+RET</strong></font></p>
+
+<p><font face="Tahoma"><strong>floor_of_room</strong> is the name
+, and the operation field contains <strong>PROC</strong> . This
+particular directive creates a procedure called floor_of_room. <strong>RET</strong></font>
+<font face="Tahoma" size="3">instruction</font><font face="Tahoma"> returns from piece of code entered due to call
+instruction.<br>
+</font><a href="http://www.student.cs.uwaterloo.ca/%7Ecs452/tutorial.html"><font face="Tahoma">http://www.student.cs.uwaterloo.ca/~cs452/tutorial.html</font></a><font face="Tahoma"> </font></p>
+
+<p><font face="Tahoma"><strong>wall_of_room:<br>
+.....<br>
+RET</strong></font></p>
+
+<p><font face="Tahoma"><strong>wall_of_room</strong> is the name
+, and the operation field contains <strong>PROC</strong> . This
+particular directive creates a procedure called multiplication. <strong>RET</strong></font>
+<font face="Tahoma" size="3">instruction</font><font face="Tahoma"> returns from piece of code entered due to call
+instruction.<br>
+</font><a href="http://www.student.cs.uwaterloo.ca/%7Ecs452/tutorial.html"><font face="Tahoma">http://www.student.cs.uwaterloo.ca/~cs452/tutorial.html</font></a><font face="Tahoma"> </font></p>
+
+<p><font face="Tahoma"><strong>;input height_of_room<br>
+mov dx,H<br>
+mov ah,9h<br>
+int 21h</strong></font></p>
+
+<p><font face="Tahoma">Move <strong>H</strong> into <strong>DX</strong>.<strong>
+</strong>Moves the value <strong>9h</strong> to register <strong>ah</strong>.
+This program uses <strong>9h</strong> function of the DOS <strong>21h</strong>
+interruption, </font><font face="Tahoma" size="3">write a
+character and its attribute at the cursor position </font><font face="Tahoma">from the register <strong>DX</strong>.</font></p>
+
+<p><font face="Tahoma"><strong>xor ah,ah<br>
+mov al,[length_of_room]<br>
+add al,[width_of_room]</strong></font></p>
+
+<p><font face="Tahoma">This will clear the <b>AH</b> register,
+simply by doing the <b>XOR</b> operation on itself.</font> <font face="Tahoma">Moves the value of the <strong>length_of_room</strong>
+variable to register <strong>al</strong>. <strong>Add </strong>the
+value of the <strong>width_of_room </strong>varible to<strong> </strong>register
+<strong>al</strong> and store result in register ax. </font></p>
+
+<p><font face="Tahoma">ADD: Add the contents of one number to
+another <br>
+Syntax: <br>
+<br>
+<strong>ADD operand1,operand2</strong><br>
+<br>
+This adds operand2 to operand1. The answer is stored in operand1.
+Immediate data cannot be used as operand1 but can be used as
+operand2. <br>
+</font><a href="http://burks.bton.ac.uk/burks/language/asm/asmtut/asm5.htm"><font face="Tahoma">http://burks.bton.ac.uk/burks/language/asm/asmtut/asm5.htm</font></a><font face="Tahoma"> </font></p>
+
+<p><font face="Tahoma"><strong>mov byte ptr length_plus_width,ah<br>
+mov byte ptr length_plus_width+1,al</strong></font></p>
+
+<p><font face="Tahoma">Move the both bytes of the ASCII value
+from register <strong>ah</strong> and <strong>al</strong> into
+the <strong>byte </strong>at location <strong>length_plus_width</strong>.</font></p>
+
+<p><font face="Tahoma"><strong>CALL MULT1<br>
+CALL CONV1</strong></font></p>
+
+<p><font face="Tahoma" size="3">Use </font><font color="#000000" face="Tahoma" size="3"><strong>CALL </strong></font><font face="Tahoma">to call procedure (function) <strong>MULT1 </strong>to
+multiply ASCII values and <strong>CONV1</strong> convert binary
+to ASCII. </font></p>
+
+<p><font face="Tahoma"><strong>CALL MULT2<br>
+CALL CONV2</strong></font></p>
+
+<p><font face="Tahoma" size="3">Use </font><font color="#000000" face="Tahoma" size="3"><strong>CALL </strong></font><font face="Tahoma">to call procedure (function) <strong>MULT2 </strong>to
+multiply ASCII values and <strong>CONV2</strong> convert binary
+to ASCII.<br>
+</font><a href="http://www.cas.uc.edu/%7Ekennedy/253/ascii_mult.asm"><font face="Tahoma">http://www.cas.uc.edu/~kennedy/253/ascii_mult.asm</font></a><font face="Tahoma"> <strong></strong></font></p>
+
+<p><font face="Tahoma"><strong>;output wall<br>
+mov dx,WA<br>
+mov ah,9h<br>
+int 21h</strong></font></p>
+
+<p><font face="Tahoma">Move <strong>WA</strong> into <strong>DX</strong>.<strong>
+</strong>Moves the value <strong>9h</strong> to register <strong>ah</strong>.
+This program uses <strong>9h</strong> function of the DOS <strong>21h</strong>
+interruption, </font><font face="Tahoma" size="3">write a
+character and its attribute at the cursor position </font><font face="Tahoma">from the register <strong>DX</strong>.</font></p>
+
+<p><font face="Tahoma"><strong>mov byte ptr temp+1,0<br>
+mov byte ptr wall+1,0</strong></font></p>
+
+<p><font face="Tahoma">Move the both bytes of the ASCII value <strong>0</strong>
+into the <strong>byte </strong>at location <strong>temp+1 </strong>and<strong>
+wall+1</strong>.</font></p>
+
+<p><font face="Tahoma"><strong>MULT1:<br>
+.....<br>
+RET<br>
+<br>
+CONV1:<br>
+.....<br>
+RET</strong></font></p>
+
+<p><font face="Tahoma"><strong>MULT1</strong> and <strong>CONV1 </strong>are
+the name , and the operation field contains <strong>PROC</strong>
+. This particular directive creates a procedure called MULT1 and
+CONV1. <strong>RET</strong></font> <font face="Tahoma" size="3">instruction</font><font face="Tahoma"> returns from piece of code entered due to call
+instruction.<br>
+</font><a href="http://www.student.cs.uwaterloo.ca/%7Ecs452/tutorial.html"><font face="Tahoma">http://www.student.cs.uwaterloo.ca/~cs452/tutorial.html</font></a><font face="Tahoma"> </font></p>
+
+<p><font face="Tahoma"><strong>MULT2:<br>
+.....<br>
+RET<br>
+<br>
+CONV2:<br>
+.....<br>
+RET</strong></font></p>
+
+<p><font face="Tahoma"><strong>MULT2</strong> and <strong>CONV2 </strong>are
+the name , and the operation field contains <strong>PROC</strong>
+. This particular directive creates a procedure called MULT2 and
+CONV2. <strong>RET</strong></font> <font face="Tahoma" size="3">instruction</font><font face="Tahoma"> returns from piece of code entered due to call
+instruction.<br>
+</font><a href="http://www.student.cs.uwaterloo.ca/%7Ecs452/tutorial.html"><font face="Tahoma">http://www.student.cs.uwaterloo.ca/~cs452/tutorial.html</font></a><font face="Tahoma"> </font></p>
+
+
+</body></html>

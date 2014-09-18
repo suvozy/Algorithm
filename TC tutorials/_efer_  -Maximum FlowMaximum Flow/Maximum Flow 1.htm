@@ -1,0 +1,678 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "">
+<!-- saved from url=(0064)http://www.topcoder.com/tc?module=Static&d1=tutorials&d2=maxFlow -->
+<HTML><HEAD><META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<TITLE>Algorithm Tutorials</TITLE>
+
+
+<SCRIPT language="JavaScript" type="text/javascript" src="./Maximum Flow 1_files/tcscript.js"></SCRIPT><LINK type="image/x-icon" rel="shortcut icon" href="http://www.topcoder.com/i/favicon.ico">
+
+
+
+
+
+
+<LINK type="text/css" rel="stylesheet" href="./Maximum Flow 1_files/style.css">
+<LINK type="text/css" rel="stylesheet" href="./Maximum Flow 1_files/coders.css">
+<LINK type="text/css" rel="stylesheet" href="./Maximum Flow 1_files/tcStyles20080219.css">
+<LINK type="text/css" rel="stylesheet" href="./Maximum Flow 1_files/jobsRemix.css">
+
+
+<SCRIPT language="JavaScript" src="./Maximum Flow 1_files/print.js"></SCRIPT>
+<STYLE type="text/css">
+.code
+{
+   width: 550;
+   padding: 10px;
+   margin: 20px;
+   color: #333;
+   font-size: 11px;
+   font-weight: normal;
+   line-height: 14px;
+   background-color: #EEEEEE;
+   border: 1px solid #999;
+}
+.math
+{
+   font-family: times, times new roman, serif;
+   font-weight: normal;
+   font-style: italic;
+   font-size: 14px;
+}
+</STYLE>
+</HEAD><BODY>
+<DIV id="onTop">
+    
+
+
+
+
+
+<SCRIPT type="text/javascript" src="./Maximum Flow 1_files/popup.js"></SCRIPT>
+
+<DIV id="shortcutBar">
+    <DIV class="icon"><A href="http://www.topcoder.com/tc"><IMG src="./Maximum Flow 1_files/scHome.png" alt="" onmouseover="postPopUpText(&#39;globalPopupText&#39;,&#39;Home&#39;); popUp(this,&#39;globalPopup&#39;);" onmouseout="popHide()"></A></DIV>
+    <DIV class="icon"><A href="javascript:arena();"><IMG src="./Maximum Flow 1_files/scAlgo.png" alt="" onmouseover="postPopUpText(&#39;globalPopupText&#39;,&#39;Algorithm Competitions&#39;); popUp(this,&#39;globalPopup&#39;);" onmouseout="popHide()"></A></DIV>
+    <DIV class="icon"><A href="http://www.topcoder.com/tc?module=ActiveContests&pt=23"><IMG src="./Maximum Flow 1_files/scConceptualization.png" alt="" onmouseover="postPopUpText(&#39;globalPopupText&#39;,&#39;Software Conceptualization Competitions&#39;); popUp(this,&#39;globalPopup&#39;);" onmouseout="popHide()"></A></DIV>
+    <DIV class="icon"><A href="http://www.topcoder.com/tc?module=ActiveContests&pt=6"><IMG src="./Maximum Flow 1_files/scSpecification.png" alt="" onmouseover="postPopUpText(&#39;globalPopupText&#39;,&#39;Software Specification Competitions&#39;); popUp(this,&#39;globalPopup&#39;);" onmouseout="popHide()"></A></DIV>
+    <DIV class="icon"><A href="http://www.topcoder.com/tc?module=ActiveContests&pt=7"><IMG src="./Maximum Flow 1_files/scArchitecture.png" alt="" onmouseover="postPopUpText(&#39;globalPopupText&#39;,&#39;Software Architecture Competitions&#39;); popUp(this,&#39;globalPopup&#39;);" onmouseout="popHide()"></A></DIV>
+    <DIV class="icon"><A href="http://www.topcoder.com/tc?module=ViewActiveContests&ph=112"><IMG src="./Maximum Flow 1_files/scDesign.png" alt="" onmouseover="postPopUpText(&#39;globalPopupText&#39;,&#39;Component Design Competitions&#39;); popUp(this,&#39;globalPopup&#39;);" onmouseout="popHide()"></A></DIV>
+    <DIV class="icon"><A href="http://www.topcoder.com/tc?module=ViewActiveContests&ph=113"><IMG src="./Maximum Flow 1_files/scDevelopment.png" alt="" onmouseover="postPopUpText(&#39;globalPopupText&#39;,&#39;Component Development Competitions&#39;); popUp(this,&#39;globalPopup&#39;);" onmouseout="popHide()"></A></DIV>
+
+    <DIV class="icon"><A href="http://www.topcoder.com/tc?module=ViewAssemblyActiveContests"><IMG src="./Maximum Flow 1_files/scAssembly.png" alt="" onmouseover="postPopUpText(&#39;globalPopupText&#39;,&#39;Software Assembly Competitions&#39;); popUp(this,&#39;globalPopup&#39;);" onmouseout="popHide()"></A></DIV>
+    <DIV class="icon"><A href="javascript:arena();"><IMG src="./Maximum Flow 1_files/scTCHS.png" alt="" onmouseover="postPopUpText(&#39;globalPopupText&#39;,&#39;High School Competitions&#39;); popUp(this,&#39;globalPopup&#39;);" onmouseout="popHide()"></A></DIV>
+    <DIV class="icon"><A href="http://www.topcoder.com/longcontest/?module=ViewActiveContests"><IMG src="./Maximum Flow 1_files/scMarathon.png" alt="" onmouseover="postPopUpText(&#39;globalPopupText&#39;,&#39;Marathon Matches&#39;); popUp(this,&#39;globalPopup&#39;);" onmouseout="popHide()"></A></DIV>
+    <DIV class="icon"><A href="http://studio.topcoder.com/?module=ViewActiveContests"><IMG src="./Maximum Flow 1_files/scStudio.png" alt="" onmouseover="postPopUpText(&#39;globalPopupText&#39;,&#39;TopCoder Studio Competitions&#39;); popUp(this,&#39;globalPopup&#39;);" onmouseout="popHide()"></A></DIV>
+</DIV>
+
+<DIV id="globalPopup" class="popUp"><DIV id="globalPopupText"></DIV></DIV>
+
+
+<DIV style="position: absolute; right:0px; top:31px;"><A href="http://www.topcoder.com/reg/"><IMG src="./Maximum Flow 1_files/register_now.gif" alt="Register Now" style="display:block;"></A></DIV>
+
+
+<DIV align="center" style="margin: 0px 290px 0px 280px;">
+   <DIV id="outerLogo">
+      <DIV id="innerLogo">
+      <A href="http://www.topcoder.com/"><IMG src="./Maximum Flow 1_files/topcoder.gif" alt="TopCoder" style="display: block;"></A>
+      </DIV>
+   </DIV>
+</DIV>
+
+<DIV class="memberCountBox">
+Member Count: 187,759 - 
+
+
+March 8, 2009
+
+&nbsp;<A class="gMetal" href="Javascript:tcTime()">[Get Time]</A>
+</DIV>
+
+<DIV class="topBar">
+    <DIV style="float: right; margin: 5px 0px 0px 0px;">
+        
+                <A class="gMetal" href="http://www.topcoder.com/tc?&module=Login">Login</A>
+            
+        
+    </DIV>
+</DIV>
+</DIV>
+<TABLE width="100&percnt;" border="0" cellpadding="0" cellspacing="0">
+    <TBODY><TR valign="top">
+        <!-- Left Column Begins-->
+        <TD width="180" id="onLeft">
+
+
+
+
+
+
+    
+    
+
+
+
+
+
+
+
+
+<SCRIPT language="JavaScript" type="text/javascript" src="./Maximum Flow 1_files/arena.js"></SCRIPT>
+
+
+<SCRIPT language="JavaScript" type="text/javascript">
+<!--
+function toggleMenu(menuTitle,menuID){
+   var menu = document.getElementById(menuID);
+   if(menu.style.display == 'block') menu.className = 'CLOSED';
+   else if(menu.className == 'OPEN' && menu.style.display != 'none') menu.className = 'CLOSED';
+   else {
+      menu.className = 'OPEN';
+   }
+   if(menuTitle.blur)menuTitle.blur();
+   if(menuTitle.className == 'exp') menuTitle.className = 'exp_ed';
+   else menuTitle.className = 'exp';
+   return;
+}
+function flipMenu(myMenuName){
+   var menuName = document.getElementById(myMenuName);
+   menuName.className = 'exp_ed';
+}
+
+// -->
+</SCRIPT>
+
+<DIV style="padding: 0px;"><IMG src="./Maximum Flow 1_files/leftnav_top.gif" alt=""></DIV>
+<DIV id="navbar">
+    
+<UL>
+<LI class="exp_ed"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_competitions&#39;)">Competitions</A>
+<UL id="m_competitions" class="OPEN">
+<LI><A href="http://www.topcoder.com/tc">Home</A></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_competitor_stats&#39;)">The Tops</A>
+<UL id="m_competitor_stats">
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_top_rated_competitors&#39;)">Top Ranked</A>
+<UL id="m_top_rated_competitors">
+<LI><A href="http://www.topcoder.com/tc?module=AlgoRank">Algorithm</A></LI>
+<LI><A href="http://www.topcoder.com/stat?c=top_designers">Design</A></LI>
+<LI><A href="http://www.topcoder.com/stat?c=top_developers">Development</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=HSRank">High School</A></LI>
+<LI><A href="http://www.topcoder.com/longcontest/stats/?module=CoderRank">Marathon Match</A></LI>
+</UL></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_recordbook&#39;)">Record Book</A>
+<UL id="m_recordbook">
+<LI><A href="http://www.topcoder.com/tc?module=Static&d1=statistics&d2=recordbook_home">Algorithm</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=Static&d1=compstats&d2=comp_recordbook_home">Component</A></LI>
+<LI><A href="http://www.topcoder.com/longcontest/?module=Static&d1=stats&d2=recordbook_home">Marathon Match</A></LI>
+</UL></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_com&#39;)">Coder of the Month</A>
+<UL id="m_com">
+<LI><A href="http://www.topcoder.com/tc?module=COMHistory&achtid=5">Algorithm</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=COMHistory&achtid=6">Design</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=COMHistory&achtid=7">Development</A></LI>
+</UL></LI>
+</UL></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_algo_competitions&#39;)">Algorithm</A>
+<UL id="m_algo_competitions">
+<LI><A href="javascript:arena();">Launch Arena</A></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_algo_stats&#39;)">Statistics</A>
+<UL id="m_algo_stats">
+<LI><A href="http://www.topcoder.com/tc?module=MatchList">Match Archive</A></LI>
+<LI><A href="http://www.topcoder.com/stat?c=round_overview">Match Overviews</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=SrmDivisionWins">Match Winners</A></LI>
+<LI><A href="http://www.topcoder.com/stat?c=last_match">Match Results</A></LI>
+<LI><A href="http://www.topcoder.com/wiki/display/tc/Algorithm+Problem+Set+Analysis">Match Editorials</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=ProblemArchive">Problem Archive</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=ColorChange&ratid=1">Recent Color Changes</A></LI>
+<LI><A href="http://www.topcoder.com/wiki/display/tc/Algorithm+Data+Feeds">Data Feeds</A></LI>
+</UL></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_algo_support&#39;)">Support / FAQs</A>
+<UL id="m_algo_support">
+<LI><A href="http://www.topcoder.com/wiki/display/tc/How+To+Compete+in+Algorithm+Competitions">How to Compete</A></LI>
+<LI><A href="http://www.topcoder.com/wiki/display/tc/Algorithm+Competition+FAQs">FAQs</A></LI>
+<LI><A href="http://www.topcoder.com/wiki/display/tc/Algorithm+Competition+Rating+System">Rating System</A></LI>
+<LI><A href="http://www.topcoder.com/wiki/display/tc/Write+Problems+for+TopCoder">Write Problems</A></LI>
+</UL></LI>
+</UL></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_conceptualization_competitions&#39;)">Software Conceptualization</A>
+<UL id="m_conceptualization_competitions">
+<LI><A href="http://www.topcoder.com/wiki/display/tc/TopCoder+Conceptualization+Contests">Overview</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=ActiveContests&pt=23">Active Contests</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=ContestStatus&pt=23">Contest Status</A></LI>
+<LI><A href="http://software.topcoder.com/review">Submit &amp; Review</A></LI>
+<LI><A href="http://www.topcoder.com/wiki/display/tc/TopCoder+UML+Tool">UML Tool</A></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_conceptualization_support&#39;)">Support / FAQs</A>
+<UL id="m_conceptualization_support">
+<LI><A href="http://www.topcoder.com/wiki/display/tc/Software+Specification+How+To">How to Compete</A></LI>
+</UL></LI>
+</UL></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_specification_competitions&#39;)">Software Specification</A>
+<UL id="m_specification_competitions">
+<LI><A href="http://www.topcoder.com/wiki/display/tc/TopCoder+Conceptualization+Contests">Overview</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=ActiveContests&pt=6">Active Contests</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=ContestStatus&pt=6">Contest Status</A></LI>
+<LI><A href="http://software.topcoder.com/review">Submit &amp; Review</A></LI>
+<LI><A href="http://www.topcoder.com/wiki/display/tc/TopCoder+UML+Tool">UML Tool</A></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_specification_support&#39;)">Support / FAQs</A>
+<UL id="m_specification_support">
+<LI><A href="http://www.topcoder.com/wiki/display/tc/Software+Specification+How+To">How to Compete</A></LI>
+</UL></LI>
+</UL></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_architecture_competitions&#39;)">Software Architecture</A>
+<UL id="m_architecture_competitions">
+<LI><A href="http://www.topcoder.com/wiki/display/tc/Architecture+Overview">Overview</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=ActiveContests&pt=7">Active Contests</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=ContestStatus&pt=7">Contest Status</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=ViewReviewProjects&pt=7">Review Opportunities</A></LI>
+<LI><A href="http://software.topcoder.com/review">Submit &amp; Review</A></LI>
+<LI><A href="http://www.topcoder.com/wiki/display/tc/TopCoder+UML+Tool">UML Tool</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=ReviewBoard&pt=7">Meet the Review Board</A></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_architecture_support&#39;)">Support / FAQs</A>
+<UL id="m_architecture_support">
+<LI><A href="http://www.topcoder.com/wiki/display/tc/How+to+Compete+in+Architecture+Competitions">How to Compete</A></LI>
+</UL></LI>
+</UL></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_des_competitions&#39;)">Software Design</A>
+<UL id="m_des_competitions">
+<LI><A href="http://www.topcoder.com/tc?module=ViewActiveContests&ph=112">Active Contests</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=ContestStatus&pt=1">Contest Status</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=ViewReviewProjects&pt=1">Review Opportunities</A></LI>
+<LI><A href="http://software.topcoder.com/review">Submit &amp; Review</A></LI>
+<LI><A href="http://www.topcoder.com/wiki/display/tc/TopCoder+UML+Tool">UML Tool</A></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_des_stats&#39;)">Statistics</A>
+<UL id="m_des_stats">
+<LI><A href="http://www.topcoder.com/tc?module=CompList&ph=112">Past Contests</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=ColorChange&ph=112">Recent Color Changes</A></LI>
+<LI><A href="http://www.topcoder.com/wiki/display/tc/Component+Design+Data+Feeds">Data Feeds</A></LI>
+</UL></LI>
+<LI><A href="http://www.topcoder.com/tc?module=ReviewBoard&pt=1">Meet the Review Board</A></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_des_support&#39;)">Support / FAQs</A>
+<UL id="m_des_support">
+<LI><A href="http://www.topcoder.com/wiki/display/tc/How+to+Compete+in+Component+Design+Competitions">How to Compete</A></LI>
+<LI><A href="http://www.topcoder.com/wiki/display/tc/Component+Design+Documentation">Documentation</A></LI>
+<LI><A href="http://www.topcoder.com/wiki/display/tc/Component+Design+Ratings">Ratings</A></LI>
+<LI><A href="http://www.topcoder.com/wiki/display/tc/Component+Design+Reliability+Ratings">Reliability Ratings</A></LI>
+</UL></LI>
+</UL></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_dev_competitions&#39;)">Software Development</A>
+<UL id="m_dev_competitions">
+<LI><A href="http://www.topcoder.com/tc?module=ViewActiveContests&ph=113">Active Contests</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=ContestStatus&pt=2">Contest Status</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=ViewReviewProjects&pt=2">Review Opportunities</A></LI>
+<LI><A href="http://software.topcoder.com/review">Submit &amp; Review</A></LI>
+<LI><A href="http://www.topcoder.com/wiki/display/tc/TopCoder+UML+Tool">UML Tool</A></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_dev_stats&#39;)">Statistics</A>
+<UL id="m_dev_stats">
+<LI><A href="http://www.topcoder.com/tc?module=CompList&ph=113">Past Contests</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=ColorChange&ph=113">Recent Color Changes</A></LI>
+<LI><A href="http://www.topcoder.com/wiki/display/tc/Component+Development+Data+Feeds">Data Feeds</A></LI>
+</UL></LI>
+<LI><A href="http://www.topcoder.com/tc?module=ReviewBoard&pt=2">Meet the Review Board</A></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_dev_support&#39;)">Support / FAQs</A>
+<UL id="m_dev_support">
+<LI><A href="http://www.topcoder.com/wiki/display/tc/How+to+Compete+in+Component+Development+Competitions">How to Compete</A></LI>
+<LI><A href="http://www.topcoder.com/wiki/display/tc/Component+Development+Documentation">Documentation</A></LI>
+<LI><A href="http://www.topcoder.com/wiki/display/tc/Component+Development+Ratings">Ratings</A></LI>
+<LI><A href="http://www.topcoder.com/wiki/display/tc/Component+Development+Reliability+Ratings">Reliability Ratings</A></LI>
+</UL></LI>
+</UL></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_assembly_competitions&#39;)">Software Assembly</A>
+<UL id="m_assembly_competitions">
+<LI><A href="http://www.topcoder.com/wiki/display/tc/Assembly">Overview</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=ViewAssemblyActiveContests">Active Contests</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=ContestStatus&pt=14">Contest Status</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=ViewReviewProjects&pt=14">Review Opportunities</A></LI>
+<LI><A href="http://software.topcoder.com/review">Submit &amp; Review</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=ReviewBoard&pt=14">Meet the Review Board</A></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_assembly_support&#39;)">Support / FAQs</A>
+<UL id="m_assembly_support">
+<LI><A href="http://www.topcoder.com/wiki/display/tc/How+to+Compete+in+Assembly+Competitions">How to Compete</A></LI>
+<LI><A href="http://www.topcoder.com/wiki/display/tc/Assembly+Competition+Tutorial">Tutorial</A></LI>
+<LI><A href="http://www.topcoder.com/wiki/display/tc/Assembly+Competition+Documentation">Documentation</A></LI>
+</UL></LI>
+</UL></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_testing_competitions&#39;)">Application Testing</A>
+<UL id="m_testing_competitions">
+<LI><A href="http://www.topcoder.com/wiki/display/tc/Testing">Overview</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=ActiveContests&pt=13">Active Contests</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=ContestStatus&pt=13">Contest Status</A></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_testing_support&#39;)">Support / FAQs</A>
+<UL id="m_testing_support">
+<LI><A href="http://www.topcoder.com/wiki/display/tc/How+to+Compete+in+Testing+Competitions">How to Compete</A></LI>
+<LI><A href="http://www.topcoder.com/wiki/display/tc/Testing+Competition+Tutorial">Tutorial</A></LI>
+<LI><A href="http://www.topcoder.com/wiki/display/tc/Testing+Competition+Documentation">Documentation</A></LI>
+</UL></LI>
+</UL></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_bugraces_competitions&#39;)">Bug Races</A>
+<UL id="m_bugraces_competitions">
+<LI><A href="http://www.topcoder.com/wiki/display/tc/Bug+Races">Overview</A></LI>
+<LI><A href="http://www.topcoder.com/wiki/display/tc/Active+Bug+Races">Active Contests</A></LI>
+<LI><A href="http://www.topcoder.com/wiki/display/tc/Bug+Races+Reviews">Review Opportunities</A></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_bugraces_support&#39;)">Support / FAQs</A>
+<UL id="m_bugraces_support">
+<LI><A href="http://www.topcoder.com/wiki/display/tc/How+to+Compete+in+Bug+Races">How to Compete</A></LI>
+</UL></LI>
+</UL></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_hs_competitions&#39;)">High School</A>
+<UL id="m_hs_competitions">
+<LI><A href="http://www.topcoder.com/tc?module=Static&d1=hs&d2=home">Overview</A></LI>
+<LI><A href="javascript:arena();">Launch Arena</A></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_hs_stats&#39;)">Statistics</A>
+<UL id="m_hs_stats">
+<LI><A href="http://www.topcoder.com/tc?module=HSRoundOverview">Match Overview</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=HSRoundStatsTeam">Match Results (Team)</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=HSRoundStatsInd">Match Results (Indiv.)</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=Static&d1=hs&d2=match_editorials&d3=archive">Match Editorials</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=ColorChange&ratid=2">Recent Color Changes</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=Static&d1=hs&d2=support&d3=dataFeed">Data Feeds</A></LI>
+</UL></LI>
+<LI><A href="http://www.topcoder.com/tc?module=Static&d1=hs&d2=sponsorship">Sponsorship</A></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_hs_support&#39;)">Support / FAQs</A>
+<UL id="m_hs_support">
+<LI><A href="http://www.topcoder.com/tc?module=Static&d1=hs&d2=support&d3=index">How to Compete</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=Static&d1=hs&d2=support&d3=faqIndex">FAQs</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=Static&d1=hs&d2=support&d3=sampleProblems">Sample Problems</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=Static&d1=hs&d2=support&d3=ratings">Rating System</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=Static&d1=help&d2=problemWriter&node=hs_write">Write Problems</A></LI>
+</UL></LI>
+</UL></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_long_contests&#39;)">Marathon Matches</A>
+<UL id="m_long_contests">
+<LI><A href="http://www.topcoder.com/longcontest/?module=ViewActiveContests">Active Contests</A></LI>
+<LI><A href="http://www.topcoder.com/longcontest/?module=ViewPractice">Practice</A></LI>
+<LI><A href="http://www.topcoder.com/longcontest/?module=ViewQueue">Queue Status</A></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_long_stats&#39;)">Statistics</A>
+<UL id="m_long_stats">
+<LI><A href="http://www.topcoder.com/longcontest/stats/?module=MatchList">Match Archive</A></LI>
+<LI><A href="http://www.topcoder.com/longcontest/stats/?module=ViewOverview">Match Overview</A></LI>
+<LI><A href="http://www.topcoder.com/longcontest/stats/?module=MatchWinners">Match Winners</A></LI>
+<LI><A href="http://www.topcoder.com/longcontest/?module=Static&d1=match_editorials&d2=archive">Match Editorials</A></LI>
+<LI><A href="http://www.topcoder.com/longcontest/?module=Static&d1=support&d2=dataFeed">Data Feeds</A></LI>
+</UL></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_long_support&#39;)">Support / FAQs</A>
+<UL id="m_long_support">
+<LI><A href="http://www.topcoder.com/longcontest/?module=Static&d1=instructions">How to Compete</A></LI>
+<LI><A href="http://www.topcoder.com/longcontest/?module=Static&d1=support&d2=ratings">Rating System</A></LI>
+</UL></LI>
+</UL></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_tournaments&#39;)">Tournaments</A>
+<UL id="m_tournaments">
+<LI><A href="http://www.topcoder.com/tc?module=Static&d1=tournaments&d2=home">TopCoder</A></LI>
+<LI><A href="http://www.topcoder.com/pl/">Powered by TopCoder</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=CRPFStatic&d1=crpf&d2=crpf_overview">Charity</A></LI>
+</UL></LI>
+<LI><A href="http://www.topcoder.com/dr">The Digital Run</A></LI>
+<LI class="exp_ed"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_edu_content&#39;)">Educational Content</A>
+<UL id="m_edu_content" class="OPEN">
+<LI><A href="http://www.topcoder.com/tc?module=Static&d1=education&d2=overview">Overview</A></LI>
+<LI class="highlight"><A href="http://www.topcoder.com/tc?module=Static&d1=tutorials&d2=alg_index">Algorithm Tutorials</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=Static&d1=tutorials&d2=comp_index">Component Tutorials</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=Static&d1=tutorials&d2=mm_index">Marathon Tutorials</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=Static&d1=features&d2=archive">Features</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=Static&d1=help&d2=writeForTC">Write for TopCoder</A></LI>
+</UL></LI>
+<LI><A href="http://www.topcoder.com/wiki/display/tc/How+to+Get+Paid+for+Competing">How to Get Paid</A></LI>
+</UL></LI>
+<LI><A href="http://forums.topcoder.com/">Forums</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=Static&d1=calendar&d2=thisMonth">Event Calendar</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=Static&d1=pressroom&d2=index">Press Room</A></LI>
+<LI><A href="http://www.topcoder.com/tc?&module=SurveyList">Surveys</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=MyHome">My TopCoder</A></LI>
+<LI class="exp"><A href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,&#39;m_about_tc&#39;)">About TopCoder</A>
+<UL id="m_about_tc">
+<LI><A href="http://www.topcoder.com/tc?module=Static&d1=about&d2=index">Overview</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=Static&d1=about&d2=contactus">Contact Us</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=Static&d1=about&d2=whyjoin">Why Join TopCoder?</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=Static&d1=about&d2=jobs">Working at TopCoder</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=Static&d1=about&d2=management">Management Team</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=Static&d1=about&d2=terms">Terms, Revisions</A></LI>
+<LI><A href="http://www.topcoder.com/tc?module=Static&d1=about&d2=privacy">Privacy Policy</A></LI>
+</UL></LI></UL>
+
+    <DIV style="float: left; padding: 10px 0px 0px 17px;">
+        
+        
+        
+        
+        <A href="http://www.topcoder.com/tc?module=LinkTracking&link=http://software.topcoder.com/&refer=leftnav"><IMG src="./Maximum Flow 1_files/tc_direct.png" alt="TopCoder Direct"></A>
+
+        
+    </DIV>
+    
+
+<DIV id="navbarSearch">
+<B>Member Search:</B>
+<FORM action="http://www.topcoder.com/tc" method="get" name="simpleSearchForm" class="noSpace" id="simpleSearchForm">
+   <INPUT class="noSpace" type="hidden" name="module" value="SimpleSearch">
+   <INPUT class="noSpace" type="text" name="ha" value="Handle:" size="12" maxlength="15" onfocus="javascript: if (document.simpleSearchForm.ha.value==&#39;Handle:&#39;) document.simpleSearchForm.ha.value = &#39;&#39;;" onblur="javascript:if (document.simpleSearchForm.ha.value == &#39;&#39;)document.simpleSearchForm.ha.value = &#39;Handle:&#39;;">
+   <A class="gMetal" href="javascript:void document.simpleSearchForm.submit();">Go</A><BR>
+   <A class="gMetal" href="http://www.topcoder.com/tc?module=ViewAdvanced">Advanced Search</A>
+</FORM>
+</DIV>
+</DIV>
+<DIV style="float: left; clear:left; padding: 0px 0px 23px 0px;"><IMG src="./Maximum Flow 1_files/leftnav_bottom.gif" alt=""></DIV>
+
+
+    <DIV align="center" style="float: left; clear:left; width: 170px; margin: 0px;">
+        <IMG src="./Maximum Flow 1_files/brackets.png" alt="" style="margin-bottom: 23px;">
+    </DIV>
+
+
+
+        </TD>
+        <!-- Left Column Ends -->
+        <!-- Center Column Begins -->
+        <TD width="100&percnt;" align="left" class="bodyColumn">
+            
+
+
+
+
+<TABLE cellspacing="0" cellpadding="0" class="pageTitleTable">
+    <TBODY><TR>
+        <TD width="100&percnt;" class="pageTitle"><IMG border="0" src="./Maximum Flow 1_files/header_alg_tut.gif" alt="alg_tut"></TD>
+        <TD align="right" class="pageSubtitle">&nbsp;&nbsp;</TD>
+    </TR>
+</TBODY></TABLE>
+
+
+            <DIV class="linkBox">
+                <A href="http://www.topcoder.com/tc?module=Static&d1=tutorials&d2=alg_index">Archive</A><BR>
+                <SPAN id="printableLink"><A href="Javascript:makeInvisible();">Printable view</A><BR></SPAN>
+                <SPAN id="navigableLink" class="invisible"><A href="Javascript:makeNavigable();">Normal view</A><BR></SPAN>
+                <A href="http://forums.topcoder.com/?module=ThreadList&forumID=505876">Discuss this article</A><BR>
+                <A href="http://www.topcoder.com/tc?module=Static&d1=help&d2=writeForTC">Write for TopCoder</A>
+            </DIV>
+
+<SPAN class="bodyTitle">Maximum Flow</SPAN>
+
+<P>
+<IMG src="./Maximum Flow 1_files/_efer__mug.gif" alt="" width="55" height="61" border="0" hspace="6" vspace="1" align="left" class="myStatsPhoto"><BR>
+By&nbsp;<A href="http://www.topcoder.com/tc?module=MemberProfile&cr=8593420&tab=alg" class="coderTextRed">_efer_</A><BR>
+<SPAN class="smallText"><EM>TopCoder Member</EM></SPAN><BR clear="all">
+</P>
+
+<H3>Introduction</H3>
+
+This article covers a problem that often arises in real life situations and, as expected, in programming contests, with Top Coder being no exception. It is addressed mostly to coders who are not familiar with the subject, but it may prove useful to the more experienced as well. Lots of papers have been written, and there are many algorithms known to solve this problem. While they are not the fastest, the algorithms presented here have the advantage of being simple and efficient, and because of this they are usually preferred during a contest setup.    The reader is advised to read the article on <A href="http://www.topcoder.com/tc?module=Static&d1=tutorials&d2=graphsDataStrucs1">graph theory</A> first, as the concepts presented there are needed to understand those presented here.
+<BR><BR>
+
+<SPAN class="bodySubtitle">The Standard Maximum Flow Problem</SPAN><BR>
+
+So, what are we being asked for in a max-flow problem? The simplest form that the statement could take would be something along the lines of: &quot;A list of pipes is given, with different flow-capacities. These pipes are connected at their endpoints. What is the maximum amount of water that you can route from a given starting point to a given ending point?&quot; or equivalently &quot;A company owns a factory located in city X where products are manufactured that need to be transported to the distribution center in city Y. You are given the one-way roads that connect pairs of cities in the country, and the maximum number of trucks that can drive along each road. What is the maximum number of trucks that the company can send to the distribution center?&quot;
+<BR><BR>
+A first observation is that it makes no sense to send a truck to any other city than Y, so every truck that enters a city other than Y must also leave it. A second thing to notice is that, because of this, the number of trucks leaving X is equal to the number of trucks arriving in Y.
+<BR><BR>
+Rephrasing the statement in terms of graph theory, we are given a network - a directed graph, in which every edge has a certain capacity <I>c</I> associated with it, a starting vertex (the source, X in the example above), and an ending vertex (the sink).  We are asked to associate another value <I>f</I> satisfying <I>f &le; c</I> for each edge such that for every vertex other than the source and the sink, the sum of the values associated to the edges that enter it must equal the sum of the values associated to the edges that leave it. We will call <I>f</I> the flow along that edge. Furthermore, we are asked to maximize the sum of the values associated to the arcs leaving the source, which is the total flow in the network.
+<BR><BR>
+The image below shows the optimal solution to an instance of this problem, each edge being labeled with the values f/c associated to it. 
+<BR>
+<DIV align="center"><IMG src="./Maximum Flow 1_files/maxFlow01.gif" alt="Figure 1a - Maximum Flow in a network"></DIV>
+<BR>
+
+<SPAN class="bodySubtitle">How to Solve It</SPAN><BR>
+
+Now how do we actually solve the problem? First, let us define two basic concepts for understanding flow networks: residual networks and augmenting paths. Consider an arbitrary flow in a network. The residual network has the same vertices as the original network, and one or two edges for each edge in the original. More specifically, if the flow along the edge x-y is less than the capacity there is a forward edge x-y with a capacity equal to the difference between the capacity and the flow (this is called the residual capacity), and if the flow is positive there is a backward edge y-x with a capacity equal to the flow on x-y. An augmenting path is simply a path from the source to the sink in the residual network, whose purpose is to increase the flow in the original one. It is important to understand that the edges in this path can point the &quot;wrong way&quot; according to the original network. The path capacity of a path is the minimum capacity of an edge along that path. Let&#39;s take the following example:
+<BR>
+<DIV align="center"><IMG src="./Maximum Flow 1_files/maxFlow02.gif" alt="Figure 2a"></DIV>
+<BR>
+<DIV align="center"><IMG src="./Maximum Flow 1_files/maxFlow03.gif" alt="Figure 2b - The residual network of the network in 2a"></DIV>
+<BR>
+
+By considering the path X_A_C_Y, we can increase the flow by 1 - the edges X_A and A_C have capacity of 3, as in the original network, but the edge C_Y has capacity 1, and we take the minimum of these values to get the path capacity. Increasing the flow along this path with 1 yields the flow below:
+<BR><BR>
+<DIV align="center"><IMG src="./Maximum Flow 1_files/maxFlow04.gif" alt="Figure 3a"></DIV>
+<BR>
+The value of the current flow is now 2, and as shown in Figure 1, we could do better. So, let&#39;s try to increase the flow. Clearly, there is no point in considering the directed paths X_A_C_Y or X_B_D_E_Y as the edges C_Y and X_B, respectively, are filled to capacity. As a matter of fact, there is no directed path in the network shown above, due to the edges mentioned above being filled to capacity. At this point, the question that naturally comes to mind is: is it possible to increase the flow in this case? And the answer is yes, it is. Let&#39;s take a look at the residual network: 
+<BR><BR>
+<DIV align="center"><IMG src="./Maximum Flow 1_files/maxFlow05.gif" alt="Figure 3b - The residual network of the network in 3a"></DIV>
+<BR>
+Let&#39;s consider the only path from X to Y here: X_A_C_B_D_E_Y. Note that this is not a path in the directed graph, because C_B is walked in the opposite way. We&#39;ll use this path in order to increase the total flow in the original network. We&#39;ll &quot;push&quot; flow on each of the edges, except for C_B  which we will use in order to &quot;cancel&quot; flow on B_C. The amount by which this operation can be performed is limited by the capacities of all edges along the path (as shown in Figure 3b). Once again we take the minimum, to conclude that this path also has capacity 1. Updating the path in the way described here yields the flow shown in Figure 1a. We are left with the following residual network where a path between the source and the sink doesn&#39;t exist:
+<BR><BR>
+<DIV align="center"><IMG src="./Maximum Flow 1_files/maxFlow06.gif" alt="Figure 1b - The residual network of the network in 1a"></DIV>
+<BR>
+This example suggests the following algorithm: start with no flow everywhere and increase the total flow in the network while there is an augmenting path from the source to the sink with no full forward edges or empty backward edges - a path in the residual network. The algorithm (known as the Ford-Fulkerson method) is guaranteed to terminate: due to the capacities and flows of the edges being integers and the path-capacity being positive, at each step we get a new flow that is closer to the maximum. As a side note, the algorithm isn&#39;t guaranteed to even terminate if the capacities are irrationals. 
+<BR><BR>
+What about the correctness of this algorithm? It is obvious that in a network in which a maximum flow has been found there is no augmenting path, otherwise we would be able to increase the maximum value of the flow, contradicting our initial assumption. If the converse of this affirmation is true, so that when there is no augmenting path, the value of the flow has reached its maximum, we can breathe a sigh of relief, our algo is correct and computes the maximum flow in a network. This is known as the max-flow min-cut theorem and we shall justify its correctness in a few moments. 
+<BR><BR>
+A cut in a flow network is simply a partition of the vertices in two sets, let&#39;s call them A and B, in such a way that the source vertex is in A and the sink is in B. The capacity of a cut is the sum of the capacities of the edges that go from a vertex in A to a vertex in B. The flow of the cut is the difference of the flows that go from A to B (the sum of the flows along the edges that have the starting point in A and the ending point in B), respectively from B to A, which is exactly the value of the flow in the network, due to the entering flow equals leaving flow - property, which is true for every vertex other than the source and the sink.
+<BR><BR>
+<DIV align="center"><IMG src="./Maximum Flow 1_files/maxFlow07.gif" alt="Figure 4 - A cut in the network"></DIV>
+<BR>
+Notice that the flow of the cut is less or equal to the capacity of the cut due to the constraint of the flow being less or equal to the capacity of every edge. This implies that the maximum flow is less or equal to every cut of the network. This is where the max-flow min-cut theorem comes in and states that the value of the maximum flow through the network is exactly the value of the minimum cut of the network. Let&#39;s give an intuitive argument for this fact. We will assume that we are in the situation in which no augmenting path in the network has been found. Let&#39;s color in yellow, like in the figure above, every vertex that is reachable by a path that starts from the source and consists of non-full forward edges and of non-empty backward edges. Clearly the sink will be colored in blue, since there is no augmenting path from the source to the sink. Now take every edge that has a yellow starting point and a blue ending point. This edge will have the flow equal to the capacity, otherwise we could have added this edge to the path we had at that point and color the ending point in yellow. Note that if we remove these edges there will be no directed path from the source to the sink in the graph. Now consider every edge that has a blue starting point and a yellow ending point. The flow on this edge must be 0 since otherwise we could have added this edge as a backward edge on the current path and color the starting point in yellow. Thus, the value of the flow must equal the value of the cut, and since every flow is less or equal to every cut, this must be a maximum flow, and the cut is a minimum cut as well.
+<BR><BR>
+In fact, we have solved another problem that at first glance would appear to have nothing to do with maximum flow in a network, ie. given a weighted directed graph, remove a minimum-weighted set of edges in such a way that a given node is unreachable from another given node. The result is, according to the max-flow min-cut theorem, the maximum flow in the graph, with capacities being the weights given. We are also able to find this set of edges in the way described above: we take every edge with the starting point marked as reachable in the last traversal of the graph and with an unmarked ending point. This edge is a member of the minimum cut.
+<BR><BR>
+<DIV align="center"><IMG src="./Maximum Flow 1_files/maxFlow08.gif" alt="Figure 5 - A minimum cut in the network"></DIV>
+<BR>
+
+<SPAN class="bodySubtitle">Augmenting-Path Algorithms</SPAN><BR>
+
+The neat part of the Ford-Fulkerson algorithm described above is that it gets the correct result no matter how we solve (correctly!!) the sub-problem of finding an augmenting path. However, every new path may increase the flow by only 1, hence the number of iterations of the algorithm could be very large if we carelessly choose the augmenting path algorithm to use. The function <I>max_flow</I> will look like this, regardless of the actual method we use for finding augmenting paths:
+
+<PRE class="code">int max_flow()  
+result = 0
+  while (true) 
+// the function find_path returns the path capacity of the 
+    augmenting path found
+    path_capacity = find_path()
+    // no augmenting path found
+    if (d = 0) exit while
+    else result += path_capacity
+  end while
+  return result
+</PRE>
+
+To keep it simple, we will use a 2-dimensional array for storing the capacities of the residual network that we are left with after each step in the algorithm. Initially the residual network is just the original network. We will not store the flows along the edges explicitly, but it&#39;s easy to figure out how to find them upon the termination of the algorithm: for each edge x-y in the original network the flow is given by the capacity of the backward edge y-x in the residual network. Be careful though; if the reversed arc y-x also exists in the original network, this will fail, and it is recommended that the initial capacity of each arc be stored somewhere, and then the flow along the edge is the difference between the initial and the residual capacity.
+<BR><BR>
+We now require an implementation for the function <I>find_path</I>. The first approach that comes to mind is to use a depth-first search (DFS), as it probably is the easiest to implement. Unfortunately, its performance is very poor on some networks, and normally is less preferred to the ones discussed next.
+<BR><BR>
+The next best thing in the matter of simplicity is a breadth-first search (BFS). Recall that this search usually yields the shortest path in an un-weighted graph. Indeed, this also applies here to get the shortest augmenting path from the source to the sink. In the following pseudocode we will basically: find a shortest path from the source to the sink and compute the minimum capacity of an edge (that could be a forward or a backward edge) along the path - the path capacity. Then, for each edge along the path we reduce its capacity and increase the capacity of the reversed edge with the path capacity.
+
+<PRE class="code">int bfs() 
+  queue Q
+  push source to Q
+  mark source as visited
+  keep an array from with the semnification: from[x] is the 
+previous vertex visited in the shortest path from the source to x;
+initialize from with -1 (or any other sentinel value) 
+  while Q is not empty
+    where = pop from Q 
+    for each vertex next adjacent to where
+      if next is not visited and capacity[where][next] &gt; 0
+        push next to Q
+        mark next as visited
+        from[next] = where
+        if next = sink
+          exit while loop
+    end for
+  end while
+  // we compute the path capacity
+  where = sink, path_cap = infinity
+  while from[where] &gt; -1
+    prev = from[where] // the previous vertex 
+    path_cap = min(path_cap, capacity[prev][where])
+    where = prev
+  end while
+  // we update the residual network; if no path is found the while 
+loop will not be entered
+  where = sink
+  while from[where] &gt; -1
+    prev = from[where]
+    capacity[prev][where] -= path_capacity
+        capacity[where][prev] += path_capacity
+    where = prev
+  end while
+  // if no path is found, path_cap is infinity
+  if path_cap = infinity
+    return 0
+  else return path_cap
+</PRE>
+
+As we can see, this is pretty easy to implement. As for its performance, it is guaranteed that this takes at most <FONT face="times new roman, serif"><I>N * M/2</I></FONT> steps, where N is the number of vertices and M is the number of edges in the network. This number may seem very large, but it is over-estimated for most networks. For example, in the network we considered 3 augmenting paths are needed which is significantly less than the upper bound of 28. Due to the <FONT face="times new roman, serif"><I>O</I>(<I>M</I>)</FONT> running time of BFS (implemented with adjacency lists) the worst-case running time of the shortest-augmenting path max-flow algorithm is <FONT face="times new roman, serif"><I>O</I>(<I>N</I> * <I>M&sup2;</I>)</FONT>, but usually the algorithm performs much better than this.
+<BR><BR>
+Next we will consider an approach that uses a priority-first search (PFS), that is very similar to the Dijkstra heap method explained <A href="http://www.topcoder.com/tc?module=Static&d1=tutorials&d2=graphsDataStrucs3">here</A>. In this method the augmenting path with a maximum path capacity is preferred. Intuitively this would lead to a faster algorithm, since at each step we increase the flow with the maximum possible amount. However, things are not always so, and the BFS implementation has better running times on some networks. We assign as a priority to each vertex the minimum capacity of a path (in the residual network) from the source to that vertex. We process vertices in a greedy manner, as in Dijkstra&#39;s algorithm, in decreasing order of priorities. When we get to the sink, we are done, since a path with a maximum capacity is found. We would like to implement this with a data structure that allows us to efficiently find the vertex with the highest priority and increase the priority of a vertex (when a new better path is found) - this suggests the use of a heap which has a space complexity proportional to the number of vertices. In TopCoder matches we may find it faster and easier to implement this with a priority queue or some other data structure that approximates one, even though the space required might grow to being proportional with the number of edges. This is how the following pseudocode is implemented. We also define a structure <TT>node</TT> that has the members <TT>vertex</TT> and <TT>priority</TT> with the above significance. Another field <TT>from</TT> is needed to store the previous vertex on the path.
+
+<PRE class="code">int pfs() 
+  priority queue PQ
+  push node(source, infinity, -1) to PQ
+  keep the array from as in bfs()
+  // if no augmenting path is found, path_cap will remain 0
+  path_cap = 0
+  while PQ is not empty
+    node aux = pop from PQ
+    where = aux.vertex, cost = aux.priority 
+    if we already visited where continue
+    from[where] = aux.from
+    if where = sink 
+      path_cap = cost
+      exit while loop
+    mark where as visited
+    for each vertex next adjacent to where
+      if capacity[where][next] &gt; 0
+        new_cost = min(cost, capacity[where][next])
+        push node(next, new_cost, where) to PQ
+    end for
+  end while
+  // update the residual network
+  where = sink
+  while from[where] &gt; -1
+    prev = from[where]
+    capacity[prev][where] -= path_cap
+    capacity[where][prev] += path_cap
+    where = prev
+  end while
+  return path_cap
+</PRE>
+
+The analysis of its performance is pretty complicated, but it may prove worthwhile to remember that with PFS at most <FONT face="times new roman, serif">2<I>M</I>1<I>gU</I></FONT> steps are required, where U is the maximum capacity of an edge in the network. As with BFS, this number is a lot larger than the actual number of steps for most networks. Combine this with the <FONT face="times new roman, serif"><I>O</I>(<I>M</I> 1g <I>M</I>)</FONT>  complexity of the search to get the worst-case running time of this algorithm.
+<BR><BR>
+Now that we know what these methods are all about, which of them do we choose when we are confronted with a max-flow problem? The PFS approach seems to have a better worst-case performance, but in practice their performance is pretty much the same. So, the method that one is more familiar with may prove more adequate. Personally, I prefer the shortest-path method, as I find it easier to implement during a contest and less error prone.
+<BR><BR>
+<A href="http://www.topcoder.com/tc?module=Static&d1=tutorials&d2=maxFlow2">...continue to Section 2</A>
+
+<P>&nbsp;</P>
+        </TD>
+<!-- Center Column Ends -->
+
+<!-- Right Column Begins -->
+         <TD width="170" id="onRight">
+            
+
+
+
+<SCRIPT type="text/javascript" language="javascript">
+
+</SCRIPT>
+
+
+
+<DIV class="rightColContent">
+    <BR><BR>
+</DIV>
+
+
+         </TD>
+<!-- Right Column Ends -->
+
+<!-- Gutter -->
+         <TD width="10"><IMG src="./Maximum Flow 1_files/clear.gif" width="10" height="1" border="0"></TD>
+<!-- Gutter Ends -->
+    </TR>
+</TBODY></TABLE>
+
+<DIV id="onBottom">
+
+
+<TABLE width="100&percnt;" border="0" cellpadding="0" cellspacing="0">
+<TBODY>
+    <TR>
+        <TD width="100&percnt;" class="footer">
+            <A href="http://www.topcoder.com/" class="footerLinks">Home</A>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <A href="http://www.topcoder.com/tc?module=Static&d1=about&d2=index" class="footerLinks">About TopCoder</A>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <A href="http://www.topcoder.com/tc?module=Static&d1=pressroom&d2=index" class="footerLinks">Press Room</A>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <A href="http://www.topcoder.com/tc?module=Static&d1=about&d2=contactus" class="footerLinks">Contact Us</A>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <A href="http://www.topcoder.com/tc?module=Static&d1=about&d2=jobs" class="footerLinks">Careers</A>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <A href="http://www.topcoder.com/tc?module=Static&d1=about&d2=privacy" class="footerLinks">Privacy</A>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <A href="http://www.topcoder.com/tc?module=Static&d1=about&d2=terms" class="footerLinks">Terms</A>
+            <BR>
+            <A href="http://www.topcoder.com/tc" class="footerLinks">Competitions</A>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <A href="http://software.topcoder.com/" class="footerLinks">Software</A>        </TD>
+    </TR>
+    <TR><TD width="100&percnt;" class="copyright">Copyright &copy; 2001-2008, TopCoder, Inc. All rights reserved.</TD></TR>
+</TBODY>
+</TABLE>
+
+
+<SCRIPT type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</SCRIPT><SCRIPT src="./Maximum Flow 1_files/ga.js" type="text/javascript"></SCRIPT>
+<SCRIPT type="text/javascript">
+var pageTracker = _gat._getTracker("UA-6340959-1");
+pageTracker._trackPageview();
+</SCRIPT>
+</DIV>
+
+
+
+</BODY></HTML>

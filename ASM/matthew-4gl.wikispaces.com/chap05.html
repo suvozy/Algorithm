@@ -1,0 +1,238 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<link href="chap05_files/style.css" rel="stylesheet" type="text/css">
+<title>05 TAJGA FASM Tutorial</title>
+</head>
+
+<body>
+
+<center><b>CHAPTER 5 - Jumps and branching</b></center><br><br>
+
+You should know a little about how instructions are processed by processor. It
+fetches instruction in machine code, executes it, and then moves to next
+instruction. This is repeaten until instruction <code>int 20h</code> is reached.
+In this chapter we will learn something about instructions which changes this
+behaviour.<br><br>
+
+
+<br><b>5.1. instruction pointer</b><br>
+Processor loads first instructions (it determines number of bytes the
+instrution consists from), executes it and then moves to another instruction.
+But how this mechanism works? Processor has a special word register "ip" which
+holds address of currently executed instruction. After instruction is executed
+processor adds it's size to "ip" and executes instruction on address in "ip".
+Mechanism works like this:
+
+<ul>
+<li>Loop
+    <ul>
+    <li>Execute instruction on <code>ip</code>
+    </li><li>size = size of instruction on <code>ip</code>
+    </li><li>ip = ip + size
+    </li></ul>
+</li><li>Until instruction <code>int 20h</code> is found
+</li></ul>
+
+<b>NOTE:</b> as with others pointers, <code>ip</code> doesn't hold full address
+of instruction, only offset part. Be we don't care about this now.<br><br>
+
+<b>NOTE:</b> "ip" stands for "instruction pointer".<br><br>
+
+<br><b>5.2. Jumps</b><br>
+Register <code>ip</code> is not like other registers (like <code>ax</code>,
+<code>ah</code>,<code>bp</code>...). It's contents can't be changed using
+<code>mov</code> instruction. <code>mov ip,5</code> doesn't work.
+But there is a special instruction which can change value in <code>ip</code>
+register. It is <code>jmp</code> ("jmp" = "jump") instruction. This instruction
+has one operand, new address for <code>ip</code> register.  So
+jmp 5 has effect like <code>mov ip,5</code> would if it were an
+instruction.  Example:
+
+<blockquote class="code"><pre>org <font color="#339933">256</font>
+jmp Start
+text db <font color="#bb0000">'Text to output'</font>
+Start<font color="#333399">:</font>
+mov ah<font color="#333399">,</font><font color="#339933">9</font>
+mov dx<font color="#333399">,</font>text
+int <font color="#339933">21h</font>
+int <font color="#339933">20h</font>
+</pre></blockquote>
+
+First instruction sets value of <code>ip</code> to address of
+<code>mov ah,9</code> instruction (address is held in label <code>Start</code>).
+Thus processor won't try to execute bytes
+defined by "Text to output" string and this program will work.<br><br>
+
+<b>NOTE:</b> of course, when <code>ip</code> is changed by <code>jmp</code>
+instruction, then size of this instruction is NOT added to it.<br><br>
+
+<a name="3"></a>
+<b>5.3. Comparing and conditonal jumps</b><br>
+If you can code any language already you should know branching, eg.
+conditional execution of some parts of code. For example: say you want value
+not greater than 10 in <code>al</code>. So if value in <code>al</code> register
+is &gt; 10, you will set <code>al</code> to 10. This is branching - if some
+condition is true then something is executed, otherwise it is not executed.
+Assembly impletation of this mechanism is that when condition is false you will
+jump over conditional code, when condition is true you will just cotinue
+execution. It is as if C code:
+<blockquote><pre>if (condition)
+  ConditionalCode(); //this can be any C code, not just function call
+</pre></blockquote>
+would be writen this way:
+<blockquote><pre>if (!condition) goto LabelAfterConditionalCode;
+ConditionalCode(); //this can be any C code, not just function call
+LabelAfterConditionalCode:
+</pre></blockquote>
+
+First problem is how to decide whether condition is true. In assembly, there
+is instruction which can compare two operands. It is <code>cmp</code>. It's
+operands follow same rules as <code>mov</code>'s operands (almost every
+instruction follows these or very similar rules). So examples of comparing:
+
+<blockquote class="code"><pre>cmp ax<font color="#333399">,</font>bx		      <font color="#777777">; compare value of "ax" to value of "bx"</font>
+cmp al<font color="#333399">,</font>byte <font color="#333399">[</font>SomeLabel<font color="#333399">]</font>       <font color="#777777">; comapre value of "al" to byte at SomeLabel</font>
+cmp ax<font color="#333399">,</font><font color="#339933">5</font>		      <font color="#777777">; compare value of "ax" to 5</font>
+cmp ax<font color="#333399">,</font>al		      <font color="#777777">; wrong, operands have different size</font>
+</pre></blockquote>
+
+This instructions checks whether first operand is same, greater or lesser than
+second.
+
+<blockquote class="term">
+instruction: <b>cmp</b>
+</blockquote>
+
+OK, we can compare, but how are results of comparison stored? CPU (processor)
+has special register called "flags register" in which it stores results of
+comparison (and some other things too). This register can't be accessed with
+<code>mov</code> or similar instructions (same like <code>ip</code>), it's value
+is set by <code>cmp</code> instruction. Now you don't have to care HOW is result
+of comparison stored in this register, you would need understand bit arithmetics.
+
+<blockquote class="term">
+register: <b>flags</b>
+</blockquote>
+
+OK, we can compare, we know result is stored in <code>flags</code>. Only thing
+we need now is conditional jump itslef. Conditional jump is jump which is taken only
+when condition specified by you is true (in flags register). It will be best
+explained on example. We compare <code>ax</code> to <code>bx</code>
+(<code>cmp ax,bx</code>). Now conditional jump can jump if <code>ax</code> &lt;
+<code>bx</code>, or when <code>ax</code> = <code>bx</code>, or when
+<code>ax</code> &gt;= <code>bx</code> etc.
+These jumps are (op1 is first operand of <code>cmp</code>, op2 is second):
+
+<ul>
+<li><code>je</code>  - jump if op1 = op2 (op1 is "equal to" op2)
+</li><li><code>ja</code>  - jump if op1 &gt; op2 (op1 is "above" op2)
+</li><li><code>jb</code>  - jump if op1 &lt; op2 (op1 is "below" op2)
+</li><li><code>jae</code> - jump if op1 &gt;= op2 (op1 is "above or equal to" op2)
+</li><li><code>jbe</code> - jump if op1 &lt;= op2 (op1 is "below or equal to" op2)
+</li></ul>
+
+Example code: (but don't try to compile it, it is not .COM executable, it is
+just piece of code)
+
+<blockquote class="code"><pre>cmp ax<font color="#333399">,</font><font color="#339933">10</font>
+jbe AX_lesser_than_10
+mov ax<font color="#333399">,</font><font color="#339933">10</font>
+AX_lesser_than_10<font color="#333399">:</font>
+</pre></blockquote>
+
+this piece of code will check whether value in <code>ax</code> is below or equal
+to 10, and if not (if the value in <code>ax</code> is above 10) it will set
+<code>ax</code> to 10. Corresponding C code is:
+
+<blockquote><pre>if (ax&gt;10) ax=10;
+</pre></blockquote>
+
+or more similar to our assembly version:
+
+<blockquote><pre>if (ax &lt;= 10) goto AX_lesser_than_10
+ax=10;
+AX_lesser_than_10:
+</pre></blockquote>
+
+Another example: get maximum of {ax,bx} and store it in ax:
+
+<blockquote class="code"><pre>cmp ax<font color="#333399">,</font>bx
+jae AX_already_contains_bigger_value
+mov ax<font color="#333399">,</font>bx
+AX_already_contains_bigger_value<font color="#333399">:</font>
+</pre></blockquote>
+
+So compare <code>ax</code> to <code>bx</code>, if it is bigger or equal then it
+already contains the bigger value, we dont need to change anything. If
+<code>ax</code> is lesser than <code>bx</code> then we must move value in
+<code>bx</code> (=bigger value) to <code>ax</code>.<br><br>
+
+More complicated version: store maximum of {ax,bx} in cx:
+
+<blockquote class="code"><pre>cmp ax<font color="#333399">,</font>bx
+ja  AX_bigger
+mov cx<font color="#333399">,</font>bx
+jmp done
+AX_bigger:
+mov cx<font color="#333399">,</font>ax
+done<font color="#333399">:</font>
+</pre></blockquote>
+
+so we compare <code>ax</code> to <code>bx</code>, then if <code>ax</code> is
+lesser than <code>bx</code> jump won't be taken and we continue by
+<code>mov cx,bx</code> which stores bigger value in <code>cx</code> as
+wanted, and then <code>jmp done</code> skips instructions used in case
+<code>ax</code> is bigger.
+If <code>ax</code> is bigger than <code>bx</code>, then <code>jmp AX_bigger</code>
+will be taked, so next instruction is <code>mov cx,ax</code> which moves greater
+value (in <code>ax</code>) to <code>cx</code>. You see, code was divided into two
+"branches" one for ax&gt;bx, other for ax&lt;=bx.
+Finally both branches goes to instruction behind <code>done:</code>, and at this
+place <code>cx</code> always holds bigger value. By the way, there could be
+<code>jae</code> instead <code>ja</code>, because for case when ax=bx both
+branches have same effect.
+
+<blockquote class="term">
+instructions: <b>je, ja, jb, jae, jbe</b>
+</blockquote>
+
+But what can we do if we want to jump when operands are NOT equal? We could do
+something like this:
+
+<blockquote class="code"><pre>cmp ax<font color="#333399">,</font>bx
+je Same
+jmp NotSame
+Same<font color="#333399">:</font>
+...
+NotSame<font color="#333399">:</font>
+</pre></blockquote>
+
+but this is not needed because there are instructions which jumps when
+condition is not true. These are <code>jne</code>,<code>jna</code>,
+<code>jnb</code>,<code>jnae</code> and <code>jnbe</code>. Instruction
+<code>jne</code> jumps when operands are not equal, <code>jna</code> when first
+operand is not above second operand etc., so:
+
+<blockquote class="code"><pre>cmp ax<font color="#333399">,</font>bx
+jne NotSame<font color="#333399">:</font>
+...
+NotSame<font color="#333399">:</font>
+</pre></blockquote>
+
+and ... part is executed only if value in ax is equal to value in bx.<br><br>
+
+<b>NOTE:</b> <code>jna</code> is same as <code>jbe</code>, <code>jnb</code> is
+same as <code>jae</code>, <code>jb</code> is same as <code>jnae</code>,
+<code>ja</code> is same as <code>jnbe</code>.
+
+<blockquote class="term">
+instructions: <b>jne, jna, jnb, jnae, jnbe</b>
+</blockquote>
+
+<b>NOTE:</b> (important) many instruction change <code>flags</code> register,
+not only <code>cmp</code>, so conditional jumps should be right behind
+<code>cmp</code>, no instructions between them.
+
+
+
+</body></html>

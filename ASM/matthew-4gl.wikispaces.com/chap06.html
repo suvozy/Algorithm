@@ -1,0 +1,406 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<link href="chap06_files/style.css" rel="stylesheet" type="text/css">
+<title>06 TAJGA FASM Tutorial</title>
+</head>
+
+<body>
+
+<center><b>CHAPTER 6 - Bit arithmetics</b></center><br><br>
+
+
+This is what most tutorials usually start with. After reading this you will be
+confused, it is normal, you will get this by usage. Return to this chapter
+whenever needed. So let's go.<br><br>
+
+<b>6.1. Encoding number in bits</b><br>
+
+You know computer uses "bits", which are variables that can contain one of two
+possible values, 0 or 1. When value of bit is 0, we say it is "clear", when it
+is 1, we say it is "set"<br><br>
+
+<blockquote class="term">
+terms:<br>
+<b>bit</b> - variable containing 0 or 1<br>
+<b>clear bit</b>  - bit containing 0<br> 
+<b>set bit</b> - bit containing 1<br>
+</blockquote>
+
+Now how can we store number in such bits. It is similar to storing word in two
+bytes (chapter 4.2, reread it). One bit contains value 0 or 1, so number that
+consists from only one bit can contain only values 0 and 1. When we add
+another bit, we can still store 0 and 1 in first bit, but we have another bit
+which now can hold 2*(0 or 1). Then another bit holds 4*(0 or 1), then 8*(0 or
+1) etc.<br><br>
+
+Like i said before, byte consists of 8 bits. So it can hold value<br>
+<code>1*(0 or 1)+2*(0 or 1)+4*(0 or 1)+8*(0 or 1)+16*(0 or 1)+32*(0
+or 1)+64*(0 or 1)+128*(0 or 1)</code> which is value from 0 (when all bits 
+are 0) to <code>1+2+4+8+16+32+64+128</code> = 255 (when all bits are
+1). See it?<br><br>
+
+It is similar for word, just with 16 bits instead of 8, check it yourself if
+you wish.<br><br>
+
+Now some terms: bit which holds 1*(0 or 1) is bit 0, next, which holds 2*(0 or
+1) is bit 1, and so until bit 7 which holds 128*(0 or 1). So bits are
+enumerated from 0, not from 1 as you would maybe await. bit 0 is called "low
+order bit", highest bit (which holds greatest value) is "high order bit". For
+example high order bit of some byte value is bit 7, and high order bit of word
+value is bit 15.
+
+<blockquote class="term">
+terms: <b>low-order bit, high-order bit</b>
+</blockquote>
+
+<b>important:</b> bits are enumerated from 0, not from 1, so first bit is bit#0<br><br>
+
+Number encoded this way (in bits) is called "binary number".<br><br><br>
+
+<b>6.2. Binary constants</b><br>
+
+You was using numeric constants before probably without deeper realizing you
+are using them. Numeric constants were just numbers you wrote in source file
+which were assembled into binary file. Numeric constants are for example "0",
+"50", "-100", "123456".<br><br>
+
+You used them here:
+
+<blockquote class="code"><pre>db <font color="#339933">5</font>
+mov al<font color="#333399">,</font><font color="#339933">20</font>
+cmp ax<font color="#333399">,</font><font color="#339933">5</font>
+db <font color="#bb0000">'Some string'</font><font color="#333399">,</font><font color="#339933">0</font>
+org <font color="#339933">256</font>
+</pre></blockquote>
+
+These numbers were decimal: ones which are used by (?) normal people.
+Assembler then translated them to binary form. But sometimes you want to
+specify directly binary numbers. Of course you dont have to hand-translate to
+decimal, you can specify them directly binary. Here are some examples of
+binary numbers: 0, 101011, 1101011, 11111, etc. To differ them from decimal
+numbers, every binary number must end with "b" character, so "0b", "101011b",
+"1101011b", "11111b" etc. Here first binary digit (first bit, first 0 or 1) is
+high-order bit, last one is low-order bit. So if you write "1101", then bit 0
+= 1, bit 1 = 0, bit 2 =1, bit 3 = 1.<br><br>
+Example table:
+
+<table class="tut_tab" align="center" bgcolor="#7F91EC" border="0" cellpadding="0" cellspacing="1" width="200">
+<tbody><tr align="center"><th>decimal</th><th>binary
+</th></tr><tr align="center"><td>0 </td><td>    0b</td></tr>
+<tr align="center"><td>1 </td><td>    1b</td></tr>
+<tr align="center"><td>2 </td><td>   10b</td></tr>
+<tr align="center"><td>3 </td><td>   11b</td></tr>
+<tr align="center"><td>4 </td><td>  100b</td></tr>
+<tr align="center"><td>5 </td><td>  101b</td></tr>
+<tr align="center"><td>6 </td><td>  110b</td></tr>
+<tr align="center"><td>7 </td><td>  111b</td></tr>
+<tr align="center"><td>10</td><td> 1010b</td></tr>
+<tr align="center"><td>15</td><td> 1111b</td></tr>
+<tr align="center"><td>16</td><td>10000b</td></tr>
+</tbody></table><br>
+I could learn you way how to translate number between decimal and binary
+forms, but you wont need it now anyway, and all other tutorials are full of
+such informations.<br><br>
+
+Binary numeric constants are just another way to express some number. Writing
+"5" is same as writing "101b". For example this will work too:
+
+<blockquote class="code"><pre>org <font color="#339933">100000000b</font>
+mov ah<font color="#333399">,</font><font color="#339933">1001b</font>
+mov dx<font color="#333399">,</font>string
+int <font color="#339933">21h</font>
+int <font color="#339933">20h</font>
+string db <font color="#bb0000">'Hello world writen using binary constants'</font><font color="#333399">,</font><font color="#339933">0</font>
+</pre></blockquote>
+
+<code>org 100000000b</code> is same as <code>org 256</code>, and <code>mov ah,1001b</code>
+is same as <code>mov ah,9</code>
+<br><br><br>
+
+<b>6.3. Bit operations</b><br>
+Now let's think about what we can do with bit (which can hold value 0 or 1).
+<br><br>
+
+First, we can "set" it (set it's value to 1) or "clear" it (set it's value to
+0). Then we can "flip" it's value (from 0 to 1, from 1 to 0). And that is
+probably all. This operation is called "bit complement" too (0 is complement
+of 1, 1 is complement of 0)<br><br>
+
+(lack of english math terms here, somebody could help me)<br><br>
+
+Now what we can do with 2 bits? If you think of bits as about boolean values,
+which can be either true (1) or false (0). Now what operations can we make
+with boolean values? If you programmed before you probably know this.<br><br>
+
+First is <code>and</code> (like "a and b" where "a" and "b" are boolean values
+:). When we have two boolean values, result of <code>and</code>ing them is true
+only when they are both true, otherwise result if false. (Table will be below)<br><br>
+
+Then comes <code>or</code>. You know, result of <code>or</code>ing two values is
+true, when at least one of them is true. And last, least known, is <code>xor</code>,
+which means "exclusive or" (the previous one was "inclusive or", but everyone calls it
+just "or"). Result of <code>xor</code>ing is 1 when one operand is 1 and other is 0.
+<br><br>
+
+Here is the table:<br>
+<table class="tut_tab" align="center" bgcolor="#7F91EC" border="0" cellpadding="0" cellspacing="1" width="320">
+<tbody><tr align="center"><th>A</th><th>B</th><th>A and B</th><th>A or B</th><th>A xor B</th></tr>
+<tr align="center"><td>0</td><td>0</td><td>   0	</td><td>   0  </td><td>   0   </td></tr>
+<tr align="center"><td>0</td><td>1</td><td>   0	</td><td>   1  </td><td>   1   </td></tr>
+<tr align="center"><td>1</td><td>0</td><td>   0	</td><td>   1  </td><td>   1   </td></tr>
+<tr align="center"><td>1</td><td>1</td><td>   1	</td><td>   1  </td><td>   0   </td></tr>
+</tbody></table><br>
+<b>NOTE:</b> There are 16 possible operations on two bits  but we wont talk
+about them all.<br><br>
+
+Now interesting (?) part: In late times, processors designers didnt like
+having lot of instructions on their processors. But as you see, we defined 3
+operations for single bit and 3 for two bits. So they found (obvious) way to
+achieve operations on single bit by using operations on two bits. To remind:
+operations on single bit were setting it to 0, setting it to 1 and flipping
+it's value (0-&gt;1, 1-&gt;0). How?<br><br>
+
+First let's talk about clearing bit (setting it's value to 0). Note that
+result of <code>and</code> is 0 whenever at least one of operands is 0. So if we
+<code>and</code> any bit (0 or 1) with 0 we always get 0, when we <code>and</code>
+with 1 bit will reamin unchanged. And this is what we wanted. It is similar with
+setting bit (to 1). Result of <code>or</code>ing is 1 when at least one of
+operands is 1. So <code>or</code>ing any bit with 1 will always produce 1,
+<code>or</code>ing with 0 will leave bit unchanged.<br><br>
+
+How to flip bit? Result of <code>xor</code>ing is 1 when one of operands is 1,
+other 0. So <code>xor</code>ing any value with 1 will always produce value's
+complement, <code>xor</code>ing with 0 will leave bit unchanged. This one is not
+so obvious, so better look at it in table.<br><br><br>
+
+<b>6.4. Binary operation instructions</b><br>
+
+First of all. You know smallest register we have are 8 bit (byte) registers.
+Also smallest part of memory we can access is byte (8 bits). For this reason
+binary operation instruction we will use will operate on two 8 bit numbers
+instead on two bits. What will be result? Bit 0 of result will be result of
+operation between bit 0 of first argument and bit 0 of second argument.  Bit
+1 of result will be result of operation on bits 1 of argument etc. You 'll
+see it.<br><br>
+
+First operation will be "and". Example:
+
+<blockquote class="code"><pre>mov al<font color="#333399">,</font><font color="#339933">00010001b</font>
+mov bl<font color="#333399">,</font><font color="#339933">00000001b</font>
+and al<font color="#333399">,</font>bl
+</pre></blockquote>
+
+first we load <code>al</code> with 00010001b, so it's bits 0 and 4 contain 1,
+other bits contain 0. Then we load <code>bl</code> with 00000001b so it's bit 0
+contains 1, other contain 0. Now when we <code>and</code> <code>al</code> with
+<code>bl</code> (this is how asm coder usually tells it), it works like some
+<code>al = al and bl</code> would eg. result of <code>and</code>ing
+<code>al</code> with <code>bl</code> is stored in <code>al</code>.<br><br>
+
+So what is the result (in <code>al</code>)? Bit 0 of <code>al</code> contained
+1 and was <code>and</code>ed with 1. "1 and 1" is 1, so bit 0 of <code>al</code>
+will be 1. Bits 1 to 2 and 5 to 7 would be "0 and 0" which is 0. Bit 3 would
+contain "0 and 1" which is 0 too. Bit 4 will contain "1 and 0" which is 0 again.	So result would be 00000001b.
+Better way to write previus code would be
+
+<blockquote class="code"><pre>mov al<font color="#333399">,</font><font color="#339933">00010001b</font>
+and al<font color="#333399">,</font><font color="#339933">00001001b</font>
+</pre></blockquote>
+
+(i used <code>bl</code> in previous example only to reference second number
+easier in text).<br><br>
+
+Now <code>or</code>ing:
+
+<blockquote class="code"><pre>mov al<font color="#333399">,</font><font color="#339933">00010001b</font>
+or  al<font color="#333399">,</font><font color="#339933">00001001b</font>
+</pre></blockquote>
+
+result will be 00011001b, due to <code>or</code> description (one subchapter
+upwards). <br><br>
+
+And <code>xor</code>ing:
+
+<blockquote class="code"><pre>mov al<font color="#333399">,</font><font color="#339933">00010001b</font>
+xor al<font color="#333399">,</font><font color="#339933">00001001b</font>
+</pre></blockquote>
+
+result will be 00011000b. Bits <code>xor</code>ed with 0 will remain, bits
+<code>xor</code>ed will 1 will be flipped (to their complement).
+
+<blockquote class="term">
+instructions: <b>and, or, xor</b>
+</blockquote>
+
+These instructions take same arguments as <code>mov</code> eg. first argument
+can be memory variable or register, second can be memory variable, register or
+constant. Both arguments must be of same size, only one of arguments can be
+memory variable.<br><br>
+
+<b>6.5. Testing bits.</b><br>
+If you was programming before, you probably already know about boolean
+variables (rarely called logical). They can hold two values, TRUE or FALSE.
+You see that they can be finely stored in bit, 1 for TRUE, 0 for FALSE.
+
+<blockquote class="term">
+term: <b>boolean variable</b>
+</blockquote>
+
+Problem here is, that smallest data directly accessible is byte (8 bits). You
+know, you can access byte register or byte memory variable, not bit. This is
+really so, there are no instruction which just access one bit. (Of course
+there are, you just don't need to know about them now :).<br>
+But when you work with boolean variable you want to access only one bit, not
+all 8 bits or more. There are some tricks to do this:<br><br>
+
+Use only one bit of whole byte and leave other bits cleared. Thus if you want
+to see if bit is 0, you just check if whole byte is equal to 0. If it is not,
+then our bit is 1. Example:
+
+<blockquote class="code"><pre>cmp <font color="#333399">[</font>byte_boolean_varaible<font color="#333399">],</font><font color="#339933">0</font>
+je byte_boolean_variable_is_false
+jnz byte_boolean_varaible_is_true
+</pre></blockquote>
+
+where <code>byte_boolean_variable</code> is byte varaible with only one bit
+used. If such variable is 0 then value is FALSE, otherwise value is TRUE.<br>
+<code>byte_boolean_variable_is_***</code> are labels used for branching as
+shown in previous chapter. By the way better "more assembly" way to do same as
+previous is:
+
+<blockquote class="code"><pre>  cmp <font color="#333399">[</font>byte_boolean_varaible<font color="#333399">],</font><font color="#339933">0</font>
+  je byte_boolean_variable_is_false
+byte_boolean_varaible_is_true<font color="#333399">:</font>
+  <font color="#333399">&lt;</font>here value is TRUE<font color="#333399">&gt;</font>
+byte_boolean_varaible_is_false<font color="#333399">:</font>
+  <font color="#333399">&lt;</font>here value is FALSE<font color="#333399">&gt;</font>
+</pre></blockquote>
+
+beacause in first version <code>jnz</code> conditonal jump would be always
+taken, because instruction is executed only when <code>je</code> wasn't taken.
+If you dont understand read previous chapter.<br><br>
+
+But using this way there are 7 unused bits, and that is waste of space. (Not
+for single variable, but surely for array of such variables). It is clear we
+can "pack" 8 boolean varaibles into single byte (8 bits). Problem is only
+setting and reading it.<br><br>
+
+First, we'll set all 8 bits (boolean variables) using <code>mov</code>
+instruction.
+
+<blockquote class="code"><pre>mov <font color="#333399">[</font>eight_booleans<font color="#333399">],</font><font color="#339933">00000000b</font>
+</pre></blockquote>
+
+this would set all variables to zero (clear them). If we want set some of them
+to one, we just set bits in which they are stored.
+
+<blockquote class="code"><pre>mov <font color="#333399">[</font>eight_booleans<font color="#333399">],</font><font color="#339933">00010100b</font>
+</pre></blockquote>
+
+this will set variables in bits 2 and 4, and leave all ather clear.<br><br>
+
+First, how to clear one bit and leave all other unmodified? We solved this
+before, we can do this with "and"ing:
+
+<blockquote class="code"><pre>and <font color="#333399">[</font>eight_booleans<font color="#333399">],</font><font color="#339933">11110111b</font>
+</pre></blockquote>
+
+This will clear bit 3 (<code>and</code>ed with 0 so result will be 0), and leave
+all other bits unchanged (<code>and</code>ed with 1 so will stay unchanged).
+This will clear bits 3 and 5:
+
+<blockquote class="code"><pre>and <font color="#333399">[</font>eight_booleans<font color="#333399">],</font><font color="#339933">11010111b</font>
+</pre></blockquote>
+
+it should be clear if you comprehended chapter 6.4.<br><br>
+
+Now how to set one of variables:
+
+<blockquote class="code"><pre>or <font color="#333399">[</font>eight_booleans<font color="#333399">],</font><font color="#339933">00001000b</font>
+</pre></blockquote>
+
+This sets bit 3 to 1 (<code>or</code>ing with 1 always gives 1) and leave other
+unchanged (<code>or</code>ing with 0 leaves unchanged).<br><br>
+
+And, of course, using <code>xor</code> we can flip bit(s):
+
+<blockquote class="code"><pre>xor <font color="#333399">[</font>eight_booleans<font color="#333399">],</font><font color="#339933">00001000b</font>
+</pre></blockquote>
+
+will flip bit 3 and leave others.<br><br>
+
+This was just to remind you, now let's go to checking value of bit. Checking
+value of bit is called "testing bit".
+
+<blockquote class="term">
+term: <b>testing bit</b>
+</blockquote>
+
+You often need to test value of some boolean variable and do something (jump
+somewhere) if it is (or isn't) TRUE.  We did this with byte-sized boolean
+variable using <code>cmp</code> instruction, but it is impossible to use
+<code>cmp</code> for testing only one bit of byte. For this reason, there is
+<code>test</code> instruction. It takes same arguments like <code>mov</code>,
+<code>xor</code>, <code>and</code>, <code>cmp</code> etc. It <code>and</code>s
+it's operands and if result of <code>and</code>ing is 0 then it sets flags so
+that if result is zero then <code>je</code> will be taken, if result isn't zero
+<code>je</code> won't be taken (and <code>jnz</code> would).
+
+<blockquote class="code"><pre>test arg1<font color="#333399">,</font>arg2
+</pre></blockquote>
+
+acts a little like
+
+<blockquote class="code"><pre>and arg1<font color="#333399">,</font>arg2
+cmp arg1<font color="#333399">,</font><font color="#339933">0</font>
+</pre></blockquote>
+
+but it doesn't modify <code>arg1</code> and you use <code>jz</code> (jump if zero) and
+<code>jnz</code> (jump if not zero) conditional jumps. <code>jz</code> jumps if result
+of virtual <code>and</code>ing (testing) is zero. Similary, <code>jnz</code>
+jumps, if result is not zero (eg. at least one tested bit is non-zero)
+
+<b>NOTE:</b> In fact, <code>jz</code> is same instruction as <code>je</code> and <code>jnz</code>
+is same as <code>jne</code>, so using <code>jz</code> is same as using <code>je</code> would be in
+and/cmp example
+
+<blockquote class="term">
+instruction: <b>test</b>
+</blockquote>
+
+Some example of using <code>test</code>
+
+<blockquote class="code"><pre>test <font color="#333399">[</font>eight_booleans<font color="#333399">],</font><font color="#339933">00001000b</font>
+jz bit_3_is_clear
+bit_3_is_set<font color="#333399">:</font>
+<font color="#333399">&lt;</font>...<font color="#333399">&gt;</font>
+bit_3_is_clear<font color="#333399">:</font>
+<font color="#333399">&lt;</font>...<font color="#333399">&gt;</font>
+</pre></blockquote>
+
+all bits but third of <code>eight_booleans</code> are <code>and</code>ed with
+0 (but <code>eight_booleans</code> stays unmodified), which means they are
+cleared, only value of third will remain. Then result of operation will be zero
+(and <code>je</code> will taken) only if third bit is 0. If it is 1, result of
+operation will be 00001000b, not 0 so <code>je</code> won't be taken.<br><br>
+
+Now some little more dificult example:
+
+<blockquote class="code"><pre>test <font color="#333399">[</font>eight_booleans<font color="#333399">],</font><font color="#339933">00101000b</font>
+je bits_3_and_5_clear
+bits_3_and_5_not_both_clear<font color="#333399">:</font>
+<font color="#333399">&lt;</font>...<font color="#333399">&gt;</font>
+bits_3_and_5_clear<font color="#333399">:</font>
+<font color="#333399">&lt;</font>...<font color="#333399">&gt;</font>
+</pre></blockquote>
+
+bits 3 and 5 of <code>eight_booleans</code> will remain, so result of operation
+will be 0 (and <code>je</code> will be taken) only when both these bits are 0.
+If at least one of these bits is 1 result won't be 0 (it can be 00001000b or
+00100000b or 00101000b) and <code>jz</code> won't be taken. But testing two bits
+at one time usually isn't used, at least not by beginners, i gave this example
+just for better picture how <code>test</code> works.
+
+
+
+</body></html>

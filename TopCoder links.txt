@@ -1,0 +1,63 @@
+http://www.topcoder.com/tc
+
+
+Load the Competition Arena as a Java Web Start Application
+
+http://www.topcoder.com/tc?module=Static&d1=applet&d2=full-support
+
+
+Load the Competition Arena as an Applet	< Java Applet. >
+
+http://www.topcoder.com/tc?module=Static&d1=applet&d2=applet
+
+
+
+
+
+======================	Other Links	======================
+
+
+1.http://icpcres.ecs.baylor.edu/onlinejudge/
+UVa Online Judge
+
+2.http://icpc.baylor.edu/past/icpc2007/Re ... eport.html
+Official International Collegiate Programming Contest (ACM) site, 2007 results (You can change 2007 in URL to 2006, 2005, etc.)
+
+3.http://www.oi.edu.pl/
+Polish Olympiad in Informatics
+
+4.http://ipsc.ksp.sk/
+Internet Problem Solving Contest - Comenius University
+
+5.http://www.informatik.uni-ulm.de/acm/
+ACM Programming Contest at the University of Ulm
+
+6.http://acm.pku.edu.cn
+Online Judge of Peking University
+
+7.http://www.hsin.hr/2004
+Crotian Olympiad in Informatics 2004 (You can change 2004 in URL to 2001, 2002, etc.)
+
+8.http://mathworld.wolfram.com/
+Mathworld, many useful mathematical resources
+
+9.http://forums.topcoder.com/
+Topcoder Forums, many programming resources
+
+10.http://plg1.cs.uwaterloo.ca/~acm00/
+Waterloo Programming Contest official web page.
+
+11.http://web.mit.edu/acmicpc/www/
+The MIT Programming Contest
+
+12.http://www.spoj.pl/forum/viewforum.php?f=40
+DASM Programming League (hosted in SPOJ) discuss & solutions.
+
+13.http://ace.delos.com/DEC08
+Usaco Contest (December 2008) Results and solutions.(You can change DEC08 to MAR07, Jan09, etc.)
+
+14.http://cemc.uwaterloo.ca/contests/past_contests.html
+Canadian Computing Competition Official Website.
+
+
+

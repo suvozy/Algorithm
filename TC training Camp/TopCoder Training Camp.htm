@@ -1,0 +1,1278 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+  
+    <title>TopCoder Training Camp</title>
+    <meta http-equiv="expires" content="0">
+  </head><body bgcolor="#ffffff" vlink="#6666ff" link="#0000ff">
+    
+    <h2>
+      <a href="http://www.stefan-pochmann.de/spots/">TopCoder Training Camp</a> &gt;&gt;
+      <a href="http://www.stefan-pochmann.de/spots/tutorials/">Tutorials</a> &gt;&gt;
+      <font color="#cc6600">Sets, Subsets, ...</font>
+    </h2>
+    
+    <p>&nbsp;</p>
+
+    <!-- ========= Introduction =============================================== -->
+    
+    <p>Very
+often problems deal with some set of "things" and your task is to find
+a subset of it that is in some sense "optimal". Or you're asked to find
+the number of "valid" subsets. Or to find the optimal subset among all
+valid subsets. Or some other more exotic question.</p>
+    
+    <p>I
+refer to some TopCoder problems throughout the tutorial and in the
+exercises. And of course there are also some more general and famous
+problems. A quote shamelessly from Skiena (see "Further Reading" at the
+end of the tutorial):</p>
+    
+    <blockquote>
+      <p>"Many of
+the algorithmic problems in this catalog seek the best subset of a
+group of things: vertex cover seeks the smallest subset of vertices to
+touch each edge in a graph; knapsack seeks the most profitable subset
+of items of bounded total size; and set packing seeks the smallest
+subset of subsets that together cover each item exactly once."</p>
+    </blockquote>
+    
+    <p>This
+tutorial mainly covers generation of subsets as exhaustive brute force
+search (which is good enough for quite a few problems). Optimizations
+and some more mathematical facts are also discussed.</p>
+    
+    <p>Contents:</p>
+    
+    <ul>
+      <li><a href="#Basics">Basics</a></li>
+      <li><a href="#LightMeal_Example">LightMeal Example</a></li>
+      <li><a href="#The_Bitfield_Counter_Method">The Bitfield Counter Method</a></li>
+      <li><a href="#Optimization_by_Breaking_Subtrees">Optimization by Breaking Subtrees</a></li>
+      <li><a href="#Subsets_of_Specific_Size">Subsets of Specific Size</a></li>
+      <li><a href="#Mixing_and_Order">Mixing and Order</a></li>
+      <li><a href="#Multisets">Multisets</a></li>
+      <li><a href="#Efficiency_Guidelines">Efficiency Guidelines</a></li>
+      <li><a href="#Summary">Summary</a></li>
+      <li><a href="#Exercises">Exercises</a></li>
+      <li><a href="#Further_Reading">Further Reading</a></li>
+    </ul>
+    
+    <!-- ========= Basics ===================================================== -->
+
+    <p><a name="Basics">&nbsp;</a></p>
+    <h3><font color="#cc6600">Basics</font></h3>
+    
+    <p>A "<font color="#339933">set</font>"
+is just some collection of "things", for example the set of three
+people { Anna, Bob, Caesar } or the set of four numbers { 496, 6, 28,
+8128 }. The things contained in a set are called "<font color="#339933">elements</font>" of that set, so 28 is an element of the set { 6, 28, 496 }, whereas 42 is not.</p>
+
+    <p>Note that <font color="#339933">sets are not ordered</font>, i.e. { 23, 42 } = { 42, 23 }. They also don't care about <font color="#339933">duplicates</font>,
+i.e. { 6, 6, 28 } = { 6, 28 }. However, I will usually write my example
+sets without duplicates and often they will look ordered. Note that if
+the input to a programming problem is a set, you might come across
+duplicates and the set might not be ordered. Be careful, watch out for
+that!</p>
+    
+    <p>The "<font color="#339933">size</font>" or "<font color="#339933">cardinality</font>"
+of a set A is written as #A or |A|. It tells us how many elements are
+in the set, for example |{6, 28, 6}| = 2. There are finite and infinite
+sets, meaning they have finitely or infinitely many elements. Even
+though infinite sets are mathematically nice, they play only a very
+little (if any) role in TopCoder problems, so I will only discuss
+finite sets here.</p>
+
+    <p>We are programmers and want to work
+with sets, therefore we have to hold them in some data structures. Even
+though sets don't offer an idea of order, in your program you have them
+stored somehow, maybe in an array that contains the elements. Because
+of this, it's legitimate to talk about the "first element" of a set or
+the "i-th element". When I say something like that, remember that by
+this I mean the "first element <b>in my representation</b> of the set" or similarly the "i-th".</p>
+    
+    <p>A "<font color="#339933">subset</font>" of some set B is a set that contains only elements of B. For example, here are all subsets of the set { 3, 1, 4 }:</p>
+    
+    <p>{ }, { 3 }, { 1 }, { 4 }, { 3, 1 }, { 3, 4 }, { 1, 4 }, { 3, 1, 4 }</p>
+    
+    <p>The first set in that list is a special set, called the "<font color="#339933">empty set</font>".
+Naturally, the empty set is a subset of any set. The last set is also a
+bit special, since it's the same as the whole set B. You can see that
+every set is a subset of itself.</p>
+    
+    <p>If you have a set of N elements, how many subsets are there? In the above example, N=3 and we had eight subsets. The answer is 2<sup>N</sup>, in the example 2<sup>3</sup>
+= 8. Why is this? To build our subset, let's start with the first
+element. We can either include it or leave it out. A choice between two
+possibilities. Then we go on to the next element and make a choice to
+include it or not. And so on. For each of the N elements, you have two
+choices, so there are 2<sup>N</sup> possible resulting subsets.
+Convince yourself that with this method you'll really get each subset
+exactly once. You will not create a subset twice and every possible
+subset will be generated. We will also see this again a little bit
+later.</p>
+    
+    <p>Since 2<sup>N</sup> is a fairly easy formula,
+you will probably never see a problem that just asks for the number of
+subsets of a set. But it's good to know, since you might need it as
+part of a larger task.</p>
+    
+    <p>Set theory is a large large
+part of mathematics and far more complicated and richer than what I'll
+cover here, since here I'm more interested in basic computational
+needs. For a start on more, look at <a href="http://mathworld.wolfram.com/Set.html">MathWorld</a>.</p>
+    
+    <!-- ========= LightMeal Example ========================================== -->
+
+    <p><a name="LightMeal_Example">&nbsp;</a></p>
+    <h3><font color="#cc6600">LightMeal Example</font></h3>
+    
+    <p>Let's
+look at an example. In SRM 87, the division 1 level 3 problem dealt
+with a set of food items. For each item, you are given the amount of
+calories and of three vitamins. The task was to find the best meal that
+had at least 100% of the daily need of each vitamin. A meal is "better"
+than another if it has less calories. Look at practice room 112 for the
+complete problem statement. A short example:</p>
+    
+    <center>
+      <table border="1" cellpadding="3" cellspacing="0">
+	<tbody><tr>
+	  <th>Item number</th>
+	  <th>Calories</th>
+	  <th colspan="3">Vitamins</th>
+	</tr>
+	
+	<tr align="middle">
+	  <td>0</td>
+	  <td>28</td>
+	  <td>20</td>
+	  <td>33</td>
+	  <td>98</td>
+	</tr>
+	<tr align="middle">
+	  <td>1</td>
+	  <td>23</td>
+	  <td>69</td>
+	  <td>33</td>
+	  <td>1</td>
+	</tr>
+	<tr align="middle">
+	  <td>2</td>
+	  <td>6</td>
+	  <td>90</td>
+	  <td>33</td>
+	  <td>1</td>
+	</tr>
+	<tr align="middle">
+	  <td>3</td>
+	  <td>42</td>
+	  <td>10</td>
+	  <td>40</td>
+	  <td>1</td>
+	</tr>
+ 	<tr align="middle">
+	  <td>4</td>
+	  <td>496</td>
+	  <td>100</td>
+	  <td>100</td>
+	  <td>100</td>
+	</tr>
+      </tbody></table>
+    </center>
+    
+    <p>Item
+4 alone has the needed vitamin amount, but also a huge amount of
+calories. Can we do better without it? Yes, when we put items 0, 2 and
+3 together, we have vitamin sums of (120, 106, 100). And they only have
+76 calories together. There's no better way and thus the result is 76
+(the problem asked for the number of calories as result).</p>
+    
+    <p>A
+"meal" was in fact just a subset of the set of food items. But here we
+have a restriction, we're not concerned about *all* subsets, but only
+about *valid* subsets, those that contain enough vitamins. Of all those
+valid subsets, we're searching for the one with the fewest calories.</p>
+    
+    <p>Let me tell you a secret. Since the maximum number of food items was 20, there are at most 2<sup>20</sup> subsets, which is about a million. And of course there are at most that many *valid* subsets. Well, you can do a lot<font color="#cc6600"><sup>*</sup></font>
+in the eight seconds TopCoder gives you. The easiest way to solve this
+problem is to generate *all* subsets, determine for each one if it is
+valid (has enough vitamins) and keep track of the minimum number of
+calories of all valid subsets. This is in fact fast enough.</p>
+    
+    <p>(<font color="#cc6600"><sup>*</sup></font>: try <code>int j=0; for( int i=0; i&lt;100000000; ++i ) j+=i;</code>, it will run about a second on the TopCoder server for these 100 million iterations)</p>
+
+    <p>So
+how do we generate all subsets? One of the easiest and most intuitive
+ways is to use a recursive function, which works just like I explained
+in my argument for the 2<sup>N</sup> subsets. Here's a general outline of the algorithm:</p>
+
+    <pre>        main () {
+            subsets( 0, {} );
+        }
+
+        subsets ( int i, Subset s ) {
+            if( i == N ){
+                doSomethingWithTheBuiltSubset( s );
+                return;
+            }
+            subsets( i+1, s );
+            subsets( i+1, s + element(i) );
+        }
+    </pre>
+    
+    <p>The
+function "subsets( i, s )" will make all choices for the remaining
+elements i to N-1 (I assume the elements are numbered from 0 to N-1
+where N is the size of the whole set). That's why it's called in main
+with argument zero, because it still has to decide for all elements.
+The second argument holds the partially built subset, so of course main
+starts the building with the empty set.</p>
+    
+    <p><code>subsets</code>
+first looks if it has already decided for all elements (i.e. if i==N)
+and if yes, then we can do something with the built subset. In the
+LightMeal problem, it would check if it has enough calories and if it's
+a new record holder for fewest calories.</p>
+
+    <p>If we're not yet finished (i.e. if i&lt;N), then <code>subsets</code>
+just tries both possibilities for element i. With the first recursive
+call, it makes the choice to leave it out, with the second one it
+includes it in the subset.</p>
+    
+    <p>The call tree of this with when the whole set is { a, b, c } will look like this:</p>
+    
+    <img src="TopCoder%20Training%20Camp_files/call_tree.gif">
+    
+    <p>You
+can see that at the recursion bottom (at the right), where i==3, each
+possible subset of { a, b, c } appears exactly once. Now that you got
+an idea of how this works, let's see it in action and real code that
+solves the LightMeal problem. Note that I don't explicitly build the
+subset, but rather just the sum of vitamins and calories, since that's
+all I need to care about. So instead of adding an element to some
+subset, I add its values to some sums.</p>
+    
+    <blockquote>
+      <blockquote>
+	<pre><font color="#000099">struct</font> <font color="#990000">LightMeal</font> {
+  
+  <font color="#000099">int</font> <font color="#990000">n</font>, <font color="#990000">best</font>, <font color="#990000">cal</font>[<font color="#990099">20</font>], <font color="#990000">A</font>[<font color="#990099">20</font>], <font color="#990000">B</font>[<font color="#990099">20</font>], <font color="#990000">C</font>[<font color="#990099">20</font>];
+  
+  <font color="#000099">void</font> <font color="#990000">check_subsets</font> ( <font color="#000099">int</font> <font color="#990000">i</font>, <font color="#000099">int</font> <font color="#990000">cals</font>, <font color="#000099">int</font> <font color="#990000">a</font>, <font color="#000099">int</font> <font color="#990000">b</font>, <font color="#000099">int</font> <font color="#990000">c</font> ) {
+
+    <font color="#009900">//--- Made a choice for all items?
+</font>    <font color="#000099">if</font>( <font color="#990000">i</font> == <font color="#990000">n</font> ){
+      <font color="#000099">if</font>( <font color="#990000">a</font>&gt;=<font color="#990099">100</font> &amp;&amp; <font color="#990000">b</font>&gt;=<font color="#990099">100</font> &amp;&amp; <font color="#990000">c</font>&gt;=<font color="#990099">100</font> )
+        <font color="#990000">best</font> = <font color="#990000">min</font>( <font color="#990000">best</font>, <font color="#990000">cals</font> );
+      <font color="#000099">return</font>;
+    }
+    
+    <font color="#009900">//-- Either leave this one out or take it in.
+</font>    <font color="#990000">check_subsets</font>( <font color="#990000">i</font>+<font color="#990099">1</font>, <font color="#990000">cals</font>, <font color="#990000">a</font>, <font color="#990000">b</font>, <font color="#990000">c</font> );
+    <font color="#990000">check_subsets</font>( <font color="#990000">i</font>+<font color="#990099">1</font>, <font color="#990000">cals</font>+<font color="#990000">cal</font>[<font color="#990000">i</font>], <font color="#990000">a</font>+<font color="#990000">A</font>[<font color="#990000">i</font>], <font color="#990000">b</font>+<font color="#990000">B</font>[<font color="#990000">i</font>], <font color="#990000">c</font>+<font color="#990000">C</font>[<font color="#990000">i</font>] );
+  }
+  
+  <font color="#000099">int</font> <font color="#990000">calories</font> ( <font color="#990000">vector</font>&lt;<font color="#990000">string</font>&gt; <font color="#990000">items</font> ) {
+    
+    <font color="#009900">//--- Transfer the input to arrays for easier and faster access.
+</font>    <font color="#990000">n</font> = <font color="#990000">items</font>.<font color="#990000">size</font>();
+    <font color="#000099">for</font>( <font color="#000099">int</font> <font color="#990000">i</font>=<font color="#990099">0</font>; <font color="#990000">i</font>&lt;<font color="#990000">n</font>; ++<font color="#990000">i</font> ){
+      <font color="#990000">istringstream</font> <font color="#990000">sin</font>( <font color="#990000">items</font>[<font color="#990000">i</font>] );
+      <font color="#990000">sin</font> &gt;&gt; <font color="#990000">cal</font>[<font color="#990000">i</font>] &gt;&gt; <font color="#990000">A</font>[<font color="#990000">i</font>] &gt;&gt; <font color="#990000">B</font>[<font color="#990000">i</font>] &gt;&gt; <font color="#990000">C</font>[<font color="#990000">i</font>];
+    }
+    
+    <font color="#009900">//--- Check all possible subsets of meals.
+</font>    <font color="#990000">best</font> = <font color="#990099">20</font>*<font color="#990099">100</font>+<font color="#990099">1</font>;
+    <font color="#990000">check_subsets</font>( <font color="#990099">0</font>, <font color="#990099">0</font>, <font color="#990099">0</font>, <font color="#990099">0</font>, <font color="#990099">0</font> );
+    
+    <font color="#009900">//--- Answer.
+</font>    <font color="#000099">return</font> <font color="#990000">best</font>;
+  }
+};
+	</pre>
+      </blockquote>
+    </blockquote>
+    
+    <p>Here
+the main function is "calories", which first parses the input into some
+arrays for easier access. Then it calls the recursive "check_subsets"
+function. The first parameter is the iterator i, just as before. But
+instead of one subset parameter, we have the four sums we're interested
+in.</p>
+
+    <p>Sometimes it's even easier to use global data
+structures to build the subset or the values you want to know about it,
+but that depends on the problem and your preferences and current mood.
+In the above program, I use global variables for the whole set of items
+and to keep track of the "best" valid subset. Another possibility
+would've been to let the function *return* the best answer:</p>
+    
+    <blockquote>
+      <blockquote>
+	<pre><font color="#000099">struct</font> <font color="#990000">LightMeal</font> {
+  
+  <font color="#000099">int</font> <font color="#990000">n</font>, <font color="#990000">cal</font>[<font color="#990099">20</font>], <font color="#990000">A</font>[<font color="#990099">20</font>], <font color="#990000">B</font>[<font color="#990099">20</font>], <font color="#990000">C</font>[<font color="#990099">20</font>];
+  
+  <font color="#000099">int</font> <font color="#990000">check_subsets</font> ( <font color="#000099">int</font> <font color="#990000">i</font>, <font color="#000099">int</font> <font color="#990000">cals</font>, <font color="#000099">int</font> <font color="#990000">a</font>, <font color="#000099">int</font> <font color="#990000">b</font>, <font color="#000099">int</font> <font color="#990000">c</font> ) {
+    
+    <font color="#009900">//--- Made a choice for all items?
+</font>    <font color="#000099">if</font>( <font color="#990000">i</font> == <font color="#990000">n</font> ){
+      <font color="#000099">if</font>( <font color="#990000">a</font>&gt;=<font color="#990099">100</font> &amp;&amp; <font color="#990000">b</font>&gt;=<font color="#990099">100</font> &amp;&amp; <font color="#990000">c</font>&gt;=<font color="#990099">100</font> )
+        <font color="#000099">return</font> <font color="#990000">cals</font>;
+      <font color="#000099">else</font>
+        <font color="#000099">return</font> <font color="#990099">20</font>*<font color="#990099">100</font>+<font color="#990099">1</font>;
+    }
+    
+    <font color="#009900">//-- Either leave this one out or take it in.
+</font>    <font color="#000099">return</font> <font color="#990000">min</font>( <font color="#990000">check_subsets</font>( <font color="#990000">i</font>+<font color="#990099">1</font>, <font color="#990000">cals</font>, <font color="#990000">a</font>, <font color="#990000">b</font>, <font color="#990000">c</font> ),
+                <font color="#990000">check_subsets</font>( <font color="#990000">i</font>+<font color="#990099">1</font>, <font color="#990000">cals</font>+<font color="#990000">cal</font>[<font color="#990000">i</font>], <font color="#990000">a</font>+<font color="#990000">A</font>[<font color="#990000">i</font>], <font color="#990000">b</font>+<font color="#990000">B</font>[<font color="#990000">i</font>], <font color="#990000">c</font>+<font color="#990000">C</font>[<font color="#990000">i</font>] ));
+  }
+  
+  <font color="#000099">int</font> <font color="#990000">calories</font> ( <font color="#990000">vector</font>&lt;<font color="#990000">string</font>&gt; <font color="#990000">items</font> ) {
+    
+    <font color="#009900">//--- Transfer the input to arrays for easier and faster access.
+</font>    <font color="#990000">n</font> = <font color="#990000">items</font>.<font color="#990000">size</font>();
+    <font color="#000099">for</font>( <font color="#000099">int</font> <font color="#990000">i</font>=<font color="#990099">0</font>; <font color="#990000">i</font>&lt;<font color="#990000">n</font>; ++<font color="#990000">i</font> ){
+      <font color="#990000">istringstream</font> <font color="#990000">sin</font>( <font color="#990000">items</font>[<font color="#990000">i</font>] );
+      <font color="#990000">sin</font> &gt;&gt; <font color="#990000">cal</font>[<font color="#990000">i</font>] &gt;&gt; <font color="#990000">A</font>[<font color="#990000">i</font>] &gt;&gt; <font color="#990000">B</font>[<font color="#990000">i</font>] &gt;&gt; <font color="#990000">C</font>[<font color="#990000">i</font>];
+    }
+    
+    <font color="#009900">//--- Check all possible subsets of meals and return the best found:
+</font>    <font color="#000099">return</font> <font color="#990000">check_subsets</font>( <font color="#990099">0</font>, <font color="#990099">0</font>, <font color="#990099">0</font>, <font color="#990099">0</font>, <font color="#990099">0</font> );
+  }
+};
+	</pre>
+      </blockquote>
+    </blockquote>
+    
+    <!-- ========= The Bitfield Counter Method ================================ -->
+    
+    <p><a name="The_Bitfield_Counter_Method">&nbsp;</a></p>
+    <h3><font color="#cc6600">The Bitfield Counter Method</font></h3>
+    
+    <p>You
+have already seen a recursive method to generate all subsets. Now I'll
+show you an iterative one. I call it "Bitfield Counter", but it's also
+known under other similar names.</p>
+    
+    <p>The idea is to
+exploit the fact that a subset either includes or leaves out each
+element. Two choices, like each bit of a binary number. One
+representation of a subset of a set of size N is to have a bitfield of
+N bits. A '1' in bit i tells us that element i is included in the
+subset, a '0' means it's left out. For example, if we have the set <nobr>{ 9, 16, 25 }</nobr>, the subset represented by the 3-bit bitfield "101" is the set { 9, 25 }.</p>
+    
+    <p>Here's a complete list of subsets and the bitfields that represent them, if the set we're talking about is <nobr>{ 9, 16, 25 }</nobr>. The spacing is intentionally weird, to show the connection between the bitfield and the represented subset.</p>
+    
+    <center>
+      <table border="1" cellpadding="3" cellspacing="0">
+	<tbody><tr>
+	  <th>Bitfield</th>
+	  <th>Subset represented by the bitfield</th>
+	</tr>
+	<tr>
+	  <td align="middle">
+	    <code>000</code><br>
+	    <code>001</code><br>
+	    <code>010</code><br>
+	    <code>011</code><br>
+	    <code>100</code><br>
+	    <code>101</code><br>
+	    <code>110</code><br>
+	    <code>111</code><br>
+	  </td>
+	  <td align="middle">
+<code>{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code><br>
+<code>{&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;25&nbsp;}</code><br>
+<code>{&nbsp;&nbsp;&nbsp;&nbsp;16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code><br>
+<code>{&nbsp;&nbsp;&nbsp;&nbsp;16,&nbsp;25&nbsp;}</code><br>
+<code>{&nbsp;9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code><br>
+<code>{&nbsp;9,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;25&nbsp;}</code><br>
+<code>{&nbsp;9,&nbsp;16&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</code><br>
+<code>{&nbsp;9,&nbsp;16,&nbsp;25&nbsp;}</code><br>
+	  </td>
+	</tr>
+      </tbody></table>
+    </center>
+    
+    <p>You
+can probably already guess how we generate all the subsets now. We just
+generate all bitfields. And what could be easier than to just use an
+"int" variable, declare the lower N bits as our bitfield, and then
+count from 0 to 2<sup>N</sup>-1 with that variable? Again, here's some outline:</p>
+    
+    <pre>        for( int B=0; B&lt;(1&lt;&lt;N); ++B ){
+            clearSubset();
+	    for( int i=0; i&lt;N; ++i )
+                if( (B &amp; (1&lt;&lt;i)) &gt; 0 )
+                    addToSubset( element(i) );
+	    useBuiltSubset();
+	}
+    </pre>
+    
+    <p>Here
+B is the variable that holds our bitfield representation of the subset.
+The outer loop lets B run through all possible subset representations.
+Inside the loop, we first clear the subset and then extract from B
+which elements are included in the subset it currently represents. We
+do this with a second loop that uses bitshifting and bitwise "and" to
+test for each bit i if it's set to '1' in B, and if yes, we add element
+i to the current subset.</p>
+    
+    <p>The above code only works for N&lt;31, since 2<sup>31</sup>
+is not an "int" anymore, it's too big. We could use "long long" (that's
+"long" in Java) variables, because they offer more bits. But think
+about it. The loop runs for 2<sup>N</sup> iterations and with N=31 this
+will be more than 2 billion times. That will time out anyway, even if
+you do nothing inside the loop. Conclusion: The N&lt;31 constraint for
+this method is irrelevant, for higher limits we need a totally
+different approach anyway.</p>
+
+    <p>Enough smalltalk, let's see how this looks like when we apply it to the LightMeal problem:</p>
+    
+    <blockquote>
+      <blockquote>
+	<pre><font color="#000099">struct</font> <font color="#990000">LightMeal</font> {
+  
+  <font color="#000099">int</font> <font color="#990000">calories</font> ( <font color="#990000">vector</font>&lt;<font color="#990000">string</font>&gt; <font color="#990000">items</font> ) {
+    
+    <font color="#009900">//--- Transfer the input to arrays for easier and faster access.
+</font>    <font color="#000099">int</font> <font color="#990000">n</font> = <font color="#990000">items</font>.<font color="#990000">size</font>();
+    <font color="#000099">int</font> <font color="#990000">value</font>[<font color="#990099">20</font>][<font color="#990099">4</font>];
+    <font color="#000099">for</font>( <font color="#000099">int</font> <font color="#990000">i</font>=<font color="#990099">0</font>; <font color="#990000">i</font>&lt;<font color="#990000">n</font>; ++<font color="#990000">i</font> ){
+      <font color="#990000">istringstream</font> <font color="#990000">sin</font>( <font color="#990000">items</font>[<font color="#990000">i</font>] );
+      <font color="#000099">for</font>( <font color="#000099">int</font> <font color="#990000">j</font>=<font color="#990099">0</font>; <font color="#990000">j</font>&lt;<font color="#990099">4</font>; ++<font color="#990000">j</font> )
+        <font color="#990000">sin</font> &gt;&gt; <font color="#990000">value</font>[<font color="#990000">i</font>][<font color="#990000">j</font>];
+    }
+    
+    <font color="#009900">//--- Check all possible subsets of meals.
+</font>    <font color="#000099">int</font> <font color="#990000">best</font> = <font color="#990099">20</font>*<font color="#990099">100</font>+<font color="#990099">1</font>;
+    <font color="#000099">for</font>( <font color="#000099">int</font> <font color="#990000">B</font>=<font color="#990099">0</font>; <font color="#990000">B</font>&lt;(<font color="#990099">1</font>&lt;&lt;<font color="#990000">n</font>); ++<font color="#990000">B</font> ){
+      <font color="#000099">int</font> <font color="#990000">sum</font>[<font color="#990099">4</font>] = {};
+      <font color="#000099">for</font>( <font color="#000099">int</font> <font color="#990000">b</font>=<font color="#990099">0</font>; <font color="#990000">b</font>&lt;<font color="#990000">n</font>; ++<font color="#990000">b</font> )
+        <font color="#000099">if</font>( <font color="#990000">B</font> &amp; (<font color="#990099">1</font>&lt;&lt;<font color="#990000">b</font>) )
+          <font color="#000099">for</font>( <font color="#000099">int</font> <font color="#990000">j</font>=<font color="#990099">0</font>; <font color="#990000">j</font>&lt;<font color="#990099">4</font>; ++<font color="#990000">j</font> )
+            <font color="#990000">sum</font>[<font color="#990000">j</font>] += <font color="#990000">value</font>[<font color="#990000">b</font>][<font color="#990000">j</font>];
+      <font color="#000099">if</font>( (<font color="#990000">sum</font>[<font color="#990099">1</font>] &gt;= <font color="#990099">100</font>) &amp;&amp; (<font color="#990000">sum</font>[<font color="#990099">2</font>] &gt;= <font color="#990099">100</font>) &amp;&amp; (<font color="#990000">sum</font>[<font color="#990099">3</font>] &gt;= <font color="#990099">100</font>) )
+        <font color="#990000">best</font> = <font color="#990000">min</font>( <font color="#990000">best</font>, <font color="#990000">sum</font>[<font color="#990099">0</font>] );
+    }
+    
+    <font color="#009900">//--- Answer.
+</font>    <font color="#000099">return</font> <font color="#990000">best</font>;
+  }
+};
+	</pre>
+      </blockquote>
+    </blockquote>
+    
+    <p>Like
+in the recursive variant, I first parse the input into arrays. Then I
+generate all subsets and test each one, keeping track of the best found
+answer so far. I used "B" for the bitfield and "b" to extract the items
+from the set represented by B. As before, I don't explicitly build the
+subset, but only the sums of calories and vitamins that it contains.
+That's all I need. Compare this program to the outline code above,
+you'll easily identify the clearing of the subset, the adding of
+elements and the using of the finished subset.</p>
+    
+    <!-- ========= Optimization by Breaking Subtrees ========================== -->
+
+    <p><a name="Optimization_by_Breaking_Subtrees">&nbsp;</a></p>
+    <h3><font color="#cc6600">Optimization by Breaking Subtrees</font></h3>
+    
+    <p>Very
+often you are in the middle of building a subset and you can see that
+it's of no use to fill it with more elements. For example, in the
+LightMeal problem, once the partial subset of items has enough of all
+vitamins, why would you add more items? The subset is already valid and
+with more elements you would add more calories, which is of no use.
+Therefore you can break early:</p>
+    
+    <blockquote>
+      <blockquote>
+	<pre>  <font color="#000099">void</font> <font color="#990000">check_subsets</font> ( <font color="#000099">int</font> <font color="#990000">i</font>, <font color="#000099">int</font> <font color="#990000">cals</font>, <font color="#000099">int</font> <font color="#990000">a</font>, <font color="#000099">int</font> <font color="#990000">b</font>, <font color="#000099">int</font> <font color="#990000">c</font> ) {
+    
+    <font color="#009900">//--- Already enough vitamins?
+</font>    <font color="#000099">if</font>( <font color="#990000">a</font>&gt;=<font color="#990099">100</font> &amp;&amp; <font color="#990000">b</font>&gt;=<font color="#990099">100</font> &amp;&amp; <font color="#990000">c</font>&gt;=<font color="#990099">100</font> ){
+      <font color="#990000">best</font> = <font color="#990000">min</font>( <font color="#990000">best</font>, <font color="#990000">cals</font> );
+      <font color="#000099">return</font>;
+    }
+    
+    <font color="#009900">//--- Made a choice for all items?
+</font>    <font color="#000099">if</font>( <font color="#990000">i</font> == <font color="#990000">n</font> )
+      <font color="#000099">return</font>;
+    
+    <font color="#009900">//-- Either leave this one out or take it in.
+</font>    <font color="#990000">check_subsets</font>( <font color="#990000">i</font>+<font color="#990099">1</font>, <font color="#990000">cals</font>, <font color="#990000">a</font>, <font color="#990000">b</font>, <font color="#990000">c</font> );
+    <font color="#990000">check_subsets</font>( <font color="#990000">i</font>+<font color="#990099">1</font>, <font color="#990000">cals</font>+<font color="#990000">cal</font>[<font color="#990000">i</font>], <font color="#990000">a</font>+<font color="#990000">A</font>[<font color="#990000">i</font>], <font color="#990000">b</font>+<font color="#990000">B</font>[<font color="#990000">i</font>], <font color="#990000">c</font>+<font color="#990000">C</font>[<font color="#990000">i</font>] );
+  }
+    	</pre>
+      </blockquote>
+    </blockquote>
+    
+    <p>In
+some problems, this can save you a considerable amount of time, since
+you cut off entire subtrees of the call tree (remember the picture from
+the beginning of this tutorial). Unfortunately, in the LightMeal
+problem it will save us nothing in the worst case. And the worst case
+is the one you have to fear. TopCoder doesn't care if you average less
+than 8 seconds. Exceed it once, for a single testcase, and you're out.
+In LightMeal, an input that has 20 items of "5 5 5 5" will make us
+generate all subsets again. Fortunately N=20 is small enough so that we
+don't even need any optimizations for this particular problem.</p>
+    
+    <p>The
+iterative bitfield counter method can also profit from similar
+optimizations. However, since we build the subsets separately instead
+of with a tree, the benefits are very small. You just can't cut off
+entire subtrees when there aren't any.</p>
+
+    <p>There are several
+more sophisticated ideas that can speed up your execution time and I
+want to mention a few that came to my still troubled mind:</p>
+    
+    <ul>
+      <li><p>If
+you don't have enough elements in your subset yet, but you know for
+some other reason that it's of no use to go on, you can also break. For
+LightMeal, we can break if the sum of calories in the current partial
+subset already exceeds the best found answer so far.</p></li>
+      
+      <li>
+	<p>Sort
+the elements. With most algorithms, the first element will not be
+included in the first half of the subsets, but in all subsets of the
+second half. So if it's unlikely that you want this element (maybe it
+has a horrific amount of calories and almost no vitamins?) then the
+first place is a good place for it. If it's an element you'd like to
+include (lots of vitamins, almost no calories), it should be among the
+last elements.</p>
+	
+	<p>Another reason is that among the last
+elements, the volatility (ha! TC taught me a new word) is much higher
+than among the first few. Naturally we'd like to experiment with the
+most interesting elements the most, so let's place them at the end. For
+LightMeal, sort them by vitaminsSum/(calories+1) (don't divide by
+calories alone, could be zero). Or by vitaminsSum-calories. Any
+heuristic that will reward vitamins and punish calories.</p>
+	
+	<p>This
+reordering alone usually buys you nothing. But combine it with the
+breaking mentioned before and you might be able to break more often and
+earlier. In LightMeal, you might find low "best" values early and then
+be able to cut off larger subtrees.</p>
+      </li>
+      
+      <li>
+	<p>Look in your favourite "introduction to algorithms" book under "branch and bound" to find other techniques.</p>
+      </li>
+      
+    </ul>
+    
+    <p>But
+before you write long code to implement complicated optimizations,
+think about worst cases. Do the optimizations you have in mind really
+save your butt in the worst case? Believe me, either a mean competitor
+or the system tests will provide a worst case input. I promise. This is
+not real life and we don't care about average time.</p>
+    
+    <!-- ========= Subsets of Specific Size =================================== -->
+    
+    <p><a name="Subsets_of_Specific_Size">&nbsp;</a></p>
+    <h3><font color="#cc6600">Subsets of Specific Size</font></h3>
+    
+    <p>Sometimes we're not interested in all subsets, but only in those of a certain size K, called "<font color="#339933">k-subsets</font>". Two examples:</p>
+    
+    <ul>
+      <li><p>Big2
+(practice room 125, problem 3) - We are given a set of 13 cards and
+have to consider all subsets containing exactly 5 cards, that is, all
+5-subsets.</p></li>
+      <li><p>Hiring (practice room 125, problem 2)
+- We are given up to 50 people and have to find the best valid subset
+that contains exactly 3 people.</p></li>
+    </ul>
+    
+    <p>In
+both problems, we have to inspect all subsets of size K (5 for Big2 and
+3 for Hiring) of a set of size N (13 for Big2, up to 50 for Hiring).
+Let's first find out how many there are, i.e. in how many different
+ways can we choose K elements out of N? This is written as "<font color="#339933">n choose k</font>" or shorter as "<font color="#339933">nCk</font>".
+I used lowercase letters for N and K there, because that's how it's
+usually written. I have to admit that I use uppercase N and K
+throughout this tutorial just because they're more visible in the text.</p>
+    
+    <p>A
+small example with the set {a,b,c,d,e,f,g,h} (N=8) and K=3: We begin by
+picking one out of the 8 elements, say 'c'. Then we pick another one
+out of the remaining 7 elements, say 'g'. Then we pick a third element
+out of the remaining 6, say 'd'. So overall we have 8*7*6 possible
+outcomes, right? After all, we had first 8, then 7, then 6
+possibilities. In fact, this is true.</p>
+    
+    <p>Unfortunately,
+we just built the set {c,g,d} and with other choices we might have
+built the set {g,d,c}. Sets are not ordered and thus these two are the
+same, you say? You're damn right. With the above procedure, there are
+six possible ways to get to each set, for example the set {c,d,g} can
+be built with these choices:</p>
+    
+    <p align="center">cdg / cgd / dcg / dgc / gcd / gdc</p>
+    
+    <p>Note
+that these are just the six permutations of these three elements. Seems
+like we have to divide our number of possible outcomes by six, and then
+we arrive at:</p>
+    
+    <pre>                           8 * 7 * 6
+             8 choose 3 = -----------
+                           1 * 2 * 3
+    </pre>
+    
+    <p>Another example that also illustrates that (n choose k) = (n choose (n-k)):</p>
+    
+    <pre>                           8 * 7 * 6 * <font color="#cc6600">5</font> * <font color="#339933">4</font>
+             8 choose 5 = -------------------
+                           1 * 2 * 3 * <font color="#339933">4</font> * <font color="#cc6600">5</font>
+    </pre>
+    
+    <p>Do
+you see how beautiful the two 4's and the two 5's cancel each other
+out? I won't go into much more detail about the choose function here.
+There are several ways to compute it and I could fill another tutorial
+just on this issue. In fact, I probably will. But here I'll just show
+you one simple way that computes the fraction left to right:</p>
+    
+    <!-- _________ Choose _____________________________________________________ -->
+    
+    <blockquote>
+      <blockquote>
+	<pre>  <font color="#000099">int</font> <font color="#990000">choose</font> ( <font color="#000099">int</font> <font color="#990000">n</font>, <font color="#000099">int</font> <font color="#990000">k</font> ) {
+    <font color="#990000">k</font> = <font color="#990000">Math</font>.<font color="#990000">min</font>( <font color="#990000">k</font>, <font color="#990000">n</font>-<font color="#990000">k</font> );
+    <font color="#000099">if</font>( <font color="#990000">k</font> &lt; <font color="#990099">0</font> )
+      <font color="#000099">return</font> <font color="#990099">0</font>;
+    <font color="#000099">int</font> <font color="#990000">result</font> = <font color="#990099">1</font>;
+    <font color="#000099">for</font>( <font color="#000099">int</font> <font color="#990000">i</font>=<font color="#990099">1</font>; <font color="#990000">i</font>&lt;=<font color="#990000">k</font>; ++<font color="#990000">i</font> )
+      <font color="#990000">result</font> = <font color="#990000">result</font> * (<font color="#990000">n</font>-<font color="#990000">i</font>+<font color="#990099">1</font>) / <font color="#990000">i</font>;
+    <font color="#000099">return</font> <font color="#990000">result</font>;
+  }
+    	</pre>
+      </blockquote>
+    </blockquote>
+
+    <p>It
+starts with 1, then goes to 8/1, then to (8*7)/(1*2), then
+(8*7*6)/(1*2*3), for example. How can I be sure that the intermediate
+values are integers? Well, the intermediate values are all "choose
+numbers" themselves, (8*7)/(1*2) for example is 8C2, and since that
+represent the "number of ways" we can do something, it should be an
+integer. That's no good proof, but I hope you'll be convinced for now.</p>
+    
+    <p>You
+will also most likely find the choose function on your pocket
+calculator, look out for "nCk" or "nCr". Now that we know a little bit
+about the number of k-subsets of a set of size N, let's apply this
+knowledge to the problems Big2 and Hiring. In Big2, N and K are both
+fixed, so we always have <nobr>13C5 = 1287</nobr> subsets. That's
+nothing, an easy brute force approach that generates and tests them all
+will be sufficient. In Hiring, K is fixed and N is in the worst case
+50, so we will never have more than <nobr>50C3 = 19,600</nobr> subsets. Again, that can easily be done with an exhaustive search.</p>
+    
+    <p>I
+will step away from Big2 and Hiring now (because I want to have small
+example programs here and because I want to make you solve Big2 and
+Hiring as exercises) and solve the following artificial problem in
+different ways: We're given a set of N names. For each subset of K
+names, print the initials of the people in the subset. This will become
+clear in a moment, when you see the first program and its output.</p>
+    
+    <p>The
+first solution uses some for-loops to pick the elements, altogether K
+loops. Play a little bit with it, add or remove some names.</p>
+    
+    <!-- _________ KSubsetsLoop _______________________________________________ -->
+    
+    <blockquote>
+      <blockquote>
+	<pre><font color="#000099">public</font> <font color="#000099">class</font> <font color="#990000">KSubsetsLoop</font> {
+  
+  <font color="#000099">public</font> <font color="#000099">static</font> <font color="#000099">void</font> <font color="#990000">main</font> ( <font color="#990000">String</font>[] <font color="#990000">args</font> ) {
+    <font color="#000099">new</font> <font color="#990000">KSubsetsLoop</font>();
+  }
+  
+  <font color="#990000">KSubsetsLoop</font> () {
+    <font color="#009900">//--- Initialize the data we're using.
+</font>    <font color="#990000">String</font>[] <font color="#990000">set</font> = <font color="#000099">new</font> <font color="#990000">String</font>[] { <font color="#990099">"Anna"</font>, <font color="#990099">"Bob"</font>, <font color="#990099">"Carla"</font>, <font color="#990099">"Dennis"</font> };
+    <font color="#000099">int</font> <font color="#990000">n</font> = <font color="#990000">set</font>.<font color="#990000">length</font>;
+    
+    <font color="#009900">//--- Now let's have some fun!
+</font>    <font color="#000099">for</font>( <font color="#000099">int</font> <font color="#990000">i</font>=<font color="#990099">0</font>; <font color="#990000">i</font>&lt;<font color="#990000">n</font>; ++<font color="#990000">i</font> )
+      <font color="#000099">for</font>( <font color="#000099">int</font> <font color="#990000">j</font>=<font color="#990000">i</font>+<font color="#990099">1</font>; <font color="#990000">j</font>&lt;<font color="#990000">n</font>; ++<font color="#990000">j</font> )
+        <font color="#990000">System</font>.<font color="#990000">out</font>.<font color="#990000">print</font>( <font color="#990099">""</font> + <font color="#990000">set</font>[<font color="#990000">i</font>].<font color="#990000">charAt</font>(<font color="#990099">0</font>) + <font color="#990000">set</font>[<font color="#990000">j</font>].<font color="#990000">charAt</font>(<font color="#990099">0</font>) + <font color="#990099">" "</font> );
+    <font color="#990000">System</font>.<font color="#990000">out</font>.<font color="#990000">println</font>();
+  }
+}
+	</pre>
+      </blockquote>
+    </blockquote>
+    
+    <p>This neat program has the following output (quotes for clarity only): "<font color="#339933"><b><code>AB AC AD BC BD CD </code></b></font>".
+The outermost loop "picks" the first element, the next inner loop picks
+the second element, and so on (if we had more loops). In order not to
+produce duplicates (remember the discussion above), a loop picks only
+from the elements with higher index than the previously picked one.
+That's why the second loop starts with j=i+1. Try adding one or two
+loops to the above program to build 3-subsets and 4-subsets.</p>
+    
+    <p>Looks
+fine, right? Yes, it does, and for the Big2 and Hiring problems it
+works very well, since K is fixed (5 and 3, respectively). But what if
+you don't know K in advance, what if it's part of the input? You can't
+add or remove for-loops from your program at runtime unless you're a
+really weird hacker. Instead, we will add the for-loops in a recursive
+fashion:</p>
+    
+    <!-- _________ KSubsetsRecursiveLoop ______________________________________ -->
+    
+    <blockquote>
+      <blockquote>
+	<pre><font color="#000099">public</font> <font color="#000099">class</font> <font color="#990000">KSubsetsRecursiveLoop</font> {
+  
+  <font color="#000099">public</font> <font color="#000099">static</font> <font color="#000099">void</font> <font color="#990000">main</font> ( <font color="#990000">String</font>[] <font color="#990000">args</font> ) {
+    <font color="#000099">new</font> <font color="#990000">KSubsetsRecursiveLoop</font>();
+  }
+  
+  <font color="#990000">KSubsetsRecursiveLoop</font> () {
+    <font color="#009900">//--- Initialize the data we're using.
+</font>    <font color="#990000">set</font> = <font color="#000099">new</font> <font color="#990000">String</font>[] { <font color="#990099">"Anna"</font>, <font color="#990099">"Bob"</font>, <font color="#990099">"Carla"</font>, <font color="#990099">"Dennis"</font> };
+    <font color="#990000">n</font> = <font color="#990000">set</font>.<font color="#990000">length</font>;
+    <font color="#990000">k</font> = <font color="#990099">2</font>;
+    
+    <font color="#009900">//--- Now let's have some fun!
+</font>    <font color="#990000">buildSubsets</font>( <font color="#990099">0</font>, <font color="#990099">0</font>, <font color="#990099">""</font> );
+    <font color="#990000">System</font>.<font color="#990000">out</font>.<font color="#990000">println</font>();
+  }
+  
+  <font color="#009900">//----------------------------------------------------------------------
+</font>  
+  <font color="#000099">int</font> <font color="#990000">n</font>, <font color="#990000">k</font>;
+  <font color="#990000">String</font>[] <font color="#990000">set</font>;
+  
+  <font color="#009900">//----------------------------------------------------------------------
+</font>  
+  <font color="#000099">void</font> <font color="#990000">buildSubsets</font> ( <font color="#000099">int</font> <font color="#990000">i</font>, <font color="#000099">int</font> <font color="#990000">j</font>, <font color="#990000">String</font> <font color="#990000">subset</font> ) {
+    <font color="#009900">//--- Is the subset complete?
+</font>    <font color="#000099">if</font>( <font color="#990000">j</font> == <font color="#990000">k</font> ){
+      <font color="#990000">System</font>.<font color="#990000">out</font>.<font color="#990000">print</font>( <font color="#990000">subset</font> + <font color="#990099">" "</font> );
+      <font color="#000099">return</font>;
+    }
+    <font color="#009900">//--- Ok, let's add more.
+</font>    <font color="#000099">for</font>( ; <font color="#990000">i</font>&lt;<font color="#990000">n</font>; ++<font color="#990000">i</font> )
+      <font color="#990000">buildSubsets</font>( <font color="#990000">i</font>+<font color="#990099">1</font>, <font color="#990000">j</font>+<font color="#990099">1</font>, <font color="#990000">subset</font>+<font color="#990000">set</font>[<font color="#990000">i</font>].<font color="#990000">charAt</font>(<font color="#990099">0</font>) );
+  }
+}
+	</pre>
+      </blockquote>
+    </blockquote>
+    
+    <p>That
+program has the same output as the previous one. The first parameter i
+points to the next element to decide about. It is increased by 1 in the
+recursive call, just like it is from one loop to the next in the first
+method. The second parameter j counts how many elements were already
+included in the subset. Now play around with this one, too. Add/remove
+names, increase/decrease K. Maybe read the input from the console, so
+that the user can pick a value for K. See how easy this program adaps
+to a change of K? So if you have a fixed K than you might want to use
+for-loops, it's easy to code. But you can also use the recursive
+solution for fixed K, of course. For variable K, you can't use the
+first method.</p>
+    
+    <!-- ========= Mixing and Order =========================================== -->
+    
+    <p><a name="Mixing_and_Order">&nbsp;</a></p>
+    <h3><font color="#cc6600">Mixing and Order</font></h3>
+    
+    <p>In
+this section, we'll see that the algorithms I presented you so far for
+building subsets and k-subsets, are very closely related. We will also
+see the subsets generated in a different order. Let's start by using
+the bitfield counter method for producing k-subsets:</p>
+    
+    <!-- _________ KSubsetsBitfieldCounter ____________________________________ -->
+
+    <blockquote>
+      <blockquote>
+	<pre><font color="#000099">public</font> <font color="#000099">class</font> <font color="#990000">KSubsetsBitfieldCounter</font> {
+  <font color="#000099">public</font> <font color="#000099">static</font> <font color="#000099">void</font> <font color="#990000">main</font> ( <font color="#990000">String</font>[] <font color="#990000">args</font> ) {
+    
+    <font color="#009900">//--- Initialize the data we're using.
+</font>    <font color="#990000">String</font>[] <font color="#990000">set</font> = { <font color="#990099">"Anna"</font>, <font color="#990099">"Bob"</font>, <font color="#990099">"Carla"</font>, <font color="#990099">"Dennis"</font> };
+    <font color="#000099">int</font> <font color="#990000">n</font> = <font color="#990000">set</font>.<font color="#990000">length</font>;
+    <font color="#000099">int</font> <font color="#990000">k</font> = <font color="#990099">2</font>;
+    
+    <font color="#009900">//--- Now let's have some fun!
+</font>    <font color="#000099">for</font>( <font color="#000099">int</font> <font color="#990000">B</font>=<font color="#990099">0</font>; <font color="#990000">B</font>&lt;(<font color="#990099">1</font>&lt;&lt;<font color="#990000">n</font>); ++<font color="#990000">B</font> ){
+      <font color="#000099">if</font>( <font color="#990000">bitcount</font>(<font color="#990000">B</font>) != <font color="#990000">k</font> )
+        <font color="#000099">continue</font>;
+      <font color="#990000">String</font> <font color="#990000">subset</font> = <font color="#990099">""</font>;
+      <font color="#000099">for</font>( <font color="#000099">int</font> <font color="#990000">i</font>=<font color="#990099">0</font>; <font color="#990000">i</font>&lt;<font color="#990000">n</font>; ++<font color="#990000">i</font> )
+        <font color="#000099">if</font>( (<font color="#990000">B</font> &amp; (<font color="#990099">1</font>&lt;&lt;<font color="#990000">i</font>)) &gt; <font color="#990099">0</font> )
+          <font color="#990000">subset</font> += <font color="#990000">set</font>[<font color="#990000">i</font>].<font color="#990000">charAt</font>(<font color="#990099">0</font>);
+      <font color="#990000">System</font>.<font color="#990000">out</font>.<font color="#990000">print</font>( <font color="#990000">subset</font> + <font color="#990099">" "</font> );
+    }
+    <font color="#990000">System</font>.<font color="#990000">out</font>.<font color="#990000">println</font>();
+  }
+  
+  <font color="#000099">static</font> <font color="#000099">int</font> <font color="#990000">bitcount</font> ( <font color="#000099">int</font> <font color="#990000">n</font> ) {
+    <font color="#000099">return</font> (<font color="#990000">n</font>==<font color="#990099">0</font>) ? <font color="#990099">0</font> : (<font color="#990000">n</font>&amp;<font color="#990099">1</font>) + <font color="#990000">bitcount</font>( <font color="#990000">n</font>/<font color="#990099">2</font> );
+  }
+}
+    	</pre>
+      </blockquote>
+    </blockquote>
+
+    <p>It
+works by generating the bitfield representation for *all* subsets and
+then only processes those with K bits set to 1, that is, those that
+represent subsets of size K. This solution prints "<font color="#339933"><b><code>AB AC BC AD BD CD </code></b></font>".
+That's not too bad, all subsets are there. But the order changed, for
+example "AD" used to be generated before "BC". Still, each subset in
+itself is ordered, for example, 'A' comes before 'D' in "AD".</p>
+    
+    <p>In
+fact, all subsets built by any algorithm in this subset are ordered in
+itself. Did you ever wonder why? It's because I always had the original
+set ordered, for example "Anna" came first, "Dennis" came last. And
+it's also because all algorithms here make the decisions left-to-right.
+They first decide for element 0, then for element 1, and so on.</p>
+    
+    <p>Now
+why does the previous program print "BC" before it prints "AD"? Well,
+consider the bitfields that represent them: 0110 for "BC" and "1001"
+for "AD". Note that we placed "Anna" at the "leftmost" index 0, but the
+*bit* 0 is the rightmost. In most problems, the order in which the
+subsets are generated, doesn't matter. After all, often you look at
+*all* of them anyway. But what when we insist on getting the old order
+with the bitfield counter? Let's analyze what we have and what we want
+by writing it down (often a good idea):</p>
+    
+    <center>
+      <table border="1" cellpadding="3" cellspacing="0">
+	<tbody><tr bgcolor="#eeeeee">
+	  <th>The bitfields which represent subsets of size 2</th>
+	  <th>What it currently represents</th>
+	  <th>What we want it to represent</th>
+	</tr>
+	<tr align="middle">
+	  <td>
+	    <code>
+	      0011<br>
+	      0101<br>
+	      0110<br>
+	      1001<br>
+	      1010<br>
+	      1100<br>
+	    </code>
+	  </td>
+	  <td><code>AB..<br>A.C.<br>.BC.<br>A..D<br>.B.D<br>..CD</code></td>
+	  <td><code>AB..<br>A.C.<br>A..D<br>.BC.<br>.B.D<br>..CD</code></td>
+	</tr>
+      </tbody></table>
+    </center>
+    
+    <p>(This
+table is btw exactly what I did to get it right, had some trouble
+before.) Hmm, what we want seems to coincide with the zeros in the
+bitfield, not looking at the bitfield reversed. Maybe if we let the
+i-th element of our set be represented by the (n-1-i)-th bit instead of
+the i-th bit and if we switch the roles of zero and one-bits we'd get
+it? Yes, and the following program works just fine:</p>
+    
+    <!-- _________ KSubsetsBitfieldCounterLexicographic _______________________ -->
+    
+    <blockquote>
+      <blockquote>
+	<pre><font color="#000099">public</font> <font color="#000099">class</font> <font color="#990000">KSubsetsBitfieldCounterLexicographic</font> {
+  <font color="#000099">public</font> <font color="#000099">static</font> <font color="#000099">void</font> <font color="#990000">main</font> ( <font color="#990000">String</font>[] <font color="#990000">args</font> ) {
+    
+    <font color="#009900">//--- Initialize the data we're using.
+</font>    <font color="#990000">String</font>[] <font color="#990000">set</font> = { <font color="#990099">"Anna"</font>, <font color="#990099">"Bob"</font>, <font color="#990099">"Carla"</font>, <font color="#990099">"Dennis"</font> };
+    <font color="#000099">int</font> <font color="#990000">n</font> = <font color="#990000">set</font>.<font color="#990000">length</font>;
+    <font color="#000099">int</font> <font color="#990000">k</font> = <font color="#990099">2</font>;
+    
+    <font color="#009900">//--- Now let's have some fun!
+</font>    <font color="#000099">for</font>( <font color="#000099">int</font> <font color="#990000">B</font>=<font color="#990099">0</font>; <font color="#990000">B</font>&lt;(<font color="#990099">1</font>&lt;&lt;<font color="#990000">n</font>); ++<font color="#990000">B</font> ){
+      <font color="#000099">if</font>( <font color="#990000">bitcount</font>(<font color="#990000">B</font>) != <font color="#990000">k</font> )
+        <font color="#000099">continue</font>;
+      <font color="#990000">String</font> <font color="#990000">subset</font> = <font color="#990099">""</font>;
+      <font color="#000099">for</font>( <font color="#000099">int</font> <font color="#990000">i</font>=<font color="#990000">n</font>-<font color="#990099">1</font>; <font color="#990000">i</font>&gt;=<font color="#990099">0</font>; --<font color="#990000">i</font> )
+        <font color="#000099">if</font>( (<font color="#990000">B</font> &amp; (<font color="#990099">1</font>&lt;&lt;<font color="#990000">i</font>)) == <font color="#990099">0</font> )
+          <font color="#990000">subset</font> += <font color="#990000">set</font>[<font color="#990000">n</font>-<font color="#990099">1</font>-<font color="#990000">i</font>].<font color="#990000">charAt</font>(<font color="#990099">0</font>);
+      <font color="#990000">System</font>.<font color="#990000">out</font>.<font color="#990000">print</font>( <font color="#990000">subset</font> + <font color="#990099">" "</font> );
+    }
+    <font color="#990000">System</font>.<font color="#990000">out</font>.<font color="#990000">println</font>();
+  }
+  
+  <font color="#000099">static</font> <font color="#000099">int</font> <font color="#990000">bitcount</font> ( <font color="#000099">int</font> <font color="#990000">n</font> ) {
+    <font color="#000099">return</font> (<font color="#990000">n</font>==<font color="#990099">0</font>) ? <font color="#990099">0</font> : (<font color="#990000">n</font>&amp;<font color="#990099">1</font>) + <font color="#990000">bitcount</font>( <font color="#990000">n</font>/<font color="#990099">2</font> );
+  }
+}
+    	</pre>
+      </blockquote>
+    </blockquote>
+    
+    
+    <p>Before
+we go on to the next method, let's analyze the above one a bit. Don't
+you have a bad feeling about looping through *all* subsets and the only
+process a few of them, throwing others away because they have the wrong
+size? For Big2, we will produce 2<sup>13</sup>=8192 subsets and then
+process 13C5=1287 of them. That's ok, no problem. For Hiring, we can
+use "long long" or "long" variables (because we need 50 bits), and then
+we would produce 2<sup>50</sup>&gt;10<sup>15</sup> subsets and then process only 50C3=19600 of them. Huh, that's a total waste. And btw, 10<sup>15</sup> iterations will take approximately 130 days on the TopCoder server, slightly more than the 8 seconds we have ;-)</p>
+    
+    <p>So
+if you like the bitfield counter method and want to use it for
+k-subsets, first make sure that you're not wasting too much runtime. I
+can not say often and loud enough that the very first thing I do when I
+consider a brute force method is to grab my pocket calculator and
+compute the worst case costs. Always.</p>
+    
+    <p>Now let's go on, try something new. Let's generate all k-subsets with our initial recursive method to generate all subsets:</p>
+    
+    <!-- _________ KSubsetsRecursive __________________________________________ -->
+
+    <blockquote>
+      <blockquote>
+	<pre><font color="#000099">public</font> <font color="#000099">class</font> <font color="#990000">KSubsetsRecursive</font> {
+  <font color="#000099">public</font> <font color="#000099">static</font> <font color="#000099">void</font> <font color="#990000">main</font> ( <font color="#990000">String</font>[] <font color="#990000">args</font> ) {
+    <font color="#000099">new</font> <font color="#990000">KSubsetsRecursive</font>();
+  }
+  <font color="#990000">KSubsetsRecursive</font> () {
+    <font color="#009900">//--- Initialize the data we're using.
+</font>    <font color="#990000">set</font> = <font color="#000099">new</font> <font color="#990000">String</font>[] { <font color="#990099">"Anna"</font>, <font color="#990099">"Bob"</font>, <font color="#990099">"Carla"</font>, <font color="#990099">"Dennis"</font> };
+    <font color="#990000">n</font> = <font color="#990000">set</font>.<font color="#990000">length</font>;
+    <font color="#990000">k</font> = <font color="#990099">2</font>;
+    
+    <font color="#009900">//--- Now let's have some fun!
+</font>    <font color="#990000">buildSubsets</font>( <font color="#990099">0</font>, <font color="#990099">0</font>, <font color="#990099">""</font> );
+    <font color="#990000">System</font>.<font color="#990000">out</font>.<font color="#990000">println</font>();
+  }
+  <font color="#009900">//----------------------------------------------------------------------
+</font>  
+  <font color="#000099">int</font> <font color="#990000">n</font>, <font color="#990000">k</font>;
+  <font color="#990000">String</font>[] <font color="#990000">set</font>;
+  
+  <font color="#009900">//----------------------------------------------------------------------
+</font>  <font color="#000099">void</font> <font color="#990000">buildSubsets</font> ( <font color="#000099">int</font> <font color="#990000">i</font>, <font color="#000099">int</font> <font color="#990000">j</font>, <font color="#990000">String</font> <font color="#990000">subset</font> ) {
+    <font color="#009900">//--- Is the subset complete?
+</font>    <font color="#000099">if</font>( <font color="#990000">j</font> == <font color="#990000">k</font> ){
+      <font color="#990000">System</font>.<font color="#990000">out</font>.<font color="#990000">print</font>( <font color="#990000">subset</font> + <font color="#990099">" "</font> );
+      <font color="#000099">return</font>;
+    }
+    <font color="#009900">//--- No more elements?
+</font>    <font color="#000099">if</font>( <font color="#990000">i</font>==<font color="#990000">n</font> )
+      <font color="#000099">return</font>;
+    
+    <font color="#009900">//--- Ok, let's go on.
+</font>    <font color="#990000">buildSubsets</font>( <font color="#990000">i</font>+<font color="#990099">1</font>, <font color="#990000">j</font>, <font color="#990000">subset</font> );
+    <font color="#990000">buildSubsets</font>( <font color="#990000">i</font>+<font color="#990099">1</font>, <font color="#990000">j</font>+<font color="#990099">1</font>, <font color="#990000">subset</font>+<font color="#990000">set</font>[<font color="#990000">i</font>].<font color="#990000">charAt</font>(<font color="#990099">0</font>) );
+  }
+}
+    	</pre>
+      </blockquote>
+    </blockquote>
+    
+    <p>Oops, that produces the output "<font color="#339933"><b><code>CD BD BC AD AC AB </code></b></font>".
+But this can easily be fixed, just change the order of the two
+recursive calls. The first time include the element, the second time
+leave it out. Why does this work? Left as an exercise for you ;-) It
+might help to look at the call tree from the beginning and think about
+what happens if we change the order of the two recursive calls.</p>
+    
+    <p>Now
+to the biggest success story of this tutorial. I asked myself what it
+would look like if I used my algorithm to generate k-subsets to
+generate *all* subsets instead. After all, there's only one recursive
+call, which means less typing and it might look more elegant. Here's
+the result:</p>
+    
+    <!-- _________ SubsetsLexicographic _______________________________________ -->
+
+    <blockquote>
+      <blockquote>
+	<pre><font color="#000099">public</font> <font color="#000099">class</font> <font color="#990000">SubsetsLexicographic</font> {
+  <font color="#000099">public</font> <font color="#000099">static</font> <font color="#000099">void</font> <font color="#990000">main</font> ( <font color="#990000">String</font>[] <font color="#990000">args</font> ) {
+    <font color="#000099">new</font> <font color="#990000">SubsetsLexicographic</font>();
+  }
+  <font color="#990000">SubsetsLexicographic</font> () {
+    <font color="#009900">//--- Initialize the data we're using.
+</font>    <font color="#990000">set</font> = <font color="#000099">new</font> <font color="#990000">String</font>[] { <font color="#990099">"Anna"</font>, <font color="#990099">"Bob"</font>, <font color="#990099">"Carla"</font>, <font color="#990099">"Dennis"</font> };
+    <font color="#990000">n</font> = <font color="#990000">set</font>.<font color="#990000">length</font>;
+    
+    <font color="#009900">//--- Now let's have some fun!
+</font>    <font color="#990000">foo</font>( <font color="#990099">0</font>, <font color="#990099">""</font> );
+  }
+  
+  <font color="#990000">String</font>[] <font color="#990000">set</font>;
+  <font color="#000099">int</font> <font color="#990000">n</font>;
+  
+  <font color="#000099">void</font> <font color="#990000">foo</font> ( <font color="#000099">int</font> <font color="#990000">i</font>, <font color="#990000">String</font> <font color="#990000">subset</font> ) {
+    <font color="#990000">System</font>.<font color="#990000">out</font>.<font color="#990000">println</font>( <font color="#990099">'"'</font> + <font color="#990000">subset</font> + <font color="#990099">'"'</font> );
+    <font color="#000099">for</font>( ; <font color="#990000">i</font>&lt;<font color="#990000">n</font>; ++<font color="#990000">i</font> )
+      <font color="#990000">foo</font>( <font color="#990000">i</font>+<font color="#990099">1</font>, <font color="#990000">subset</font> + <font color="#990000">set</font>[<font color="#990000">i</font>].<font color="#990000">charAt</font>(<font color="#990099">0</font>) );
+  }
+}
+    	</pre>
+      </blockquote>
+    </blockquote>
+    
+    <p>Wow,
+that looks indeed cool. But here's what really amazed me: The output.
+It is lexicographically ordered. Try to achieve that with our initial
+recursive algorithm or with the bitfield counter. I dedicate this
+program to Steven Skiena, who writes</p>
+    <blockquote>
+      <p>"Unfortunately,
+it is surprisingly difficult to generate subsets in lexicographic
+order. Unless you have a compelling reason to do so, forget about it."</p>
+    </blockquote>
+    
+    <p>Notice
+that of course in order to work so nice, the original set has to be
+ordered, as discussed earlier, but here it's really essential. Here's
+the output of the program:</p>
+
+    <blockquote>
+      <blockquote>
+	<pre>""
+"A"
+"AB"
+"ABC"
+"ABCD"
+"ABD"
+"AC"
+"ACD"
+"AD"
+"B"
+"BC"
+"BCD"
+"BD"
+"C"
+"CD"
+"D"
+    	</pre>
+      </blockquote>
+    </blockquote>
+    
+    <p>Should
+you ever feel the need to produce all subsets in lexicographic order,
+this might be a good one to start. Maybe it's what the problem asks
+for. Or you want to find the lexicographically smallest "valid" subset,
+and with this method you can stop the search as soon as you come across
+the *first* valid subset. However, I doubt that it is very useful for
+TopCoder, but for the ACM programming contest, it might be valuable.
+And btw, did I mention that this program has pretty damn short code? I
+think I'll try it next time I attack a subset problem with brute force.</p>
+    
+    <!-- ========= Ordered Generation ========================================= -->
+    
+    <!--
+  <p><a na me="Ordered_Generation">&nbsp;</a></p>
+  <h3><font color="#CC6600">Ordered Generation</font></h3>
+    
+  <p>Do I really want to cover this? Gray code, bincounter, lexicographic, ascending size</p>
+    -->
+    
+    <!-- ========= Multisets ================================================== -->
+    
+    <p><a name="Multisets">&nbsp;</a></p>
+    <h3><font color="#cc6600">Multisets</font></h3>
+    
+    <p>I
+pretty much know what I want to include in this section, but it will
+take me some time and it's fairly independent from the rest, so I
+decided to make the tutorial public without multisets and I'll include
+them soon.</p>
+    
+    <!-- ========= Efficiency Guidelines ====================================== -->
+    
+    <p><a name="Efficiency_Guidelines">&nbsp;</a></p>
+    <h3><font color="#cc6600">Efficiency Guidelines</font></h3>
+    
+    <p>Generating
+all subsets or all subsets of a certain size is a brute force approach,
+and even though it works for many problems, there are some where it's
+just too slow. Here are some guidelines how to determine feasability of
+this approach:</p>
+    
+    <ul>
+      <li><p>If N=20, generating all subsets takes no time. Do it.</p></li>
+      
+      <li><p>If
+N=30, generating all subsets is too slow. Sometimes you can still do it
+recursively with good enough breaking conditions. But generally it
+might be wise to look for an approach that doesn't generate all
+subsets. Maybe there's a greedy algorithm or you can use dynamic
+programming?</p></li>
+      
+      <li><p>Somewhere between N=20 and N=30 is the border between feasible and infeasible. Exercise to improve your estimation skills.</p></li>
+      
+      <li><p>If
+you need to generate all subsets of fixed size, look what the extreme
+cases are and use the "choose" function to determine the number of
+subsets you'd generate. If it's less than a few million, go for it.
+Btw, every good pocket calculator has the "choose" function built in.
+Don't use the bitfield counter method if N is too large, recursion or
+fixed for-loops are faster because you don't want to generate a lot of
+subsets that you don't use then because they have the wrong size.</p></li>
+      
+    </ul>
+    
+    <p>Of
+course all these rules have their exceptions, for example if you need a
+long time to evaluate each built subset, then even for N=20 you might
+be too slow. Solve some problems to get a good intuition of what is
+feasible and what is not. Use the "Test" opportunity of the arena
+applet to test your solution with some worst case inputs. Look how long
+it runs (this is displayed in the test-result popup-window). </p>
+    
+    <!-- ========= Summary ==================================================== -->
+    
+    <p><a name="Summary">&nbsp;</a></p>
+    <h3><font color="#cc6600">Summary</font></h3>
+    
+    <p>What
+have we done in this tutorial? We've seen what sets, subsets, k-subsets
+etc are and how to generate them recursively and iteratively with
+various methods. Methods to calculate the number of (k-)subsets were
+discussed. Then we fooled around with the methods a bit, both to
+achieve new things and to gain further insight into how it all works. I
+hope one thing you've seen as I saw it is that nothing is fixed, you
+can modify and adapt algorithms to satisfy your needs and sometimes to
+stumble across amazing discoveries. I had a lot of fun writing this
+tutorial and I sure as hell learned some new things, too. Thanks for
+listening, over and out.</p>
+    
+    <!-- ========= Exercises ================================================== -->
+    
+    <p><a name="Exercises">&nbsp;</a></p>
+    <h3><font color="#cc6600">Exercises</font></h3>
+    
+    <p>Yes, I actually want you to do exercises. They shouldn't be too hard, and they're well worth the time.</p>
+    
+    <ol>
+      
+      <li>
+	<p>Solve
+the LightMeal problem in practice room 112 without looking at my
+solutions (but it's ok to look at the rest of the tutorial). Don't use
+optimizations yet. Do it in two different ways:</p>
+	<ol type="a">
+	  <li>Recursively without any global data, i.e. any external data the recursive function uses it must get as parameters.</li>
+	  <li>Recursively
+without any parameters, i.e. any external data the recursive function
+uses must be global. Not even the parameter "i" is allowed.</li>
+	</ol>
+	<p>For both versions, run the system tests to make sure you didn't make mistakes.</p>
+      </li>
+      
+      <li>
+	<p>Which
+solution of the previous exercise do you like better? Why? Compare it
+to my solutions above, which are half global, half with parameters.</p>
+      </li>
+      
+      <li>
+	<p>If
+you haven't done so already, use two optimizations for your LightMeal
+solutions: 1) Break if you already have enough vitamins and 2) break if
+the calories already exceed the best found answer so far. Run the
+systests again. Test if the optimizations help at all for an input of
+20 times "5 5 5 5". Find inputs where they are extremely helpful. Try
+to find other optimizations. If you find one, tell me about it.</p>
+      </li>
+      
+      <li>
+	<p>Solve
+some of the problems "Hiring" (125#2), "Big2" (125#3), "Diet" (58#2)
+(thanks JWizard) and "TugOfWar" (67#1). The numbers after the problem
+names tell you the practice room and problem numbers. For each problem,
+first explain what the problem asks for, using the set terminology we
+used here. Find out the maximum for N and other limits the problem
+specifies. Discuss which algorithm is appropriate. Run the system tests
+when you're done. Compare your solution to mine in <a href="http://www.stefan-pochmann.de/spots/solution_archive/">my archive</a>. Let me know if you find something I could be interested in.</p>
+      </li>
+      
+      <li>
+	<p>I've
+illustrated generating the (k-)subsets in lexicographic order by
+showing you small example outputs. Make sure I didn't lie to you. Try
+larger examples and maybe *prove* that the algorithms work. Should you
+find a mistake, you can embarrass me, that alone should be worth it.</p>
+      </li>
+      
+      <li>
+	<p>If you have any comments, suggestions or whatever about this tutorial, let me know.</p>
+      </li>
+
+    </ol>
+
+    <!-- ========= Further Reading ============================================ -->
+    
+    <p><a name="Further_Reading">&nbsp;</a></p>
+    <h3><font color="#cc6600">Further Reading</font></h3>
+    
+    <p>If you know more resources, please tell me!</p>
+    
+    <ul>
+
+      <li><p>"<a href="http://www.amazon.com/exec/obidos/ASIN/084933988X">Combinatorial Algorithms</a> : Generation, Enumeration, and Search" (pages 32-42) book by Donald L. Kreher, Douglas R. Stinson</p></li>
+      
+      <li><p>"<a href="http://www.theory.csc.uvic.ca/%7Ecos/inf/comb/SubsetInfo.html">Information on Subsets of a set</a>" from "<a href="http://www.theory.csc.uvic.ca/%7Ecos/">The (Combinatorial) Object Server</a>"</p></li>
+      
+      <li><p>"<a href="http://www.amazon.com/exec/obidos/ASIN/0387948600">The Algorithm Design Manual</a>" (pages 117-118, 250-252) book by Steven S. Skiena (<a href="http://www.cs.sunysb.edu/%7Ealgorith/files/generating-subsets.shtml">excerpt</a>)</p></li>
+      
+      <li>
+	<p>
+	  <a href="http://mathworld.wolfram.com/Set.html">Set</a>,
+	  <a href="http://mathworld.wolfram.com/Subset.html">Subset</a>,
+	  <a href="http://mathworld.wolfram.com/PowerSet.html">PowerSet</a>,
+	  <a href="http://mathworld.wolfram.com/k-Subset.html">k-Subset</a>,
+	  <a href="http://mathworld.wolfram.com/Choose.html">Choose</a> and
+	  <a href="http://mathworld.wolfram.com/Multiset.html">Multiset</a>
+	  from <a href="http://mathworld.wolfram.com/">MathWorld</a>
+	</p>
+      </li>
+      
+      <!--
+    <li><p>"<a href=""></a>"</p></li>
+      -->
+      
+    </ul>
+    
+    <!-- ========= END ======================================================== -->
+    
+    <!-- _________  ___________________________________________________________ -->
+
+    <!--
+    <blockquote>
+      <blockquote>
+	<pre>
+    	</pre>
+      </blockquote>
+    </blockquote>
+-->
+
+    <hr>
+    <address><a href="mailto:pochmann@gmx.de?subject=TopCoder:%20">Stefan Pochmann</a></address>
+    <!-- Created: Sat May 18 10:34:08 PDT 2002 -->
+    <!-- hhmts start -->
+Last modified: Mon Jun 10 04:12:38 PDT 2002
+<!-- hhmts end -->
+    
+    <img src="TopCoder%20Training%20Camp_files/ttc_tut_sets_counter.htm">
+    
+  </body></html>

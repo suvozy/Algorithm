@@ -1,0 +1,10 @@
+#define MAXsieve 100000000
+#define HALFsieve MAXsieve/2
+bool isprime[HALFsieve];
+void sieve(){
+	memset( isprime, true, sizeof(isprime) );
+
+	for(int i=3;i< 10000 ; i+=2)	if(isprime[i>>1])
+		for(int j= (i*i)/2; j<HALFsieve ;j+=i)
+			isprime[j]=false;
+}

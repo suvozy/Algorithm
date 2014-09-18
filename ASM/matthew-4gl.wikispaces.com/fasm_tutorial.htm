@@ -1,0 +1,640 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="search" href="http://matthew-4gl.wikispaces.com/space/opensearch" type="application/opensearchdescription+xml" title="Wikispaces Search (matthew-4gl Wiki)">
+<link rel="alternate" type="application/x-wiki" title="Edit This Page" href="http://matthew-4gl.wikispaces.com/page/edit/fasm_tutorial">
+<link rel="alternate" title="matthew-4gl : fasm_tutorial - Edits" href="http://matthew-4gl.wikispaces.com/page/xml/fasm_tutorial?v=rss_2_0" type="application/rss+xml">
+<link rel="alternate" title="matthew-4gl : fasm_tutorial - Discussion" href="http://matthew-4gl.wikispaces.com/message/xml/fasm_tutorial?v=rss_2_0" type="application/rss+xml">
+<link rel="alternate" title="matthew-4gl - All Changes" href="http://matthew-4gl.wikispaces.com/space/xmla?v=rss_2_0" type="application/rss+xml">
+<link rel="microsummary" href="http://matthew-4gl.wikispaces.com/page/microsummary/fasm_tutorial/edits">
+<link rel="microsummary" href="http://matthew-4gl.wikispaces.com/page/microsummary/fasm_tutorial/messages">
+<script src="fasm_tutorial_files/ga.js" async="" type="text/javascript"></script><script type="text/javascript">
+var wikispaces_isUserLoggedIn = false;
+var wikispaces_isUserOrganizer = false;
+var wikispaces_isMain = true;
+var wikispaces_username = '';
+var wikispaces_spaceName = 'matthew-4gl';
+var wikispaces_method = 'view';
+var wikispaces_object = 'page';
+var wikispaces_page = 'fasm_tutorial';
+var wikispaces_id = '';
+var wikispaces_domain = 'wikispaces.com';
+var wikispaces_main_domain = 'wikispaces.com';
+var wikispaces_asset_url_prefix = 'http://c1.wikicdn.com';
+var wikispaces_beta_features = false;
+var wikispaces_can_discuss = false;
+</script>
+  <title>matthew-4gl - fasm_tutorial</title>
+  <link rel="shortcut icon" href="http://c1.wikicdn.com/_/1v8qv98z/favicon.ico">
+  <link rel="stylesheet" href="fasm_tutorial_files/qvv3kx73-theme_common.css" type="text/css">
+  <style type="text/css">
+
+  body { color: black; background-color: #DBDBE1; font-family: arial,helvetica,sans-serif; font-size: 83%; margin: 0; min-width: 800px; padding: 0; }
+  #leftcolumn { position: absolute; left: 0; top: 0; width: 220px; }
+  #rightcolumn { max-width: 1600px; margin-left: 221px; margin-right: 8px; voice-family: "\"}\""; voice-family: inherit; margin-left: 161px; }
+  html>body #rightcolumn { margin-left: 221px; }
+  #container { margin: 0; padding: 0; width: 100%; clear: both; }
+  #container .field { background-color: #FFF; }
+  #foot { margin-top: 5px; padding: 5px 0; font-size: 90%; text-align: center; line-height: 150%; clear: both; }
+
+  .WikiElement { color: #000000; }
+  .WikiElement img { padding: 0; vertical-align: top; border: 0; }
+  .WikiElement a { text-decoration: none; color: #0000FF; }
+  .WikiElement a:hover { text-decoration: underline; }
+  .WikiLicense img { vertical-align: text-bottom; }
+
+  .menuWrapper { float: left; width: 99%; line-height: normal; font-family: arial; }
+
+  .rbMenu { background-color: #BEBECB; margin: auto; }
+  .rbMenu .rbT div { background: url(/s/c.php/tl_10_BEBECB_DBDBE1.png) no-repeat top left; }
+  .rbMenu .rbT { background: url(/s/c.php/tr_10_BEBECB_DBDBE1.png) no-repeat top right; }
+  .rbMenu .rbB div { background: url(/s/c.php/bl_10_BEBECB_DBDBE1.png) no-repeat bottom left; }
+  .rbMenu .rbB { background: url(/s/c.php/br_10_BEBECB_DBDBE1.png) no-repeat bottom right; }
+  .rbMenu .rbT div, .rbMenu .rbT, .rbMenu .rbB div, .rbMenu .rbB { width: 100%; height: 10px; font-size: 1px; }
+  .rbMenu .rbC { margin: 0 10px; }
+
+  .rbMain { background-color: #FFF; margin: auto; }
+  .rbMain .rbT div { background: url(/s/c.php/tl_10_FFFFFF_DBDBE1.png) no-repeat top left; }
+  .rbMain .rbT { background: url(/s/c.php/tr_10_FFFFFF_DBDBE1.png) no-repeat top right; }
+  .rbMain .rbB div { background: url(/s/c.php/bl_10_FFFFFF_DBDBE1.png) no-repeat bottom left; }
+  .rbMain .rbB { background: url(/s/c.php/br_10_FFFFFF_DBDBE1.png) no-repeat bottom right; }
+  .rbMain .rbT div, .rbMain .rbT, .rbMain .rbB div, .rbMain .rbB { width: 100%; height: 10px; font-size: 1px; }
+  .rbMain .rbC { margin: 0 10px; }
+
+  .menu li { padding: 1px; margin: 0; list-style: none; }
+  .menu a { text-decoration: none; }
+  .menu a img { margin-right: 6px; border: 0; text-decoration: none; }
+  .menu ul { padding: 0; margin: 0; line-height: 135% }
+  .menu img { vertical-align: top; }
+
+  .WikiCustomNav { padding: 0; margin: 0; }
+  .WikiCustomNav li { padding: 1px; margin: 0; list-style: none; }
+  .WikiCustomNav ul { padding: 0 0 6px 0; margin: 0; line-height: 135% }
+
+  .WikiSearch { padding: 2px 0 0 0; margin: 0; }
+  .WikiPageMenuEntries { padding-bottom: 1px; }
+
+  </style>
+  
+  <!--[if lte IE 6]>
+  <style type="text/css">
+   #rightcolumn { margin-left: 221px; }
+  </style>
+  <![endif]-->
+<link rel="stylesheet" href="fasm_tutorial_files/217420326B.css" type="text/css">
+<link rel="stylesheet" href="fasm_tutorial_files/3zz388x4-internal.css" type="text/css">
+<script src="fasm_tutorial_files/0k9097jj-common.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+
+  var wsGoogleAccount = 'UA-80504-1';
+  _gaq.push(['_setAccount', wsGoogleAccount]);
+  _gaq.push(['_gat._anonymizeIp']);
+  _gaq.push(['_setDomainName', 'none']);
+  _gaq.push(['_setAllowLinker', true]);
+  _gaq.push(['_setAllowHash', false]);
+  _gaq.push(['_trackPageview']);
+  _gaq.push(['_trackPageLoadTime']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<script src="fasm_tutorial_files/27926zx2.js" type="text/javascript"></script></head>
+<body>
+
+<div id="leftcolumn">
+  <div style="text-align: center;">
+<table class="WikiLogoTable WikiElement">
+  <tbody><tr>
+    <td align="right" nowrap="nowrap"><a href="http://matthew-4gl.wikispaces.com/"><img src="fasm_tutorial_files/plant.png" alt="" height="48" width="48"></a></td>
+    <td class="WikiLogoName" style="font-size: medium;" align="left" nowrap="nowrap"><a href="http://matthew-4gl.wikispaces.com/">matthew-4gl</a></td>
+  </tr>
+</tbody></table></div>
+<br>
+    <div class="rbMenu" style="width: 200px;"><div class="rbT"><div></div></div><div class="rbC">
+    <div class="menu">
+    <ul class="WikiActions WikiElement">
+<li id="WikiActionJoin"><a href="http://matthew-4gl.wikispaces.com/space/join"><img src="fasm_tutorial_files/c.gif" title="Join this Wiki" alt="Join this Wiki" class="WikispacesSprite icon-16-user-add-png" height="16" width="16"></a><a href="http://matthew-4gl.wikispaces.com/space/join">Join this Wiki</a></li>
+<li id="WikiActionChanges"><a href="http://matthew-4gl.wikispaces.com/space/changes"><img src="fasm_tutorial_files/c.gif" title="Recent Changes" alt="Recent Changes" class="WikispacesSprite icon-16-date-png" height="16" width="16"></a><a href="http://matthew-4gl.wikispaces.com/space/changes">Recent Changes</a></li>
+<li id="WikiActionManage"><a href="http://matthew-4gl.wikispaces.com/space/about"><img src="fasm_tutorial_files/c.gif" title="Manage Wiki" alt="Manage Wiki" class="WikispacesSprite icon-16-gear-png" height="16" width="16"></a><a href="http://matthew-4gl.wikispaces.com/space/about">Manage Wiki</a></li>
+</ul>
+    <form action="/search/view" method="post" class="WikiSearch WikiElement"><input class="WikiSearchInput" name="q" size="10" value="Search" onclick="if (this.value=='Search') this.value='';" onblur="if (this.value=='') this.value='Search';" type="text"> <input name="search" value="Search" class="WikiSearchSubmit" src="fasm_tutorial_files/icon_16_go.gif" alt="search" style="vertical-align: middle;" type="image"></form>    </div>
+  </div><div class="rbB"><div></div></div></div>
+<br>
+  <div class="rbMenu" style="width: 200px;"><div class="rbT"><div></div></div><div class="rbC">
+    <div class="menu">
+    <!-- google_ad_section_start --><div class="WikiCustomNav WikiElement wiki"><strong>Contents</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/Home">Home</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/graphics_black_book">Books</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/coding_downloads">Coding Downloads</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/downloads">Downloads</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/links">Links</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/programming">Programming</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/science">Science</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/search_sites">Search Sites</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/system_utilities">System Utilities</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/torrent_tools">Torrent Tools</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/computing_tutorials">Tutorials</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/twitter_tools">Twitter Tools</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/useful_utilities">Useful Utilities</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/wiki_links">Wikispaces Help</a><br>
+<br>
+<strong>Amiga Related</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/amiga_links">Amiga Links</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/c64_manuals">C64 Manuals</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/deliplayer">Deliplayer</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/eab_the_zone">EAB: The Zone</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/lsd_doc_disks">LSD Doc Disks</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/retroaction">Retroaction</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/snooker">Snooker</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/thomas">Tearaway Thomas</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/winuae">WinUAE</a><br>
+<br>
+<strong>Assembly</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/asm_journals">Assembly Journals</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/fasm_tutorial">Fasm Tutorial</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/useful_asm_links">Useful ASM Links</a><br>
+<br>
+<strong>Basic4GL</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/bubble_sort">Bubble Sort</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/basic4gl_buffer_test">Buffer Test</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/conversions">Conversions</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/b4gl_card_test">Graphics Card Test </a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/basic4gl_primes">Eratosthenes Sieve</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/file_reading">File Reading</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/forum_posts">Forum Posts</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/basic4gl_fps">FPS</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/b4gl_values">Function Values</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/b4gl_inverse">Inverse Graphics</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/julia_fractal">Julia Fractal</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/b4gl_keypresses">Keypresses</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/basic4gl_leap_year">Leap Year</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/levenshtein">Levenshtein Distance</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/minecraft_loader">Minecraft Loader</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/basic4gl_morse_code">Morse Code</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/b4gl_crosshair">Mouse Lines</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/svn_newbasic4gl">New Basic4GL SVN</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/new_map_array">New Tilemap</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/basic4gl_factors">Prime Factors</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/b4gl_rand">Random Numbers</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/b4gl_recursion">Recursive Function</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/basic4gl_sierpinski_triangle">Sierpinski Triangle</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/basic4gl_sine_sprites">Sine Sprites</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/basic4gl_sphere">Sphere</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/b4gl_stopwatch">Stopwatch</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/text_fractal">Text Fractal</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/b4gl_xor_tex">XOR Texture</a><br>
+<br>
+<strong>Basic4GL DLL's</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/b4gl_mem_dll">Memory DLL</a><br>
+<br>
+<strong>Brutus2D</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/brutus2d_fast_fractal">Fast Fractal</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/brutus2d_sierpinski_snowflake">Sierpinski Snowflake</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/brutus2d_sierpinski_triangle">Sierpinski Triangle</a><br>
+<br>
+<strong>C</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/building_freeglut">Building FreeGLUT</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/building_glut">Building GLUT</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/c_hello_world">C Hello World</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/c_lines">C Lines</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/curl_libcurl">cURL &amp; libcurl</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/c_errors_warnings">Errors &amp; Warnings</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/lcc_compiler">LCC</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/c_multiply_tables">Multiply Tables</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/c_opengl_sdl">OpenGL &amp; SDL</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/program_information">Program Errors</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/c_string_compare">String Comparison</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/c_freeglut">Using FreeGLUT</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/c_winapi">WinAPI Example</a><br>
+<br>
+<strong>C++</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/building_qt">Building Qt</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/cpp_hello_world">C++ Hello World</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/cpp_general_help">C++ General Help</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/learn_c_or_cpp">Learn C &amp; C++ </a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/cpp_loop">Loop</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/makefiles">Makefile</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/cpp_multiply">Multiply</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/cpp_timeclass">Time Class</a><br>
+<br>
+<strong>C#</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/csharp_seditor">Simple Editor</a><br>
+<br>
+<strong>Code::Blocks</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/codeblocks_linking">Linking</a><br>
+<br>
+<strong>Command Prompt</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/cmd_help">Help Guide</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/command_line">Visual Help</a><br>
+<br>
+<strong>Drivers</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/windows_drivers">Windows Drivers</a><br>
+<br>
+<strong>Dev-C++</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/cc1">Cannot exec cc1</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/linking">Linking</a><br>
+<br>
+<strong>Digital Mars</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/d_videos">D Videos</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/nehe_d">NeHe in D</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/useful_d_links">Useful D Links</a><br>
+<br>
+<strong>File Sharing</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/emule_links">eMule Links</a><br>
+<br>
+<strong>FLTK</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/fltk_build_usage">Build with Mingw32</a><br>
+<br>
+<strong>FreeBASIC</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/freebasic_on_linux">FreeBASIC on Linux</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/freebasic_settings">FreeBASIC Settings</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/freebasic_sphere">FreeBASIC Sphere</a><br>
+<br>
+<strong>Gaming</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/1943_gamertags">Battlefield 1943</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/gaming_videos">Gaming Videos</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/section_8">Section 8</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/toca_2">TOCA 2</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/tomb_raider_sites">Tomb Raider Sites</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/tomb_raider_anniversary">TR: Anniversary</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/tomb_raider_legend">TR: Legend</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/tombraider_underworld">TR: Underworld</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/wow_related">WoW Related</a><br>
+<br>
+<strong>Geany</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/geany_settings">Settings</a><br>
+<br>
+<strong>GNU</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/gnupg_tutorial">GnuPG</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/gnu_unzip_unrar">UnRar UnZip</a><br>
+<br>
+<strong>IDE</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/prog_pad">Programmer's Pad</a><br>
+<br>
+<strong>Internet</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/chrome_extensions">Chrome Extensions</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/firefox">Firefox</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/ftp_client">FTP Client</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/ftp_server">FTP Server</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/internet_explorer">Internet Explorer</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/irc_help">IRC</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/kompozer">KompoZer</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/nzb_downloads">NZB Downloads</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/opera_unite">Opera Unite</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/thunderbird">Thunderbird</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/new_useful_links">Useful Links</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/visited_sites">Visited Sites</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/wamp_php_apache">WAMP</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/website_design">Website Design</a><br>
+<br>
+<strong>Java</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/java_ant_xml">Ant XML</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/apache_ant">Apache-Ant</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/java_console">Command Prompt</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/drjava_ide">DrJava IDE</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/java_eclipse">Eclipse IDE</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/java_links">Java Links</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/java_university">Java University</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/java_monkey_engine">jME Installation</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/jogl_demos_run">JOGL Demos</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/jogl">JOGL Installation</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/jogl_on_linux">JOGL on Linux</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/java_koch_curve">Koch Curve</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/lwjgl">LWJGL</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/nehe_jogl_ports">NeHe JOGL Ports</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/useful_java_tips">Useful Java Tips</a><br>
+<br>
+<strong>Linux</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/linux_commands">Linux Commands</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/gnu_linux_commands">More Commands</a><br>
+<br>
+<strong>Lisp</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/newlisp">newLISP</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/lisp_programming">Programming</a><br>
+<br>
+<strong>Mame</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/mame_setup">Mame Setup</a><br>
+<br>
+<strong>Ocaml</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/ocaml_download">Ocaml Download</a><br>
+<br>
+<strong>Python</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/linux_python">Linux Python</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/py_graphics">Py Graphics</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/pyopengl_py2exe">PyOpenGL Py2exe</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/python_strings">Strings</a><br>
+<br>
+<strong>Ruby</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/installing_ruby">Installing Ruby</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/linux_rubygame">Linux Rubygame</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/nehe_in_ruby">NeHe in Ruby</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/new_ruby_setup">Ruby 1.9 Setup</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/useful_ruby_tips">Useful Ruby Tips</a><br>
+<br>
+<strong>SDL</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/sdl_static">SDL Static</a><br>
+<br>
+<strong>Small Basic</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/smallbasic_snowflake">Sierpinski Snowflake</a><br>
+<br>
+<strong>Television</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/ancient_egypt">Landmarks: Egypt</a><br>
+<br>
+<strong>thinBasic</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/thinbasic_particle_example">Particle Example</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/thinbasic">Random Starfield</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/thinbasic_sierpinski_snowflake">Sierpinski Snowflake</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/thinbasic_sierpinski_triangle">Sierpinski Triangle</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/thinbasic_xor">XOR Texture</a><br>
+<br>
+<strong>Tutorials</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/modplug_tips">Modplug Tips</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/modplug_tutorial">Modplug Tutorial</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/sprite_tutorial">Sprite Tutorial</a><br>
+<br>
+<strong>Ubuntu</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/ubuntu_amule">aMule IPTables</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/codeblocks_help">Code::Blocks Help</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/ubuntu_glxinfo">GLXInfo</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/ubuntu_lshw">Hardware Listing</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/kernel_removal">Kernel Removal</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/rt73">RT73 Device</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/sound_problems">Sound Problems</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/ubuntu_forums">Ubuntu Forums</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/ubuntu_windows_fonts">Windows Fonts</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/wna3100_ubuntu_linux">WNA3100 Netgear</a><br>
+<br>
+<strong>Useful Fixes</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/google_desktop">Google Desktop</a><br>
+<br>
+<strong>Vala Programming</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/vala_programming">OpenGL Examples</a><br>
+<br>
+<strong>Videos</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/camstudio_help">CamStudio Help</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/click">Click Magazine</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/comp_videos">Computer Related</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/film_info">Film Info</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/bb_flash_test">FlashBack Test</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/km_player">KMPlayer</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/machinima_live">Machinima Live</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/miscellaneous_videos">Miscellaneous</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/music_videos">Music Videos</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/smplayer">SMPlayer</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/video_editing">Video Editing</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/vlc_fixes">VLC Fixes</a><br>
+<br>
+<strong>Visual Basic</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/visual_basic">Dice Roll Sim</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/vb_net_viewer">Man Page Viewer</a><br>
+<br>
+<strong>Windows</strong><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/bug_fixes">Bug Fixes</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/command_prompt">Command Prompt</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/notepad_fixes">Edit with Notepad</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/vim_install">Installing Vim</a><br>
+<a class="wiki_link" href="http://matthew-4gl.wikispaces.com/win32_checksums">Win32 Checksums</a></div><!-- google_ad_section_end -->        </div>
+  </div><div class="rbB"><div></div></div></div>
+  </div> <!-- /leftcolumn -->
+
+<div id="rightcolumn">
+
+<div style="position: relative; height: 24px;">
+  <div class="WikiHeaderNav WikiElement"><b>guest</b> · <a href="http://matthew-4gl.wikispaces.com/space/join" rel="nofollow">Join</a> · <a href="http://help.wikispaces.com/" rel="nofollow" class="WikispacesHelpTrigger">Help</a> · <a href="http://www.wikispaces.com/site/signin?goto=http://matthew-4gl.wikispaces.com/fasm_tutorial" rel="nofollow">Sign In</a> · <a href="http://www.wikispaces.com/"><img src="fasm_tutorial_files/c.gif" title="Wikispaces" alt="Wikispaces" class="WikispacesSprite globalnav-logo-png" height="18" width="83"></a></div></div>
+
+<div id="WikiNoticeJs" class="WikiNotice WikiElement" style="display: none"></div>
+<div class="menuWrapper">
+<span class="WikiPageMenuStar WikiElement"><img src="fasm_tutorial_files/c.gif" title="Remove From Favorites" alt="Remove From Favorites" class="WikispacesSprite WikiPageMenuStarYes WikiPageMenuStarImg star-y-png" style="display: none;" height="20" width="24"><img src="fasm_tutorial_files/c.gif" title="Add To Favorites" alt="Add To Favorites" class="WikispacesSprite WikiPageMenuStarNo WikiPageMenuStarImg star-n-png" style="" height="20" width="24"></span><!-- google_ad_section_start --><span class="WikiPageMenuTitle WikiElement">fasm_tutorial</span><!-- google_ad_section_end -->
+<div class="WikiPageMenuEntries WikiElement">
+<ul>
+  <li id="page" class="WikiPageMenuEntryOn"><a href="http://matthew-4gl.wikispaces.com/fasm_tutorial">page<img id="WikiPageSubMenuControl" src="fasm_tutorial_files/bullet_arrow_down.gif" alt="submenu" class="WikiMenuControl" onclick="return false;" height="15" width="15"></a><div id="WikiPageSubMenu" class="WikiMenu WikiPageSubMenuDisabled"><ul>
+  <li class="WikiMenuEntry WikiPageSubMenuEntry" id="detailsMenuEntry"><a href="#">Details and Tags</a>
+    </li>
+
+  <li class="WikiMenuEntry WikiPageSubMenuEntry"><a href="http://matthew-4gl.wikispaces.com/fasm_tutorial?f=print">Print</a>
+    </li>
+
+  <li class="WikiMenuEntry WikiPageSubMenuEntry"><a href="http://matthew-4gl.wikispaces.com/page/pdf/fasm_tutorial">Download PDF</a>
+    </li>
+
+  
+  <li class="WikiMenuEntry WikiPageSubMenuEntry"><a href="http://matthew-4gl.wikispaces.com/page/links/fasm_tutorial">Backlinks</a></li>
+
+      <li class="WikiMenuEntry WikiPageSubMenuEntry"><a href="http://matthew-4gl.wikispaces.com/page/code/fasm_tutorial">Source</a></li>
+  
+  <li class="WikiMenuEntryDisabled WikiPageSubMenuEntryDisabled">Delete    </li>
+
+  <li class="WikiMenuEntryDisabled WikiPageSubMenuEntryDisabled">Rename    </li>
+
+  <li class="WikiMenuEntryDisabled WikiPageSubMenuEntryDisabled">Redirect    </li>
+
+      <li class="WikiMenuEntryDisabled WikiPageSubMenuEntryDisabled">Permissions</li>
+  
+            <li class="WikiMenuEntryDisabled WikiPageSubMenuEntryDisabled">Lock</li>
+      
+    
+</ul></div></li>
+  <li id="discussion" class="WikiPageMenuEntryOff"><a href="http://matthew-4gl.wikispaces.com/message/list/fasm_tutorial">discussion</a></li>
+  <li id="history" class="WikiPageMenuEntryOff"><a href="http://matthew-4gl.wikispaces.com/page/history/fasm_tutorial">history</a></li>
+  <li id="notify" class="WikiPageMenuEntryOff"><a href="http://matthew-4gl.wikispaces.com/page/notify/fasm_tutorial">notify me</a></li>
+</ul>
+</div>
+</div>
+
+<!-- main content area -->
+<div class="rbMain" style="width: 100%; clear: both;"><div class="rbT"><div></div></div><div class="rbC">
+<table border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr style="vertical-align: top;"><td>
+<div class="contentBox"><div class="innerContentBox">
+
+  <div class="WikispacesContent" id="WikiPageInfo" style="display: none;">
+<div class="WikiPageInfo greyBox">
+<table class="noborder fullWidth">
+<tbody><tr>
+  <th>Details</th>
+  <td>
+      last edit by <a class="userLink" href="http://www.wikispaces.com/user/view/visi_calc" style="outline: medium none;"><img src="fasm_tutorial_files/visi_calc-sm.jpg" alt="visi_calc" class="userPicture" height="16" width="16"> </a> <a class="userLink" href="http://www.wikispaces.com/user/view/visi_calc" style="outline: medium none;">visi_calc</a> <a href="http://matthew-4gl.wikispaces.com/page/diff/fasm_tutorial/232612312">May 28, 2011 1:10 pm</a> -
+  <a href="http://matthew-4gl.wikispaces.com/page/history/fasm_tutorial">11 revisions</a>
+  </td>
+<td class="alignRight"><a href="#" id="closeDetails" onclick="toggleDetails(); return false;"><img src="fasm_tutorial_files/W_close.gif" alt="hide details" title="hide details"></a></td>
+</tr>
+
+<tr>
+  <th>Tags</th>
+  <td>
+                  <form action="#" name="WikiTagForm" class="WikiTagForm WikiTokenAutocomplete"><input name="wikispacesFormToken" value="18004f4f1535439100e8239d4c632b10cf8f33b0" type="hidden">
+  <div class="WikiTagList medgrey">
+        <ul>
+                          <li><a href="http://matthew-4gl.wikispaces.com/tag/view/assembly">assembly</a></li>
+                                <li><a href="http://matthew-4gl.wikispaces.com/tag/view/decard">decard</a></li>
+                                <li><a href="http://matthew-4gl.wikispaces.com/tag/view/fasm">fasm</a></li>
+                                <li><a href="http://matthew-4gl.wikispaces.com/tag/view/journal">journal</a></li>
+                                <li><a href="http://matthew-4gl.wikispaces.com/tag/view/martin">martin</a></li>
+                                <li><a href="http://matthew-4gl.wikispaces.com/tag/view/mocko">mocko</a></li>
+                                <li><a href="http://matthew-4gl.wikispaces.com/tag/view/programming">programming</a></li>
+                                <li><a href="http://matthew-4gl.wikispaces.com/tag/view/tutorial">tutorial</a></li>
+                                <li><a href="http://matthew-4gl.wikispaces.com/tag/view/xteraco">xteraco</a></li>
+              </ul>
+      </div>
+  </form>  </td>
+</tr>
+</tbody></table>
+</div>
+</div>
+  <textarea id="autosaveContent" style="display: none;" rows="1" cols="1"></textarea>
+  <div id="autosavePrompt" style="display:none;"></div>
+
+  <div class="wiki wikiPage" id="content_view">
+      <div id="contentEditButton">
+<img alt="Protected" title="You do not have permission to edit this page." src="fasm_tutorial_files/edit_nopermission.png" style="float: right; margin: 0pt 0pt 0.5em 0.5em;" height="37" width="128">
+</div>    <!-- google_ad_section_start -->
+  <!-- ws:start:WikiTextHeadingRule:0:&lt;h1&gt; --><h1 id="toc0"><a name="FASM Tutorial"></a><!-- ws:end:WikiTextHeadingRule:0 -->FASM Tutorial</h1>
+ <br>
+The FASM Assembler can be downloaded from <a class="wiki_link_ext" href="http://flatassembler.net/download.php" rel="nofollow" target="_blank">here</a>.<br>
+<br>
+Fresh is an IDE with FASM built-in &amp; can be downloaded from <a class="wiki_link_ext" href="http://fresh.flatassembler.net/" rel="nofollow" target="_blank">here</a>.<br>
+<br>
+Examples showing you how to use FASM can be found <a class="wiki_link_ext" href="http://flatassembler.net/examples.php" rel="nofollow" target="_blank">here</a>, Documentation can be found <a class="wiki_link_ext" href="http://flatassembler.net/docs.php" rel="nofollow" target="_blank">here</a> &amp; the FASM forum is <a class="wiki_link_ext" href="http://board.flatassembler.net/" rel="nofollow" target="_blank">here</a>.<br>
+<br>
+FASMLIB can be downloaded from <a class="wiki_link_ext" href="http://fasmlib.x86asm.net/" rel="nofollow" target="_blank">here</a><br>
+<br>
+There used to be a FASM tutorial made by Martin Mocko available <a class="wiki_link_ext" href="http://www.decard.net/index.php" rel="nofollow" target="_blank">here</a>,
+ sadly the site hasn't been available for some time. But I'd already 
+downloaded the tutorial &amp; I'm making it available for download <a href="http://matthew-4gl.wikispaces.com/space/showimage/tajga-tut.zip" rel="nofollow" target="_blank">here</a> on my Wikispace.<br>
+<br>
+I've also uploaded the tutorial to my Website &amp; it can be viewed at the following links...<br>
+<ul><li><a class="wiki_link_ext" href="http://bmatthew1.pwp.blueyonder.co.uk/fasm/front.html" rel="nofollow" target="_blank">Introduction</a></li><li><a class="wiki_link_ext" href="http://bmatthew1.pwp.blueyonder.co.uk/fasm/preproc.html" rel="nofollow" target="_blank">Preprocessor</a> - Tutorial for FASM Preprocessor</li><li><a class="wiki_link_ext" href="http://bmatthew1.pwp.blueyonder.co.uk/fasm/chap01.html" rel="nofollow" target="_blank">Chapter 01</a> - Getting Started</li><li><a class="wiki_link_ext" href="http://bmatthew1.pwp.blueyonder.co.uk/fasm/chap02.html" rel="nofollow" target="_blank">Chapter 02</a> - First Program</li><li><a class="wiki_link_ext" href="http://bmatthew1.pwp.blueyonder.co.uk/fasm/chap03.html" rel="nofollow" target="_blank">Chapter 03</a> - Labels, Addresses &amp; Variables</li><li><a class="wiki_link_ext" href="http://bmatthew1.pwp.blueyonder.co.uk/fasm/chap04.html" rel="nofollow" target="_blank">Chapter 04</a> - Endian Encodings &amp; Word Registers</li><li><a class="wiki_link_ext" href="http://bmatthew1.pwp.blueyonder.co.uk/fasm/chap05.html" rel="nofollow" target="_blank">Chapter 05</a> - Jumps &amp; Branching</li><li><a class="wiki_link_ext" href="http://bmatthew1.pwp.blueyonder.co.uk/fasm/chap06.html" rel="nofollow" target="_blank">Chapter 06</a> - Bit Arithmetic</li><li><a class="wiki_link_ext" href="http://bmatthew1.pwp.blueyonder.co.uk/fasm/chap07.html" rel="nofollow" target="_blank">Chapter 07</a> - Arithmetic Instructions</li></ul>
+  <!-- google_ad_section_end -->
+  </div>
+
+<div id="pageEditor" class="editorWrapper editorLayer">
+  <iframe id="target_editor" name="target_editor" src="fasm_tutorial_files/blank.htm" style="width: 0px; height: 0px; border: 0pt none;"></iframe>
+  <form action="/page/edit/fasm_tutorial" method="post" class="editorForm" id="editorForm"><input name="wikispacesFormToken" value="bddce7c9f403f45c838a10845af3b81ac3d7e010" type="hidden">
+    <input name="goto" value="" type="hidden">
+    <input name="mode" autocomplete="off" value="visual" type="hidden">
+    <input id="version" name="version" autocomplete="off" value="232612312" type="hidden">
+    <input name="contentPresent" autocomplete="off" value="" type="hidden">
+    <input name="editorCleanup" autocomplete="off" value="" type="hidden">
+    <input name="pageComments" autocomplete="off" value="" type="hidden">
+    <input name="commentsDisabled" autocomplete="off" value="" type="hidden">
+    <textarea id="wsMainEditor" class="noContentHide" name="WikispacesEditorContent" style="width: 100%; height: 400px; position: absolute; top: -50000px; left: -50000px;" autocomplete="off"></textarea>
+
+  <noscript>
+    <style>
+      
+      #wsMainEditor { position: static !important; top: auto !important; left: auto !important; }
+      
+       .noContentHide { display: none }    </style>
+    <div class="noContentHide">
+      <br/>
+      <button type="submit" name="update" value="1" class="btn primary"><span><span>Save</span></span></button>
+      <a href="/fasm_tutorial" class="btn primary"><span><span>Cancel</span></span></a>
+    </div>
+  </noscript>
+
+  </form>
+  
+  <div id="plainTextEditor" style="position:relative;display:none" class="editorLayer">
+    <textarea style="height: 450px;" id="textEditor" class="autogrow"></textarea>
+    <p style="clear:both;" align="right"><a href="#" onclick="jQuery(document).scrollTop(0); jQuery('.WikispacesHelpTrigger').eq(0).click(); loadHelp('help.wikitext'); return false;">help on how to format text</a></p>
+  </div>
+</div>
+
+
+
+
+</div></div></td></tr></tbody></table>
+</div><div class="rbB"><div></div></div></div>
+<!-- /main content area -->
+
+<div id="foot">
+<div class="WikiFooterNav WikiElement">
+<a href="http://help.wikispaces.com/" rel="nofollow" class="WikispacesHelpTrigger">Help</a> ·
+<a href="http://www.wikispaces.com/about">About</a> ·
+<a href="http://blog.wikispaces.com/" target="_new">Blog</a> ·
+<a href="http://www.wikispaces.com/content/pricing" rel="nofollow">Pricing</a> ·
+<a href="http://www.wikispaces.com/privacy" rel="nofollow">Privacy</a> ·
+<a href="http://www.wikispaces.com/terms" rel="nofollow">Terms</a> ·
+<a href="http://www.wikispaces.com/site/help?url=http%3A%2F%2Fmatthew-4gl.wikispaces.com%2Ffasm_tutorial" rel="nofollow"><strong>Support</strong></a> ·
+<a href="http://matthew-4gl.wikispaces.com/space/subscribe/upgrade"><strong>Upgrade</strong></a>
+</div><!-- google_ad_section_start(weight=ignore) --><div class="WikiLicense WikiElement" style="font-size: 90%;">Contributions to http://matthew-4gl.wikispaces.com are licensed under a <a rel="license" href="http://www.gnu.org/licenses/fdl.html#TOC1">GNU Free Documentation License</a>.<br>Portions not contributed by visitors are Copyright 2011 Tangient LLC.</div><!-- google_ad_section_end --></div>
+
+</div> <!-- /rightcolumn -->
+
+
+<div style="left: 54px; top: 0px;" id="WikispacesHelp" class="jqmWindow jqmID1">
+  <div id="WikispacesHelpControls">
+    <span id="WikispacesHelpBreadcrumbs">
+      <span id="WikispacesHelpBreadcrumbHome" class="WikispacesHelpBreadcrumb WikispacesHelpBreadcrumbCurrent">
+        <a href="http://help.wikispaces.com/" onclick="return gotoBreadcrumb(0);">Home</a>
+      </span>
+      <span id="WikispacesHelpBreadcrumbsEllipsis" style="display: none;">
+        &gt; ...
+      </span>
+      <span id="WikispacesHelpBreadcrumbSpinner"></span>
+    </span>
+    <div class="WikispacesHelpClose"></div>
+  </div>
+  <div id="WikispacesHelpContent" class="wiki">Loading...</div>
+
+  <div id="WikispacesGettingStartedControls">
+    <span id="WikispacesGettingStartedBreadcrumbs">
+      <span id="WikispacesGettingStartedBreadcrumbHome" class="WikispacesHelpBreadcrumb WikispacesHelpBreadcrumbCurrent">
+        <a href="#" onclick="return showGettingStartedHome();">Home</a>
+      </span>
+      <span id="WikispacesGettingStartedCategory"></span>
+    </span>
+
+    <a href="http://www.wikispaces.com/site/gettingstarted/off" style="position: absolute; right: 50px;">Turn Off "Getting Started"</a>
+
+    <div class="WikispacesHelpClose"></div>
+  </div>
+  <div id="WikispacesGettingStartedContent" class="wiki">Loading...</div>
+</div>
+<script src="fasm_tutorial_files/9z1xq68k-editorc.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+<!--
+
+jQuery(document).ready(function() {
+  attachHelpWindow('/home');
+});
+
+jQuery(document).ready(function() {
+  WikispacesEditor.loadEditorLibs('http://www.wikispaces.com/site/editorlibs/en_US/27926zx2.gz.js');
+});
+
+function startEditor(moreCoreOptions, moreMainOptions) {
+
+  var coreOptions = {
+    'content_css': 'http://www.wikispaces.com/stylesheet/editori/217420326B.gz.css'
+  };
+
+  var mainOptions = {
+    'wssave_cancel_url': '/fasm_tutorial',
+    'wsimage_upload_url': 'http://matthew-4gl.wikispaces.com/file/multiupload',
+    'wsimage_max_file_size': '10240',
+    'wsimage_page_view_group': ''
+  };
+
+  WikispacesEditor.loadEditor(jQuery.extend(coreOptions, moreCoreOptions),
+                              jQuery.extend(mainOptions, moreMainOptions));
+}
+
+  var wikispaces_page_version = '232612312';
+
+  jQuery(document).ready(function() {
+    WikispacesEditor.enableButtons(startEditor);
+  });
+
+
+
+--></script><!-- w17 109 mem:3:35(31) wki:1:3(2) tot:109:109(1) -->
+
+
+<div style="position: absolute; top: -10000px; left: -10000px; width: 100px; font-size: 13px; font-family: monospace; line-height: 16px; resize: none;"></div></body></html>

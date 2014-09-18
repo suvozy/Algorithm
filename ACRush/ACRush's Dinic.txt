@@ -1,0 +1,164 @@
+#include <vector>
+#include <list>
+#include <map>
+#include <set>
+#include <deque>
+#include <queue>
+#include <stack>
+#include <bitset>
+#include <algorithm>
+#include <functional>
+#include <numeric>
+#include <utility>
+#include <sstream>
+#include <iostream>
+#include <iomanip>
+#include <cstdio>
+#include <cmath>
+#include <cstdlib>
+#include <cctype>
+#include <string>
+#include <cstring>
+#include <cstdio>
+#include <cmath>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+#define SIZE(X) ((int)(X.size()))
+
+const int maxnode=20000+5;
+const int maxedge=1000000+5;
+const int oo=1000000000;
+
+int node,src,dest,nedge;
+int head[maxnode],point[maxedge],next[maxedge],flow[maxedge],capa[maxedge];
+int dist[maxnode],Q[maxnode],work[maxnode];
+
+void init(int _node,int _src,int _dest)
+{
+  node=_node;
+  src=_src-1;
+  dest=_dest-1;
+  for (int i=0;i<node;i++) head[i]=-1;
+  nedge=0;
+}
+void addedge(int u,int v,int c1,int c2)
+{
+  u--;v--;
+  point[nedge]=v,capa[nedge]=c1,flow[nedge]=0,next[nedge]=head[u],head[u]=(nedge++);
+  point[nedge]=u,capa[nedge]=c2,flow[nedge]=0,next[nedge]=head[v],head[v]=(nedge++);
+}
+bool dinic_bfs()
+{
+  memset(dist,255,sizeof(dist));
+  dist[src]=0;
+  int sizeQ=0;
+  Q[sizeQ++]=src;
+  for (int cl=0;cl<sizeQ;cl++)
+    for (int k=Q[cl],i=head[k];i>=0;i=next[i])
+      if (flow[i]<capa[i] && dist[point[i]]<0)
+      {
+        dist[point[i]]=dist[k]+1;
+        Q[sizeQ++]=point[i];
+      }
+  return dist[dest]>=0;
+}
+int dinic_dfs(int x,int exp)
+{
+  if (x==dest) return exp;
+  for (int &i=work[x];i>=0;i=next[i])
+  {
+    int v=point[i],tmp;
+    if (flow[i]<capa[i] && dist[v]==dist[x]+1 && (tmp=dinic_dfs(v,min(exp,capa[i]-flow[i])))>0)
+    {
+      flow[i]+=tmp;
+      flow[i^1]-=tmp;
+      return tmp;
+    }
+  }
+  return 0;
+}
+int dinic_flow()
+{
+  int result=0;
+  while (dinic_bfs())
+  {
+    for (int i=0;i<node;i++) work[i]=head[i];
+    while (1)
+    {
+      int delta=dinic_dfs(src,oo);
+      if (delta==0) break;
+      result+=delta;
+    }
+  }
+  return result;
+}
+
+class ConnectingAirports
+{
+public:
+  int n,m;
+  vector<int> A,B;
+  int C[600],D[600];
+  bool check(vector<string> &R)
+  {
+    for (int i=0;i<n;i++) C[i+1]=A[i];
+    for (int i=0;i<m;i++) D[i+1]=B[i];
+    int node=n+m+2;
+    int src=node-1;
+    int dest=node;
+    init(node,src,dest);
+    for (int i=1;i<=n;i++)
+      for (int j=1;j<=m;j++)
+        if (R[i-1][j-1]=='?')
+          addedge(i,j+n,1,0);
+        else if (R[i-1][j-1]=='1')
+        {
+          C[i]--;
+          D[j]--;
+          if (C[i]<0 || D[j]<0) return false;
+        }
+    for (int i=1;i<=n;i++)
+      if (C[i]>0)
+        addedge(src,i,C[i],0);
+    for (int i=1;i<=m;i++)
+      if (D[i]>0)
+        addedge(i+n,dest,D[i],0);
+    int flow=dinic_flow();
+    int totalC=0;
+    for (int i=1;i<=n;i++) totalC+=C[i];
+    int totalD=0;
+    for (int i=1;i<=m;i++) totalD+=D[i];
+    return flow==totalC && flow==totalD;
+  }
+  vector <string> getSchedule(vector <int> _A, vector <int> _B)
+  {
+    A=_A;
+    B=_B;
+    n=SIZE(A);
+    m=SIZE(B);
+    vector<string> R;
+    for (int i=0;i<n;i++)
+    {
+      string str="";
+      for (int j=0;j<m;j++) str+="?";
+      R.push_back(str);
+    }
+    if (!check(R))
+    {
+      R.clear();
+      return R;
+    }
+    for (int i=0;i<n;i++)
+      for (int j=0;j<m;j++)
+      {
+        R[i][j]='0';
+        if (check(R)) 
+          continue;
+        R[i][j]='1';
+      }
+    return R;
+  }
+};

@@ -1,0 +1,98 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<link href="chap01_files/style.css" rel="stylesheet" type="text/css">
+<title>01 TAJGA FASM Tutorial</title>
+</head>
+
+<body>
+
+<center><b>CHAPTER 1 - Getting started</b></center><br><br>
+
+Here i predict you have some basic information about what are bytes and some
+idea what is ASCII code. Maybe i will describe ASCII in later versions of
+tutorial.<br><br>
+  
+First try to compile empty source file. Just create empty file "empty.asm"
+and write
+<blockquote class="console">
+fasm empty.asm empty.bin
+</blockquote>
+into command line. You should see that
+file "empty.bin" is created, and it's length is zero.<br><br>
+  
+Now we will create binary file containing some data. Create text file
+containing line 
+<blockquote class="code"><pre>db <font color="#bb0000">'a'</font>
+</pre></blockquote>
+
+and compile it (i hope you already know how). When you look at created file
+you should see it is 1 byte long and it contains character "a". <br><br>
+  
+Now let's analyze (?) source:
+<code>db</code> is "directive" (directive is command to compiler, remember this!) which
+means "define byte". So this directive will put byte into destination file.
+Value of byte should follow this directive. For example <code>db 0</code> will insert
+byte of value 0 to destination file. But if you want to enter some character,
+you would have to remember it's ASCII value. In this case, you can enter the
+character enclosed in apostrophes (') and compiler will "get" it's value for
+you. This is that code works.<br><br>
+
+<blockquote class="term">
+<b>directive</b><br>
+command to compiler
+</blockquote>
+
+Now let's make file with more than one character. It will be:
+  
+<blockquote class="code"><pre>db <font color="#bb0000">'1'</font>
+db <font color="#bb0000">'2'</font>
+db <font color="#bb0000">'3'</font>
+</pre></blockquote>
+
+How this work is clear, i think, it stores three bytes into destination file,
+which should now contain simple line with <code>123</code>. By the way you can't write
+  
+<blockquote class="code"><pre>db <font color="#bb0000">'1'</font> db <font color="#bb0000">'2'</font> db <font color="#bb0000">'3'</font>
+</pre></blockquote>
+
+because every directive must be on separate line. But if you want to define
+more bytes, you can use simple <code>db</code> directive followed by more values,
+sperated by commas (,):
+  
+<blockquote class="code"><pre>db <font color="#bb0000">'1'</font><font color="#333399">,<font color="#bb0000">'2'</font>,<font color="#bb0000">'3'</font></font>
+</pre></blockquote>
+
+This will produce file with <code>123</code> too.<br><br>
+  
+But what if you want to define something longer, for example file containing
+<code>This is my first long string in FASM</code>? You could write
+  
+<blockquote class="code"><pre>db <font color="#bb0000">'T'</font><font color="#333399">,<font color="#bb0000">'h'</font>,<font color="#bb0000">'i'</font>,<font color="#bb0000">'s'</font></font>  etc...
+</pre></blockquote>
+but it is not very nice. For this reason, if you want define more
+consecutive characters using <code>db</code> , you can use this form:
+  
+<blockquote class="code"><pre>db <font color="#bb0000">'This is my first long string in FASM'</font>
+</pre></blockquote>
+
+So you have to enclose whole text in quotes. You can use this too:
+  
+<blockquote class="code"><pre>db <font color="#bb0000">'This is my first long string in '</font><font color="#333399">,<font color="#bb0000">'FASM'</font></font>
+</pre></blockquote>
+
+or
+<blockquote class="code"><pre>db <font color="#bb0000">'Thi'</font><font color="#333399">,<font color="#bb0000">'s is my first lo'</font>,<font color="#bb0000">'ng string in'</font>,<font color="#bb0000">' FASM'</font></font>
+</pre></blockquote>
+etc.<br><br>
+
+
+<blockquote class="term">
+<b>string, quoted string</b><br>
+Text enclosed in apostrophes is called "string". In general, "string" is
+array of characters. Term used for string inside source code is called
+"quoted string".
+</blockquote>
+
+
+
+</body></html>

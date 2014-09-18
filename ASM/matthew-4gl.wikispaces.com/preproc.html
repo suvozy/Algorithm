@@ -1,0 +1,1903 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<link href="preproc_files/style.css" rel="stylesheet" type="text/css">
+<title>FASM Preprocessor Tutorial by vid</title>
+</head>
+
+<body>
+
+<center><b>FASM PREPROCESSOR GUIDE</b></center><br><br>
+
+
+<b>Table of contents:</b><br>
+<ul>
+<a href="#1"></a><li><a href="#1">0. About this document</a>
+<a href="#what_is"></a></li><li><a href="#what_is">1. What is preprocessor</a>
+<a href="#basic"></a></li><li><a href="#basic">2. Basic preprocessing</a>
+<ul type="square">
+    <a class="light" href="#comment"></a><li><a class="light" href="#comment">2.1. Comment ";"</a>
+    <a class="light" href="#line_br"></a></li><li><a class="light" href="#line_br">2.2. Line Break "\"</a>
+    <a class="light" href="#include"></a></li><li><a class="light" href="#include">2.3. Directive "include"</a>
+    <a class="light" href="#strings"></a></li><li><a class="light" href="#strings">2.4. Strings preprocessing</a>
+</li></ul>
+<a href="#equates"></a></li><li><a href="#equates">3. Equates</a>
+<ul type="square">
+    <a class="light" href="#equ"></a><li><a class="light" href="#equ">3.1. Directive "equ"</a>
+    <a class="light" href="#restore"></a></li><li><a class="light" href="#restore">3.2. Directive "restore"</a>
+</li></ul>
+<a href="#simple_mac"></a></li><li><a href="#simple_mac">4. Simple macros without aruments</a>
+<ul type="square">
+    <a class="light" href="#simple_def"></a><li><a class="light" href="#simple_def">4.1. Simple macro definition</a>
+    <a class="light" href="#redefine"></a></li><li><a class="light" href="#redefine">4.2. Redefining macros</a>
+    <a class="light" href="#purge"></a></li><li><a class="light" href="#purge">4.3. Directive "purge" (macro undefinition)</a>
+    <a class="light" href="#behavior"></a></li><li><a class="light" href="#behavior">4.4. Macro behavior</a>
+</li></ul>
+<a href="#fixed_mac"></a></li><li><a href="#fixed_mac">5. Macros with fixed number of arguments</a>
+<ul type="square">
+    <a class="light" href="#one_arg"></a><li><a class="light" href="#one_arg">5.1. Macro with one argument</a>
+    <a class="light" href="#more_arg"></a></li><li><a class="light" href="#more_arg">5.2. Macros with more arguments</a>
+    <a class="light" href="#local"></a></li><li><a class="light" href="#local">5.3. Directive "local"</a>
+    <a class="light" href="#concat"></a></li><li><a class="light" href="#concat">5.4. Operator "#" (symbol concatenation)</a>
+    <a class="light" href="#to_string"></a></li><li><a class="light" href="#to_string">5.5. Operator "`"</a>
+</li></ul>
+<a href="#group_mac"></a></li><li><a href="#group_mac">6. Macros with group argument</a>
+<ul type="square">
+    <a class="light" href="#group_arg"></a><li><a class="light" href="#group_arg">6.1. Declaring macro with group argument</a>
+    <a class="light" href="#common"></a></li><li><a class="light" href="#common">6.2. Directive "common"</a>
+    <a class="light" href="#forward"></a></li><li><a class="light" href="#forward">6.3. Directive "forward"</a>
+    <a class="light" href="#reverse"></a></li><li><a class="light" href="#reverse">6.4. Directive "reverse"</a>
+    <a class="light" href="#combine"></a></li><li><a class="light" href="#combine">6.5. Combining group control directives</a>
+    <a class="light" href="#localgrp"></a></li><li><a class="light" href="#localgrp">6.6. Behavior of directive "local" inside macro with group argument</a>
+    <a class="light" href="#multiple"></a></li><li><a class="light" href="#multiple">6.7. Macro with multiple group arguments</a>
+</li></ul>
+<a href="#if"></a></li><li><a href="#if">7. Pseudo-conditional preprocessing</a>
+<ul type="square">
+    <a class="light" href="#eq"></a><li><a class="light" href="#eq">7.1. Operator "eq"</a>
+    <a class="light" href="#eqtype"></a></li><li><a class="light" href="#eqtype">7.2. Operator "eqtype"</a>
+    <a class="light" href="#in"></a></li><li><a class="light" href="#in">7.3. Operator "in"</a>
+</li></ul>
+<a href="#struc"></a></li><li><a href="#struc">8. Structures</a>
+</li></ul>
+
+<br><br><br><br. <a="" name="1">
+<b>0. About this document</b>
+
+<br>
+I wrote this doc because i saw many people are asking many questions on FASM
+board because not understanding idea or some particular feature of
+preprocessor. (I dont discourage you to ask anything on forum, not
+understanding something is not shame and if your question isn't too hard
+someone will surely reply it).
+
+Preprocessor is very finely desribed in FASM manual chapter 2.3 (<b>TODO</b>
+link). This document was created some time ago, when there was a big
+confusion within documentation and assembler itself. Now FASM's syntax is
+simple again (and also much more powerful), and documentation is written
+well, in similar manner to this guide. But I will try to support you with
+more examples and special cases. Also don't take this as reference to
+preprocessor, it's kind-of tutorial.
+
+<br><br>
+Please if you can't understand something from this guide tell me about it on
+<a href="http://board.flatassembler.net/viewtopic.php?t=1178">my tutorial's thread on FASM board</a>
+or with <a href="mailto:vid@inMail.sk">email</a> to help me improve it for other people.<br>
+
+<br><br><br>
+<a name="what_is"></a>
+<b>1. What is preprocessor</b>
+
+<br>
+Preprocessor is program (or usualy part of compiler), which modifies your
+source code before it is compiled. For example, if you use some piece of
+code very often, you can give it some name, and tell preprocessor to replace
+name with the piece of code each time.
+
+<br><br>
+Another example is, when you want to simulate some instruction which doesn't
+exist, you can replace it with set of instructions with same effect
+automatically using preprocessor.
+
+<br><br>
+Preprocessor scans source and replaces some things with other. But how you
+tell it what should it preprocess? For this "preprocessor directives" are
+used. We will discuss them now.
+
+<br><br>
+Preprocessor doesn't know anything about instructions, compiler directives
+etc., it has it's own set of directives and just ignores parts of source not
+meant for it.
+
+<br><br><br>
+<a name="basic"></a>
+<b>2. Basic</b><br>
+First I describe basic preprocesing, which is done on file before any other
+preprocessing.
+
+<br><br><br>
+<a name="comment"></a>
+<b>2.1. Comment <code>;</code></b><br>
+Like in most assemblers, comments in FASM start with semicolon (<code>;</code>).
+Everything up to end of line is ignored and removed from the source.
+<br><br>
+
+For example source
+<blockquote class="code"><pre><font color="#777777">;fill 100h bytes at EDI with zeros</font>
+xor eax<font color="#333399">,</font>eax <font color="#777777">;zero value in eax</font>
+mov ecx<font color="#333399">,</font><font color="#339933">100h/4</font>
+rep stosd
+</pre></blockquote>
+
+will after preprocessing become
+<blockquote class="code"><pre>xor eax<font color="#333399">,</font>eax
+mov ecx<font color="#333399">,</font><font color="#339933">100h/4</font>
+rep stosd
+</pre></blockquote>
+<br>
+<b>NOTE:</b> <code>;</code> can be also comprehended as preprocessor operator
+which deletes text behind it up to end of line.<br><br>
+
+<b>NOTE:</b> line that contains only comment won't be deleted, like in my
+example. It will become empty line. I skipped empty line because of text
+structure. This will be important in next chapter.
+
+<br><br><br>
+<a name="line_br"></a>
+<b>2.2. Line Break <code>\</code></b><br>
+If line seems to be too long for you, you can "break" it with <code>\</code> symbol
+(or preprocessor operator). If line ends with <code>\</code> symbol then next line
+will be appended to current line.<br><br>
+
+Example:
+<blockquote class="code"><pre>db <font color="#339933">1</font><font color="#333399">,</font><font color="#339933">2</font><font color="#333399">,</font><font color="#339933">3</font><font color="#333399">,\</font>
+   <font color="#339933">4</font><font color="#333399">,</font><font color="#339933">5</font><font color="#333399">,</font><font color="#339933">6</font><font color="#333399">,\</font>
+   <font color="#339933">7</font><font color="#333399">,</font><font color="#339933">8</font><font color="#333399">,</font><font color="#339933">9</font>
+</pre></blockquote>
+
+will be preprocessed to
+<blockquote class="code"><pre>db <font color="#339933">1</font><font color="#333399">,</font><font color="#339933">2</font><font color="#333399">,</font><font color="#339933">3</font><font color="#333399">,</font><font color="#339933">4</font><font color="#333399">,</font><font color="#339933">5</font><font color="#333399">,</font><font color="#339933">6</font><font color="#333399">,</font><font color="#339933">7</font><font color="#333399">,</font><font color="#339933">8</font><font color="#333399">,</font><font color="#339933">9</font>
+</pre></blockquote>
+
+<br>
+Of course <code>\</code> inside strings or inside comments doesn't concatenate lines,
+inside string it is taken as string character (like everything except
+ending quote) and comments are deleted up to the end of line without
+inspecting what's inside them.
+<br><br>
+There can't be anything behind <code>\</code> in line, except for blank space and
+comment.
+<br><br>
+In previous chapter i mentioned that line which contains only comment
+won't be deleted, it will just become empty line. That means, that code
+like this:
+
+<blockquote class="code"><pre>db <font color="#339933">1</font><font color="#333399">,</font><font color="#339933">2</font><font color="#333399">,</font><font color="#339933">3</font><font color="#333399">,\</font>
+<font color="#777777">;   4,5,6,\   - commented</font>
+   <font color="#339933">7</font><font color="#333399">,</font><font color="#339933">8</font><font color="#333399">,</font><font color="#339933">9</font>
+</pre></blockquote>
+
+will after preprocessing become
+<blockquote class="code"><pre>db <font color="#339933">1</font><font color="#333399">,</font><font color="#339933">2</font><font color="#333399">,</font><font color="#339933">3</font><font color="#333399">,</font>
+<font color="#339933">7</font><font color="#333399">,</font><font color="#339933">8</font><font color="#333399">,</font><font color="#339933">9</font>
+</pre></blockquote>
+
+and so it will cause error. To solve situation like this, you must put
+line break before comment:
+<blockquote class="code"><pre>db <font color="#339933">1</font><font color="#333399">,</font><font color="#339933">2</font><font color="#333399">,</font><font color="#339933">3</font><font color="#333399">,\</font>
+<font color="#333399">\<font color="#777777">;   4,5,6     - validly commented</font></font>
+   <font color="#339933">7</font><font color="#333399">,</font><font color="#339933">8</font><font color="#333399">,</font><font color="#339933">9</font>
+</pre></blockquote>
+
+which will become
+<blockquote class="code"><pre>db <font color="#339933">1</font><font color="#333399">,</font><font color="#339933">2</font><font color="#333399">,</font><font color="#339933">3</font><font color="#333399">,</font><font color="#339933">7</font><font color="#333399">,</font><font color="#339933">8</font><font color="#333399">,</font><font color="#339933">9</font>
+</pre></blockquote>
+like we wanted.
+
+<br><br><br>
+<a name="include"></a>
+<b>2.3. Directive <code>include</code></b><br>
+It's syntax:
+<blockquote class="code"><pre>include <font color="#333399">&lt;</font>quoted string <font color="#333399">-</font> file name<font color="#333399">&gt;</font>
+</pre></blockquote>
+
+It will insert text file into sources. It allows you to break source into
+more files. Of course inserted text will be preprocessed too. File path and
+name should be quoted (enclosed in <code>'</code>,<code>'</code> or <code>"</code>,<code>"</code>).<br><br>
+
+Examples:
+<blockquote class="code"><pre>include <font color="#bb0000">'file.asm'</font>
+include <font color="#bb0000">'HEADERS\data.inc'</font>
+include <font color="#bb0000">'..\lib\strings.asm'</font>
+include <font color="#bb0000">'C:\config.sys'</font>
+</pre></blockquote>
+
+<br>
+You can also access environment variables enclosed in <code>%</code>,<code>%</code>:
+<blockquote class="code"><pre>include <font color="#bb0000">'%FASMINC%\win32a.inc'</font>
+include <font color="#bb0000">'%SYSTEMROOT%\somefile.inc'</font>
+include <font color="#bb0000">'%myproject%\headers\something.inc'</font>
+include <font color="#bb0000">'C:\%myprojectdir%\headers\something.inc'</font>
+</pre></blockquote>
+
+<br>
+To ease creating of multi-OS apps both <code>/</code> and <code>\</code> always work the same.
+So for example these are exactly the same
+<blockquote class="code"><pre>include <font color="#bb0000">'%FASMINC%\macro\proc.inc'</font>
+include <font color="#bb0000">'%FASMINC%/macro/proc.inc'</font>
+include <font color="#bb0000">'%FASMINC%/macro\proc.inc'</font>
+include <font color="#bb0000">'%FASMINC%\macro/proc.inc'</font>
+</pre></blockquote>
+
+<br>
+<b>TODO:</b> 1.52 paths system (someone could describe it for me...)
+
+<br><br><br>
+<a name="strings"></a>
+<b>2.4. Strings preprocessing</b><br>
+
+You may have problem to include <code>'</code> in string declared using <code>'</code>s
+or <code>"</code> in string declared using <code>"</code>s. For this reason you must place
+the character twice into string, in that case it won't end string and begin next as you
+may think, but it will include character into string literaly.
+
+<br><br>
+For example:
+<blockquote class="code"><pre>db <font color="#bb0000">'It''s okay'</font>
+</pre></blockquote>
+
+will generate binary containing string <code>It's okay</code>.
+
+<br><br>
+It's same for <code>"</code>.
+<blockquote class="code"><pre>db <font color="#bb0000">"use apostrophes ("")"</font>
+</pre></blockquote>
+
+<br><br>
+<a name="equates"></a>
+<b>3. Equates</b>
+
+<br><br>
+<a name="equ"></a>
+<b>3.1. Directive "equ"</b><br>
+
+Simplest preprocessor command. It's syntax
+<blockquote class="code"><pre><font color="#333399">&lt;</font>name1<font color="#333399">&gt;</font> equ <font color="#333399">&lt;</font>name2<font color="#333399">&gt;</font>
+</pre></blockquote>
+
+This command tells preprocessor to replace every following &lt;name1&gt; with
+&lt;name2&gt;.
+<br><br>
+
+Example: source
+<blockquote class="code"><pre>count equ <font color="#339933">10</font>  <font color="#777777">;this is preprocessor command</font>
+mov ecx<font color="#333399">,</font>count
+</pre></blockquote>
+
+is preprocessed to
+<blockquote class="code"><pre>mov ecx<font color="#333399">,</font><font color="#339933">10</font>
+</pre></blockquote>
+
+<br>
+Example:
+<blockquote class="code"><pre>mov eax<font color="#333399">,</font>count
+count equ <font color="#339933">10</font>
+mov ecx<font color="#333399">,</font>count
+</pre></blockquote>
+
+is preprocessed to
+<blockquote class="code"><pre>mov eax<font color="#333399">,</font>count
+mov ecx<font color="#333399">,</font><font color="#339933">10</font>
+</pre></blockquote>
+
+because preprocessor only replaces <code>count</code> behind <code>equ</code> directive.
+<br><br>
+Even this works:
+<blockquote class="code"><pre><font color="#339933">10</font> equ <font color="#339933">11</font>
+mov ecx<font color="#333399">,</font><font color="#339933">10</font>
+</pre></blockquote>
+
+preprocessed to
+<blockquote class="code"><pre>mov ecx<font color="#333399">,</font><font color="#339933">11</font>
+</pre></blockquote>
+
+also note that <code>name1</code> can be any symbol. Symbol is just set of
+chars, terminated by blank character (space, tab, end of line) or comment
+(<code>;</code>) or line-break (<code>\</code>) or operator (including assembly
+time operators, not only preprocessor's operators). It can't be operator or
+special symbol (like <code>,</code> or <code>}</code> etc.)
+
+<br><br>
+<code>name2</code> can be anything, not only one symbol, everything up to end
+of line is taken. It can be even empty, then &lt;name1&gt; is replaced by blank
+space.<br><br>
+
+Example:
+<blockquote class="code"><pre><font color="#339933">10</font> equ <font color="#339933">11</font><font color="#333399">,</font><font color="#339933">12</font><font color="#333399">,</font><font color="#339933">13</font>
+db <font color="#339933">10</font>
+</pre></blockquote>
+
+to
+<blockquote class="code"><pre>db <font color="#339933">11</font><font color="#333399">,</font><font color="#339933">12</font><font color="#333399">,</font><font color="#339933">13</font>
+</pre></blockquote>
+
+<br>
+Also note that before preprocessor loads equate definition, it replaces all equates
+at right side of <code>equ</code>, so
+<blockquote class="code"><pre>b equ a
+c equ b
+</pre></blockquote>
+becomes
+<blockquote class="code"><pre>c equ a
+</pre></blockquote>
+But you can't replace name of equate or <code>equ</code> symbol itself with equate.
+<blockquote class="code"><pre>a equ equ
+<font color="#339933">1</font> a <font color="#339933">2</font>         
+<font color="#777777">;doesn't work, will remain "1 a 2"</font>
+a equ b
+a equ <font color="#339933">1</font>    
+<font color="#777777">;will declare "a equ 1", not "b equ 1". Redefining </font>
+<font color="#777777">;equate is used in another manner, read on</font>
+</pre></blockquote>
+
+<br><br>
+<a name="restore"></a>
+<b>3.2. Directive <code>restore</code></b><br>
+You can also tell preprocessor to stop replacing particular equate. This is
+done with <code>restore</code> operator:
+<blockquote class="code"><pre>restore <font color="#333399">&lt;</font>name<font color="#333399">&gt;</font>
+</pre></blockquote>
+
+Where &lt;name&gt; is some equation. Behind this command &lt;name&gt; will
+no longer be replaced as specified by <code>equ</code>
+<br><br>
+Example:
+<blockquote class="code"><pre>mov eax<font color="#333399">,</font>count
+count equ <font color="#339933">10</font>
+mov eax<font color="#333399">,</font>count
+restore count
+mov eax<font color="#333399">,</font>count
+</pre></blockquote>
+
+will become
+<blockquote class="code"><pre>mov eax<font color="#333399">,</font>count
+mov eax<font color="#333399">,</font><font color="#339933">10</font>
+mov eax<font color="#333399">,</font>count
+</pre></blockquote>
+
+Note that replacements are "stacked" that means if you define two equates
+for one symbol, and then restore it (once), the first one will be used.
+<br><br>
+Example:
+<blockquote class="code"><pre>mov eax<font color="#333399">,</font>count
+count equ <font color="#339933">1</font>
+mov eax<font color="#333399">,</font>count
+count equ <font color="#339933">2</font>
+mov eax<font color="#333399">,</font>count
+count equ <font color="#339933">3</font>
+mov eax<font color="#333399">,</font>count
+restore count
+mov eax<font color="#333399">,</font>count
+restore count
+mov eax<font color="#333399">,</font>count
+restore count
+mov eax<font color="#333399">,</font>count
+</pre></blockquote>
+
+to
+<blockquote class="code"><pre>mov eax<font color="#333399">,</font>count
+mov eax<font color="#333399">,</font><font color="#339933">1</font>
+mov eax<font color="#333399">,</font><font color="#339933">2</font>
+mov eax<font color="#333399">,</font><font color="#339933">3</font>
+mov eax<font color="#333399">,</font><font color="#339933">2</font>
+mov eax<font color="#333399">,</font><font color="#339933">1</font>
+mov eax<font color="#333399">,</font>count
+</pre></blockquote>
+
+<br>
+If you try to restore non-existing equation nothing will happen.
+
+<br><br>
+Example:
+
+<blockquote class="code"><pre>mov eax<font color="#333399">,</font>count
+restore count
+mov eax<font color="#333399">,</font>count
+</pre></blockquote>
+
+to
+
+<blockquote class="code"><pre>mov eax<font color="#333399">,</font>count
+mov eax<font color="#333399">,</font>count
+</pre></blockquote>
+
+<br><br>
+<a name="simple_mac"></a>
+<b>4. Simple macros without arguments</b>
+
+<br><br><br>
+<a name="simple_def"></a>
+<b>4.1. Simple macro definition</b><br>
+You can create your own instruction / directive using "macro".
+<blockquote class="code"><pre>macro <font color="#333399">&lt;</font>name<font color="#333399">&gt;</font>
+<font color="#333399">{</font>
+  <font color="#333399">&lt;</font>body<font color="#333399">&gt;</font>
+<font color="#333399">}</font>
+</pre></blockquote>
+
+After preprocessor finds <code>macro</code> directive, it defines macro, which
+means each following occurence of line starting with <code>&lt;name&gt;</code>
+will be replaced by <code>&lt;body&gt;</code>. <code>&lt;name&gt;</code> can be
+one symbol, <code>&lt;body&gt;</code> can be anything except <code>}</code>
+which denotes end of macro body.
+<br><br>
+Example:
+<blockquote class="code"><pre>macro a
+<font color="#333399">{</font>
+  push eax
+<font color="#333399">}</font>
+xor eax<font color="#333399">,</font>eax
+a
+</pre></blockquote>
+to
+<blockquote class="code"><pre>xor eax<font color="#333399">,</font>eax
+push eax
+</pre></blockquote>
+
+<br>
+Example:
+<blockquote class="code"><pre>macro a
+<font color="#333399">{</font>
+  push eax
+<font color="#333399">}</font>
+macro b
+<font color="#333399">{</font>
+  push ebx
+<font color="#333399">}</font>
+b
+a
+</pre></blockquote>
+
+to
+<blockquote class="code"><pre>push ebx
+push eax
+</pre></blockquote>
+
+<br>
+Of course, macro doesn't have to be indented like in my example, you can use
+this too:
+
+<blockquote class="code"><pre>macro push5 <font color="#333399">{</font>push dword <font color="#339933">5</font><font color="#333399">}</font>
+push5
+</pre></blockquote>
+
+to
+
+<pre><blockquote class="code">
+push dword <font color="#339933">5</font>
+</blockquote></pre>
+
+<br>
+Or
+
+<blockquote class="code"><pre>macro push5 <font color="#333399">{</font>push dword <font color="#339933">5</font>
+<font color="#333399">}</font>
+</pre></blockquote>
+to same result. You are free about indenting macros.<br><br><br>
+
+<a name="redefine"></a>
+<b>4.2. Redefining macros</b><br>
+You can redefine macros. That means, if you create new macro with name of
+already existing macro, then the last one is used. But if you use original
+macro in last one, it will work. Look at example:
+
+<blockquote class="code"><pre>macro a <font color="#333399">{</font>mov ax<font color="#333399">,</font><font color="#339933">5</font><font color="#333399">}</font>
+macro a
+<font color="#333399">{</font>
+  a
+  mov bx<font color="#333399">,</font><font color="#339933">5</font>
+<font color="#333399">}</font>
+macro a
+<font color="#333399">{</font>
+  a
+  mov cx<font color="#333399">,</font><font color="#339933">5</font>
+<font color="#333399">}</font>
+a
+</pre></blockquote>
+
+to
+<blockquote class="code"><pre>mov ax<font color="#333399">,</font><font color="#339933">5</font>
+mov bx<font color="#333399">,</font><font color="#339933">5</font>
+mov cx<font color="#333399">,</font><font color="#339933">5</font>
+</pre></blockquote>
+
+<br>
+Or this example:
+<blockquote class="code"><pre>macro a <font color="#333399">{</font><font color="#339933">1</font><font color="#333399">}</font>
+a
+
+macro a <font color="#333399">{</font>
+  <font color="#339933">2</font>
+  a
+  <font color="#339933">2</font><font color="#333399">}</font>
+
+a
+macro a <font color="#333399">{</font>
+  <font color="#339933">3</font>
+  a
+  <font color="#339933">3</font><font color="#333399">}</font>
+
+a
+</pre></blockquote>
+
+to
+<blockquote class="code"><pre><font color="#339933">1</font>
+
+<font color="#339933">2</font>
+<font color="#339933">1</font>
+<font color="#339933">2</font>
+
+<font color="#339933">3</font>
+<font color="#339933">2</font>
+<font color="#339933">1</font>
+<font color="#339933">2</font>
+<font color="#339933">3</font>
+</pre></blockquote>
+
+<br><br>
+<a name="purge"></a>
+<b>4.3. Directive <code>purge</code> (macro undefinition)</b><br>
+You can also undefine macro, like you undefined equate. This is done by
+<code>purge</code> directive followed by macro name:
+<blockquote class="code"><pre>a
+macro a <font color="#333399">{</font><font color="#339933">1</font><font color="#333399">}</font>
+a
+macro a <font color="#333399">{</font><font color="#339933">2</font><font color="#333399">}</font>
+a
+purge a
+a
+purge a
+a
+</pre></blockquote>
+
+to
+<blockquote class="code"><pre>a
+<font color="#339933">1</font>
+<font color="#339933">2</font>
+<font color="#339933">1</font>
+a
+</pre></blockquote>
+
+<br>
+You can purge more macros with one directive, they must be seperated by comma (<code>,</code>)
+<blockquote class="code"><pre>macro a <font color="#333399">{}</font>
+macro b <font color="#333399">{}</font>
+purge a<font color="#333399">,</font>b
+</pre></blockquote>
+or purge one macro more than once to remove more levels of redefinition
+<blockquote class="code"><pre>macro a <font color="#333399">{</font>display <font color="#bb0000">'1'</font><font color="#333399">}</font>
+macro a <font color="#333399">{</font>display <font color="#bb0000">'2'</font><font color="#333399">}</font>
+macro a <font color="#333399">{</font>display <font color="#bb0000">'3'</font><font color="#333399">}</font>
+purge a<font color="#333399">,</font>a
+a <font color="#777777">;displays '1'</font>
+</pre></blockquote>
+
+<br>
+If you try to <code>purge</code> non-existing macro nothing will happen.
+
+
+<br><br><br>
+<a name="behavior"></a>
+<b>4.4. Macro behavior</b><br>
+Macro name will be replaced by macro body not only if line is starting with
+macro, but everywhere where instruction mnemonics (like <code>add</code>,
+<code>mov</code>) is accepted. It is because main purpose of macro is to
+simulate instructions. Only exception is instruction prefix (REP, LOCK, etc.),
+macro is not accepted after instruction prefix.
+
+<br><br>
+Example:
+<blockquote class="code"><pre>macro CheckErr
+<font color="#333399">{</font>
+  cmp eax<font color="#333399">,-</font><font color="#339933">1</font>
+  jz error
+<font color="#333399">}</font>
+call Something
+a<font color="#333399">:</font> CheckErr    <font color="#777777">;here macro name is preceded by label definition, but it</font>
+	       <font color="#777777">;will be replaced</font>
+</pre></blockquote>
+
+to
+<blockquote class="code"><pre>call Something
+a<font color="#333399">:</font>
+cmp eax<font color="#333399">,-</font><font color="#339933">1</font>
+jz error
+</pre></blockquote>
+
+<br>
+Example:
+<blockquote class="code"><pre>macro stos0
+<font color="#333399">{</font>
+  mov al<font color="#333399">,</font><font color="#339933">0</font>
+  stosb
+<font color="#333399">}</font>
+stos0	    <font color="#777777">;this is place for instruction, will be replaced</font>
+here<font color="#333399">:</font> stos0 <font color="#777777">;this is place for instruciton too</font>
+db stos0    <font color="#777777">;this in not place for instruction and so won't be replaced</font>
+</pre></blockquote>
+
+to
+
+<blockquote class="code"><pre>mov al<font color="#333399">,</font><font color="#339933">0</font>
+stosb
+here<font color="#333399">:</font>
+mov al<font color="#333399">,</font><font color="#339933">0</font>
+stosb
+db stos0
+</pre></blockquote>
+
+<br>
+You can also "overload" instruction with macro, because preprocessor doesnt'
+know about instructions, it allows macro name to be instruction mnemonics.
+
+<blockquote class="code"><pre>macro pusha
+<font color="#333399">{</font>
+  push eax ebx ecx edx ebp esi edi
+<font color="#333399">}</font>
+macro popa
+<font color="#333399">{</font>
+  pop edi esi ebp edx ecx ebx eax
+<font color="#333399">}</font>
+</pre></blockquote>
+
+these 2 save 4 bytes for every pusha because they don't push ESP. But
+overloading instruction is never good thing, because someone reading your code
+may get fooled if he don't knows instruction is overloaded.
+
+<br><br>
+You can also overload assembly-time directive (eg. non-preprocessor directives):
+
+<blockquote class="code"><pre>macro use32
+<font color="#333399">{</font>
+  align <font color="#339933">4</font>
+  use32
+<font color="#333399">}</font>
+macro use16
+<font color="#333399">{</font>
+  align <font color="#339933">2</font>
+  use16
+<font color="#333399">}</font>
+</pre></blockquote>
+
+<br>
+You also can have equate of same name as macro. Here comes priority problem, when you
+already have defined macro and you are defining equate of same name, it can be seen
+as definition of equate or as usage of macro with "equ ..." as arguments (you will learn
+what are macro arguments later - since <a href="http://bmatthew1.pwp.blueyonder.co.uk/fasm/fixed_mac">chapter 5</a>). It is for example this case:
+<blockquote class="code"><pre>macro a <font color="#333399">{}</font>
+a equ b
+</pre></blockquote>
+or opposite case can occur, when you have equate defined and are defining macro of same name,
+you must know if equate will be replaced
+<blockquote class="code"><pre>a equ b
+macro a <font color="#333399">{}</font>
+</pre></blockquote>
+In first case, macro usage has higher priority than equate definition, so it
+will throw error that <code>equ b</code> is wrong argument for
+macro<code>a</code>. In second case macro definiton has higher priority than
+replacing equate, so macro with name <code>a</code> will be defined (not
+<code>b</code>). By the way, replacing equate has lowest possible priority,
+only kind-of exception are equates inside equate definiton, already described
+by the end of <a href="#equ">chapter 3.1</a>. But it's always best to have some
+system in naming which will ensure that you won't happen to have macro and
+equate of same name.
+
+<br><br>
+Also macro contents aren't altered in any way during macro definiton (eg.
+equates inside them aren't replaced). It makes difference in cases like this:
+<blockquote class="code"><pre>a equ <font color="#339933">0</font>
+macro b <font color="#333399">{</font>a<font color="#333399">}</font>
+a equ <font color="#339933">1</font>
+b
+a equ <font color="#339933">2</font>
+b
+</pre></blockquote>
+So due to rule it will become
+<blockquote class="code"><pre><font color="#339933">1</font>
+<font color="#339933">2</font>
+</pre></blockquote>
+
+<br>
+Also don't forget that after macro is expanded (when used) then this newly created
+code is also preprocessed, so you can use preprocessor directives inside macro. For example
+<blockquote class="code"><pre>macro define_equate_a
+<font color="#333399">{</font>
+  a equ <font color="#339933">1</font>
+<font color="#333399">}</font>
+a
+define_equate_a
+a
+</pre></blockquote>
+will become
+<blockquote class="code"><pre>a
+<font color="#339933">1</font>
+</pre></blockquote>
+
+
+
+
+<br><br>
+<a name="fixed_mac"></a>
+<b>5. Macros with fixed number of arguments</b>
+
+
+
+
+<br><br><br>
+<a name="one_arg"></a>
+<b>5.1. Macro with one argument</b><br>
+You can also define macro argument. This argument is represented by some
+symbol, which will be replaced in macro body by passed argument.
+
+<blockquote class="code"><pre>macro <font color="#333399">&lt;</font>name<font color="#333399">&gt;</font> <font color="#333399">&lt;</font>argument<font color="#333399">&gt;</font> <font color="#333399">{</font> <font color="#333399">&lt;</font>body<font color="#333399">&gt;</font> <font color="#333399">}</font>
+</pre></blockquote>
+
+<br>
+Example:
+
+<blockquote class="code"><pre>macro add5 where
+<font color="#333399">{</font>
+  add where<font color="#333399">,</font><font color="#339933">5</font>
+<font color="#333399">}</font>
+add5 ax
+add5 <font color="#333399">[</font>variable<font color="#333399">]</font>
+add5 ds
+add5 ds<font color="#333399">+</font><font color="#339933">2</font>
+</pre></blockquote>
+
+to
+
+<blockquote class="code"><pre>add ax<font color="#333399">,</font><font color="#339933">5</font>
+add <font color="#333399">[</font>variable<font color="#333399">],</font><font color="#339933">5</font>
+add ds<font color="#333399">,</font><font color="#339933">5</font> <font color="#777777">;there is no such instruction, but its not task of preprocessor</font>
+	 <font color="#777777">;to check it. It will be preprocessed to this form, and will</font>
+	 <font color="#777777">;throw error at assembling stage.</font>
+add ds<font color="#333399">+</font><font color="#339933">2</font><font color="#333399">,</font><font color="#339933">5</font> <font color="#777777">;like previous, but this is also syntactically wrong, so it'll</font>
+	   <font color="#777777">;throw error at parsing stage.</font>
+</pre></blockquote>
+
+(of course there won't be those comments in preprocessed file :)
+<br><br>
+Note that all occurences of macro argument inside it's body will be _always_ replaced when
+it's used, there are no priority issues here. Also, of course, macro arguemnt inside macro's
+body has higher priority than equate of same name. I believe this is obious enough not to need
+any examples.
+
+
+<br><br><br>
+<a name="more_arg"></a>
+<b>5.2. Macros with more arguments</b><br>
+Macros can have more arguments, separated with comma (<code>,</code>):
+<blockquote class="code"><pre>macro movv where<font color="#333399">,</font>what
+<font color="#333399">{</font>
+  push what
+  pop  where
+<font color="#333399">}</font>
+movv ax<font color="#333399">,</font>bx
+movv ds<font color="#333399">,</font>es
+movv <font color="#333399">[</font>var1<font color="#333399">],[</font>var2<font color="#333399">]</font>
+</pre></blockquote>
+
+preprocessed to
+
+<blockquote class="code"><pre>push bx
+pop ax
+push es
+pop ds
+push <font color="#333399">[</font>var2<font color="#333399">]</font>
+pop <font color="#333399">[</font>var1<font color="#333399">]</font>
+</pre></blockquote>
+
+<br>
+If more macro arguments have same name, first one is used :).
+<blockquote class="code"><pre>macro a b<font color="#333399">,</font>b<font color="#333399">,</font>b
+<font color="#333399">{</font>
+  display b
+<font color="#333399">}</font>
+a <font color="#bb0000">'1'</font><font color="#333399">,<font color="#bb0000">'2'</font>,<font color="#bb0000">'3'</font></font>  <font color="#777777">;displays '3'</font>
+</pre></blockquote>
+
+
+<br>
+If you specify less arguments than you listed in macro declaration, then
+value of not-specified arguments is blank:
+
+<blockquote class="code"><pre>macro pupush a1<font color="#333399">,</font>a2<font color="#333399">,</font>a3<font color="#333399">,</font>a4
+<font color="#333399">{</font>
+  push a1 a2 a3 a4
+  pop a4 a3 a2 a1
+<font color="#333399">}</font>
+pupush eax<font color="#333399">,</font>dword <font color="#333399">[</font><font color="#339933">3</font><font color="#333399">]</font>
+</pre></blockquote>
+
+to
+
+<blockquote class="code"><pre>push eax dword <font color="#333399">[</font><font color="#339933">3</font><font color="#333399">]</font>
+pop dword <font color="#333399">[</font><font color="#339933">3</font><font color="#333399">]</font> eax
+</pre></blockquote>
+but, if you want to force argument to have nonblank value, you can place <code>*</code> after it's name
+in macro definition:
+<blockquote class="code"><pre>macro a a1<font color="#333399">,</font>a2<font color="#333399">*,</font>a3 <font color="#333399">{}</font>
+a <font color="#339933">1</font><font color="#333399">,</font><font color="#339933">2</font><font color="#333399">,</font><font color="#339933">3</font> <font color="#777777">;works</font>
+a <font color="#339933">1</font><font color="#333399">,</font><font color="#339933">2</font> <font color="#777777">;works</font>
+a <font color="#339933">1</font><font color="#333399">,</font><font color="#339933">2</font><font color="#333399">,</font> <font color="#777777">;same as previous</font>
+a <font color="#339933">1</font> <font color="#777777">;doesn't work</font>
+a <font color="#333399">,</font><font color="#339933">2</font><font color="#333399">,</font> <font color="#777777">;works</font>
+</pre></blockquote>
+now, macro argument <code>a2</code> is called "required".
+
+<br><br>
+If you want to include comma (<code>,</code>) in macro argument, you must enclose argument in
+brackets <code>&lt;</code>,<code>&gt;</code>.
+
+<blockquote class="code"><pre>macro safe_declare name<font color="#333399">,</font>what
+<font color="#333399">{</font>
+  if used name
+    name what
+  end if
+<font color="#333399">}</font>
+safe_declare var1<font color="#333399">,</font> db <font color="#339933">5</font>
+safe_declare array5<font color="#333399">,</font> <font color="#333399">&lt;</font>dd <font color="#339933">1</font><font color="#333399">,</font><font color="#339933">2</font><font color="#333399">,</font><font color="#339933">3</font><font color="#333399">,</font><font color="#339933">4</font><font color="#333399">,</font><font color="#339933">5</font><font color="#333399">&gt;</font>
+safe_declare string<font color="#333399">,</font> <font color="#333399">&lt;</font>db <font color="#bb0000">"hi, i'm stupid string"</font><font color="#333399">,</font><font color="#339933">0</font><font color="#333399">&gt;</font>
+</pre></blockquote>
+
+to
+
+<blockquote class="code"><pre>if used var1
+  var1 db <font color="#339933">5</font>
+end if
+if used array5
+  array5 dd <font color="#339933">1</font><font color="#333399">,</font><font color="#339933">2</font><font color="#333399">,</font><font color="#339933">3</font><font color="#333399">,</font><font color="#339933">4</font><font color="#333399">,</font><font color="#339933">5</font>
+end if
+if used string
+  string db <font color="#bb0000">"hi, i'm stupid string"</font><font color="#333399">,</font><font color="#339933">0</font>
+end if
+</pre></blockquote>
+
+<br>
+You can use <code>&lt;</code> and <code>&gt;</code> in macro body too, of course:
+
+<blockquote class="code"><pre>macro a arg <font color="#333399">{</font>db arg<font color="#333399">}</font>
+macro b arg1<font color="#333399">,</font>arg2 <font color="#333399">{</font>a <font color="#333399">&lt;</font>arg1<font color="#333399">,</font>arg2<font color="#333399">,</font><font color="#339933">3</font><font color="#333399">&gt;}</font>
+b <font color="#333399">&lt;</font><font color="#339933">1</font><font color="#333399">,</font><font color="#339933">1</font><font color="#333399">&gt;,</font><font color="#339933">2</font>
+</pre></blockquote>
+
+is preprocessed to
+<blockquote class="code"><pre>db <font color="#339933">1</font><font color="#333399">,</font><font color="#339933">1</font><font color="#333399">,</font><font color="#339933">2</font><font color="#333399">,</font><font color="#339933">3</font>
+</pre></blockquote>
+this implies that there can be multiple levels of &lt;&gt;s, like in this
+example usage of macro <code>b</code> is unrolled to
+<code>a &lt;&lt;1,1&gt;,2,3&gt;</code>.  Unfortunately this disallows us (in
+some cases) to have <code>&lt;</code> and <code>&gt;</code> characters inside
+value of macro argument.
+
+<br><br>
+<a name="local"></a>
+<b>5.3. Directive "local"</b><br>
+
+You may want to declare some label inside macro body:
+<blockquote class="code"><pre>macro pushstr string
+<font color="#333399">{</font>
+  call behind <font color="#777777">;pushes address of string and jumps to behind</font>
+  db string<font color="#333399">,</font><font color="#339933">0</font>
+  behind<font color="#333399">:</font>
+<font color="#333399">}</font>
+</pre></blockquote>
+
+but if you use this macro twice, label "behind" will be defined twice and
+this is an error. You can solve this by making label "behind" local to
+macro. For that preprocessor directive "local" is used.
+
+<blockquote class="code"><pre>local <font color="#333399">&lt;</font>name<font color="#333399">&gt;</font>
+</pre></blockquote>
+
+<br>
+It must be inside macro body. It makes all following occurences of &lt;name&gt;
+inside macro body local to macro. Thus, if macro is used twice 
+
+<blockquote class="code"><pre>macro pushstr string
+<font color="#333399">{</font>
+  local behind
+  call behind
+  db string<font color="#333399">,</font><font color="#339933">0</font>
+  behind<font color="#333399">:</font>
+<font color="#333399">}</font>
+pushstr <font color="#bb0000">'aaaaa'</font>
+pushstr <font color="#bb0000">'bbbbbbbb'</font>
+call something
+</pre></blockquote>
+
+this won't cause any problems. This is done by replacing <code>behind</code> with
+<code>behind?XXXXXXXX</code> where <code>XXXXXXXX</code> is some hexadecimal number
+generated by preprocessor. Last example can be for example preprocessed to
+
+<blockquote class="code"><pre>call behind<font color="#333399">?</font><font color="#339933">00000001</font>
+db <font color="#bb0000">'aaaaa'</font><font color="#333399">,</font><font color="#339933">0</font>
+behind<font color="#333399">?</font><font color="#339933">00000001</font><font color="#333399">:</font>
+call behind<font color="#333399">?</font><font color="#339933">00000002</font>
+db <font color="#bb0000">'bbbbbbbb'</font><font color="#333399">,</font><font color="#339933">0</font>
+behind<font color="#333399">?</font><font color="#339933">00000002</font><font color="#333399">:</font>
+call something
+</pre></blockquote>
+
+<br>
+Note that you can't directly access names containing <code>?</code>, as it is special
+symbol for fasm, for this reason it is used with local names. For example
+<code>aa?bb</code> is considered as symbol <code>aa</code>, special symbol
+<code>?</code> and symbol <code>bb</code>, when you type it this way into
+source.
+
+<br><br>
+If you want more local labels you dont have to use two locals, you can list
+them all in one <code>local</code> directive, separated by commas (<code>,</code>):
+
+<blockquote class="code"><pre>macro pushstr string  <font color="#777777">;does same job as previous macro</font>
+<font color="#333399">{</font>
+  local addr<font color="#333399">,</font>behind
+  push addr
+  jmp behind
+  addr db string<font color="#333399">,</font><font color="#339933">0</font>
+  behind<font color="#333399">:</font>
+<font color="#333399">}</font>
+</pre></blockquote>
+
+<br>
+It is always good to start all macro local label names with two dots (<code>..</code>)
+which means they wont change current global label. For example:
+
+<blockquote class="code"><pre>macro pushstr string
+<font color="#333399">{</font>
+  local behind
+  call behind
+  db string<font color="#333399">,</font><font color="#339933">0</font>
+  behind<font color="#333399">:</font>
+<font color="#333399">}</font>
+MyProc<font color="#333399">:</font>
+  pushstr <font color="#bb0000">'aaaa'</font>
+  .a<font color="#333399">:</font>
+</pre></blockquote>
+
+will be preprocessed to
+<blockquote class="code"><pre>MyProc<font color="#333399">:</font>
+call behind<font color="#333399">?</font><font color="#339933">00000001</font>
+db <font color="#bb0000">'aaaa'</font><font color="#333399">,</font><font color="#339933">0</font>
+behind<font color="#333399">?</font><font color="#339933">00000001</font><font color="#333399">:</font>
+.a<font color="#333399">:</font>
+</pre></blockquote>
+
+and so it will create <code>behind?00000001.a</code> label instead of
+<code>MyProc.a</code>. But names that start with two dots (<code>..</code>) do not change
+current global label, so in following case <code>MyProc.a</code> would be declared:
+
+<blockquote class="code"><pre>macro pushstr string
+<font color="#333399">{</font>
+  local ..behind
+  call ..behind
+  db string<font color="#333399">,</font><font color="#339933">0</font>
+  ..behind<font color="#333399">:</font>
+<font color="#333399">}</font>
+MyProc<font color="#333399">:</font>
+  pushstr <font color="#bb0000">'aaaa'</font>
+  .a<font color="#333399">:</font>
+</pre></blockquote>
+
+<br><br>
+<a name="concat"></a>
+<b>5.4. Operator <code>#</code> (symbol concatenation)</b><br>
+Other fasm's macrolanguage feature is manipulation with symbols. This is
+done with symbol concatenation operator <code>#</code>, which concatenates two
+symbols into one, for example <code>a#b</code> will become <code>ab</code>,
+or <code>aaa bbb#ccc ddd</code> -&gt; <code>aaa bbbccc ddd</code>. 
+
+This operator can be used only inside macro body, and concatenating symbol
+will be done after replacing macro arguments, so you can use this to
+create some symbol from macro argument.
+
+<br><br>
+Example:
+<blockquote class="code"><pre>macro string name<font color="#333399">,</font> data
+<font color="#333399">{</font>
+  local ..start
+  ..start<font color="#333399">:</font>
+  name db data<font color="#333399">,</font><font color="#339933">0</font>
+  sizeof.<font color="#333399">#</font>name <font color="#333399">=</font>  <font color="#339933">$</font> <font color="#333399">-</font> ..start
+<font color="#333399">}</font>
+string s1<font color="#333399">,<font color="#bb0000">'macros are stupid'</font></font>
+string s2<font color="#333399">,&lt;<font color="#bb0000">'here i am'</font>,</font><font color="#339933">13</font><font color="#333399">,</font><font color="#339933">10</font><font color="#333399">,<font color="#bb0000">'rock you like a hurricane'</font>&gt;</font>
+</pre></blockquote>
+
+to
+
+<blockquote class="code"><pre>..start<font color="#333399">?</font><font color="#339933">00000001</font><font color="#333399">:</font>
+s1 db <font color="#bb0000">'macros are stupid'</font><font color="#333399">,</font><font color="#339933">0</font>
+sizeof.s1 <font color="#333399">=</font> <font color="#339933">$</font> <font color="#333399">-</font> ..start<font color="#333399">?</font><font color="#339933">00000001</font>
+..start<font color="#333399">?</font><font color="#339933">00000002</font><font color="#333399">:</font>
+s2 db <font color="#bb0000">'here i am'</font><font color="#333399">,</font><font color="#339933">13</font><font color="#333399">,</font><font color="#339933">10</font><font color="#333399">,<font color="#bb0000">'rock you like a hurricane'</font>,</font><font color="#339933">0</font>
+sizeof.s2 <font color="#333399">=</font> <font color="#339933">$</font> <font color="#333399">-</font> ..start<font color="#333399">?</font><font color="#339933">00000002</font>
+</pre></blockquote>
+
+so for all strings defined by macro, symbol <code>"sizeof.&lt;name of string&gt;</code> gets defined.
+
+<br><br>
+This operator can also concatenate quoted strings:
+
+<blockquote class="code"><pre>macro debug name
+<font color="#333399">{</font>
+  db <font color="#bb0000">'name: '</font><font color="#333399">#</font>b<font color="#333399">,</font><font color="#339933">0</font>
+<font color="#333399">}</font>
+debug <font color="#bb0000">'1'</font>
+debug <font color="#bb0000">'barfoo'</font>
+</pre></blockquote>
+
+to
+
+<blockquote class="code"><pre>db <font color="#bb0000">'name: 1'</font><font color="#333399">,</font><font color="#339933">0</font>
+db <font color="#bb0000">'name: barfoo'</font><font color="#333399">,</font><font color="#339933">0</font>
+</pre></blockquote>
+
+this is usefull when passing argument from macro to macro:
+
+<blockquote class="code"><pre>macro pushstring string
+<font color="#333399">{</font>
+  local ..behind
+  call ..behind
+  db string<font color="#333399">,</font><font color="#339933">0</font>
+  ..behind<font color="#333399">:</font>
+<font color="#333399">}</font>
+macro debug string
+<font color="#333399">{</font>
+  push MB_OK
+  push <font color="#339933">0</font> <font color="#777777">;empty caption</font>
+  pushstring <font color="#bb0000">'debug: '</font><font color="#333399">#</font>string  <font color="#777777">;"pushstring" takes one argument</font>
+  push <font color="#339933">0</font> <font color="#777777">;no partent window</font>
+  call <font color="#333399">[</font>MessageBox<font color="#333399">]</font>
+<font color="#333399">}</font>
+</pre></blockquote>
+
+<br>
+Note that you can't use <code>#</code> in arguments of <code>local</code>, because <code>local</code> is processed
+before <code>#</code>. For that reason, code like this won't work:
+
+<blockquote class="code"><pre>macro a arg
+<font color="#333399">{</font>
+  local name_<font color="#333399">#</font>arg
+<font color="#333399">}</font>
+a foo
+</pre></blockquote>
+
+<br>
+Note that <code>#</code> doesn't work only with adjected words, there can be spaces between them, so 
+<code>a # b</code> is just the same as <code>a#b</code>, which can sometimes cause troubles with empty
+macro arguments:
+<blockquote class="code"><pre>macro a b<font color="#333399">,</font>c 
+<font color="#333399">{</font>
+ b<font color="#333399">#</font>c equ <font color="#339933">1</font>
+<font color="#333399">}</font>
+a foo<font color="#333399">,</font>bar <font color="#777777">;will properly create equate "foobar equ 1"</font>
+a foo <font color="#777777">;will create "foo# equ 1" which will become "fooequ 1" and so error</font>
+</pre></blockquote>
+
+
+
+
+<br><br>
+<a name="to_string"></a>
+<b>5.5. Operator <code>`</code></b><br>
+There is also operator <code>`</code> which transfers symbol following it to quoted
+string. This operator can be used only inside macro.
+<br><br>
+Example:
+<blockquote class="code"><pre>macro proc name
+<font color="#333399">{</font>
+  name<font color="#333399">:</font>
+  log <font color="#333399">`</font>name	  <font color="#777777">;log can be some macro which takes string as argument</font>
+<font color="#333399">}</font>
+proc DummyProc
+</pre></blockquote>
+
+to
+<blockquote class="code"><pre>DummyProc<font color="#333399">:</font>
+log <font color="#bb0000">'DummyProc'</font>
+</pre></blockquote>
+
+<br>
+Or one little more complicated example using <code>#</code>:
+<blockquote class="code"><pre>macro proc name
+<font color="#333399">{</font>
+  name<font color="#333399">:</font>
+  log <font color="#bb0000">'entering procedure: '</font><font color="#333399">#`</font>name
+<font color="#333399">}</font>
+proc DummyProc
+retn
+proc Proc2
+retn
+</pre></blockquote>
+
+to
+<blockquote class="code"><pre>DummyProc<font color="#333399">:</font>
+log <font color="#bb0000">'entering procedure: DummyProc'</font>
+retn
+Proc2<font color="#333399">:</font>
+log <font color="#bb0000">'entering procedure: Proc2'</font>
+retn
+</pre></blockquote>
+<br><br><br>
+
+
+<a name="group_mac"></a>
+<b>6. Macros with group argument</b><br><br>
+
+<a name="group_arg"></a>
+<b>6.1. Declaring macro with group argument</b><br>
+Macros can have so-called "group argument". It allows you non-fixed number of
+arguments. Group argument is enclosed in brackets <code>[</code>,<code>]</code>
+in macro definition:
+<blockquote class="code"><pre>macro name arg1<font color="#333399">,</font>arg2<font color="#333399">,[</font>grouparg<font color="#333399">]</font>
+<font color="#333399">{</font>
+  <font color="#333399">&lt;</font>body<font color="#333399">&gt;</font>
+<font color="#333399">}</font>
+</pre></blockquote>
+
+<br>
+Group argument must be last argument in macro defintion. Group argument can
+contain multiple arguments, like:
+
+<blockquote class="code"><pre>macro name arg1<font color="#333399">,</font>arg2<font color="#333399">,[</font>grouparg<font color="#333399">]</font> <font color="#333399">{}</font>
+name <font color="#339933">1</font><font color="#333399">,</font><font color="#339933">2</font><font color="#333399">,</font><font color="#339933">3</font><font color="#333399">,</font><font color="#339933">4</font><font color="#333399">,</font><font color="#339933">5</font><font color="#333399">,</font><font color="#339933">6</font>
+</pre></blockquote>
+
+here value of group argument (<code>grouparg</code>) are values 3,4,5 and 6. 1 and 2 
+are values of <code>arg1</code> and <code>arg2</code>.
+
+<br><br>
+Of course macro can hav only group argument, like:
+<blockquote class="code"><pre>macro name [grouparg<font color="#333399">]</font> <font color="#333399">{}</font>
+</pre></blockquote>
+
+
+<br><br>
+<a name="common"></a>
+<b>6.2. Directive <code>common</code></b><br>
+To work with group arguments, you use some preprocessor directives
+(<code>common</code>, <code>forward</code>, <code>reverse</code>). These
+directives can be used only in body of macro with group argument (elsewhere
+they are ignored). First such directive is <code>common</code>. It means that
+behind this directive group argument name in macro body will be replaced by all
+arguments:
+
+<blockquote class="code"><pre>macro string <font color="#333399">[</font>grp<font color="#333399">]</font>
+<font color="#333399">{</font>
+  common
+    db grp<font color="#333399">,</font><font color="#339933">0</font>
+<font color="#333399">}</font>
+string <font color="#bb0000">'aaaaaa'</font>
+string <font color="#bb0000">'line1'</font><font color="#333399">,</font><font color="#339933">13</font><font color="#333399">,</font><font color="#339933">10</font><font color="#333399">,<font color="#bb0000">'line2'</font></font>
+string <font color="#339933">1</font><font color="#333399">,</font><font color="#339933">2</font><font color="#333399">,</font><font color="#339933">3</font><font color="#333399">,</font><font color="#339933">4</font><font color="#333399">,</font><font color="#339933">5</font>
+</pre></blockquote>
+
+to
+<blockquote class="code"><pre>db <font color="#bb0000">'aaaaaa'</font><font color="#333399">,</font><font color="#339933">0</font>
+db <font color="#bb0000">'line1'</font><font color="#333399">,</font><font color="#339933">13</font><font color="#333399">,</font><font color="#339933">10</font><font color="#333399">,<font color="#bb0000">'line2'</font>,</font><font color="#339933">0</font>
+db <font color="#339933">1</font><font color="#333399">,</font><font color="#339933">2</font><font color="#333399">,</font><font color="#339933">3</font><font color="#333399">,</font><font color="#339933">4</font><font color="#333399">,</font><font color="#339933">5</font><font color="#333399">,</font><font color="#339933">0</font>
+</pre></blockquote>
+
+<br><br>
+<a name="forward"></a>
+<b>6.3. Directive <code>forward</code></b><br>
+But you can work with arguments in group argument separately. For this
+<code>forward</code> preprocessor directive is used. Part of macro body behind forward
+directive is preprocessed for each argument in group argument:
+<blockquote class="code"><pre>macro a arg1<font color="#333399">,[</font>grparg<font color="#333399">]</font>
+<font color="#333399">{</font>
+forward
+  db arg1
+  db grparg
+<font color="#333399">}</font>
+a <font color="#339933">1</font><font color="#333399">,<font color="#bb0000">'a'</font>,<font color="#bb0000">'b'</font>,<font color="#bb0000">'c'</font></font>
+a <font color="#333399">-</font><font color="#339933">1</font><font color="#333399">,</font><font color="#339933">10</font><font color="#333399">,</font><font color="#339933">20</font>
+</pre></blockquote>
+
+to
+<blockquote class="code"><pre>db <font color="#339933">1</font>
+db <font color="#bb0000">'a'</font>
+db <font color="#339933">1</font>
+db <font color="#bb0000">'b'</font>
+db <font color="#339933">1</font>
+db <font color="#bb0000">'c'</font>
+db <font color="#333399">-</font><font color="#339933">1</font>
+db <font color="#339933">10</font>
+db <font color="#333399">-</font><font color="#339933">1</font>
+db <font color="#339933">20</font>
+</pre></blockquote>
+
+<br>
+<code>forward</code> is default for macros with group arguments, so previous macro can
+as well be
+<blockquote class="code"><pre>macro a arg1<font color="#333399">,[</font>grparg<font color="#333399">]</font>
+<font color="#333399">{</font>
+  db arg1
+  db grparg
+<font color="#333399">}</font>
+</pre></blockquote>
+
+<br><br>
+<a name="reverse"></a>
+<b>6.4. Directive <code>reverse</code></b><br>
+<code>reverse</code> is same as <code>forward</code>, but processess arguments
+in group argument from last to first:
+<blockquote class="code"><pre>macro a arg1<font color="#333399">,[</font>grparg<font color="#333399">]</font>
+<font color="#333399">{</font>
+reverse
+  db arg1
+  db grparg
+<font color="#333399">}</font>
+a <font color="#339933">1</font><font color="#333399">,<font color="#bb0000">'a'</font>,<font color="#bb0000">'b'</font>,<font color="#bb0000">'c'</font></font>
+</pre></blockquote>
+to
+<blockquote class="code"><pre>db <font color="#339933">1</font>
+db <font color="#bb0000">'c'</font>
+db <font color="#339933">1</font>
+db <font color="#bb0000">'b'</font>
+db <font color="#339933">1</font>
+db <font color="#bb0000">'a'</font>
+</pre></blockquote>
+
+<br><br>
+<a name="combine"></a>
+<b>6.5. Combining group control directives</b><br>
+These 3 directives divide macro to blocks. Each block is processed after
+previous one. For example:
+<blockquote class="code"><pre>macro a <font color="#333399">[</font>grparg<font color="#333399">]</font>
+<font color="#333399">{</font>
+  forward
+    f_<font color="#333399">#</font>grparg<font color="#333399">:</font>	       <font color="#777777">;symbol concatenation operator #, see chapter 4.4</font>
+  common
+    db grparg
+  reverse
+    r_<font color="#333399">#</font>grparg<font color="#333399">:</font>
+<font color="#333399">}</font>
+a <font color="#339933">1</font><font color="#333399">,</font><font color="#339933">2</font><font color="#333399">,</font><font color="#339933">3</font><font color="#333399">,</font><font color="#339933">4</font>
+</pre></blockquote>
+
+to
+<blockquote class="code"><pre>f_1<font color="#333399">:</font>
+f_2<font color="#333399">:</font>
+f_3<font color="#333399">:</font>
+f_4<font color="#333399">:</font>
+db <font color="#339933">1</font><font color="#333399">,</font><font color="#339933">2</font><font color="#333399">,</font><font color="#339933">3</font><font color="#333399">,</font><font color="#339933">4</font>
+r_4<font color="#333399">:</font>
+r_3<font color="#333399">:</font>
+r_2<font color="#333399">:</font>
+r_1<font color="#333399">:</font>
+</pre></blockquote>
+
+<br><br>
+<a name="localgrp"></a>
+<b>6.6. Behavior of directive <code>local</code> inside macro with group
+argument</b><br>
+There is one more very nice feature with labels local to macro (listed
+with <code>local</code> preprocessor directive, see chapter 4.3). If
+<code>local</code> directive is defined inside <code>forward</code> or
+<code>reverse</code> block, then unique label is defined for each argument in
+group, and same labels are used for same arguments in following
+<code>forward</code> or <code>reverse</code> blocks.  Example:
+
+<blockquote class="code"><pre>macro string_table <font color="#333399">[</font>string<font color="#333399">]</font>
+<font color="#333399">{</font>
+  forward		  <font color="#777777">;table of pointers to strings</font>
+    local addr		    <font color="#777777">;declare label for this string as local</font>
+    dd addr		    <font color="#777777">;pointer to string</font>
+  forward		  <font color="#777777">;strings</font>
+    addr db string<font color="#333399">,</font><font color="#339933">0</font>
+<font color="#333399">}</font>
+string_table <font color="#bb0000">'aaaaa'</font><font color="#333399">,<font color="#bb0000">'bbbbbb'</font>,<font color="#bb0000">'5'</font></font>
+</pre></blockquote>
+
+to
+<blockquote class="code"><pre>dd addr<font color="#333399">?</font><font color="#339933">00000001</font>
+dd addr<font color="#333399">?</font><font color="#339933">00000002</font>
+dd addr<font color="#333399">?</font><font color="#339933">00000003</font>
+addr<font color="#333399">?</font><font color="#339933">00000001</font> db <font color="#bb0000">'aaaaa'</font><font color="#333399">,</font><font color="#339933">0</font>
+addr<font color="#333399">?</font><font color="#339933">00000002</font> db <font color="#bb0000">'bbbbbb'</font><font color="#333399">,</font><font color="#339933">0</font>
+addr<font color="#333399">?</font><font color="#339933">00000003</font> db <font color="#bb0000">'5'</font><font color="#333399">,</font><font color="#339933">0</font>
+</pre></blockquote>
+
+<br>
+Another example, with <code>reverse</code> block:
+
+<blockquote class="code"><pre>macro a <font color="#333399">[</font>x<font color="#333399">]</font>
+<font color="#333399">{</font>
+forward
+  local here
+  here db x
+reverse
+  dd here
+<font color="#333399">}</font>
+a <font color="#339933">1</font><font color="#333399">,</font><font color="#339933">2</font><font color="#333399">,</font><font color="#339933">3</font>
+</pre></blockquote>
+
+to
+<blockquote class="code"><pre>here<font color="#333399">?</font><font color="#339933">00000001</font> db <font color="#339933">1</font>
+here<font color="#333399">?</font><font color="#339933">00000002</font> db <font color="#339933">2</font>
+here<font color="#333399">?</font><font color="#339933">00000003</font> db <font color="#339933">3</font>
+dd here<font color="#333399">?</font><font color="#339933">00000003</font>
+dd here<font color="#333399">?</font><font color="#339933">00000002</font>
+dd here<font color="#333399">?</font><font color="#339933">00000001</font>
+</pre></blockquote>
+
+so labels will be used with same arguments in both <code>forward</code> and
+<code>reverse</code> blocks.
+
+<br><br>
+Note that all blocks are processed even if value of group argument is empty
+<blockquote class="code"><pre>macro count_items <font color="#333399">[</font>b<font color="#333399">]</font>
+<font color="#333399">{</font>
+  common
+    items<font color="#333399">=</font><font color="#339933">0</font>
+  forward
+    items<font color="#333399">=</font>items<font color="#333399">+</font><font color="#339933">1</font>
+<font color="#333399">}</font>
+count_items <font color="#339933">1</font><font color="#333399">,</font>eax<font color="#333399">,</font>stupid_labels<font color="#333399">,&lt;</font>some other <font color="#339933">$^</font><font color="#333399">!</font>~<font color="#333399">#</font><font color="#339933">$</font> argument in brackets<font color="#333399">&gt;</font>  <font color="#777777">;after this items = 4</font>
+count_items  <font color="#777777">;here items=1, not 0, because forward block is processed once anyway</font>
+</pre></blockquote>
+you will learn workaround a little later.
+
+<br><br><br>
+<a name="multiple"></a>
+<b>6.7. Macro with multiple group arguments</b><br>
+You can also have more multiple arguments. In that case macro definition
+wont look like
+<blockquote class="code"><pre>macro a <font color="#333399">[</font>grp1<font color="#333399">],[</font>grp2<font color="#333399">]</font>
+</pre></blockquote>
+
+because then it would be unclear which arguments belong to which group.
+For that reason you declare them like:
+<blockquote class="code"><pre>macro a <font color="#333399">[</font>grp1<font color="#333399">,</font>grp2<font color="#333399">]</font>
+</pre></blockquote>
+here every odd argument belongs to grp1, every even to grp2.<br><br>
+
+Example:
+<blockquote class="code"><pre>macro a <font color="#333399">[</font>grp1<font color="#333399">,</font>grp2<font color="#333399">]</font>
+<font color="#333399">{</font>
+  forward
+    l_<font color="#333399">#</font>grp1<font color="#333399">:</font>
+  forward
+    l_<font color="#333399">#</font>grp2<font color="#333399">:</font>
+<font color="#333399">}</font>
+a <font color="#339933">1</font><font color="#333399">,</font><font color="#339933">2</font><font color="#333399">,</font><font color="#339933">3</font><font color="#333399">,</font><font color="#339933">4</font><font color="#333399">,</font><font color="#339933">5</font><font color="#333399">,</font><font color="#339933">6</font>
+</pre></blockquote>
+
+to
+<blockquote class="code"><pre>l_1<font color="#333399">:</font>
+l_3<font color="#333399">:</font>
+l_5<font color="#333399">:</font>
+l_2<font color="#333399">:</font>
+l_4<font color="#333399">:</font>
+l_6<font color="#333399">:</font>
+</pre></blockquote>
+
+<br>
+Another example:
+<blockquote class="code"><pre>macro ErrorList <font color="#333399">[</font>name<font color="#333399">,</font>value<font color="#333399">]</font>
+<font color="#333399">{</font>
+  forward
+    ERROR_<font color="#333399">#</font>name <font color="#333399">=</font> value
+<font color="#333399">}</font>
+ErrorList <font color="#333399">\</font>
+ NONE<font color="#333399">,</font><font color="#339933">0</font><font color="#333399">,\</font>
+ OUTOFMEMORY<font color="#333399">,</font><font color="#339933">10</font><font color="#333399">,\</font>
+ INTERNAL<font color="#333399">,</font><font color="#339933">20</font>
+</pre></blockquote>
+
+to
+<blockquote class="code"><pre>ERROR_NONE <font color="#333399">=</font> <font color="#339933">0</font>
+ERROR_OUTOFMEMORY <font color="#333399">=</font> <font color="#339933">10</font>
+ERROR_INTERNAL <font color="#333399">=</font> <font color="#339933">20</font>
+</pre></blockquote>
+
+<br>
+Of course there can be more than 2 group arguments:
+
+<blockquote class="code"><pre>macro a <font color="#333399">[</font>g1<font color="#333399">,</font>g2<font color="#333399">,</font>g3<font color="#333399">]</font>
+<font color="#333399">{</font>
+  common
+    db g1
+    db g2
+    db g3
+<font color="#333399">}</font>
+a <font color="#339933">1</font><font color="#333399">,</font><font color="#339933">2</font><font color="#333399">,</font><font color="#339933">3</font><font color="#333399">,</font><font color="#339933">4</font><font color="#333399">,</font><font color="#339933">5</font><font color="#333399">,</font><font color="#339933">6</font><font color="#333399">,</font><font color="#339933">7</font><font color="#333399">,</font><font color="#339933">8</font><font color="#333399">,</font><font color="#339933">9</font><font color="#333399">,</font><font color="#339933">10</font><font color="#333399">,</font><font color="#339933">11</font>
+</pre></blockquote>
+
+to
+<blockquote class="code"><pre>db <font color="#339933">1</font><font color="#333399">,</font><font color="#339933">4</font><font color="#333399">,</font><font color="#339933">7</font><font color="#333399">,</font><font color="#339933">10</font>
+db <font color="#339933">2</font><font color="#333399">,</font><font color="#339933">5</font><font color="#333399">,</font><font color="#339933">8</font><font color="#333399">,</font><font color="#339933">11</font>
+db <font color="#339933">3</font><font color="#333399">,</font><font color="#339933">6</font><font color="#333399">,</font><font color="#339933">9</font>
+</pre></blockquote>
+
+<br>
+If you have some of group arguments marked as required (with <code>*</code>,
+which means such ones cannot have empty value), then value of this argument
+must be nonblank in each "created" group:
+<blockquote class="code"><pre>macro a <font color="#333399">[</font>a1<font color="#333399">,</font>a2<font color="#333399">*,</font>a3<font color="#333399">]</font> <font color="#333399">{}</font>
+a <font color="#339933">1</font><font color="#333399">,</font><font color="#339933">2</font><font color="#333399">,</font><font color="#339933">3</font><font color="#333399">,</font><font color="#339933">4</font><font color="#333399">,</font><font color="#339933">5</font> <font color="#777777">;works, a2 = 2 in first group, 5 in second</font>
+a <font color="#339933">1</font><font color="#333399">,</font><font color="#339933">2</font><font color="#333399">,</font><font color="#339933">3</font><font color="#333399">,</font><font color="#339933">4</font>   <font color="#777777">;doesn't work, a2 is empty in second group</font>
+a <font color="#339933">1</font><font color="#333399">,</font><font color="#339933">2</font><font color="#333399">,</font><font color="#339933">3</font>     <font color="#777777">;works, only one group exists</font>
+a <font color="#333399">,,,</font><font color="#339933">4</font><font color="#333399">,</font><font color="#339933">5</font>    <font color="#777777">;doesn't work, group #1 is "created" unless all it's values are empty</font>
+</pre></blockquote>
+
+
+
+
+<br><br>
+<a name="if"></a>
+<b>7. Pseudo-conditional preprocessing</b><br>
+Until FASM 1.62 there was no real preprocessor conditional syntax in FASM. But
+assembly-time directive <code>if</code> can be used in conjuction with
+preprocessor to acheive same results as with preprocessor conditionals (but
+this way it wastes more time and memory). Even current conditional preprocessing
+is quite limited, so this is still useful.<br><br>
+
+As i said, <code>if</code> is assembly-time statement. That means statement is
+checked after preprocessing, and that allows some special conditional
+operators to work.<br><br>
+
+I won't describe it's assembly-time behavior (conditional operators like
+<code>&amp;</code>, <code>|</code> etc), read FASM's docs for this. I will describe
+only operators that are used with preprocessor here.
+<br><br><br>
+
+<a name="eq"></a>
+<b>7.1. Operator <code>eq</code></b><br>
+Simplest is <code>eq</code>. It just compares two symbols if they are same. Value of
+<code>abcd eq abcd</code> is true, value of <code>abcd eq 1</code> is false etc. It is useful to
+compare symbol that will be preprocessed, like:
+
+<blockquote class="code"><pre>STRINGS equ ASCII
+if STRINGS eq ASCII
+  db <font color="#bb0000">'Oh yeah'</font><font color="#333399">,</font><font color="#339933">0</font>
+else if STRINGS eq UNICODE
+  du <font color="#bb0000">'Oh yeah'</font><font color="#333399">,</font><font color="#339933">0</font>
+else
+  display <font color="#bb0000">'unknown string type'</font>
+end if
+</pre></blockquote>
+
+after preprocessing it will be
+
+<blockquote class="code"><pre>if ASCII eq ASCII
+  db <font color="#bb0000">'Oh yeah'</font><font color="#333399">,</font><font color="#339933">0</font>
+else if ASCII eq UNICODE
+  du <font color="#bb0000">'Oh yeah'</font><font color="#333399">,</font><font color="#339933">0</font>
+else
+  display <font color="#bb0000">'unknown string type'</font>
+end if
+</pre></blockquote>
+
+so first condition (<code>ASCII eq ASCII</code>) is true, so only <code>db 'Oh yeah',0</code> will
+get assembled.
+
+<br><br>
+Other case:
+
+<blockquote class="code"><pre>STRINGS equ UNICODE	  <font color="#777777">;only difference here, UNICODE instead of ASCII</font>
+if STRINGS eq ASCII
+  db <font color="#bb0000">'Oh yeah'</font><font color="#333399">,</font><font color="#339933">0</font>
+else if STRINGS eq UNICODE
+  du <font color="#bb0000">'Oh yeah'</font><font color="#333399">,</font><font color="#339933">0</font>
+else
+  display <font color="#bb0000">'unknown string type'</font>
+end if
+</pre></blockquote>
+
+after preprocessing it will be
+
+<blockquote class="code"><pre>if UNICODE eq ASCII
+  db <font color="#bb0000">'Oh yeah'</font><font color="#333399">,</font><font color="#339933">0</font>
+else if UNICODE eq UNICODE
+  du <font color="#bb0000">'Oh yeah'</font><font color="#333399">,</font><font color="#339933">0</font>
+else
+  display <font color="#bb0000">'unknown string type'</font>
+end if
+</pre></blockquote>
+
+now first condition (<code>UNICODE eq ASCII</code>) will be false, second one (<code>UNICODE eq
+UNICODE</code>) will be true and so <code>du 'Oh yeah',0</code> will get assembled.<br><br>
+
+Better usage of this is checking macro arguments, like
+<blockquote class="code"><pre>macro item type<font color="#333399">,</font>value
+<font color="#333399">{</font>
+  if type eq BYTE
+    db value
+  else if type eq WORD
+    dw value
+  else if type eq DWORD
+    dd value
+  else if type eq STRING
+    db value<font color="#333399">,</font><font color="#339933">0</font>
+  end if
+<font color="#333399">}</font>
+item BYTE<font color="#333399">,</font><font color="#339933">1</font>
+item STRING<font color="#333399">,<font color="#bb0000">'aaaaaa'</font></font>
+</pre></blockquote>
+
+to
+<blockquote class="code"><pre>if BYTE eq BYTE
+  db <font color="#339933">1</font>
+else if BYTE eq WORD
+  dw <font color="#339933">1</font>
+else if BYTE eq DWORD
+  dd <font color="#339933">1</font>
+else if BYTE eq STRING
+  db <font color="#339933">1</font><font color="#333399">,</font><font color="#339933">0</font>
+end if
+if STRING eq BYTE
+  db <font color="#bb0000">'aaaaaa'</font>
+else if STRING eq WORD
+  dw <font color="#bb0000">'aaaaaa'</font>
+else if STRING eq DWORD
+  dd <font color="#bb0000">'aaaaaa'</font>
+else if STRING eq STRING
+  db <font color="#bb0000">'aaaaaa'</font><font color="#333399">,</font><font color="#339933">0</font>
+end if
+</pre></blockquote>
+so only these two commands will get assembled:
+<blockquote class="code"><pre>db <font color="#339933">1</font>
+db <font color="#bb0000">'aaaaaa'</font><font color="#333399">,</font><font color="#339933">0</font>
+</pre></blockquote>
+
+<br>
+<code>eq</code> (like all other preprocessor operators) can also work with blank
+arguments. That means, for example, that <code>if eq</code> is true, and
+<code>if 5 eq </code> is
+false etc.
+
+Example macro:
+<blockquote class="code"><pre>macro mov dest<font color="#333399">,</font>src<font color="#333399">,</font>src2
+<font color="#333399">{</font>
+  if src2 eq
+    mov dest<font color="#333399">,</font>src
+  else
+    mov dest<font color="#333399">,</font>src
+    mov src<font color="#333399">,</font>src2
+  end if
+<font color="#333399">}</font>
+</pre></blockquote>
+
+<br><br>
+<a name="eqtype"></a>
+<b>7.2. Operator <code>eqtype</code></b><br>
+Other operator is <code>eqtype</code>. It compares whether symbols are of same type.
+Types are:<br>
+- individual quoted strings (those not being a part of numerical expression)<br>
+- floating point numbers<br>
+- any numerical expression (note that any unknown word will be treated as
+label, so it also will be seen as such expression)<br>
+- addresses - the numerical expressions in square brackets (with size
+operators and segment prefixes)<br>
+- instruction mnemonics<br>
+- registers<br>
+- size operators<br>
+- near/far operators,<br>
+- use16/use32/use64 operators<br>
+- any special character (<code>,</code> , <code>/</code>, etc..) is separate type<br>
+- blank space
+<br><br>
+Example of macro which allows SHL instruction with memory variable as count,
+like <code>shl ax,[myvar]</code>
+<blockquote class="code"><pre>macro shl dest<font color="#333399">,</font>count
+<font color="#333399">{</font>
+  if count eqtype <font color="#333399">[</font><font color="#339933">0</font><font color="#333399">]</font>	<font color="#777777">;if count is memory variable</font>
+    push cx
+    mov cl<font color="#333399">,</font>count
+    shl dest<font color="#333399">,</font>cl
+    pop cx
+  else			<font color="#777777">;if count is of another type</font>
+    shl dest<font color="#333399">,</font>count	<font color="#777777">;just use original shl</font>
+  end if
+<font color="#333399">}</font>
+shl ax<font color="#333399">,</font><font color="#339933">5</font>
+byte_variable db <font color="#339933">5</font>
+shl ax<font color="#333399">,[</font>byte_variable<font color="#333399">]</font>
+</pre></blockquote>
+
+to
+<blockquote class="code"><pre>if <font color="#339933">5</font> eqtype <font color="#333399">[</font><font color="#339933">0</font><font color="#333399">]</font>
+  push cx
+  mov cl<font color="#333399">,</font><font color="#339933">5</font>
+  shl ax<font color="#333399">,</font>cl
+  pop cx
+else
+  shl ax<font color="#333399">,</font><font color="#339933">5</font>
+end if
+byte_variable db <font color="#339933">5</font>
+if <font color="#333399">[</font>byte_variable<font color="#333399">]</font> eqtype <font color="#333399">[</font><font color="#339933">0</font><font color="#333399">]</font>
+  push cx
+  mov cl<font color="#333399">,[</font>byte_variable<font color="#333399">]</font>
+  shl ax<font color="#333399">,</font>cl
+  pop cx
+else
+  shl ax<font color="#333399">,[</font>byte_variable<font color="#333399">]</font>
+end if
+</pre></blockquote>
+
+and so, due to conditions, it will be assembled to
+<blockquote class="code"><pre>shl ax<font color="#333399">,</font><font color="#339933">5</font>
+byte_variable db <font color="#339933">5</font>
+push cx
+mov cl<font color="#333399">,[</font>byte variable<font color="#333399">]</font>
+shl ax<font color="#333399">,</font>cl
+pop cx
+</pre></blockquote>
+Note that <code>shl ax,byte [variable]</code> wouldn't work with this macro, because
+condition <code>byte [variable] eqtype [0]</code> isn't true, read further.
+
+<br><br>
+<code>eqtype</code> operands doesn't work only with two operands. It just compares
+whether types of operands on left side and same to type of operands on right
+side of <code>eqtype</code>. For example <code>if eax 4 eqtype ebx name</code>
+is true (<code>name</code> is label and thus it is number too).<br><br>
+
+Example of extending <code>mov</code> intruction so it allows moving between memory
+variables:
+
+<blockquote class="code"><pre>macro mov dest<font color="#333399">,</font>src
+<font color="#333399">{</font>
+  if dest src eqtype <font color="#333399">[</font><font color="#339933">0</font><font color="#333399">]</font> <font color="#333399">[</font><font color="#339933">0</font><font color="#333399">]</font>
+    push src
+    pop dest
+  else
+    mov dest<font color="#333399">,</font>src
+  end if
+<font color="#333399">}</font>
+mov <font color="#333399">[</font>var1<font color="#333399">],</font><font color="#339933">5</font>
+mov <font color="#333399">[</font>var1<font color="#333399">],[</font>var2<font color="#333399">]</font>
+</pre></blockquote>
+
+will be preprocessed to
+<blockquote class="code"><pre>if <font color="#333399">[</font>var1<font color="#333399">]</font> <font color="#339933">5</font> eqtype <font color="#333399">[</font><font color="#339933">0</font><font color="#333399">]</font> <font color="#333399">[</font><font color="#339933">0</font><font color="#333399">]</font>  <font color="#777777">;false</font>
+  push <font color="#339933">5</font>
+  pop <font color="#333399">[</font>var1<font color="#333399">]</font>
+else
+  mov <font color="#333399">[</font>var1<font color="#333399">],</font><font color="#339933">5</font>
+end if
+if <font color="#333399">[</font>var1<font color="#333399">]</font> <font color="#333399">[</font>var2<font color="#333399">]</font> eqtype <font color="#333399">[</font><font color="#339933">0</font><font color="#333399">]</font> <font color="#333399">[</font><font color="#339933">0</font><font color="#333399">]</font>  <font color="#777777">;true</font>
+  push <font color="#333399">[</font>var2<font color="#333399">]</font>
+  pop <font color="#333399">[</font>var1<font color="#333399">]</font>
+else
+  mov <font color="#333399">[</font>var1<font color="#333399">],[</font>var2<font color="#333399">]</font>
+end if
+</pre></blockquote>
+
+and assembled to
+<blockquote class="code"><pre>mov <font color="#333399">[</font>var1<font color="#333399">],</font><font color="#339933">5</font>
+push <font color="#333399">[</font>var2<font color="#333399">]</font>
+pop <font color="#333399">[</font>var1<font color="#333399">]</font>
+</pre></blockquote>
+Anyway, better (more readable) way to write such macro is to use <code>&amp;</code>
+operator (not described in this document, see FASM documentation), like:
+
+<blockquote class="code"><pre>macro mov dest<font color="#333399">,</font>src
+<font color="#333399">{</font>
+  if <font color="#333399">(</font>dest eqtype <font color="#333399">[</font><font color="#339933">0</font><font color="#333399">])</font> &amp; <font color="#333399">(</font>src eqtype <font color="#333399">[</font><font color="#339933">0</font><font color="#333399">])</font>
+    push src
+    pop dest
+  else
+    mov dest<font color="#333399">,</font>src
+  end if
+<font color="#333399">}</font>
+</pre></blockquote>
+above example using <code>eqtype</code> with four arguments was meant only to
+demonstrate possibilities, <code>&amp;</code> should be used if possible.<br><br>
+
+Note that currently you can use incomplete expressions as argument of
+<code>eqtype</code>, it is sufficent if parser recognizes it's type, but this is
+undocumented behavior so i won't describe it anymore.<br><br><br>
+
+<a name="in"></a>
+<b>7.3. Operator "in"</b><br>
+FASM also includes another operator. It can be used if you use more <code>eq</code>s:
+<blockquote class="code"><pre>macro mov a<font color="#333399">,</font>b
+<font color="#333399">{</font>
+  if <font color="#333399">(</font>a eq cs<font color="#333399">)</font> | <font color="#333399">(</font>a eq ds<font color="#333399">)</font> | <font color="#333399">(</font>a eq es<font color="#333399">)</font> | <font color="#333399">(</font>a eq fs<font color="#333399">)</font> |<font color="#333399">\</font>
+     <font color="#333399">(</font>a eq gs<font color="#333399">)</font> | <font color="#333399">(</font>a eq ss<font color="#333399">)</font>
+    push b
+    pop a
+  else
+    mov a<font color="#333399">,</font>b
+  end if
+<font color="#333399">}</font>
+</pre></blockquote>
+
+Instead of many <code>|</code>ed <code>eq</code>s, you can use <code>in</code>
+operator. It compares symbol on the left side with more symbols in list on the
+right side. Symbol list must be enclosed in brackets ("&lt;" and "&gt;"),
+symbols inside list should be separated with comma (<code>,</code>).
+
+<blockquote class="code"><pre>macro mov a<font color="#333399">,</font>b
+<font color="#333399">{</font>
+  if a in <font color="#333399">&lt;</font>cs<font color="#333399">,</font>ds<font color="#333399">,</font>es<font color="#333399">,</font>fs<font color="#333399">,</font>gs<font color="#333399">,</font>ss<font color="#333399">&gt;</font>
+    push b
+    pop a
+  else
+    mov a<font color="#333399">,</font>b
+  end if
+<font color="#333399">}</font>
+</pre></blockquote>
+
+<br>
+<code>in</code> also works with more symbols on both sides (like <code>eq</code>):
+<blockquote class="code"><pre>if dword <font color="#333399">[</font>eax<font color="#333399">]</font> in <font color="#333399">&lt;[</font>eax<font color="#333399">],</font> dword <font color="#333399">[</font>eax<font color="#333399">],</font> ptr eax<font color="#333399">,</font> dword ptr eax<font color="#333399">&gt;</font>
+</pre></blockquote>
+
+<br><br>
+<a name="struc"></a>
+<b>8. Structures</b><br>
+Structures in FASM aren't really structures, they are "named macros", which is
+thing that can be easily used to define structure (you'll see). You declare
+them with <code>struc</code> directive:
+
+<blockquote class="code"><pre>struc <font color="#333399">&lt;</font>name<font color="#333399">&gt;</font> <font color="#333399">&lt;</font>arguments<font color="#333399">&gt;</font> <font color="#333399">{</font> <font color="#333399">&lt;</font>body<font color="#333399">&gt;</font> <font color="#333399">}</font>
+</pre></blockquote>
+
+<br>
+Structure is almost exactly the same as macro. Difference is that when you use
+structure in code (create instance of structure), it must be preceded by some
+label (instance name).  For example
+
+<blockquote class="code"><pre>struc a <font color="#333399">{</font>db <font color="#339933">5</font><font color="#333399">}</font>
+a
+</pre></blockquote>
+
+doesn't work. Structure is only recognized when preceded by name, like:
+<blockquote class="code"><pre>struc a <font color="#333399">{</font>db <font color="#339933">5</font><font color="#333399">}</font>
+name a
+</pre></blockquote>
+
+will, like macro, get preprocessed to
+<blockquote class="code"><pre>db <font color="#339933">5</font>
+</pre></blockquote>
+
+<br>
+Reason of instance name (the one before structure) is, that it will be
+automatically declared at the beginning of structure and also appended before
+every symbol inside structure body which is starting with dot
+(<code>.</code>). For example:
+
+<blockquote class="code"><pre>struc a <font color="#333399">{</font>.local<font color="#333399">:}</font>
+name1 a
+name2 a
+</pre></blockquote>
+
+will be
+<blockquote class="code"><pre>name1<font color="#333399">:</font>
+name1.local<font color="#333399">:</font>
+name2<font color="#333399">:</font>
+name2.local<font color="#333399">:</font>
+</pre></blockquote>
+
+<br>
+This way you can define something like structures you know from other
+languages. Example:
+
+<blockquote class="code"><pre>struc rect left<font color="#333399">,</font>right<font color="#333399">,</font>top<font color="#333399">,</font>bottom  <font color="#777777">;has arguments, like macros</font>
+<font color="#333399">{</font>
+  .left dd left
+  .right dd right
+  .top dd top
+  .bottom dd bottom
+<font color="#333399">}</font>
+r1 rect <font color="#339933">0</font><font color="#333399">,</font><font color="#339933">20</font><font color="#333399">,</font><font color="#339933">10</font><font color="#333399">,</font><font color="#339933">30</font>
+r2 rect <font color="#333399">?,?,?,?</font>
+</pre></blockquote>
+
+to
+<blockquote class="code"><pre>r1<font color="#333399">:</font>
+r1.left dd <font color="#339933">0</font>
+r1.right dd <font color="#339933">20</font>
+r1.top dd <font color="#339933">10</font>
+r1.bottom dd <font color="#339933">30</font>
+r2<font color="#333399">:</font>
+r2.left dd <font color="#333399">?</font>
+r2.right dd <font color="#333399">?</font>
+r2.top dd <font color="#333399">?</font>
+r2.bottom dd <font color="#333399">?</font>
+</pre></blockquote>
+
+<br>
+You can also use nice trick with which you don't have to specify arguments
+(and 0 will be used instead):
+<blockquote class="code"><pre>struc ymmud arg
+<font color="#333399">{</font>
+  .member dd arg<font color="#333399">+</font><font color="#339933">0</font>
+<font color="#333399">}</font>
+y1 ymmud <font color="#339933">0xACDC</font>
+y2 ymmud
+</pre></blockquote>
+
+to
+<blockquote class="code"><pre>y1<font color="#333399">:</font>
+y1.member dd <font color="#339933">0xACDC</font><font color="#333399">+</font><font color="#339933">0</font>
+y2<font color="#333399">:</font>
+y2.member dd <font color="#333399">+</font><font color="#339933">0</font>
+</pre></blockquote>
+
+as described in 4.2, if argument is not specified it's value is blank inside
+macro/structure body. We also used that <code>+</code> is both binary (with two
+operands) and unary (with one operand) operator.
+
+<br><br>
+If you want to define the instance name label yourself, then you can use <code>.</code>
+symbol somewhere inside structure. Instance name then won't be defined
+automatically, and every occurence of <code>.</code> will be replaced by structure
+instance name.
+<blockquote class="code"><pre>struc rw howmuch<font color="#333399">*</font>
+<font color="#333399">{</font> . rw howmuch
+  sizeof<font color="#333399">#</font>. <font color="#333399">=</font> <font color="#339933">$</font> <font color="#333399">-</font> .
+<font color="#333399">}</font>
+mydata rw <font color="#339933">5</font> <font color="#777777">;defines also constant "sizeof.mydata" with value 10</font>
+rw <font color="#339933">5</font> <font color="#777777">;still works, this is not instance of structure, original rw is used</font>
+</pre></blockquote>
+symbols starting with dot will have instance name prepended whether you use "."
+inside structure or not. 
+
+<br><br>
+Structures can be redefined just like macros (they ARE just like macros), so structure definitions
+can be nested in same manner. This can be used to extend (inherit) structures:
+<blockquote class="code"><pre>struc a a1<font color="#333399">,</font>a2
+<font color="#333399">{</font> .a1 dd a1
+  .a2 dd a2
+<font color="#333399">}</font>
+struc a a1<font color="#333399">,</font>a2<font color="#333399">,</font>a3
+<font color="#333399">{</font> . a a1<font color="#333399">,</font>a2 <font color="#777777">;original "a", named same as current structure</font>
+  .a3 dd a3 <font color="#777777">;new member</font>
+<font color="#333399">}</font>
+</pre></blockquote>
+
+<br>
+Structures are undefined with <code>restruc</code> directive. It is same thing
+as <code>purge</code> for macros so i believe it doesn't need any further
+description.
+<blockquote class="code"><pre>struc a a1<font color="#333399">,</font>a2
+<font color="#333399">{</font> .a1 dd a1
+  .a2 dd a2
+<font color="#333399">}</font>
+struc a a1<font color="#333399">,</font>a2<font color="#333399">,</font>a3
+<font color="#333399">{</font> . a a1<font color="#333399">,</font>a2 <font color="#777777">;original "a", named same as current structure</font>
+  .a3 dd a3 <font color="#777777">;new member</font>
+<font color="#333399">}</font>
+kokot1 a <font color="#339933">1</font><font color="#333399">,</font><font color="#339933">2</font><font color="#333399">,</font><font color="#339933">3</font> <font color="#777777">;works</font>
+restruc a
+kokot2 a <font color="#339933">1</font><font color="#333399">,</font><font color="#339933">2</font><font color="#333399">,</font><font color="#339933">3</font> <font color="#777777">;doesn't work anymore</font>
+kokot3 a <font color="#339933">1</font><font color="#333399">,</font><font color="#339933">2</font> <font color="#777777">;but this still does</font>
+</pre></blockquote>
+
+<br>
+<b>NOTE</b>: There is defined standard macro called <code>struct</code> (not
+<code>struc</code>), which declares structure (in past it was extending
+structure declaration). Don't mistake <code>struct</code> with
+<code>struc</code>. I personally suggest you to use <code>struct</code> macros
+to define data structures, they solve many issues and allow much more. You can
+find them in FASM's include directory in <code>macros/struct.inc</code>.
+
+
+<br><br><br><br>
+<b>REST WILL BE ADDED ?SOON?</b>
+
+
+
+<br><br><br><br>
+<b>FINAL WORDS</b><br>
+Don't forget to read FASM documentation. Almost everything from this
+tutorial is there, maybe writen in way little harder for learning but better
+as reference.
+
+
+</br.></body></html>

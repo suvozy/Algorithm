@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/transitional.dtd">
+<html><head>
+
+
+<meta name="robots" content="noarchive">
+<link rel="shortcut icon" type="image/x-icon" href="http://4mhz.de/favicon.ico">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="description" content="Brainfuck Developer is an integrated development environment (IDE) for the Brainfuck language.">
+<meta name="keywords" content="Brainfuck,debugger,IDE,Brainfuck Developer,Brainfuck debugger,BFdev,microlyrix">
+<title>Brainfuck Developer - a Brainfuck IDE</title>
+</head><body bgcolor="#fff8dc">
+<div>
+
+<a href="http://4mhz.de/index.html">Home</a>
+
+<h1>Brainfuck Developer</h1>
+
+<h2>What is it?</h2>
+
+<img src="bfdev_files/bfdev_s.png" alt="BFdev running" align="right">
+
+<p>Brainfuck Developer is a Win32 tool (soon also for Linux, see the
+<a href="http://4mhz.de/index.html#linux">announcement</a>) for writing,
+debugging, and (in
+some degree) understanding Brainfuck programs. Its main feature is
+an integrated debugger with support for
+single-step trace, run-to-cursor, and interactive memory inspection. It is
+a development tool, not only a simple interpreter.</p>
+
+<p>With the "Watch Program Operation" feature, you can watch your BF
+code
+running to go get an impression what your program does. In addition,
+BFdev features "piping" input and output data to files. You can set an
+input file from which the input data is read, and an output file to
+which all output data is written (in binary).
+Given this ability, BFdev is just as powerful as console interpreters.</p>
+
+<p>Since version 1.4.0, BFdev supports the <a href="http://www.parkscomputing.com/code/pbrain/">pbrain</a> (procedural
+brainfuck) language extension. This extension adds three new commands to
+the BF language (as explained <a href="#pbrain">below</a>). A very useful feature
+integrated in BFdev since version 1.4.6 is the <b>Text Generator</b>, a tool
+that generates BF code for printing text.</p>
+
+<p>There is nothing to say about how BFdev works. Everyone who has
+already worked with an IDE like Visual Studio, Delphi, or Turbo
+Pascal knows the basic functioning of BFdev. (To those who have
+not: do you <em>really</em> wanna code Brainfuck? ;) All of the program's
+functions are self-explanatory.</p>
+
+<p>The screenshot to the right shows BFdev in debug mode, running "factor.b"
+by Brian Raiter.</p>
+
+<hr>
+
+<h2>Technical details</h2>
+
+<p>For Brainfuck programs, the interpreter provides the following
+"virtual machine":</p>
+
+<ul>
+
+<li>Memory size: 32768 cells à 8 bit or 16 bit (selectable)</li>
+
+<li>If the pointer leaves the legal memory bounds (underflow or
+overflow), wrap-around occurs.</li>
+
+<li>Procedural BF (pbrain) is supported. Stack size is 65536.</li>
+
+<li>BF interpreters often have a "bracket nesting limit". BFdev does not. It
+supports an infinite number of nested brackets (only limited by your
+available RAM).</li>
+
+<li>The interpreter ignores all characters in the code that are not
+Brainfuck commands.</li>
+
+<li>Complete lines can be commented out by using
+one of the following comment markers. They MUST be the first
+non-whitespace character of the line. Comment markers may be disabled.
+Comment markers are: ; / * ' % #</li>
+
+<li><em>BFdev utilizes buffered output for printing.</em> This
+increases performance since the slow API calls don't have to be made each time a
+single character is printed. Buffering may cause the output appear choppy,
+especially on slow computers. <em>If a BF program is very slow, it may appear
+hanging</em>, but that's generally not the case. The characters it prints are
+just not immediately shown on screen! You can change the buffer size or disable
+it by choosing "Set Output Buffer Size" in the "Extras" menu. Additionally, you
+could press F8 to pause the program and to flush the output buffer.</li>
+
+<li>Programs can indicate a new line by printing the characters LF (#10),
+CRLF (#13#10), CR (#13), or LFCR (#10#13).</li>
+
+<li>Under Windows XP, BFdev runs optimal. Under Windows 95/98, BFdev cannot
+produce output greater than 64 KB. This is due to limitations of the operating
+system.</li>
+
+</ul>
+
+<hr>
+
+<h2>Download</h2>
+
+<p>Brainfuck Developer is freeware. That means, you may distribute it
+freely, but only in "complete and unchanged state" and NOT ON YOUR OWN WEBSITE.
+BFdev is "complete" with
+the three files bfdev.exe, printer.b, and readme.txt, bundled in the original
+bfdev.zip file. FREEWARE DOES NOT MEAN PUBLIC DOMAIN OR OPEN SOURCE. I hold
+all rights.</p>
+
+<p>To webmasters: DO NOT link to the zip-files directly and
+DO NOT upload the files to your webserver! Instead, link to <u>4mhz.de</u> or
+<u>4mhz.de/bfdev.html</u>. Thanks.</p>
+
+<p>Feedback is always appreciated, especially if you
+encounter any bugs or have any ideas for the next version.</p>
+
+<p style="border: 2px solid rgb(255, 0, 0); padding: 2px; background-color: rgb(255, 255, 0);">
+<strong><u>Important for programmers:</u></strong> If you write a program like
+<code>,&gt;,</code> and enter a text like "a", please don't be confused if BFdev
+only asks for just one input instead of two! This is NO BUG, it's a feature.
+In text input mode, BFdev may append a new-line code to your input, so that the
+second <code>,</code> reads this new-line code. You can change this behaviour
+in the "Interpreter" menu. (Well... given this explanation, I hope no one
+will complain anymore...)</p>
+
+<ul>
+<li><a href="http://4mhz.de/download.php?file=bfdev-1-4-7.zip">bfdev-1-4-7.zip</a>
+(Win32 binary, 419 KB, MD5: 93ed1dfc4918c7ced7457e4a5297d972)</li>
+<li><a href="http://4mhz.de/download.php?file=bfdev-1-4-7.rar">bfdev-1-4-7.rar</a>
+(Win32 binary, 331 KB, MD5: b5e67e66b74c98e60bfa3befdf863c68)</li>
+</ul>
+
+<hr>
+
+<h2>Some hints for using BFdev</h2>
+
+<ul>
+<li>If you want to print large amounts of text, use the Text Generator tool
+integrated in BFdev (in the "Extras" menu).</li>
+<li>Some programs run faster in 8-bit mode; others gain better precision in
+16-bit mode. You have to check which mode performs better.</li>
+<li>Use Ctrl+F5 and Ctrl+F6 or Ctrl+Tab and Ctrl+Shift+Tab to switch between
+open documents.</li>
+<li>Some authors write their BF programs in such a way that they expect
+a CRLF line break rather than the standard LF when requesting input from the user.
+By default, BFdev sends an LF. If the BF program you're running doesn't behave
+as expected, try switching BFdev to "Report CRLF for line breaks when entering
+text" in the "Extras" menu.</li>
+<li>Infrequently, BF programs loaded from the internet don't work correctly.
+This is because some authors use comment markers for design purposes
+so that some code lines are not executed by BFdev. In this case, you can
+disable comment markers by unchecking the "Enable comment markers" entry in
+the "Extras" menu.</li>
+<li>If you input text lines with standard configuration, a line break is appended
+to every line of text you type. You can enter single characters by switching
+line breaks off in the "Extras" menu ("Report no Line Break")</li>
+</ul>
+
+<hr>
+
+<a name="pbrain"></a>
+
+<h2>The pbrain language extension</h2>
+
+<p><a href="http://www.parkscomputing.com/code/pbrain/">pbrain</a> means
+"procedural brainfuck" and enables you to define and call procedures
+in your BF programs. For this purpose, pbrain adds three new commands to the BF
+language: "(", ")", and ":".</p>
+
+<ul>
+<li>"(" starts definition of a procedure. This newly created procedure will be
+referenced with the value that's in the current memory cell.</li>
+<li>")" ends the definition.</li>
+<li>":" calls that procedure that is referenced by the current memory cell.</li>
+</ul>
+
+<p>BFdev does not tolerate calling of undefined procedures. In this case, it
+will report an error. BFdev offers a stack of 65536 entries, that means you can nest
+procedures until a depth of 65536. There is <em>no</em> stack overflow checking.</p>
+
+<p>You can enable or disable pbrain support by checking or unchecking "Enable
+Procedural BF" in the "Interpreter" menu, by pressing Ctrl+P, or by clicking
+the pbrain button in the tool bar.</p>
+
+<hr>
+
+<p><a href="http://4mhz.de/bfdev_history.html">Version history</a></p>
+
+<hr>
+
+<h2>Brainfuck links</h2>
+
+<ul>
+<li><a href="http://www.muppetlabs.com/%7Ebreadbox/bf/">
+http://www.muppetlabs.com/~breadbox/bf/</a><br>
+This is a very informative Brainfuck page. Worth a visit.</li>
+<li><a href="http://www.hevanet.com/cristofd/brainfuck/">
+http://www.hevanet.com/cristofd/brainfuck/</a><br>
+The pages of a quite competent Brainfuck coder.</li>
+<li><a href="http://www.iwriteiam.nl/Ha_BF.html">
+http://www.iwriteiam.nl/Ha_BF.html</a><br>
+Frans Faase's Brainfuck page. Some interesting information.</li>
+<li><a href="http://esoteric.sange.fi/brainfuck/">
+http://esoteric.sange.fi/brainfuck/</a><br>
+A Brainfuck archive. Brainfuck programs, interpreters, compilers, and
+sources of them to try.</li>
+</ul>
+
+<hr>
+
+<em>last modified: 16 May 2008</em>
+</div>
+</body></html>

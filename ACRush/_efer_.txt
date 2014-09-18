@@ -1,0 +1,82 @@
+struct node {
+  int where, cost, from;
+  node(int _where, int _cost, int _from): where(_where), 
+cost(_cost), from(_from) {};
+};
+bool operator < (node a, node b) {
+  return a.cost > b.cost;
+}
+
+int minTime(vector  park) 
+{
+  // build a cost matrix cost[i][j] = cost of getting from car i to 
+parking spot j, by doing a BFS
+  // vertices 0, 1, ..., N - 1 will represent the cars, and 
+vertices N, N + 1, ..., N + M - 1 will represent 
+//the parking spots; N + M will be the super-sink
+  int D = 0, sink = N + M;
+  int car_match[105], park_match[105];
+  memset(car_match, -1, sizeof(car_match));
+  memset(park_match, -1, sizeof(park_match));
+
+  for (int source = 0; source < N; ++ source) {
+    bool visited[210];
+    memset(visited, false, sizeof(visited));
+    int from[210];
+    memset(from, -1, sizeof(from));
+    priority_queue pq;
+    pq.push(node(source, 0, -1));
+    while (!pq.empty()) {
+      int cst = pq.top().cost, where = pq.top().where,
+_from = pq.top().from;
+      pq.pop();
+      if (visited[where]) continue;
+      visited[where] = true;
+      from[where] = _from;
+      // if where is a car try all M parking spots
+      if (where < N) {
+        for (int i = 0; i < M; ++ i) {
+          // if the edge doesn't exist or this car 
+is already matched with this parking spot
+          if (cost[where][i] == infinity || 
+car_match[where] == i) continue;
+          int ncst = max(cst, cost[where][i]);
+          // the i-th parking spot is N + i
+          pq.push(node(N + i, ncst, where));
+        }
+      }
+      else {
+        // if this parking spot is unmatched we found 
+the augmenting path with minimum cost
+        if (park_match[where - N] == -1) {
+          from[sink] = where;
+          // if D needs to be increased, increase it
+          D = max(D, cst);
+          break;
+        }
+        // otherwise we follow the backward edge
+        int next = park_match[where - N];
+        int ncst = max(cst, cost[next][where]);
+        pq.push(node(next, ncst, where));
+      }
+    }
+
+    int where = from[sink];
+    // if no augmenting path is found we have no solution
+    if (where == -1)
+      return -1;
+    // follow the augmenting path
+    while (from[where] > -1) {
+      int prev = from[where];
+      // if where is a parking spot the edge (prev, where) 
+is a forward edge and the match must be updated
+      if (where >= N) {
+        car_match[prev] = where;
+        park_match[where - N] = prev;
+      }
+      where = prev;
+    }
+  }
+
+  return D;
+} 

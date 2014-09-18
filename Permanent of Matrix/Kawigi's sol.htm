@@ -1,0 +1,1610 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <link type="image/x-icon" rel="shortcut icon" href="http://forums.topcoder.com/i/favicon.ico">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+<title>TopCoder Forums</title>
+    
+
+<script language="JavaScript" type="text/javascript" src="Kawigi%27s%20sol_files/tcscript.js"></script><link type="image/x-icon" rel="shortcut icon" href="http://forums.topcoder.com/i/favicon.ico">
+
+
+        
+
+
+
+<link type="text/css" rel="stylesheet" href="Kawigi%27s%20sol_files/style.css">
+<link type="text/css" rel="stylesheet" href="Kawigi%27s%20sol_files/coders.css">
+<link type="text/css" rel="stylesheet" href="Kawigi%27s%20sol_files/roundTables.css">
+<link type="text/css" rel="stylesheet" href="Kawigi%27s%20sol_files/stats.css">
+<link type="text/css" rel="stylesheet" href="Kawigi%27s%20sol_files/tcStyles20080219.css">
+
+
+
+</head><body>
+
+
+
+
+
+
+
+<script type="text/javascript" src="Kawigi%27s%20sol_files/popup.js"></script>
+
+<div id="shortcutBar">
+    <div class="icon"><a href="http://www.topcoder.com/tc"><img src="Kawigi%27s%20sol_files/scHome.png" alt="" onmouseover="postPopUpText('globalPopupText','Home'); popUp(this,'globalPopup');" onmouseout="popHide()"></a></div>
+    <div class="icon"><a href="javascript:arena();"><img src="Kawigi%27s%20sol_files/scAlgo.png" alt="" onmouseover="postPopUpText('globalPopupText','Algorithm Competitions'); popUp(this,'globalPopup');" onmouseout="popHide()"></a></div>
+    <div class="icon"><a href="http://www.topcoder.com/tc?module=ActiveContests&amp;pt=23"><img src="Kawigi%27s%20sol_files/scConceptualization.png" alt="" onmouseover="postPopUpText('globalPopupText','Software Conceptualization Competitions'); popUp(this,'globalPopup');" onmouseout="popHide()"></a></div>
+    <div class="icon"><a href="http://www.topcoder.com/tc?module=ActiveContests&amp;pt=6"><img src="Kawigi%27s%20sol_files/scSpecification.png" alt="" onmouseover="postPopUpText('globalPopupText','Software Specification Competitions'); popUp(this,'globalPopup');" onmouseout="popHide()"></a></div>
+    <div class="icon"><a href="http://www.topcoder.com/tc?module=ActiveContests&amp;pt=7"><img src="Kawigi%27s%20sol_files/scArchitecture.png" alt="" onmouseover="postPopUpText('globalPopupText','Software Architecture Competitions'); popUp(this,'globalPopup');" onmouseout="popHide()"></a></div>
+    <div class="icon"><a href="http://www.topcoder.com/tc?module=ViewActiveContests&amp;ph=112"><img src="Kawigi%27s%20sol_files/scDesign.png" alt="" onmouseover="postPopUpText('globalPopupText','Component Design Competitions'); popUp(this,'globalPopup');" onmouseout="popHide()"></a></div>
+    <div class="icon"><a href="http://www.topcoder.com/tc?module=ViewActiveContests&amp;ph=113"><img src="Kawigi%27s%20sol_files/scDevelopment.png" alt="" onmouseover="postPopUpText('globalPopupText','Component Development Competitions'); popUp(this,'globalPopup');" onmouseout="popHide()"></a></div>
+
+    <div class="icon"><a href="http://www.topcoder.com/tc?module=ViewAssemblyActiveContests"><img src="Kawigi%27s%20sol_files/scAssembly.png" alt="" onmouseover="postPopUpText('globalPopupText','Software Assembly Competitions'); popUp(this,'globalPopup');" onmouseout="popHide()"></a></div>
+    <div class="icon"><a href="http://www.topcoder.com/tc?module=ActiveContests&amp;pt=13"><img src="Kawigi%27s%20sol_files/scTesting.png" alt="" onmouseover="postPopUpText('globalPopupText','Testing Competitions'); popUp(this,'globalPopup');" onmouseout="popHide()"></a></div>
+    <div class="icon"><a href="javascript:arena();"><img src="Kawigi%27s%20sol_files/scTCHS.png" alt="" onmouseover="postPopUpText('globalPopupText','High School Competitions'); popUp(this,'globalPopup');" onmouseout="popHide()"></a></div>
+    <div class="icon"><a href="http://www.topcoder.com/longcontest/?module=ViewActiveContests"><img src="Kawigi%27s%20sol_files/scMarathon.png" alt="" onmouseover="postPopUpText('globalPopupText','Marathon Matches'); popUp(this,'globalPopup');" onmouseout="popHide()"></a></div>
+    <div class="icon"><a href="http://studio.topcoder.com/?module=ViewActiveContests"><img src="Kawigi%27s%20sol_files/scStudio.png" alt="" onmouseover="postPopUpText('globalPopupText','TopCoder Studio Competitions'); popUp(this,'globalPopup');" onmouseout="popHide()"></a></div>
+</div>
+
+<div id="globalPopup" class="popUp"><div id="globalPopupText"></div></div>
+
+
+<div style="position: absolute; right: 0px; top: 31px;"><a href="http://www.topcoder.com/tc?module=MyHome"><img src="Kawigi%27s%20sol_files/myTopCoder.png" alt="My TopCoder" style="display: block;"></a></div>
+
+
+<div style="margin: 0px 290px 0px 280px;" align="center">
+   <div id="outerLogo">
+      <div id="innerLogo">
+      <a href="http://www.topcoder.com/"><img src="Kawigi%27s%20sol_files/topcoder.gif" alt="TopCoder" style="display: block;"></a>
+      </div>
+   </div>
+</div>
+
+<div class="memberCountBox">
+Member Count: 212,636 - 
+
+
+July 8, 2009
+
+&nbsp;<a class="gMetal" href="javascript:tcTime()">[Get Time]</a>
+</div>
+
+<div class="topBar">
+    <div style="margin: 5px 0px 0px; float: right;">
+        
+            Hello,&nbsp;<a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=22764304" class="coderTextGreen">bitsits</a>
+            
+                | <a class="gMetal" href="http://forums.topcoder.com/?module=Logout">Logout</a>
+            
+        
+    </div>
+</div>
+
+<script type="text/javascript">
+<!--
+function toggle(obj) {
+    var el = document.getElementById(obj);
+    if ( el.style.display != "none" ) {
+        el.style.display = 'none';
+    }
+    else {
+        el.style.display = '';
+    }
+}
+
+var req;
+function rate(messageID, voteValue) {
+   var url = "?module=Rating";
+   if (window.XMLHttpRequest) {
+       req = new XMLHttpRequest();
+   } else if (window.ActiveXObject) {
+       req = new ActiveXObject("Microsoft.XMLHTTP");
+   }
+   req.open("POST", url, true);
+   req.onreadystatechange = callbackRating;
+   req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+   req.send("messageID="+messageID+"&voteValue="+voteValue);
+}
+
+function poll(pollID, hasMultipleOptions, numOptions) {
+	var url = "?module=PollVote";
+	if (window.XMLHttpRequest) {
+		req = new XMLHttpRequest();
+	} else if (window.ActiveXObject) {
+		req = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+    
+	var reqStr = "pollID="+pollID+"&";
+	var answered = false;
+	if (hasMultipleOptions) {
+		for (var i=0; i<numOptions; i++) {
+			var el = document.getElementById("q"+pollID+","+i);
+ 			if (el.checked) {
+ 				reqStr += el.name + "=" + el.value + "&";
+ 				answered = true;
+  			}
+		}
+	} else {
+		var els = document.getElementsByName("q"+pollID);
+		for (var i=0; i<els.length; i++) {
+			if (els[i].checked) {
+				reqStr += els[i].name + "=" + els[i].value + "&";
+				answered = true;
+			}
+		}
+	}
+
+	if (answered) {
+		req.open("POST", url, true);
+		req.onreadystatechange = callbackPollVote;
+		req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		req.send(reqStr);
+	} else {
+		var pollVotingErrorID = 'pollVotingError'+pollID;
+		var pollVotingErrorEl = document.getElementById(pollVotingErrorID);
+		if (hasMultipleOptions) {
+			pollVotingErrorEl.innerHTML = 'Please select one or more answers.';
+		} else {
+			pollVotingErrorEl.innerHTML = 'Please select an answer.';
+		}
+	}
+}
+
+function callbackRating() {
+    if (req.readyState == 4) {
+        if (req.status == 200) {
+            var messageID = req.responseXML.getElementsByTagName("messageID")[0].firstChild.nodeValue;
+            var posRatings = req.responseXML.getElementsByTagName("posRatings")[0].firstChild.nodeValue;
+            var negRatings = req.responseXML.getElementsByTagName("negRatings")[0].firstChild.nodeValue;
+            var userRating = req.responseXML.getElementsByTagName("userRating")[0].firstChild.nodeValue;
+            displayVotes(messageID, posRatings, negRatings, userRating);
+        }
+    }
+}
+
+function callbackPollVote() {
+	if (req.readyState == 4) {
+		if (req.status == 200) {
+			var pollID = req.responseXML.getElementsByTagName("pollID")[0].firstChild.nodeValue;
+			var numVoters = req.responseXML.getElementsByTagName("numVoters")[0].firstChild.nodeValue;
+			var voteCounts = req.responseXML.getElementsByTagName("voteCount");
+			for (var i=0; i<voteCounts.length; i++) {
+				var voteCount = voteCounts[i].firstChild.nodeValue;                       
+				var voteCountEl = document.getElementById("voteCount"+pollID+"_"+i);
+				voteCountEl.innerHTML = voteCount;
+				var votePctEl = document.getElementById("votePct"+pollID+"_"+i);
+				var votePct = 100.0 * voteCount / numVoters;
+				votePctEl.innerHTML = votePct.toFixed(2) + "%";
+				var votePctBarEl = document.getElementById("votePctBar"+pollID+"_"+i);
+				var votePctBarStr = "width:"+parseInt(votePct)+"px;";
+				if (parseInt(votePct) > 0) {
+					votePctBarEl.innerHTML = '<div class="resultsBar" style="' + votePctBarStr + '"><img src="/i/clear.gif" alt="bar" width="1" height="13" border="0" /></div>';
+				} else {
+					votePctBarEl.innerHTML = '';
+				}
+	            
+				displayPoll(pollID, 'results');
+				var pollResultsFooterID = 'pollResultsFooter'+pollID;
+				var pollResultsFooterEl = document.getElementById(pollResultsFooterID);
+				pollResultsFooterEl.style.display = 'none';
+			}
+		}
+	}
+}
+
+function displayVotes(messageID, posVotes, negVotes, userRating) {
+    var mspan = document.getElementById("ratings"+messageID);
+    mspan.innerHTML = "(+"+posVotes+"/-"+negVotes+")";
+    var title = "Your vote: ";
+    if (userRating == 2) {
+    	title += "+1";
+    } else if (userRating == 1) {
+    	title += "-1";
+    } else {
+    	title += "0";
+    }
+    mspan.title = title;
+}
+
+function displayPoll(pollID, status) {
+	var pollVotingID = 'pollVoting'+pollID;
+	var pollResultsID = 'pollResults'+pollID;
+	var pollResultsFooterID = 'pollResultsFooter'+pollID;
+	var pollVotingEl = document.getElementById(pollVotingID);
+	var pollResultsEl = document.getElementById(pollResultsID);
+	var pollResultsFooterEl = document.getElementById(pollResultsFooterID);
+	if (status == 'vote') {
+		pollVotingEl.style.display = '';
+		pollResultsEl.style.display = 'none';
+	} else if (status == 'results') {
+		pollVotingEl.style.display = 'none';
+		pollResultsFooterEl.style.display = '';
+		pollResultsEl.style.display = '';
+	}
+}
+
+//-->
+</script>
+
+<style type="text/css">
+<!--
+.pointer {
+    cursor: pointer;
+}
+
+.rtTextCellHlt
+{
+    background-color: #FFFF99;
+    padding: 10px 15px 10px 15px;
+    color: #333;
+    font-size: 12px;
+    vertical-align: top;
+}
+
+div.resultsBar{
+float:left;
+margin: 4px 0px 4px 0px;
+padding:0px;
+background: #6363E3 url(/i/survey/bar_bg.gif) center left repeat-x;
+}
+-->
+</style>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+   <tbody><tr valign="top">
+<!-- Left Column Begins-->
+      <td width="180">
+          
+
+
+
+
+
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+<script language="JavaScript" type="text/javascript" src="Kawigi%27s%20sol_files/arena.js"></script>
+
+
+<script language="JavaScript" type="text/javascript">
+<!--
+function toggleMenu(menuTitle,menuID){
+   var menu = document.getElementById(menuID);
+   if(menu.style.display == 'block') menu.className = 'CLOSED';
+   else if(menu.className == 'OPEN' && menu.style.display != 'none') menu.className = 'CLOSED';
+   else {
+      menu.className = 'OPEN';
+   }
+   if(menuTitle.blur)menuTitle.blur();
+   if(menuTitle.className == 'exp') menuTitle.className = 'exp_ed';
+   else menuTitle.className = 'exp';
+   return;
+}
+function flipMenu(myMenuName){
+   var menuName = document.getElementById(myMenuName);
+   menuName.className = 'exp_ed';
+}
+
+// -->
+</script>
+
+<div style="padding: 0px;"><img src="Kawigi%27s%20sol_files/leftnav_top.gif" alt=""></div>
+<div id="navbar">
+    
+<ul>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_competitions')">Competitions</a>
+<ul id="m_competitions">
+<li><a href="http://www.topcoder.com/tc">Home</a></li>
+<li><a href="http://www.topcoder.com/news/allactivecontests/">Active Contests</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_competitor_stats')">The Tops</a>
+<ul id="m_competitor_stats">
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_top_rated_competitors')">Top Ranked</a>
+<ul id="m_top_rated_competitors">
+<li><a href="http://www.topcoder.com/tc?module=AlgoRank">Algorithm</a></li>
+<li><a href="http://www.topcoder.com/tc?module=HSRank">High School</a></li>
+<li><a href="http://www.topcoder.com/longcontest/stats/?module=CoderRank">Marathon Match</a></li>
+<li><a href="http://www.topcoder.com/stat?c=top_conceptors">Conceptualization</a></li>
+<li><a href="http://www.topcoder.com/stat?c=top_specificators">Specification</a></li>
+<li><a href="http://www.topcoder.com/stat?c=top_architects">Architecture</a></li>
+<li><a href="http://www.topcoder.com/stat?c=top_designers">Design</a></li>
+<li><a href="http://www.topcoder.com/stat?c=top_developers">Development</a></li>
+<li><a href="http://www.topcoder.com/stat?c=top_assemblers">Assembly</a></li>
+<li><a href="http://www.topcoder.com/stat?c=top_testers">Test Suites</a></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_recordbook')">Record Book</a>
+<ul id="m_recordbook">
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=statistics&amp;d2=recordbook_home">Algorithm</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=compstats&amp;d2=comp_recordbook_home">Component</a></li>
+<li><a href="http://www.topcoder.com/longcontest/?module=Static&amp;d1=stats&amp;d2=recordbook_home">Marathon Match</a></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_com')">Coder of the Month</a>
+<ul id="m_com">
+<li><a href="http://www.topcoder.com/tc?module=COMHistory&amp;achtid=5">Algorithm</a></li>
+<li><a href="http://www.topcoder.com/tc?module=COMHistory&amp;achtid=6">Design</a></li>
+<li><a href="http://www.topcoder.com/tc?module=COMHistory&amp;achtid=7">Development</a></li>
+</ul></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_algo_competitions')">Algorithm</a>
+<ul id="m_algo_competitions">
+<li><a href="javascript:arena();">Launch Arena</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_algo_stats')">Statistics</a>
+<ul id="m_algo_stats">
+<li><a href="http://www.topcoder.com/tc?module=MatchList">Match Archive</a></li>
+<li><a href="http://www.topcoder.com/stat?c=round_overview">Match Overviews</a></li>
+<li><a href="http://www.topcoder.com/tc?module=SrmDivisionWins">Match Winners</a></li>
+<li><a href="http://www.topcoder.com/stat?c=last_match">Match Results</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Algorithm+Problem+Set+Analysis">Match Editorials</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ProblemArchive">Problem Archive</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ColorChange&amp;ratid=1">Recent Color Changes</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Algorithm+Data+Feeds">Data Feeds</a></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_algo_support')">Support / FAQs</a>
+<ul id="m_algo_support">
+<li><a href="http://www.topcoder.com/wiki/display/tc/How+To+Compete+in+Algorithm+Competitions">How to Compete</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Algorithm+Competition+FAQs">FAQs</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Algorithm+Competition+Rating+System">Rating System</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Write+Problems+for+TopCoder">Write Problems</a></li>
+</ul></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_conceptualization_competitions')">Software Conceptualization</a>
+<ul id="m_conceptualization_competitions">
+<li><a href="http://www.topcoder.com/wiki/display/tc/TopCoder+Conceptualization+Contests">Overview</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ActiveContests&amp;pt=23">Active Contests</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ContestStatus&amp;pt=23">Contest Status</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ViewReviewProjects&amp;pt=23">Review Opportunities</a></li>
+<li><a href="http://software.topcoder.com/review">Submit &amp; Review</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/TopCoder+UML+Tool">UML Tool</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_conceptualization_stats')">Statistics</a>
+<ul id="m_conceptualization_stats">
+<li><a href="http://www.topcoder.com/tc?module=CompList&amp;ph=134">Past Contests</a></li>
+</ul></li>
+<li><a href="http://www.topcoder.com/tc?module=ReviewBoard&amp;pt=23">Meet the Review Board</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_conceptualization_support')">Support / FAQs</a>
+<ul id="m_conceptualization_support">
+<li><a href="http://www.topcoder.com/wiki/display/tc/Software+Conceptualization+How-To">How to Compete</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Conceptualization+Documentation">Documentation</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Conceptualization+Submission+Instructions">Tutorial</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Conceptualization+Reliability+Bonus">Reliability Ratings</a></li>
+</ul></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_specification_competitions')">Software Specification</a>
+<ul id="m_specification_competitions">
+<li><a href="http://www.topcoder.com/wiki/display/tc/TopCoder+Specification+Contests">Overview</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ActiveContests&amp;pt=6">Active Contests</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ContestStatus&amp;pt=6">Contest Status</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ViewReviewProjects&amp;pt=6">Review Opportunities</a></li>
+<li><a href="http://software.topcoder.com/review">Submit &amp; Review</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/TopCoder+UML+Tool">UML Tool</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ReviewBoard&amp;pt=6">Meet the Review Board</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_specification_stats')">Statistics</a>
+<ul id="m_specification_stats">
+<li><a href="http://www.topcoder.com/tc?module=CompList&amp;ph=117">Past Contests</a></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_specification_support')">Support / FAQs</a>
+<ul id="m_specification_support">
+<li><a href="http://www.topcoder.com/wiki/display/tc/Software+Specification+How+To">How to Compete</a></li>
+</ul></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_architecture_competitions')">Software Architecture</a>
+<ul id="m_architecture_competitions">
+<li><a href="http://www.topcoder.com/wiki/display/tc/Architecture+Overview">Overview</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ActiveContests&amp;pt=7">Active Contests</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ContestStatus&amp;pt=7">Contest Status</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ViewReviewProjects&amp;pt=7">Review Opportunities</a></li>
+<li><a href="http://software.topcoder.com/review">Submit &amp; Review</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/TopCoder+UML+Tool">UML Tool</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ReviewBoard&amp;pt=7">Meet the Review Board</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_architecture_stats')">Statistics</a>
+<ul id="m_architecture_stats">
+<li><a href="http://www.topcoder.com/tc?module=CompList&amp;ph=118">Past Contests</a></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_architecture_support')">Support / FAQs</a>
+<ul id="m_architecture_support">
+<li><a href="http://www.topcoder.com/wiki/display/tc/How+to+Compete+in+Architecture+Competitions">How to Compete</a></li>
+</ul></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_des_competitions')">Software Design</a>
+<ul id="m_des_competitions">
+<li><a href="http://www.topcoder.com/tc?module=ViewActiveContests&amp;ph=112">Active Contests</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ContestStatus&amp;pt=1">Contest Status</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ViewReviewProjects&amp;pt=1">Review Opportunities</a></li>
+<li><a href="http://software.topcoder.com/review">Submit &amp; Review</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/TopCoder+UML+Tool">UML Tool</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_des_stats')">Statistics</a>
+<ul id="m_des_stats">
+<li><a href="http://www.topcoder.com/tc?module=CompList&amp;ph=112">Past Contests</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ColorChange&amp;ph=112">Recent Color Changes</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Component+Design+Data+Feeds">Data Feeds</a></li>
+</ul></li>
+<li><a href="http://www.topcoder.com/tc?module=ReviewBoard&amp;pt=1">Meet the Review Board</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_des_support')">Support / FAQs</a>
+<ul id="m_des_support">
+<li><a href="http://www.topcoder.com/wiki/display/tc/How+to+Compete+in+Component+Design+Competitions">How to Compete</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Component+Design+Documentation">Documentation</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Component+Design+Ratings">Ratings</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Component+Design+Reliability+Ratings">Reliability Ratings</a></li>
+</ul></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_dev_competitions')">Software Development</a>
+<ul id="m_dev_competitions">
+<li><a href="http://www.topcoder.com/tc?module=ViewActiveContests&amp;ph=113">Active Contests</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ContestStatus&amp;pt=2">Contest Status</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ViewReviewProjects&amp;pt=2">Review Opportunities</a></li>
+<li><a href="http://software.topcoder.com/review">Submit &amp; Review</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/TopCoder+UML+Tool">UML Tool</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_dev_stats')">Statistics</a>
+<ul id="m_dev_stats">
+<li><a href="http://www.topcoder.com/tc?module=CompList&amp;ph=113">Past Contests</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ColorChange&amp;ph=113">Recent Color Changes</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Component+Development+Data+Feeds">Data Feeds</a></li>
+</ul></li>
+<li><a href="http://www.topcoder.com/tc?module=ReviewBoard&amp;pt=2">Meet the Review Board</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_dev_support')">Support / FAQs</a>
+<ul id="m_dev_support">
+<li><a href="http://www.topcoder.com/wiki/display/tc/How+to+Compete+in+Component+Development+Competitions">How to Compete</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Component+Development+Documentation">Documentation</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Component+Development+Ratings">Ratings</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Component+Development+Reliability+Ratings">Reliability Ratings</a></li>
+</ul></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_assembly_competitions')">Software Assembly</a>
+<ul id="m_assembly_competitions">
+<li><a href="http://www.topcoder.com/wiki/display/tc/Assembly">Overview</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ViewAssemblyActiveContests">Active Contests</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ContestStatus&amp;pt=14">Contest Status</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ViewReviewProjects&amp;pt=14">Review Opportunities</a></li>
+<li><a href="http://software.topcoder.com/review">Submit &amp; Review</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ReviewBoard&amp;pt=14">Meet the Review Board</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_assembly_stats')">Statistics</a>
+<ul id="m_assembly_stats">
+<li><a href="http://www.topcoder.com/tc?module=CompList&amp;ph=125">Past Contests</a></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_assembly_support')">Support / FAQs</a>
+<ul id="m_assembly_support">
+<li><a href="http://www.topcoder.com/wiki/display/tc/How+to+Compete+in+Assembly+Competitions">How to Compete</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Assembly+Competition+Tutorial">Tutorial</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Assembly+Competition+Documentation">Documentation</a></li>
+</ul></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_test_scenarios_competitions')">Test Scenarios</a>
+<ul id="m_test_scenarios_competitions">
+<li><a href="http://www.topcoder.com/wiki/display/tc/Test+Scenarios+and+Scripts">Overview</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ActiveContests&amp;pt=26">Active Contests</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ContestStatus&amp;pt=26">Contest Status</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ViewReviewProjects&amp;pt=26">Review Opportunities</a></li>
+<li><a href="http://software.topcoder.com/review">Submit &amp; Review</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/TopCoder+UML+Tool">UML Tool</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ReviewBoard&amp;pt=26">Meet the Review Board</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_test_scenarios_stats')">Statistics</a>
+<ul id="m_test_scenarios_stats">
+<li><a href="http://www.topcoder.com/tc?module=CompList&amp;pt=26">Past Contests</a></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_test_scenarios_support')">Support / FAQs</a>
+<ul id="m_test_scenarios_support">
+<li><a href="http://www.topcoder.com/wiki/display/tc/How+to+Compete+in+Testing+Competitions">How to Compete</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Testing+Competition+Tutorial">Tutorial</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Testing+Competition+Documentation">Documentation</a></li>
+</ul></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_test_suites_competitions')">Test Suites</a>
+<ul id="m_test_suites_competitions">
+<li><a href="http://www.topcoder.com/wiki/display/tc/Test+Scenarios+and+Scripts">Overview</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ActiveContests&amp;pt=13">Active Contests</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ContestStatus&amp;pt=13">Contest Status</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ViewReviewProjects&amp;pt=13">Review Opportunities</a></li>
+<li><a href="http://software.topcoder.com/review">Submit &amp; Review</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/TopCoder+UML+Tool">UML Tool</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ReviewBoard&amp;pt=13">Meet the Review Board</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_test_suites_stats')">Statistics</a>
+<ul id="m_test_suites_stats">
+<li><a href="http://www.topcoder.com/tc?module=CompList&amp;pt=13">Past Contests</a></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_test_suites_support')">Support / FAQs</a>
+<ul id="m_test_suites_support">
+<li><a href="http://www.topcoder.com/wiki/display/tc/How+to+Compete+in+Testing+Competitions">How to Compete</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Testing+Competition+Tutorial">Tutorial</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Testing+Competition+Documentation">Documentation</a></li>
+</ul></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_ui_prototype_competitions')">UI Prototype</a>
+<ul id="m_ui_prototype_competitions">
+<li><a href="http://www.topcoder.com/wiki/display/tc/UI+Prototype+Competitions">Overview</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ActiveContests&amp;pt=19">Active Contests</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ContestStatus&amp;pt=19">Contest Status</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ViewReviewProjects&amp;pt=19">Review Opportunities</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ReviewBoard&amp;pt=19">Meet the Review Board</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_ui_prototype_stats')">Statistics</a>
+<ul id="m_ui_prototype_stats">
+<li><a href="http://www.topcoder.com/tc?module=CompList&amp;pt=19">Past Contests</a></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_ui_prototype_support')">Support / FAQs</a>
+<ul id="m_ui_prototype_support">
+<li><a href="http://www.topcoder.com/wiki/display/tc/How+to+Compete+in+IU+Prototype+Competitions">How to Compete</a></li>
+</ul></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_ria_build_competitions')">RIA Build</a>
+<ul id="m_ria_build_competitions">
+<li><a href="http://www.topcoder.com/wiki/display/tc/RIA+Build+Competitions">Overview</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ActiveContests&amp;pt=24">Active Contests</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ContestStatus&amp;pt=24">Contest Status</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ViewReviewProjects&amp;pt=24">Review Opportunities</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ReviewBoard&amp;pt=24">Meet the Review Board</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_ria_build_stats')">Statistics</a>
+<ul id="m_ria_build_stats">
+<li><a href="http://www.topcoder.com/tc?module=CompList&amp;pt=24">Past Contests</a></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_ria_build_support')">Support / FAQs</a>
+<ul id="m_ria_build_support">
+<li><a href="http://www.topcoder.com/wiki/display/tc/How+to+Compete+in+RIA+Builds">How to Compete</a></li>
+</ul></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_bugraces_competitions')">Bug Races</a>
+<ul id="m_bugraces_competitions">
+<li><a href="http://www.topcoder.com/wiki/display/tc/Bug+Races">Overview</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Active+Bug+Races">Active Contests</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Bug+Races+Reviews">Review Opportunities</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_bugraces_support')">Support / FAQs</a>
+<ul id="m_bugraces_support">
+<li><a href="http://www.topcoder.com/wiki/display/tc/How+to+Compete+in+Bug+Races">How to Compete</a></li>
+</ul></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_hs_competitions')">High School</a>
+<ul id="m_hs_competitions">
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=hs&amp;d2=home">Overview</a></li>
+<li><a href="javascript:arena();">Launch Arena</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_hs_stats')">Statistics</a>
+<ul id="m_hs_stats">
+<li><a href="http://www.topcoder.com/tc?module=HSRoundOverview">Match Overview</a></li>
+<li><a href="http://www.topcoder.com/tc?module=HSRoundStatsTeam">Match Results (Team)</a></li>
+<li><a href="http://www.topcoder.com/tc?module=HSRoundStatsInd">Match Results (Indiv.)</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=hs&amp;d2=match_editorials&amp;d3=archive">Match Editorials</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ColorChange&amp;ratid=2">Recent Color Changes</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=hs&amp;d2=support&amp;d3=dataFeed">Data Feeds</a></li>
+</ul></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=hs&amp;d2=sponsorship">Sponsorship</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_hs_support')">Support / FAQs</a>
+<ul id="m_hs_support">
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=hs&amp;d2=support&amp;d3=index">How to Compete</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=hs&amp;d2=support&amp;d3=faqIndex">FAQs</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=hs&amp;d2=support&amp;d3=sampleProblems">Sample Problems</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=hs&amp;d2=support&amp;d3=ratings">Rating System</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=help&amp;d2=problemWriter&amp;node=hs_write">Write Problems</a></li>
+</ul></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_long_contests')">Marathon Matches</a>
+<ul id="m_long_contests">
+<li><a href="http://www.topcoder.com/longcontest/?module=ViewActiveContests">Active Contests</a></li>
+<li><a href="http://www.topcoder.com/longcontest/?module=ViewPractice">Practice</a></li>
+<li><a href="http://www.topcoder.com/longcontest/?module=ViewQueue">Queue Status</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_long_stats')">Statistics</a>
+<ul id="m_long_stats">
+<li><a href="http://www.topcoder.com/longcontest/stats/?module=MatchList">Match Archive</a></li>
+<li><a href="http://www.topcoder.com/longcontest/stats/?module=ViewOverview">Match Overview</a></li>
+<li><a href="http://www.topcoder.com/longcontest/stats/?module=MatchWinners">Match Winners</a></li>
+<li><a href="http://www.topcoder.com/longcontest/?module=Static&amp;d1=match_editorials&amp;d2=archive">Match Editorials</a></li>
+<li><a href="http://www.topcoder.com/longcontest/?module=Static&amp;d1=support&amp;d2=dataFeed">Data Feeds</a></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_long_support')">Support / FAQs</a>
+<ul id="m_long_support">
+<li><a href="http://www.topcoder.com/longcontest/?module=Static&amp;d1=instructions">How to Compete</a></li>
+<li><a href="http://www.topcoder.com/longcontest/?module=Static&amp;d1=support&amp;d2=ratings">Rating System</a></li>
+</ul></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_tournaments')">Tournaments</a>
+<ul id="m_tournaments">
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=tournaments&amp;d2=home">TopCoder</a></li>
+<li><a href="http://www.topcoder.com/pl/">Powered by TopCoder</a></li>
+<li><a href="http://www.topcoder.com/tc?module=CRPFStatic&amp;d1=crpf&amp;d2=crpf_overview">Charity</a></li>
+</ul></li>
+<li><a href="http://www.topcoder.com/dr">The Digital Run</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_edu_content')">Educational Content</a>
+<ul id="m_edu_content">
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=education&amp;d2=overview">Overview</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=tutorials&amp;d2=alg_index">Algorithm Tutorials</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=tutorials&amp;d2=comp_index">Component Tutorials</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=tutorials&amp;d2=mm_index">Marathon Tutorials</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=features&amp;d2=archive">Features</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=help&amp;d2=writeForTC">Write for TopCoder</a></li>
+</ul></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/How+to+Get+Paid+for+Competing">How to Get Paid</a></li>
+</ul></li>
+<li class="highlight"><a href="http://forums.topcoder.com/">Forums</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=calendar&amp;d2=thisMonth">Event Calendar</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=pressroom&amp;d2=index">Press Room</a></li>
+<li><a href="http://www.topcoder.com/tc?&amp;module=SurveyList">Surveys</a></li>
+<li><a href="http://www.topcoder.com/tc?module=MyHome">My TopCoder</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_about_tc')">About TopCoder</a>
+<ul id="m_about_tc">
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=about&amp;d2=index">Overview</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=about&amp;d2=contactus">Contact Us</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=about&amp;d2=whyjoin">Why Join TopCoder?</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=about&amp;d2=jobs">Working at TopCoder</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=about&amp;d2=management">Management Team</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=about&amp;d2=terms">Terms, Revisions</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=about&amp;d2=privacy">Privacy Policy</a></li>
+</ul></li></ul>
+
+    <div style="padding: 10px 0px 0px 17px; float: left;">
+        
+        
+        
+        
+        <a href="http://www.topcoder.com/tc?module=LinkTracking&amp;link=http://software.topcoder.com/&amp;refer=leftnav"><img src="Kawigi%27s%20sol_files/tc_direct.png" alt="TopCoder Direct"></a>
+
+        
+    </div>
+    
+
+<div id="navbarSearch">
+<b>Member Search:</b>
+<form action="http://www.topcoder.com/tc" method="get" name="simpleSearchForm" class="noSpace" id="simpleSearchForm">
+   <input class="noSpace" name="module" value="SimpleSearch" type="hidden">
+   <input class="noSpace" name="ha" value="Handle:" size="12" maxlength="15" onfocus="javascript: if (document.simpleSearchForm.ha.value=='Handle:') document.simpleSearchForm.ha.value = '';" onblur="javascript:if (document.simpleSearchForm.ha.value == '')document.simpleSearchForm.ha.value = 'Handle:';" type="text">
+   <a class="gMetal" href="javascript:void%20document.simpleSearchForm.submit();">Go</a><br>
+   <a class="gMetal" href="http://www.topcoder.com/tc?module=ViewAdvanced">Advanced Search</a>
+</form>
+</div>
+</div>
+<div style="padding: 0px 0px 23px; float: left; clear: left;"><img src="Kawigi%27s%20sol_files/leftnav_bottom.gif" alt=""></div>
+
+
+    <div style="margin: 0px; float: left; clear: left; width: 170px;" align="center">
+        <img src="Kawigi%27s%20sol_files/brackets.png" alt="" style="margin-bottom: 23px;">
+    </div>
+
+
+
+
+      </td>
+<!-- Left Column Ends -->
+
+<!-- Center Column Begins -->
+        <td class="rtBody" width="99%">
+
+        
+
+
+
+
+<table class="pageTitleTable" cellpadding="0" cellspacing="0">
+    <tbody><tr>
+        <td class="pageTitle" width="100%"><img src="Kawigi%27s%20sol_files/header_forums.gif" alt="forums" border="0"></td>
+        <td class="pageSubtitle" align="right">&nbsp;&nbsp;</td>
+    </tr>
+</tbody></table>
+
+
+
+<table class="rtbcTable" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr>
+	<td class="categoriesBox" style="padding-right: 20px;">
+   		
+
+
+
+
+
+            <a class="rtLinkBold" href="http://forums.topcoder.com/?module=Category&amp;categoryID=13">Round Tables</a><br>
+        
+
+            <a class="rtLinkBold" href="http://forums.topcoder.com/?module=Category&amp;categoryID=8">News Discussions</a><br>
+        
+
+
+
+            <a class="rtLinkBold" href="http://forums.topcoder.com/?module=Category&amp;categoryID=14">Algorithm Matches</a><br>
+        
+
+            <a class="rtLinkOld" href="http://forums.topcoder.com/?module=Category&amp;categoryID=21">High School Matches</a><br>
+        
+
+            <a class="rtLinkOld" href="http://forums.topcoder.com/?module=Category&amp;categoryID=19">Assembly Contests</a><br>
+        
+
+            <a class="rtLinkBold" href="http://forums.topcoder.com/?module=Category&amp;categoryID=17">Marathon Matches</a><br>
+        
+
+            <a class="rtLinkOld" href="http://forums.topcoder.com/?module=Category&amp;categoryID=22">Software Forums</a><br>
+        
+
+            <a class="rtLinkBold" href="http://forums.topcoder.com/?module=Category&amp;categoryID=6">Sponsor Discussions</a><br>
+        
+
+
+
+
+	</td>
+	<td style="padding-right: 20px;" valign="top" width="100%" nowrap="nowrap">
+        
+
+
+
+
+
+<form name="formSearch" method="post" action="/">
+<input name="module" value="Search" type="hidden">
+<input name="status" value="search" type="hidden">
+<input name="scope" value="all" type="hidden">
+<input name="dateRange" value="all" type="hidden">
+<input name="mode" value="basic" type="hidden">
+<input name="query" size="20" maxlength="100" value="" id="query" type="text">
+<input name="Search" value="Search" alt="Search" onclick="" type="submit">
+<br>
+<a href="http://forums.topcoder.com/?module=Search" class="rtbcLink">Advanced Search</a>
+
+</form>
+       	
+	</td>
+   <td align="right" valign="top" nowrap="nowrap">
+   <a href="http://forums.topcoder.com/?module=Watch&amp;type=1&amp;ID=513084&amp;cmd=add" class="rtbcLink">Watch Thread</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://forums.topcoder.com/?module=History" class="rtbcLink">My Post History</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://forums.topcoder.com/?module=Watches" class="rtbcLink">My Watches</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://forums.topcoder.com/?module=Settings" class="rtbcLink">User Settings</a><br>
+   View:
+   <span class="currentPage">Flat</span>
+   
+            (<a href="http://forums.topcoder.com/?module=Thread&amp;threadID=513084&amp;mc=15&amp;view=flat_new" class="rtbcLink">newest first</a>)&nbsp;&nbsp;|
+   <a href="http://forums.topcoder.com/?module=Thread&amp;threadID=513084&amp;mc=15&amp;view=threaded" class="rtbcLink">Threaded</a>&nbsp;&nbsp;|
+   <a href="http://forums.topcoder.com/?module=Thread&amp;threadID=513084&amp;mc=15&amp;view=tree" class="rtbcLink">Tree</a>
+   
+   <br>
+        
+            
+           <a href="http://forums.topcoder.com/?module=Thread&amp;threadID=586782&amp;start=0&amp;mc=5" class="rtbcLink">Previous Thread</a>
+        &nbsp;|&nbsp;
+        
+            
+           <a href="http://forums.topcoder.com/?module=Thread&amp;threadID=586790&amp;start=0&amp;mc=5" class="rtbcLink">Next Thread</a>
+        
+   
+   </td>
+</tr>
+
+
+<tr><td colspan="3" style="padding-bottom: 3px;"><b>
+   
+	        <a href="http://forums.topcoder.com/?module=Category&amp;categoryID=1" class="rtbcLink">Forums</a>
+	
+			<img src="Kawigi%27s%20sol_files/exp_w.gif" align="absmiddle">
+   
+	        <a href="http://forums.topcoder.com/?module=Category&amp;categoryID=13" class="rtbcLink">Round Tables</a>
+	
+			<img src="Kawigi%27s%20sol_files/exp_w.gif" align="absmiddle">
+   
+   <a href="http://forums.topcoder.com/?module=ThreadList&amp;forumID=505803&amp;mc=22640" class="rtbcLink">Educational Discussion</a>
+   
+   			
+   
+   <img src="Kawigi%27s%20sol_files/exp_w.gif" align="absmiddle"> Permanent of a matrix</b>
+   </td>
+
+</tr></tbody></table>
+
+
+
+<table class="rtTable" style="margin-bottom: 6px;" cellpadding="0" cellspacing="0">
+   	<tbody><tr>
+      	<td class="rtHeader" colspan="2">
+      	  
+         	<div style="float: right; padding-left: 5px; white-space: nowrap;">
+            
+            	<a name="559253">Thu, Sep 14, 2006 at 10:38 AM IST</a>
+         	</div>
+         	
+             	<a class="pointer" onmouseover="this.style.color='#FF0000'" onmouseout="this.style.color='#333'" onclick="toggle('msgBody559253')" ;="">Permanent of a matrix</a>
+         	
+         	
+         	
+				| Feedback: <span id="ratings559253" class="pointer" title="Your vote: 0">(+2/-0)</span> | <a href="javascript:void(0)" onclick="rate('559253','2')" class="rtbcLink">[+]</a> <a href="javascript:void(0)" onclick="rate('559253','1')" class="rtbcLink">[-]</a>
+        	
+         | <a href="http://forums.topcoder.com/?module=Post&amp;mode=Reply&amp;messageID=559253" class="rtbcLink">Reply</a>
+         
+      </td>
+   	</tr>
+   	
+   	
+   	<tr id="msgBody559253" style="">
+      <td class="rtPosterCell">
+         <div class="rtPosterSpacer">
+            
+            <img src="Kawigi%27s%20sol_files/starwiz_big.jpg" class="rtPhoto" border="0" width="55" height="61"><br>
+            
+            <span class="bodyText"><a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=293166" class="coderTextBlue">starwiz</a></span><br><a href="http://forums.topcoder.com/?module=History&amp;userID=293166">15 posts</a>
+         </div>
+      </td>
+	  
+      <td class="rtTextCell" width="100%">This one's from the Google Code Jam.  I know, they have their own board.  They've even discussed this problem (<a href="http://groups.google.com/group/Code-Jam-2006/browse_thread/thread/5cb1999141950ac6/#" target="_blank">http://groups.google.com/group/Code-Jam-2006/browse_thread/thread/5cb1999141950ac6/#</a>).  I still don't understand, though; I thought I might get more helpful assistance here.<br><br>So
+given an N x N matrix (N &lt;= 16), the problem asks us to find the
+permanent of the matrix. I've been trying to understand Kawigi's
+solution; it seemed pretty elegant. Here's the code, with (hopefully
+correct) comments added because I'm not used to reading bitwise
+operations:<br><br><pre><font color="navy"><b>public</b></font> <font color="navy"><b>int</b></font> compute(String[] matrix) <font color="navy">{</font>
+	<font color="navy"><b>int</b></font>[][] m = splitInts2D(matrix);
+	<font color="navy"><b>int</b></font>[] p = <font color="navy"><b>new</b></font> <font color="navy"><b>int</b></font>[1 &lt;&lt; m.length];
+	p[0] = 1;
+&nbsp;
+	<font color="navy"><b>for</b></font> (<font color="navy"><b>int</b></font> i = 1; i &lt; p.length; i++) <font color="navy">{</font>
+		<font color="darkgreen">//r = n - (the number of 1 bits in i)</font>
+		<font color="navy"><b>int</b></font> r = m.length;
+		<font color="navy"><b>for</b></font> (<font color="navy"><b>int</b></font> j = 0; j &lt; m.length; j++)
+			r -= (i &gt;&gt; j) &amp; 1;
+&nbsp;
+		<font color="navy"><b>for</b></font> (<font color="navy"><b>int</b></font> j = 0; j &lt; m.length; j++)
+		<font color="navy">{</font>
+			<font color="darkgreen">//if i has a 1 bit at location j</font>
+			<font color="navy"><b>if</b></font> ((i &amp; (1 &lt;&lt; j)) != 0)
+			<font color="navy">{</font>
+				<font color="darkgreen">//i ^ (1 &lt;&lt; j) = i with the bit at j turned off</font>
+				<font color="navy"><b>int</b></font> ind = i ^ (1 &lt;&lt; j);
+				p[i] = (p[i] + m[r][j] * p[ind]) % 10000;
+			<font color="navy">}</font>
+		<font color="navy">}</font>
+	<font color="navy">}</font>
+&nbsp;
+	<font color="navy"><b>return</b></font> p[p.length - 1];
+<font color="navy">}</font>
+</pre><br><br>This seems just beyond my grasp. I know we're memoizing
+submatricies, but I don't understand the pattern. I guess what's most
+confusing to me is: How does all this bit twiddling give us full
+coverage of the permutations we want to consider?<br><br>Thanks for whatever light you can shed on this problem.</td>
+      
+   	</tr>
+	<tr>
+		<td></td>
+		<td width="100%"></td>
+	</tr>
+</tbody></table>
+
+<table class="rtTable" style="margin-bottom: 6px;" cellpadding="0" cellspacing="0">
+   	<tbody><tr>
+      	<td class="rtHeader" colspan="2">
+      	  
+         	<div style="float: right; padding-left: 5px; white-space: nowrap;">
+            
+            	<a name="559259">Thu, Sep 14, 2006 at 12:06 PM IST</a>
+         	</div>
+         	
+             	<a class="pointer" onmouseover="this.style.color='#FF0000'" onmouseout="this.style.color='#333'" onclick="toggle('msgBody559259')" ;="">Re: Permanent of a matrix</a>
+         	
+         	
+         		(response to <a href="http://forums.topcoder.com/?module=Message&amp;messageID=559253" class="rtbcLink">post</a> by <a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=293166" class="coderTextBlue">starwiz</a>)
+         	
+         	
+				| Feedback: <span id="ratings559259" class="pointer" title="Your vote: 0">(+0/-0)</span> | <a href="javascript:void(0)" onclick="rate('559259','2')" class="rtbcLink">[+]</a> <a href="javascript:void(0)" onclick="rate('559259','1')" class="rtbcLink">[-]</a>
+        	
+         | <a href="http://forums.topcoder.com/?module=Post&amp;mode=Reply&amp;messageID=559259" class="rtbcLink">Reply</a>
+         
+      </td>
+   	</tr>
+   	
+   	
+   	<tr id="msgBody559259" style="">
+      <td class="rtPosterCell">
+         <div class="rtPosterSpacer">
+            
+            <img src="Kawigi%27s%20sol_files/aussie_big2.jpg" class="rtPhoto" border="0" width="55" height="61"><br>
+            
+            <span class="bodyText"><a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=284038" class="coderTextYellow">aussie</a></span><br><a href="http://forums.topcoder.com/?module=History&amp;userID=284038">3270 posts</a>
+         </div>
+      </td>
+	  
+      <td class="rtTextCell" width="100%">Your comments look correct.  To quote <a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=8416646" class="coderTextRed">Kawigi</a>
+from another thread where this problem was discussed: "Given some
+bitmask on the columns, there's only one interesting submatrix that
+uses those columns, and the rows it includes are the last n rows where
+n is the number of bits set on the bitmask."<br><br>Does that help you understand his code a bit better?<br><br>The
+first part you commented where he calculates r is to find the top row
+of the current submatrix. Then the next loop iterates over all the
+columns, checks the bitmask to determine if each column is in the
+current submatrix and if it is it then adds the previously calculated
+permanent of the submatrix with that row and column removed to the
+result for the current submatrix.</td>
+      
+   	</tr>
+	<tr>
+		<td></td>
+		<td width="100%"></td>
+	</tr>
+</tbody></table>
+
+<table class="rtTable" style="margin-bottom: 6px;" cellpadding="0" cellspacing="0">
+   	<tbody><tr>
+      	<td class="rtHeader" colspan="2">
+      	  
+         	<div style="float: right; padding-left: 5px; white-space: nowrap;">
+            
+            	<a name="559314">Thu, Sep 14, 2006 at 9:52 PM IST</a>
+         	</div>
+         	
+             	<a style="color: rgb(51, 51, 51);" class="pointer" onmouseover="this.style.color='#FF0000'" onmouseout="this.style.color='#333'" onclick="toggle('msgBody559314')" ;="">Re: Permanent of a matrix</a>
+         	
+         	
+         		(response to <a href="http://forums.topcoder.com/?module=Message&amp;messageID=559259" class="rtbcLink">post</a> by <a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=284038" class="coderTextYellow">aussie</a>)
+         	
+         	
+				| Feedback: <span id="ratings559314" class="pointer" title="Your vote: 0">(+0/-0)</span> | <a href="javascript:void(0)" onclick="rate('559314','2')" class="rtbcLink">[+]</a> <a href="javascript:void(0)" onclick="rate('559314','1')" class="rtbcLink">[-]</a>
+        	
+         | <a href="http://forums.topcoder.com/?module=Post&amp;mode=Reply&amp;messageID=559314" class="rtbcLink">Reply</a>
+         
+      </td>
+   	</tr>
+   	
+   	
+   	<tr id="msgBody559314" style="">
+      <td class="rtPosterCell">
+         <div class="rtPosterSpacer">
+            
+            <img src="Kawigi%27s%20sol_files/Kawigi_big.jpg" class="rtPhoto" border="0" width="55" height="61"><br>
+            
+            <span class="bodyText"><a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=8416646" class="coderTextRed">Kawigi</a></span><br><a href="http://forums.topcoder.com/?module=History&amp;userID=8416646">3775 posts</a>
+         </div>
+      </td>
+	  
+      <td class="rtTextCell" width="100%">To preface what <a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=284038" class="coderTextYellow">aussie</a>
+said I said, first you should understand that a way to think about the
+permanent is that it's the sum of r0,ci * (permanent of the submatrix
+that doesn't include row zero or column i). It sounded like you had
+some idea about that, but I just wanted to make sure. After thinking
+about that definition of a permanent, re-read <a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=284038" class="coderTextYellow">aussie</a>'s quote of me if you didn't understand it before :-)</td>
+      
+   	</tr>
+	<tr>
+		<td></td>
+		<td width="100%"></td>
+	</tr>
+</tbody></table>
+
+<table class="rtTable" style="margin-bottom: 6px;" cellpadding="0" cellspacing="0">
+   	<tbody><tr>
+      	<td class="rtHeader" colspan="2">
+      	  
+         	<div style="float: right; padding-left: 5px; white-space: nowrap;">
+            
+            	<a name="559369">Fri, Sep 15, 2006 at 1:27 AM IST</a>
+         	</div>
+         	
+             	<a class="pointer" onmouseover="this.style.color='#FF0000'" onmouseout="this.style.color='#333'" onclick="toggle('msgBody559369')" ;="">Re: Permanent of a matrix</a>
+         	
+         	
+         		(response to <a href="http://forums.topcoder.com/?module=Message&amp;messageID=559253" class="rtbcLink">post</a> by <a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=293166" class="coderTextBlue">starwiz</a>)
+         	
+         	
+				| Feedback: <span id="ratings559369" class="pointer" title="Your vote: 0">(+0/-0)</span> | <a href="javascript:void(0)" onclick="rate('559369','2')" class="rtbcLink">[+]</a> <a href="javascript:void(0)" onclick="rate('559369','1')" class="rtbcLink">[-]</a>
+        	
+         | <a href="http://forums.topcoder.com/?module=Post&amp;mode=Reply&amp;messageID=559369" class="rtbcLink">Reply</a>
+         
+      </td>
+   	</tr>
+   	
+   	
+   	<tr id="msgBody559369" style="">
+      <td class="rtPosterCell">
+         <div class="rtPosterSpacer">
+            
+            <span class="bodyText"><a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=8415268" class="coderTextBlue">royappa</a></span><br><a href="http://forums.topcoder.com/?module=History&amp;userID=8415268">749 posts</a>
+         </div>
+      </td>
+	  
+      <td class="rtTextCell" width="100%">Take a look at this excellent tutorial by <a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=8357090" class="coderTextRed">misof</a>:<br><a href="http://www.topcoder.com/tc?module=Static&amp;d1=tutorials&amp;d2=integersReals" target="_blank">http://www.topcoder.com/tc?module=Static&amp;d1=tutorials&amp;d2=integersReals</a><br><br>Specifically,
+the small section there about bitwise operations, which has a nice
+explanation and links to previous TC problems that use bitwise
+representations of small sets. <br><br>This is really one of those things which look mysterious to the un-initiated but are quite easy to learn and very useful.<br><br>&lt;hijack&gt;<br><a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=8416646" class="coderTextRed">Kawigi</a>:
+OK, I looked at SPOJ's "ASSIGN", but while I can easily write an O(n^2
+2^n) algorithm based exactly on solving the above "Permanent of a
+Matrix", I couldn't come up with an O(n 2^n) algorithm for the 0-1
+matrix case, which seems to be required. <br><br>Can I get a hint for
+O(n 2^n)? I know you were berated for giving hints, but I'm asking, so
+hopefully any abuse will be directed at me this time. You can reply in
+that other thread if you like. :-) Thanks!<br>&lt;/hijack&gt;</td>
+      
+   	</tr>
+	<tr>
+		<td></td>
+		<td width="100%"></td>
+	</tr>
+</tbody></table>
+
+<table class="rtTable" style="margin-bottom: 6px;" cellpadding="0" cellspacing="0">
+   	<tbody><tr>
+      	<td class="rtHeader" colspan="2">
+      	  
+         	<div style="float: right; padding-left: 5px; white-space: nowrap;">
+            
+            	<a name="559378">Fri, Sep 15, 2006 at 2:14 AM IST</a>
+         	</div>
+         	
+             	<a class="pointer" onmouseover="this.style.color='#FF0000'" onmouseout="this.style.color='#333'" onclick="toggle('msgBody559378')" ;="">Re: Permanent of a matrix</a>
+         	
+         	
+         		(response to <a href="http://forums.topcoder.com/?module=Message&amp;messageID=559369" class="rtbcLink">post</a> by <a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=8415268" class="coderTextBlue">royappa</a>)
+         	
+         	
+				| Feedback: <span id="ratings559378" class="pointer" title="Your vote: 0">(+0/-1)</span> | <a href="javascript:void(0)" onclick="rate('559378','2')" class="rtbcLink">[+]</a> <a href="javascript:void(0)" onclick="rate('559378','1')" class="rtbcLink">[-]</a>
+        	
+         | <a href="http://forums.topcoder.com/?module=Post&amp;mode=Reply&amp;messageID=559378" class="rtbcLink">Reply</a>
+         
+      </td>
+   	</tr>
+   	
+   	
+   	<tr id="msgBody559378" style="">
+      <td class="rtPosterCell">
+         <div class="rtPosterSpacer">
+            
+            <img src="Kawigi%27s%20sol_files/Kawigi_big.jpg" class="rtPhoto" border="0" width="55" height="61"><br>
+            
+            <span class="bodyText"><a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=8416646" class="coderTextRed">Kawigi</a></span><br><a href="http://forums.topcoder.com/?module=History&amp;userID=8416646">3775 posts</a>
+         </div>
+      </td>
+	  
+      <td class="rtTextCell" width="100%">*looks back at first O(n*2^n) solution*<br><br>How strong of a hint do you want?</td>
+      
+   	</tr>
+	<tr>
+		<td></td>
+		<td width="100%"></td>
+	</tr>
+</tbody></table>
+
+<table class="rtTable" style="margin-bottom: 6px;" cellpadding="0" cellspacing="0">
+   	<tbody><tr>
+      	<td class="rtHeader" colspan="2">
+      	  
+         	<div style="float: right; padding-left: 5px; white-space: nowrap;">
+            
+            	<a name="559385">Fri, Sep 15, 2006 at 2:32 AM IST</a>
+         	</div>
+         	
+             	<a class="pointer" onmouseover="this.style.color='#FF0000'" onmouseout="this.style.color='#333'" onclick="toggle('msgBody559385')" ;="">Re: Permanent of a matrix</a>
+         	
+         	
+         		(response to <a href="http://forums.topcoder.com/?module=Message&amp;messageID=559378" class="rtbcLink">post</a> by <a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=8416646" class="coderTextRed">Kawigi</a>)
+         	
+         	
+				| Feedback: <span id="ratings559385" class="pointer" title="Your vote: 0">(+0/-0)</span> | <a href="javascript:void(0)" onclick="rate('559385','2')" class="rtbcLink">[+]</a> <a href="javascript:void(0)" onclick="rate('559385','1')" class="rtbcLink">[-]</a>
+        	
+         | <a href="http://forums.topcoder.com/?module=Post&amp;mode=Reply&amp;messageID=559385" class="rtbcLink">Reply</a>
+         
+      </td>
+   	</tr>
+   	
+   	
+   	<tr id="msgBody559385" style="">
+      <td class="rtPosterCell">
+         <div class="rtPosterSpacer">
+            
+            <span class="bodyText"><a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=8415268" class="coderTextBlue">royappa</a></span><br><a href="http://forums.topcoder.com/?module=History&amp;userID=8415268">749 posts</a>
+         </div>
+      </td>
+	  
+      <td class="rtTextCell" width="100%">Vague. :-)</td>
+      
+   	</tr>
+	<tr>
+		<td></td>
+		<td width="100%"></td>
+	</tr>
+</tbody></table>
+
+<table class="rtTable" style="margin-bottom: 6px;" cellpadding="0" cellspacing="0">
+   	<tbody><tr>
+      	<td class="rtHeader" colspan="2">
+      	  
+         	<div style="float: right; padding-left: 5px; white-space: nowrap;">
+            
+            	<a name="559391">Fri, Sep 15, 2006 at 2:48 AM IST</a>
+         	</div>
+         	
+             	<a class="pointer" onmouseover="this.style.color='#FF0000'" onmouseout="this.style.color='#333'" onclick="toggle('msgBody559391')" ;="">Re: Permanent of a matrix</a>
+         	
+         	
+         		(response to <a href="http://forums.topcoder.com/?module=Message&amp;messageID=559385" class="rtbcLink">post</a> by <a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=8415268" class="coderTextBlue">royappa</a>)
+         	
+         	
+				| Feedback: <span id="ratings559391" class="pointer" title="Your vote: 0">(+1/-0)</span> | <a href="javascript:void(0)" onclick="rate('559391','2')" class="rtbcLink">[+]</a> <a href="javascript:void(0)" onclick="rate('559391','1')" class="rtbcLink">[-]</a>
+        	
+         | <a href="http://forums.topcoder.com/?module=Post&amp;mode=Reply&amp;messageID=559391" class="rtbcLink">Reply</a>
+         
+      </td>
+   	</tr>
+   	
+   	
+   	<tr id="msgBody559391" style="">
+      <td class="rtPosterCell">
+         <div class="rtPosterSpacer">
+            
+            <img src="Kawigi%27s%20sol_files/Kawigi_big.jpg" class="rtPhoto" border="0" width="55" height="61"><br>
+            
+            <span class="bodyText"><a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=8416646" class="coderTextRed">Kawigi</a></span><br><a href="http://forums.topcoder.com/?module=History&amp;userID=8416646">3775 posts</a>
+         </div>
+      </td>
+	  
+      <td class="rtTextCell" width="100%">Ok, how about this (this is taking effort, because I'm better at explaining how to solve the problem than giving vague hints):<br><br><font color="#ffffff">I
+started out using n x 2^n space and filling each row by expanding one
+more element if it was initialized the previous time. The point was to
+do all combinations of one element, then all combinations of two
+elements, and so on. If you think like me, this is probably roughly
+what your n^2 x 2^n solution looks like. If not, I'll explain that I
+was assigning the students in order and the tasks in every order.<br><br>However,
+similar to my PermanentComputation code above, the bitcount of a
+certain mask tells me the only iteration on the outer loop that it
+matters, so I really don't need the extra "n" factor in space. And
+&lt;hint vague="true"&gt; what are the real constraints on the order of
+evaluation?&lt;/hint&gt;</font></td>
+      
+   	</tr>
+	<tr>
+		<td></td>
+		<td width="100%"></td>
+	</tr>
+</tbody></table>
+
+<table class="rtTable" style="margin-bottom: 6px;" cellpadding="0" cellspacing="0">
+   	<tbody><tr>
+      	<td class="rtHeader" colspan="2">
+      	  
+         	<div style="float: right; padding-left: 5px; white-space: nowrap;">
+            
+            	<a name="559454">Fri, Sep 15, 2006 at 4:06 PM IST</a>
+         	</div>
+         	
+             	<a class="pointer" onmouseover="this.style.color='#FF0000'" onmouseout="this.style.color='#333'" onclick="toggle('msgBody559454')" ;="">Re: Permanent of a matrix</a>
+         	
+         	
+         		(response to <a href="http://forums.topcoder.com/?module=Message&amp;messageID=559391" class="rtbcLink">post</a> by <a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=8416646" class="coderTextRed">Kawigi</a>)
+         	
+         	
+				| Feedback: <span id="ratings559454" class="pointer" title="Your vote: 0">(+0/-0)</span> | <a href="javascript:void(0)" onclick="rate('559454','2')" class="rtbcLink">[+]</a> <a href="javascript:void(0)" onclick="rate('559454','1')" class="rtbcLink">[-]</a>
+        	
+         | <a href="http://forums.topcoder.com/?module=Post&amp;mode=Reply&amp;messageID=559454" class="rtbcLink">Reply</a>
+         
+      </td>
+   	</tr>
+   	
+   	
+   	<tr id="msgBody559454" style="">
+      <td class="rtPosterCell">
+         <div class="rtPosterSpacer">
+            
+            <span class="bodyText"><a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=8415268" class="coderTextBlue">royappa</a></span><br><a href="http://forums.topcoder.com/?module=History&amp;userID=8415268">749 posts</a>
+         </div>
+      </td>
+	  
+      <td class="rtTextCell" width="100%">Sorry
+to make you work - yes it's definitely tougher to give a "vague hint".
+Anyway, I got the idea. Will fix the program sometime. Thanks!!</td>
+      
+   	</tr>
+	<tr>
+		<td></td>
+		<td width="100%"></td>
+	</tr>
+</tbody></table>
+
+<table class="rtTable" style="margin-bottom: 6px;" cellpadding="0" cellspacing="0">
+   	<tbody><tr>
+      	<td class="rtHeader" colspan="2">
+      	  
+         	<div style="float: right; padding-left: 5px; white-space: nowrap;">
+             
+                	<a href="http://forums.topcoder.com/?module=RevisionHistory&amp;messageID=559766" class="rtbcLink" title="Last updated Mon, Sep 18, 2006 at 6:36 AM IST">1 edit</a> | 
+            	
+            	<a name="559766">Mon, Sep 18, 2006 at 6:35 AM IST</a>
+         	</div>
+         	
+             	<a class="pointer" onmouseover="this.style.color='#FF0000'" onmouseout="this.style.color='#333'" onclick="toggle('msgBody559766')" ;="">Re: Permanent of a matrix</a>
+         	
+         	
+         		(response to <a href="http://forums.topcoder.com/?module=Message&amp;messageID=559391" class="rtbcLink">post</a> by <a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=8416646" class="coderTextRed">Kawigi</a>)
+         	
+         	
+				| Feedback: <span id="ratings559766" class="pointer" title="Your vote: 0">(+0/-0)</span> | <a href="javascript:void(0)" onclick="rate('559766','2')" class="rtbcLink">[+]</a> <a href="javascript:void(0)" onclick="rate('559766','1')" class="rtbcLink">[-]</a>
+        	
+         | <a href="http://forums.topcoder.com/?module=Post&amp;mode=Reply&amp;messageID=559766" class="rtbcLink">Reply</a>
+         
+      </td>
+   	</tr>
+   	
+   	
+   	<tr id="msgBody559766" style="">
+      <td class="rtPosterCell">
+         <div class="rtPosterSpacer">
+            
+            <img src="Kawigi%27s%20sol_files/starwiz_big.jpg" class="rtPhoto" border="0" width="55" height="61"><br>
+            
+            <span class="bodyText"><a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=293166" class="coderTextBlue">starwiz</a></span><br><a href="http://forums.topcoder.com/?module=History&amp;userID=293166">15 posts</a>
+         </div>
+      </td>
+	  
+      <td class="rtTextCell" width="100%">I think I get the hint, too.<br><br>Sometimes,
+I feel like the hardest thing in coding a DP solution isn't identifying
+the recursive nature of the problem, but figuring out how to compress
+all the data that the recursive call needs into a single, small integer.<br><br>The encoding scheme <a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=8416646" class="coderTextRed">Kawigi</a> uses here is pretty ingenious, I think.  But I guess that's why he's a red coder.  :)<br><br>Thanks for your help with this problem; I really appreciate it.<br><br>(Edited for syntax.)</td>
+      
+   	</tr>
+	<tr>
+		<td></td>
+		<td width="100%"></td>
+	</tr>
+</tbody></table>
+
+<table class="rtTable" style="margin-bottom: 6px;" cellpadding="0" cellspacing="0">
+   	<tbody><tr>
+      	<td class="rtHeader" colspan="2">
+      	  
+         	<div style="float: right; padding-left: 5px; white-space: nowrap;">
+            
+            	<a name="559768">Mon, Sep 18, 2006 at 7:13 AM IST</a>
+         	</div>
+         	
+             	<a class="pointer" onmouseover="this.style.color='#FF0000'" onmouseout="this.style.color='#333'" onclick="toggle('msgBody559768')" ;="">Re: Permanent of a matrix</a>
+         	
+         	
+         		(response to <a href="http://forums.topcoder.com/?module=Message&amp;messageID=559766" class="rtbcLink">post</a> by <a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=293166" class="coderTextBlue">starwiz</a>)
+         	
+         	
+				| Feedback: <span id="ratings559768" class="pointer" title="Your vote: 0">(+0/-0)</span> | <a href="javascript:void(0)" onclick="rate('559768','2')" class="rtbcLink">[+]</a> <a href="javascript:void(0)" onclick="rate('559768','1')" class="rtbcLink">[-]</a>
+        	
+         | <a href="http://forums.topcoder.com/?module=Post&amp;mode=Reply&amp;messageID=559768" class="rtbcLink">Reply</a>
+         
+      </td>
+   	</tr>
+   	
+   	
+   	<tr id="msgBody559768" style="">
+      <td class="rtPosterCell">
+         <div class="rtPosterSpacer">
+            
+            <img src="Kawigi%27s%20sol_files/Kawigi_big.jpg" class="rtPhoto" border="0" width="55" height="61"><br>
+            
+            <span class="bodyText"><a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=8416646" class="coderTextRed">Kawigi</a></span><br><a href="http://forums.topcoder.com/?module=History&amp;userID=8416646">3775 posts</a>
+         </div>
+      </td>
+	  
+      <td class="rtTextCell" width="100%">Actually,
+using the binary representation of an integer to represent subsets of
+some group of things is hardly original, and any time you see a problem
+with constraints of no more than about 20 but at least maybe 12, I'd
+expect to do it this way (little TopCoder-ing hint ;-) ).</td>
+      
+   	</tr>
+	<tr>
+		<td></td>
+		<td width="100%"></td>
+	</tr>
+</tbody></table>
+
+<table class="rtTable" style="margin-bottom: 6px;" cellpadding="0" cellspacing="0">
+   	<tbody><tr>
+      	<td class="rtHeader" colspan="2">
+      	  
+         	<div style="float: right; padding-left: 5px; white-space: nowrap;">
+            
+            	<a name="559770">Mon, Sep 18, 2006 at 7:31 AM IST</a>
+         	</div>
+         	
+             	<a class="pointer" onmouseover="this.style.color='#FF0000'" onmouseout="this.style.color='#333'" onclick="toggle('msgBody559770')" ;="">Re: Permanent of a matrix</a>
+         	
+         	
+         		(response to <a href="http://forums.topcoder.com/?module=Message&amp;messageID=559768" class="rtbcLink">post</a> by <a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=8416646" class="coderTextRed">Kawigi</a>)
+         	
+         	
+				| Feedback: <span id="ratings559770" class="pointer" title="Your vote: 0">(+2/-0)</span> | <a href="javascript:void(0)" onclick="rate('559770','2')" class="rtbcLink">[+]</a> <a href="javascript:void(0)" onclick="rate('559770','1')" class="rtbcLink">[-]</a>
+        	
+         | <a href="http://forums.topcoder.com/?module=Post&amp;mode=Reply&amp;messageID=559770" class="rtbcLink">Reply</a>
+         
+      </td>
+   	</tr>
+   	
+   	
+   	<tr id="msgBody559770" style="">
+      <td class="rtPosterCell">
+         <div class="rtPosterSpacer">
+            
+            <img src="Kawigi%27s%20sol_files/starwiz_big.jpg" class="rtPhoto" border="0" width="55" height="61"><br>
+            
+            <span class="bodyText"><a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=293166" class="coderTextBlue">starwiz</a></span><br><a href="http://forums.topcoder.com/?module=History&amp;userID=293166">15 posts</a>
+         </div>
+      </td>
+	  
+      <td class="rtTextCell" width="100%">I
+understand. From where I'm sitting, though, it seems like a big step
+for someone like me to take from "I'll use an int as a bitmask" to
+"I'll use an int to represent a square submatrix, with each bit
+representing whether a specific column is included in the submatrix.
+The submatricies will all start from the bottom row of the matrix, and
+since they're square, we can easily compute the submatrix's height by
+counting the number of 1 bits in our int." But maybe once I become more
+comfortable with these problems, it won't seem like such a difficult
+leap of logic to make.</td>
+      
+   	</tr>
+	<tr>
+		<td></td>
+		<td width="100%"></td>
+	</tr>
+</tbody></table>
+
+<table class="rtTable" style="margin-bottom: 6px;" cellpadding="0" cellspacing="0">
+   	<tbody><tr>
+      	<td class="rtHeader" colspan="2">
+      	  
+         	<div style="float: right; padding-left: 5px; white-space: nowrap;">
+            
+            	<a name="559804">Mon, Sep 18, 2006 at 6:40 PM IST</a>
+         	</div>
+         	
+             	<a class="pointer" onmouseover="this.style.color='#FF0000'" onmouseout="this.style.color='#333'" onclick="toggle('msgBody559804')" ;="">Re: Permanent of a matrix</a>
+         	
+         	
+         		(response to <a href="http://forums.topcoder.com/?module=Message&amp;messageID=559770" class="rtbcLink">post</a> by <a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=293166" class="coderTextBlue">starwiz</a>)
+         	
+         	
+				| Feedback: <span id="ratings559804" class="pointer" title="Your vote: 0">(+1/-0)</span> | <a href="javascript:void(0)" onclick="rate('559804','2')" class="rtbcLink">[+]</a> <a href="javascript:void(0)" onclick="rate('559804','1')" class="rtbcLink">[-]</a>
+        	
+         | <a href="http://forums.topcoder.com/?module=Post&amp;mode=Reply&amp;messageID=559804" class="rtbcLink">Reply</a>
+         
+      </td>
+   	</tr>
+   	
+   	
+   	<tr id="msgBody559804" style="">
+      <td class="rtPosterCell">
+         <div class="rtPosterSpacer">
+            
+            <img src="Kawigi%27s%20sol_files/Larry_big4.jpg" class="rtPhoto" border="0" width="55" height="61"><br>
+            
+            <span class="bodyText"><a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=260828" class="coderTextYellow">Larry</a></span><br><a href="http://forums.topcoder.com/?module=History&amp;userID=260828">1381 posts</a>
+         </div>
+      </td>
+	  
+      <td class="rtTextCell" width="100%">When
+I solved the problem, I didn't think of the bitmask as the submatrix
+(though you can certainly think that way), I merely think of the mask
+as "hey, I've already visited this column (and row is implicit), let's
+not visit it in the future".</td>
+      
+   	</tr>
+	<tr>
+		<td></td>
+		<td width="100%"></td>
+	</tr>
+</tbody></table>
+
+<table class="rtTable" style="margin-bottom: 6px;" cellpadding="0" cellspacing="0">
+   	<tbody><tr>
+      	<td class="rtHeader" colspan="2">
+      	  
+         	<div style="float: right; padding-left: 5px; white-space: nowrap;">
+            
+            	<a name="559816">Mon, Sep 18, 2006 at 7:58 PM IST</a>
+         	</div>
+         	
+             	<a class="pointer" onmouseover="this.style.color='#FF0000'" onmouseout="this.style.color='#333'" onclick="toggle('msgBody559816')" ;="">Re: Permanent of a matrix</a>
+         	
+         	
+         		(response to <a href="http://forums.topcoder.com/?module=Message&amp;messageID=559770" class="rtbcLink">post</a> by <a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=293166" class="coderTextBlue">starwiz</a>)
+         	
+         	
+				| Feedback: <span id="ratings559816" class="pointer" title="Your vote: 0">(+2/-0)</span> | <a href="javascript:void(0)" onclick="rate('559816','2')" class="rtbcLink">[+]</a> <a href="javascript:void(0)" onclick="rate('559816','1')" class="rtbcLink">[-]</a>
+        	
+         | <a href="http://forums.topcoder.com/?module=Post&amp;mode=Reply&amp;messageID=559816" class="rtbcLink">Reply</a>
+         
+      </td>
+   	</tr>
+   	
+   	
+   	<tr id="msgBody559816" style="">
+      <td class="rtPosterCell">
+         <div class="rtPosterSpacer">
+            
+            <img src="Kawigi%27s%20sol_files/misof_big2.jpg" class="rtPhoto" border="0" width="55" height="61"><br>
+            
+            <span class="bodyText"><a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=8357090" class="coderTextRed">misof</a></span><br><a href="http://forums.topcoder.com/?module=History&amp;userID=8357090">2356 posts</a>
+         </div>
+      </td>
+	  
+      <td class="rtTextCell" width="100%">Same as <a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=260828" class="coderTextYellow">Larry</a> said in other words:<br><br>You
+need to represent a matrix containing last K rows and some K columns.
+This state can be described using one int (the value K) and one bitset
+(which K columns). <br><br>As a bonus, now you can realize that using
+the value K is not necessary, as K = number of ones in the bitset. (But
+AFAIK this step wasn't even necessary.)</td>
+      
+   	</tr>
+	<tr>
+		<td></td>
+		<td width="100%"></td>
+	</tr>
+</tbody></table>
+
+<table class="rtTable" style="margin-bottom: 6px;" cellpadding="0" cellspacing="0">
+   	<tbody><tr>
+      	<td class="rtHeader" colspan="2">
+      	  
+         	<div style="float: right; padding-left: 5px; white-space: nowrap;">
+            
+            	<a name="559819">Mon, Sep 18, 2006 at 8:09 PM IST</a>
+         	</div>
+         	
+             	<a class="pointer" onmouseover="this.style.color='#FF0000'" onmouseout="this.style.color='#333'" onclick="toggle('msgBody559819')" ;="">Re: Permanent of a matrix</a>
+         	
+         	
+         		(response to <a href="http://forums.topcoder.com/?module=Message&amp;messageID=559816" class="rtbcLink">post</a> by <a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=8357090" class="coderTextRed">misof</a>)
+         	
+         	
+				| Feedback: <span id="ratings559819" class="pointer" title="Your vote: 0">(+1/-0)</span> | <a href="javascript:void(0)" onclick="rate('559819','2')" class="rtbcLink">[+]</a> <a href="javascript:void(0)" onclick="rate('559819','1')" class="rtbcLink">[-]</a>
+        	
+         | <a href="http://forums.topcoder.com/?module=Post&amp;mode=Reply&amp;messageID=559819" class="rtbcLink">Reply</a>
+         
+      </td>
+   	</tr>
+   	
+   	
+   	<tr id="msgBody559819" style="">
+      <td class="rtPosterCell">
+         <div class="rtPosterSpacer">
+            
+            <img src="Kawigi%27s%20sol_files/dskloet_big2.jpg" class="rtPhoto" border="0" width="55" height="61"><br>
+            
+            <span class="bodyText"><a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=19786437" class="coderTextRed">dskloet</a></span><br><a href="http://forums.topcoder.com/?module=History&amp;userID=19786437">3327 posts</a>
+         </div>
+      </td>
+	  
+      <td class="rtTextCell" width="100%"><i>But AFAIK this step wasn't even necessary.</i><br><br>You
+can always use K as a parameter in your recursive function and just
+don't use it for memoization. Though I even used it for memoization and
+still passed.</td>
+      
+   	</tr>
+	<tr>
+		<td></td>
+		<td width="100%"></td>
+	</tr>
+</tbody></table>
+
+<table class="rtTable" style="margin-bottom: 6px;" cellpadding="0" cellspacing="0">
+   	<tbody><tr>
+      	<td class="rtHeader" colspan="2">
+      	  
+         	<div style="float: right; padding-left: 5px; white-space: nowrap;">
+            
+            	<a name="860923">Thu, Sep 6, 2007 at 12:30 PM IST</a>
+         	</div>
+         	
+             	<a class="pointer" onmouseover="this.style.color='#FF0000'" onmouseout="this.style.color='#333'" onclick="toggle('msgBody860923')" ;="">Re: Permanent of a matrix</a>
+         	
+         	
+         		(response to <a href="http://forums.topcoder.com/?module=Message&amp;messageID=559816" class="rtbcLink">post</a> by <a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=8357090" class="coderTextRed">misof</a>)
+         	
+         	
+				| Feedback: <span id="ratings860923" class="pointer" title="Your vote: 0">(+0/-0)</span> | <a href="javascript:void(0)" onclick="rate('860923','2')" class="rtbcLink">[+]</a> <a href="javascript:void(0)" onclick="rate('860923','1')" class="rtbcLink">[-]</a>
+        	
+         | <a href="http://forums.topcoder.com/?module=Post&amp;mode=Reply&amp;messageID=860923" class="rtbcLink">Reply</a>
+         
+      </td>
+   	</tr>
+   	
+   	
+   	<tr id="msgBody860923" style="">
+      <td class="rtPosterCell">
+         <div class="rtPosterSpacer">
+            
+            <img src="Kawigi%27s%20sol_files/NilayVaish_big.jpg" class="rtPhoto" border="0" width="55" height="61"><br>
+            
+            <span class="bodyText"><a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=21500759" class="coderTextBlue">NilayVaish</a></span><br><a href="http://forums.topcoder.com/?module=History&amp;userID=21500759">97 posts</a>
+         </div>
+      </td>
+	  
+      <td class="rtTextCell" width="100%">Thanks to <a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=260828" class="coderTextYellow">Larry</a> and <a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=8357090" class="coderTextRed">misof</a> for the hint.</td>
+      
+   	</tr>
+	<tr>
+		<td></td>
+		<td width="100%"></td>
+	</tr>
+</tbody></table>
+
+
+
+<table class="rtbcTable" cellpadding="0" cellspacing="0">
+<tbody><tr><td><b>
+   
+	        <a href="http://forums.topcoder.com/?module=Category&amp;categoryID=1" class="rtbcLink">Forums</a>
+	
+			<img src="Kawigi%27s%20sol_files/exp_w.gif" align="absmiddle">
+   
+	        <a href="http://forums.topcoder.com/?module=Category&amp;categoryID=13" class="rtbcLink">Round Tables</a>
+	
+			<img src="Kawigi%27s%20sol_files/exp_w.gif" align="absmiddle">
+   
+   <a href="http://forums.topcoder.com/?module=ThreadList&amp;forumID=505803&amp;mc=22640" class="rtbcLink">Educational Discussion</a>
+   
+   			
+   
+   <img src="Kawigi%27s%20sol_files/exp_w.gif" align="absmiddle"> Permanent of a matrix</b>
+   <br>
+        
+            
+           <a href="http://forums.topcoder.com/?module=Thread&amp;threadID=586782&amp;start=0&amp;mc=5" class="rtbcLink">Previous Thread</a>
+        &nbsp;|&nbsp;
+        
+            
+           <a href="http://forums.topcoder.com/?module=Thread&amp;threadID=586790&amp;start=0&amp;mc=5" class="rtbcLink">Next Thread</a>
+        
+   
+   </td>
+
+    <td align="right"><a href="http://forums.topcoder.com/?module=RSS&amp;threadID=513084"><img alt="RSS" src="Kawigi%27s%20sol_files/btn_rss.gif" border="none"></a></td>
+
+</tr></tbody></table>
+
+
+<div style="clear: both;">&nbsp;</div>
+
+        </td>
+
+<!-- Center Column Ends -->
+
+    </tr>
+</tbody></table>
+
+
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+    <tr>
+        <td class="footer" width="100%">
+            <a href="http://www.topcoder.com/" class="footerLinks">Home</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="http://www.topcoder.com/tc?module=Static&amp;d1=about&amp;d2=index" class="footerLinks">About TopCoder</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="http://www.topcoder.com/tc?module=Static&amp;d1=pressroom&amp;d2=index" class="footerLinks">Press Room</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="http://www.topcoder.com/tc?module=Static&amp;d1=about&amp;d2=contactus" class="footerLinks">Contact Us</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="http://www.topcoder.com/tc?module=Static&amp;d1=about&amp;d2=jobs" class="footerLinks">Careers</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="http://www.topcoder.com/tc?module=Static&amp;d1=about&amp;d2=privacy" class="footerLinks">Privacy</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="http://www.topcoder.com/tc?module=Static&amp;d1=about&amp;d2=terms" class="footerLinks">Terms</a>
+            <br>
+            <a href="http://www.topcoder.com/tc" class="footerLinks">Competitions</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="http://software.topcoder.com/" class="footerLinks">Software</a>        </td>
+    </tr>
+    <tr><td class="copyright" width="100%">Copyright © 2001-2008, TopCoder, Inc. All rights reserved.</td></tr>
+</tbody>
+</table>
+
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="Kawigi%27s%20sol_files/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-6340959-1");
+pageTracker._trackPageview();
+</script>
+
+</body></html>

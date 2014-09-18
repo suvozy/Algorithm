@@ -1,0 +1,49 @@
+string operator+(string a,string b){
+	string y,z;
+	if(a.size()>b.size())	{	y=string(a.rbegin(),a.rend());	z=string(b.rbegin(),b.rend());	}
+	else	{	z=string(a.rbegin(),a.rend());	y=string(b.rbegin(),b.rend());	}
+	int tmp=0,i;
+	for(i=0;i< z.size();i++){
+		tmp+=z[i]+y[i]- 2*'0';
+		y[i]=tmp%10 + '0';
+		tmp/=10;
+	}
+	while(i<y.size())	{	tmp+=y[i]-'0';	y[i]=tmp%10+'0';	tmp/=10;	i++;	}
+	while(tmp)	{	y+=tmp%10+'0'; tmp/=10;	}
+
+	z=string (y.rbegin(),y.rend());
+	return z;
+}
+
+string operator-(string a,string b){	//a>b;
+	string minus(a.size(),'\0');
+	for(int i=b.size();i<a.size();i++)	b='0'+b;
+	for(int i=a.size()-1; i>=0 ;i--){
+		if(a[i]>=b[i])	minus[i]=a[i]-b[i]+'0';
+		else	{	minus[i]= 10+a[i]-b[i]+'0';	b[i-1]+=1;	}
+	}
+	int k=0;
+	while(minus[k++]=='0');	k-=1;
+	minus=minus.substr(k,minus.size()-k);	//Removing Leading ZEROs
+	return minus;
+}
+
+string operator*(string s,int a){
+	int carry=0;
+	for(int i= s.size()-1; i>=0; i--){
+		carry+= a* ( s[i]-'0' ); 
+		s[i]= (carry%10) +'0'; carry/=10;
+	}
+	while(carry){
+		char b=(carry%10)+'0';	carry/=10;	s= b+ s;
+	}
+	return s;
+}
+
+
+long long GCD(long long s,long long b){
+	long long rem;	if(s>b)	swap(s,b);	
+	while(s){	rem = b%s;		b=s, s=rem;	}
+	return b;
+}
+

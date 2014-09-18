@@ -1,0 +1,434 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<link href="chap03_files/style.css" rel="stylesheet" type="text/css">
+<title>03 TAJGA FASM Tutorial</title>
+</head>
+
+<body>
+
+<center><b>CHAPTER 3 - Labels &amp; Addresses &amp; Variables</b></center><br><br>
+
+
+Okay, let's get to variables. In previous chapter i wrote that variable is
+general term for space which stores some value. Registers are variables for
+example. But there is limited number of registers (VERY limited, some 8 + few
+special), and this is nearly always not enough. For this reason memory (RAM -
+random access memory) is used.<br><br>
+
+<b>NOTE:</b> when someone says "variable" he almost always means memory
+variable.
+
+<br><br><br>
+<b>3.1. Labels</b>
+
+<br>
+Problem is that you have to know WHERE in memory is some value stored.
+Position in memory (called "address") is given by number. But it is quite hard
+to remember this number (address) for every variable.
+<blockquote class="term">
+term: <b>address</b><br>
+number which gives position in memory
+</blockquote>
+
+Another problem with addresses is that when you change your program, address
+can be changed too, and so you would have to correct this number everywhere
+where it is used. For this reason addresses are represented by "labels".
+Label is just some word (not string, it is not enclosed in apostrophes),
+which, in your program, represents address in memory. When you compile your
+program, compiler will replace label with proper address. Label consists of
+alphabet characters ("a" to "z", "A" to "Z") numbers ("0" to "9"), underscores
+("_") and dots ("."). But first character of label can't be number or dot.
+Label also can't have same name as directive or instruction (instruction
+mnemonics). Labels are case sensitive in FASM ('a' is NOT same as 'A').
+Example of labels:
+<br><br>
+
+<table align="center" bgcolor="#7F91EC" border="0" cellpadding="0" cellspacing="1" width="70%">
+<tbody><tr align="center" bgcolor="#CBCFD8"><td><code>name       </code></td><td>is label</td></tr>
+<tr align="center" bgcolor="#CBCFD8"><td><code>a	      </code></td><td>is label</td></tr>
+<tr align="center" bgcolor="#CBCFD8"><td><code>A	      </code></td><td>is label, different from "a"</td></tr>
+<tr align="center" bgcolor="#CBCFD8"><td><code>name2      </code></td><td>is label</td></tr>
+<tr align="center" bgcolor="#CBCFD8"><td><code>name.NAME2 </code></td><td>is label</td></tr>
+<tr align="center" bgcolor="#CBCFD8"><td><code>name._NAME2</code></td><td>is label</td></tr>
+<tr align="center" bgcolor="#CBCFD8"><td><code>_name      </code></td><td>is label</td></tr>
+<tr align="center" bgcolor="#CBCFD8"><td><code>_	      </code></td><td>is label</td></tr>
+<tr align="center" bgcolor="#CBCFD8"><td><code>.name      </code></td><td>is not label, because is starts with dot (labels starting with
+		     dot have special meaning in FASM, which you will learn later)</td></tr>
+<tr align="center" bgcolor="#CBCFD8"><td><code>1	      </code></td><td>is not label because it starts with number</td></tr>
+<tr align="center" bgcolor="#CBCFD8"><td><code>1st_name   </code></td><td>is not label for same reason</td></tr>
+<tr align="center" bgcolor="#CBCFD8"><td><code>name1 name2</code></td><td>is not label, because it contains space</td></tr>
+<tr align="center" bgcolor="#CBCFD8"><td><code>mov	      </code></td><td>is not label, because "mov" is instruction mnemonics</td></tr>
+</tbody></table>
+<br>
+<blockquote class="term">
+term: <b>label</b><br>
+Placeholder for some address, eg. placeholder for some number, because address is number. In FASM you can
+use label same way as any other number (not really, but it doesn't matter for you too much now).
+</blockquote>
+
+You can define label using directive "label". This directive should be
+followed with label itself (label name). For example:
+<br><br>
+
+<table align="center" bgcolor="#7F91EC" border="0" cellpadding="0" cellspacing="1" width="70%">
+<tbody><tr align="center" bgcolor="#CBCFD8"><td width="120"><code>label name</code></td><td>is label definition, it defines label "name" </td></tr>
+<tr align="center" bgcolor="#CBCFD8"><td width="120"><code>label _name</code></td><td>is label definition, it defines label "_name"</td></tr>
+<tr align="center" bgcolor="#CBCFD8"><td width="120"><code>label label</code></td><td>is not label definition, because "label" can't be name of label
+			     as decribed in previous paragraph
+</td></tr></tbody></table>
+<br>
+
+this will define label that will represent address of data defined behind it<br><br>
+
+<blockquote class="term">
+directive: <b>label</b>
+</blockquote>
+
+<blockquote class="term">
+<b>label definition</b><br>
+directive <b>label</b> followed by label name
+</blockquote>
+
+Shorter way to define label is just writing label name followed by colon
+(<code>:</code>)
+<blockquote class="code"><pre>name<font color="#333399">:</font>
+_name<font color="#333399">:</font>
+</pre></blockquote>
+but we won't use this way for some time.
+<br><br><br>
+
+<b>3.2. Variable definition</b>
+
+<br>
+Now how we can return to problem with variables: how to define variable in
+memory. Program you create (compiled program, in machine code) is loaded to
+memory at execution time, where processor executes it instruction by
+instruction. Look at this program:
+<blockquote class="code"><pre>org <font color="#339933">256</font>
+mov al<font color="#333399">,</font><font color="#339933">10</font>
+db <font color="#bb0000">'this is a string'</font>
+int <font color="#339933">20h</font>
+</pre></blockquote>
+
+This program will probably crash, because after processor executes <code>mov
+al,10</code> then it reaches string. But in program there is no difference between
+string and instructions in machine code. Both are translated into array of numeric
+values (bytes). There is no way processor can differ whether numeric value is
+translation of string or translation of instruction. In this example,
+processor will execute instructions whose numeric representation (in machine
+code) is same as ASCII representation of string "this is a string".
+
+Now look at this:
+<blockquote class="code"><pre>org <font color="#339933">256</font>
+mov al<font color="#333399">,</font><font color="#339933">10</font>
+int <font color="#339933">20h</font>
+db <font color="#bb0000">'this is a string'</font>
+</pre></blockquote>
+
+This program will not crash, because before reaching bytes defined by string
+processor reaches instruction <code>int 20h</code>, which ends execution of program. So
+bytes defined with string will not be executed, it will just take some space.
+This is way how you can define variable - define some data at place where
+processor won't try to execute it (behind <code>int 20h</code> in this case).<br><br>
+
+So code with byte-sized variable of value 105
+<blockquote class="code"><pre>org <font color="#339933">256</font>
+mov al<font color="#333399">,</font><font color="#339933">10</font>
+int <font color="#339933">20h</font>
+db <font color="#339933">105</font>
+</pre></blockquote>
+
+Last line defines byte variable containing 105.<br><br>
+
+Now how to access variable? First we must know address of variable. For this
+we can use label (described above, reread it if you have forgotten)
+<blockquote class="code"><pre>org <font color="#339933">256</font>
+mov al<font color="#333399">,</font><font color="#339933">10</font>
+int <font color="#339933">20h</font>
+label my_first_variable
+db <font color="#339933">105</font>
+</pre></blockquote>
+
+So we already know address of variable. It is represented by label
+<code>my_first_variable</code>. Now how to access it? You may think it is, for example
+<blockquote class="code"><pre>mov al<font color="#333399">,</font>my_first_variable
+</pre></blockquote>
+
+but no! Remember i told that label (<code>my_first_variable</code> in this
+case) stands for address of variable. So this instruction will move address of
+variable to <code>al</code> register, not variable's contents. To access
+contents of variable (or contents of any memory location) you must enclose it's
+address in brackets (<code>[</code> and <code>]</code>). So to access contents
+of our variable, and copy it's value to <code>al</code> we use
+<blockquote class="code"><pre>mov al<font color="#333399">,[</font>my_first_variable<font color="#333399">]</font>
+</pre></blockquote>
+
+Now we will define two variables:
+<blockquote class="code"><pre>org <font color="#339933">256</font>
+<font color="#333399">&lt;</font>some instructions<font color="#333399">&gt;</font>
+int <font color="#339933">20h</font>
+label variable1
+db <font color="#339933">100</font>
+label variable2
+db <font color="#339933">200</font>
+</pre></blockquote>
+
+So to copy value of <code>variable1</code> to <code>al</code> we use
+<blockquote class="code"><pre>mov al<font color="#333399">,[</font>variable1<font color="#333399">]</font>
+</pre></blockquote>
+
+To copy <code>al</code> to <code>variable1</code> use
+<blockquote class="code"><pre>mov <font color="#333399">[</font>variable1<font color="#333399">],</font>al
+</pre></blockquote>
+
+To set value of <code>variable1</code> (exact: to set value of variable which is stored
+at address represented by <code>variable1</code>) to 10 we could try
+<blockquote class="code"><pre>mov <font color="#333399">[</font>variable1<font color="#333399">],</font><font color="#339933">10</font>
+</pre></blockquote>
+
+but this will cause error (try it if you want). Problem is that you know that
+you are changing variable at address <code>variable1</code> to <code>10</code>.
+But what is size of variable? In previous two cases byte-size could be
+determined because you used <code>al</code> register which is byte sized, so
+compiler decided that variable at <code>variable1</code> is byte sized too,
+because you can't move between operands with different sizes. But in this case,
+value 10 can be of any size, so it can't decide size of memory variable. To
+solve this we use "size operators". We	will talk about two size operators for
+now: <code>byte</code> and <code>word</code>. You can put size operator before
+instruction operand when accessing it to let compiler know what the variable
+size is:
+<blockquote class="code"><pre>mov byte <font color="#333399">[</font>variable1<font color="#333399">],</font><font color="#339933">10</font>
+</pre></blockquote>
+
+Another way to make this is
+<blockquote class="code"><pre>mov <font color="#333399">[</font>variable1<font color="#333399">],</font> byte <font color="#339933">10</font>
+</pre></blockquote>
+
+in this case compiler knows that moved value 10 is byte sized so it decides
+that variable is byte-sized too (because we can move byte sized value only to
+byte sized variable).<br><br>
+
+But it would be hard to always remember and always write size of variable when
+you access it. For this reason you can assign size of variable to label when
+you define it. Just write size operator behind label name in definition:
+<blockquote class="code"><pre>label variable1 byte
+db <font color="#339933">100</font>
+</pre></blockquote>
+
+or
+<blockquote class="code"><pre>label variable1 word
+dw <font color="#339933">1000</font>
+</pre></blockquote>
+
+now everytime you use <code>[variable1]</code> it will have same meaning as
+<code>byte [variable1]</code> (or <code>word [variable1]</code> in second
+example). So <code>mov [variable1],10</code> will work, in first case it will
+store value 10 to byte at address <code>variable1</code>, in second case it
+will store to word.
+
+<blockquote class="term">
+<b>size operator</b><br>
+</blockquote>
+
+<b>NOTE:</b> You can't move value between variables with different size:
+<blockquote class="code"><pre>mov byte <font color="#333399">[</font>variable1<font color="#333399">],</font> word <font color="#339933">10</font>
+</pre></blockquote>
+or
+<blockquote class="code"><pre>mov <font color="#333399">[</font>variable1<font color="#333399">],</font>al
+...
+label variable1 word
+dw <font color="#339933">0</font>
+</pre></blockquote>
+<br>
+<b>NOTE:</b> You can't access two memory locations in one instruction (except for
+same special instructions). This is wrong, it won't be compiled:
+<blockquote class="code"><pre>mov <font color="#333399">[</font>variable1<font color="#333399">],[</font>variable2<font color="#333399">]</font>
+</pre></blockquote>
+
+use this:
+<blockquote class="code"><pre>mov al<font color="#333399">,[</font>variable2<font color="#333399">]</font>
+mov <font color="#333399">[</font>variable1<font color="#333399">],</font>al
+</pre></blockquote>
+
+This will cause you some problems in the beginning but it will force you
+to write faster code, and that is biggest reason to code assembly.<br><br>
+
+<b>NOTE:</b> size operator assigned to label at definition has lower priority than
+size operator before access to variable in instruction, so:
+<blockquote class="code"><pre>mov byte <font color="#333399">[</font>variable<font color="#333399">],</font><font color="#339933">10</font>
+label variable word
+dw <font color="#339933">0</font>
+</pre></blockquote>
+
+will access BYTE, while
+<blockquote class="code"><pre>mov <font color="#333399">[</font>variable<font color="#333399">],</font><font color="#339933">10</font>
+</pre></blockquote>
+
+will access WORD.<br><br>
+
+I think you noticed that having two lines to define one variable is little too
+much. There is a shorter way to define variable:
+<blockquote class="code"><pre>variable1 db <font color="#339933">100</font>
+</pre></blockquote>
+
+is same as
+<blockquote class="code"><pre>label variable1 byte
+db <font color="#339933">100</font>
+</pre></blockquote>
+
+notice that size of variable is defined too. In general, if data definiton
+(using <code>db</code> or <code>dw</code> directive) is preceded by label, then
+it will define this label too, and assign size of defined data as size of
+label.
+
+It can be used with words too
+<blockquote class="code"><pre>variable2 dw <font color="#339933">100</font>
+</pre></blockquote>
+
+Some example of using variables:
+<blockquote class="code"><pre>mov ah<font color="#333399">,</font><font color="#339933">2</font>
+mov dl<font color="#333399">,[</font>character_to_write<font color="#333399">]</font>
+int <font color="#339933">21h</font>
+int <font color="#339933">20h</font>
+character_to_write db <font color="#bb0000">'a'</font>
+</pre></blockquote>
+<br><br>
+
+<b>3.3. Addresses and basics of segmentation</b>
+
+<br>
+Now we will discuss addresses little more. I have told that address is number
+(<b>!</b>) which gives some position in memory. You have learnt how to represent this
+number with labels, so numeric addresses were maintained by compiler. But you
+still don't know anything about format of this number. I will try to explain
+it a little in this chapter.<br><br>
+
+As you probably know, data in memory are stored in "bits" which can have value
+0 or 1. You can consider memory as a (one dimensional) array of bits. 8
+consecutive bits make one byte.  Address is number (index, position in array)
+of byte. For example address "0" is address of first bit of memory (or address
+of first byte), address "1" is address of eight bit (or address of second byte)
+of memory etc. Easiest to comprehend is to take memory as (one dimensional)
+array of bytes<br><br>
+
+Address in .COM files is word-sized number, so
+<blockquote class="code"><pre>label var1
+<font color="#333399">&lt;</font>some data<font color="#333399">&gt;</font>
+mov al<font color="#333399">,</font>var1
+</pre></blockquote>
+
+is wrong. It may work if <code>var1</code> is lesser than 256 so it fits into
+byte sized register, but in general, store addresses in word-sized variables,
+we will talk about them little later.<br><br>
+
+Now some examples on addresses. Check this file
+<blockquote class="code"><pre>label variable1
+db <font color="#339933">10</font>
+label variable2
+db <font color="#339933">20</font>
+label variable3
+db <font color="#339933">30</font>
+</pre></blockquote>
+
+here address represented by <code>variable1</code> is 0, <code>variable2</code>
+stands for 1, <code>variable3</code> is 2.<br><br>
+
+OK, this looks nice but it is not true at all. Problem is that there are
+usually more programs loaded in memory at same time (operating system, mouse
+driver, you program etc.). When using this way, program would have to know
+WHERE in memory will it be loaded so it can access it's variables. For this
+reason addresses are "relative". It means that for every program that is
+loaded is reserved some region in memory called "segment". All addresses in
+memory accessed by this program is then relative to begginning of this area.
+So <code>[0]</code> doesn't mean first byte of memory, but first byte of segment.
+
+<blockquote class="term">
+<b>segment</b><br>
+consecutive region of memory reserved for one program
+</blockquote>
+
+How this works? Processor has few special registers (segment registers) which
+holds address of segment (address of first byte of segment). Every time you
+access memory in your program then contents of this segment register is added
+to address given by you so <code>mov al,[0]</code> accesses first byte of your
+segment.<br><br>
+
+<b>NOTE:</b> I have told that memory addresses in .COM programs are words. That
+means they can be in range 0 to 65535. So maximal size of one segment is
+65536 bytes. This can be "tricked" by changing contents of segment registers,
+but don't care about this now.<br><br>
+
+<b>NOTE:</b> Segment is region in memory. But term "segment" is often used for
+address of beginning of this region. Sad but true.<br><br>
+
+So absolute address in memory has two parts: segment (exact: address of
+beggining of segment) and second part, word sized value called "offset" which
+is address relative to segment (address of beginning of segment).
+
+<blockquote class="term">
+<b>offset</b><br>
+address relative to segment, or address "inside" segment. (first definition is more
+exact, but second is easier to comprehend)
+</blockquote>
+
+<b>NOTE:</b> (important) I said labels represent address of variable. In fact,
+labels in FASM represent offset of variable. That is why it called "flat"
+(you will comprehend this later (much much later :))<br><br>
+
+I won't get deeper into segment registers, how is address of begginning of
+segment stored in them (there IS difference), take segment registers as some
+kind of black box for now, it works and we can ignore it now.<br><br><br>
+
+<b>3.4. 'org' directive explained</b>
+
+<br>
+As your program is loaded, it often needs some external info from program that
+runned it. Best example is command line arguments, or it may need know WHO
+runned him etc. This value must be, of course, stored in same segment in
+program. In .COM files these data (passed to your program by program that
+runned you) is stored in first 256 bytes of segment. So your program is loaded
+from offset 256.<br><br>
+
+<b>NOTE:</b> 256 byte structure in beginning of .COM file is called "PSP" which
+stands for "program segment prefix"<br><br>
+
+Now imagine this .COM program:
+<blockquote class="code"><pre>mov al<font color="#333399">,[</font>variable1<font color="#333399">]</font>
+int <font color="#339933">20h</font>
+variable1 db <font color="#339933">0</font>
+</pre></blockquote>
+
+(notice - no <code>org 256</code> directive). Instruction <code>mov al,
+[variable1]</code> takes 3 bytes, <code>int 20h</code> takes 2 bytes, so
+<code>variable1</code> will stand for offset 5. So instruction <code>mov
+al,[variable1]</code> is <code>mov al,[5]</code>. So this instruction access
+6th byte of segment (first byte is at offset 0). But I already told you that
+in first 256 bytes of segment are stored some informations, and your program
+is loaded behind them, from offset 256. So you don't want to <code>variable1</code>
+to be 5, you want it to be 256+5. And this is what <code>org</code> directive
+does. It sets "origin" of file addresses. <code>org 256</code> will tell FASM
+to add 256 to offset held by every label defined behind this directive (before
+next <code>org</code> directive). And this is exactly what we want in .COM
+files.<br><br>
+
+So code upwards won't access variable you want, it will access something in
+PSP (first 256 bytes of segment). To make it work properly use:
+<blockquote class="code"><pre>org <font color="#339933">256</font>
+mov al<font color="#333399">,[</font>variable1<font color="#333399">]</font>
+int <font color="#339933">20h</font>
+variable1 db <font color="#339933">0</font>
+</pre></blockquote><br>
+
+<b>NOTE:</b> <code>org</code> affects labels at time of defintion (for example
+at <code>label variable byte</code> or <code>variable db 0</code>), not when
+they are used (like at <code>mov ax,[variable]</code>). That means, that if you
+change addresses "origin" with <code>org</code> directive after defining some
+label, then label will still hold same value before and behind <code>org</code>
+directive.  <br><br>
+
+I won't tell you about data contained in PSP, you dont have to care about
+them now.
+
+
+
+</body></html>

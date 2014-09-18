@@ -1,0 +1,420 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html class="win firefox firefox3 gecko gecko1" dir="ltr" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en"><head>
+
+	
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="Content-Style-Type" content="text/css">
+		<meta name="generator" content="MediaWiki 1.16alpha">
+		<meta name="keywords" content="Permanent,Adjacency matrix,Alistair Sinclair,Approximation algorithm,Bapat-Beg theorem,Biadjacency matrix,Bipartite graph,Combinatorics,Computation of the permanent of a matrix,Cycle cover,Determinant">
+		<link rel="alternate" type="application/x-wiki" title="Edit this page" href="http://en.wikipedia.org/w/index.php?title=Permanent&amp;action=edit">
+		<link rel="edit" title="Edit this page" href="http://en.wikipedia.org/w/index.php?title=Permanent&amp;action=edit">
+		<link rel="apple-touch-icon" href="http://en.wikipedia.org/apple-touch-icon.png">
+		<link rel="shortcut icon" href="http://en.wikipedia.org/favicon.ico">
+		<link rel="search" type="application/opensearchdescription+xml" href="http://en.wikipedia.org/w/opensearch_desc.php" title="Wikipedia (en)">
+		<link rel="copyright" href="http://creativecommons.org/licenses/by-sa/3.0/">
+		<link rel="alternate" type="application/rss+xml" title="Wikipedia RSS Feed" href="http://en.wikipedia.org/w/index.php?title=Special:RecentChanges&amp;feed=rss">
+		<link rel="alternate" type="application/atom+xml" title="Wikipedia Atom Feed" href="http://en.wikipedia.org/w/index.php?title=Special:RecentChanges&amp;feed=atom">
+		<title>Permanent - Wikipedia, the free encyclopedia</title>
+		<link rel="stylesheet" href="Permanent_files/shared.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="Permanent_files/commonPrint.css" type="text/css" media="print">
+		<link rel="stylesheet" href="Permanent_files/main.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="Permanent_files/main_002.css" type="text/css" media="handheld">
+		<!--[if lt IE 5.5000]><link rel="stylesheet" href="/skins-1.5/monobook/IE50Fixes.css?227x" type="text/css" media="screen" /><![endif]-->
+		<!--[if IE 5.5000]><link rel="stylesheet" href="/skins-1.5/monobook/IE55Fixes.css?227x" type="text/css" media="screen" /><![endif]-->
+		<!--[if IE 6]><link rel="stylesheet" href="/skins-1.5/monobook/IE60Fixes.css?227x" type="text/css" media="screen" /><![endif]-->
+		<!--[if IE 7]><link rel="stylesheet" href="/skins-1.5/monobook/IE70Fixes.css?227x" type="text/css" media="screen" /><![endif]-->
+		<link rel="stylesheet" href="Permanent_files/index_003.css" type="text/css">
+		<link rel="stylesheet" href="Permanent_files/index_005.css" type="text/css" media="print">
+		<link rel="stylesheet" href="Permanent_files/index_002.css" type="text/css" media="handheld">
+		<link rel="stylesheet" href="Permanent_files/index_004.css" type="text/css">
+		<link rel="stylesheet" href="Permanent_files/index.css" type="text/css">
+		<!--[if lt IE 7]><script type="text/javascript" src="/skins-1.5/common/IEFixes.js?227x"></script>
+		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+
+		<script type="text/javascript">/*<![CDATA[*/
+		var skin = "monobook";
+		var stylepath = "/skins-1.5";
+		var wgArticlePath = "/wiki/$1";
+		var wgScriptPath = "/w";
+		var wgScript = "/w/index.php";
+		var wgVariantArticlePath = false;
+		var wgActionPaths = {};
+		var wgServer = "http://en.wikipedia.org";
+		var wgCanonicalNamespace = "";
+		var wgCanonicalSpecialPageName = false;
+		var wgNamespaceNumber = 0;
+		var wgPageName = "Permanent";
+		var wgTitle = "Permanent";
+		var wgAction = "view";
+		var wgArticleId = "215889";
+		var wgIsArticle = true;
+		var wgUserName = null;
+		var wgUserGroups = null;
+		var wgUserLanguage = "en";
+		var wgContentLanguage = "en";
+		var wgBreakFrames = false;
+		var wgCurRevisionId = 281155948;
+		var wgVersion = "1.16alpha";
+		var wgEnableAPI = true;
+		var wgEnableWriteAPI = true;
+		var wgSeparatorTransformTable = ["", ""];
+		var wgDigitTransformTable = ["", ""];
+		var wgMWSuggestTemplate = "http://en.wikipedia.org/w/api.php?action=opensearch\x26search={searchTerms}\x26namespace={namespaces}\x26suggest";
+		var wgDBname = "enwiki";
+		var wgSearchNamespaces = [0];
+		var wgMWSuggestMessages = ["with suggestions", "no suggestions"];
+		var wgRestrictionEdit = [];
+		var wgRestrictionMove = [];
+		/*]]>*/</script>
+
+		<script type="text/javascript" src="Permanent_files/wikibits.js"><!-- wikibits js --></script>
+		<!-- Head Scripts -->
+		<script type="text/javascript" src="Permanent_files/ajax.js"></script>
+		<script type="text/javascript" src="Permanent_files/jquery_005.js"></script>
+		<script type="text/javascript" src="Permanent_files/messages.js"></script>
+		<script type="text/javascript" src="Permanent_files/jquery_003.js"></script>
+		<script type="text/javascript" src="Permanent_files/jquery_002.js"></script>
+		<script type="text/javascript" src="Permanent_files/jquery.js"></script>
+		<script type="text/javascript" src="Permanent_files/jquery_004.js"></script>
+		<script type="text/javascript">loadGM({});</script>
+		<script type="text/javascript" src="Permanent_files/mwsuggest.js"></script>
+		<script type="text/javascript">/*<![CDATA[*/
+		var wgNotice='';var wgNoticeLocal='';
+		/*]]>*/</script>
+		<script type="text/javascript" src="Permanent_files/centralnotice.js"></script><style type="text/css">
+#centralNotice .siteNoticeSmall{display:none;}
+#centralNotice .siteNoticeSmallAnon{display:none;}
+#centralNotice .siteNoticeSmallUser{display:none;}
+#centralNotice.collapsed .siteNoticeBig{display:none;}
+#centralNotice.collapsed .siteNoticeSmall{display:block;}
+#centralNotice.collapsed .siteNoticeSmallUser{display:block;}
+#centralNotice.collapsed .siteNoticeSmallAnon{display:block;}
+#centralNotice.anonnotice .siteNoticeSmallUser{display:none !important;}
+#centralNotice.usernotice .siteNoticeSmallAnon{display:none !important;}
+</style>
+
+
+		<script type="text/javascript" src="Permanent_files/index.php"><!-- site js --></script><script type="text/javascript" src="Permanent_files/index_002.php"></script>
+	<style type="text/css">#bodyContent { position:relative; } 
+.topicon { position:absolute; top:-2em !important;}
+#coordinates{ position:absolute; top:1px !important; }</style></head><body class="mediawiki ltr ns-0 ns-subject page-Permanent skin-monobook">
+	<div id="globalWrapper"><div style="position: absolute; z-index: 40; left: 155px; top: 1px; clear: both; float: left; font-size: 90%; font-style: italic; white-space: nowrap;" class="noprint" id="anon-banner">You can <a href="http://wikimediafoundation.org/wiki/Donate/Now/en?utm_source=enwiki_04&amp;utm_medium=anon_donation_banner&amp;utm_campaign=spontaneous_donation" class="extiw" title="wikimedia:Fundraising"><b>support Wikipedia</b></a> by making a tax-deductible donation.</div>
+		<div id="column-content">
+	<div id="content">
+		<a name="top" id="top"></a>
+		<div id="siteNotice"><script type="text/javascript">if (wgNotice != '') document.writeln(wgNotice);</script><div id="centralNotice" class="expanded anonnotice"><style type="text/css"> 
+/*
+Styles for Notices
+*/
+
+.notice-wrapper-boardvote-candidates, .notice-collapsed-wrapper-boardvote-candidates {
+  margin: 2px auto 0;
+  width: 100%;
+  padding: 0;
+  font-family: 'Arial','Helvetica','Tahoma',sans-serif;
+  color: #333;
+  background-color: #ddd;
+  font-size: .9em;
+  font-weight: 200;
+}
+
+.notice-wrapper-boardvote-candidates
+{
+  border: 1px solid #bbb;
+  background-color: #fcfcfc;
+  text-align: left;
+  font-size: .9em;
+}
+
+.notice-wrapper-boardvote-candidates a
+{
+  color: #006699;
+}
+
+.trans-box
+{
+  text-align: right;
+  font-size: 0.8em;
+  padding: 0;
+  white-space: nowrap;
+}
+
+.toggle-box-boardvote-candidates
+{
+  text-align: right;
+  font-size: 0.8em;
+  padding: 0;
+}
+
+.notice-text-boardvote-candidates
+{
+  margin: 0 auto 5px;
+  padding: 0 5px;
+  font-size: 1em;
+}
+
+.line-ht-fix
+{
+  line-height: 1em;
+}
+
+#centralNotice.anonnotice .siteNoticeUser 
+{
+  display:none !important;
+}
+
+#centralNotice.collapsed .siteNoticeUser
+{
+  display:none;
+}
+
+</style>
+
+<table class="siteNoticeUser notice-wrapper-boardvote-candidates">
+<tbody><tr>
+ <td>
+  <div class="notice-text-boardvote-candidates">
+  Candidates are currently being accepted for the Wikimedia Board of Trustees Election. <a href="http://meta.wikimedia.org/wiki/Board_elections/2009/Candidates/en">Become a candidate.</a>
+  </div>
+ </td>
+ <td class="line-ht-fix">
+   <span class="toggle-box-boardvote-candidates">
+   [<a href="#" onclick="toggleNotice();return
+false">Hide</a>]
+ </span><br>
+  <span class="trans-box">
+  [<a href="http://meta.wikimedia.org/wiki/Board_elections/2009/Translation">Help us with translations!</a>]
+  </span>
+ </td>
+</tr>
+</tbody></table>
+<div class="siteNoticeSmallAnon notice-collapsed-wrapper-boardvote-candidates">
+</div></div>
+</div>		<h1 id="firstHeading" class="firstHeading">Permanent</h1>
+		<div id="bodyContent">
+			<h3 id="siteSub">From Wikipedia, the free encyclopedia</h3>
+			<div id="contentSub"></div>
+									<div id="jump-to-nav">Jump to: <a href="#column-one">navigation</a>, <a href="#searchInput">search</a></div>			<!-- start content -->
+			<div class="dablink">For other uses, see <a href="http://en.wikipedia.org/wiki/Permanent_%28disambiguation%29" title="Permanent (disambiguation)">Permanent (disambiguation)</a>.</div>
+<p>In <a href="http://en.wikipedia.org/wiki/Linear_algebra" title="Linear algebra">linear algebra</a>, the <b>permanent</b> of a <a href="http://en.wikipedia.org/wiki/Square_matrix" title="Square matrix" class="mw-redirect">square matrix</a> is a function of the matrix similar to the <a href="http://en.wikipedia.org/wiki/Determinant" title="Determinant">determinant</a>.
+The permanent, as well as the determinant, is a polynomial in the
+entries of the matrix. Both permanent and determinant are special cases
+of a more general function of a matrix called the <a href="http://en.wikipedia.org/wiki/Immanant" title="Immanant" class="mw-redirect">immanant</a>.</p>
+<table id="toc" class="toc" summary="Contents">
+<tbody><tr>
+<td>
+<div id="toctitle">
+<h2>Contents</h2>
+ <span class="toctoggle">[<a href="javascript:toggleToc()" class="internal" id="togglelink">hide</a>]</span></div>
+<ul>
+<li class="toclevel-1"><a href="#Definition"><span class="tocnumber">1</span> <span class="toctext">Definition</span></a></li>
+<li class="toclevel-1"><a href="#Properties_and_applications"><span class="tocnumber">2</span> <span class="toctext">Properties and applications</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Cycle_covers"><span class="tocnumber">2.1</span> <span class="toctext">Cycle covers</span></a></li>
+<li class="toclevel-2"><a href="#Perfect_matchings"><span class="tocnumber">2.2</span> <span class="toctext">Perfect matchings</span></a></li>
+<li class="toclevel-2"><a href="#0-1_permanents:_counting_in_unweighted_graphs"><span class="tocnumber">2.3</span> <span class="toctext">0-1 permanents: counting in unweighted graphs</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1"><a href="#Computation_of_the_permanent"><span class="tocnumber">3</span> <span class="toctext">Computation of the permanent</span></a></li>
+<li class="toclevel-1"><a href="#See_also"><span class="tocnumber">4</span> <span class="toctext">See also</span></a></li>
+<li class="toclevel-1"><a href="#References"><span class="tocnumber">5</span> <span class="toctext">References</span></a></li>
+<li class="toclevel-1"><a href="#External_links"><span class="tocnumber">6</span> <span class="toctext">External links</span></a></li>
+</ul>
+</td>
+</tr>
+</tbody></table>
+<script type="text/javascript">
+//<![CDATA[
+ if (window.showTocToggle) { var tocShowText = "show"; var tocHideText = "hide"; showTocToggle(); } 
+//]]>
+</script>
+<p><a name="Definition" id="Definition"></a></p>
+<h2><span class="editsection">[<a href="http://en.wikipedia.org/w/index.php?title=Permanent&amp;action=edit&amp;section=1" title="Edit section: Definition">edit</a>]</span> <span class="mw-headline">Definition</span></h2>
+<p>The permanent of an <i>n</i>-by-<i>n</i> matrix <i>A</i> = (<i>a</i><sub><i>i,j</i></sub>) is defined as</p>
+<dl>
+<dd><img class="tex" alt=" \operatorname{perm}(A)=\sum_{\sigma\in S_n}\prod_{i=1}^n a_{i,\sigma(i)}." src="Permanent_files/f7a2edc77dc0048b9f51063052ab7cf9.png"></dd>
+</dl>
+<p>The sum here extends over all elements σ of the <a href="http://en.wikipedia.org/wiki/Symmetric_group" title="Symmetric group">symmetric group</a> <i>S</i><sub><i>n</i></sub>, i.e. over all <a href="http://en.wikipedia.org/wiki/Permutation" title="Permutation">permutations</a> of the numbers 1, 2, ..., <i>n</i>.</p>
+<p>For example,</p>
+<dl>
+<dd><img class="tex" alt="\operatorname{perm}\begin{pmatrix}a&amp;b \\ c&amp;d\end{pmatrix}=ad+bc." src="Permanent_files/87fd7b45ffefc640d5a73473fe2ce505.png"></dd>
+</dl>
+<p>The definition of the permanent of <i>A</i> differs from that of the <a href="http://en.wikipedia.org/wiki/Determinant" title="Determinant">determinant</a> of <i>A</i> in that the signatures of the permutations are not taken into account. If one views the permanent as a map that takes <i>n</i> vectors as arguments, then it is a <a href="http://en.wikipedia.org/wiki/Multilinear_map" title="Multilinear map">multilinear map</a> and it is symmetric (meaning that any order of the vectors results in the same permanent). A formula similar to <a href="http://en.wikipedia.org/wiki/Expansion_by_minors" title="Expansion by minors" class="mw-redirect">Laplace's</a>
+for the development of a determinant along a row or column is also
+valid for the permanent; all signs have to be ignored for the permanent.</p>
+<p><a name="Properties_and_applications" id="Properties_and_applications"></a></p>
+<h2><span class="editsection">[<a href="http://en.wikipedia.org/w/index.php?title=Permanent&amp;action=edit&amp;section=2" title="Edit section: Properties and applications">edit</a>]</span> <span class="mw-headline">Properties and applications</span></h2>
+<p>Unlike the determinant, the permanent has no easy geometrical interpretation; it is mainly used in <a href="http://en.wikipedia.org/wiki/Combinatorics" title="Combinatorics">combinatorics</a> and in treating boson <a href="http://en.wikipedia.org/wiki/Green%27s_functions" title="Green's functions" class="mw-redirect">Green's functions</a> in <a href="http://en.wikipedia.org/wiki/Quantum_field_theory" title="Quantum field theory">quantum field theory</a>. However, it has two <a href="http://en.wikipedia.org/wiki/Graph-theoretic" title="Graph-theoretic" class="mw-redirect">graph-theoretic</a> interpretations: as the sum of weights of <a href="http://en.wikipedia.org/wiki/Cycle_cover" title="Cycle cover">cycle covers</a> of a <a href="http://en.wikipedia.org/wiki/Directed_graph" title="Directed graph">directed graph</a>, and as the sum of weights of perfect matchings in a <a href="http://en.wikipedia.org/wiki/Bipartite_graph" title="Bipartite graph">bipartite graph</a>.</p>
+<p><a name="Cycle_covers" id="Cycle_covers"></a></p>
+<h3><span class="editsection">[<a href="http://en.wikipedia.org/w/index.php?title=Permanent&amp;action=edit&amp;section=3" title="Edit section: Cycle covers">edit</a>]</span> <span class="mw-headline">Cycle covers</span></h3>
+<p>Any square matrix <span class="texhtml"><i>A</i> = (<i>a</i><sub><i>i</i><i>j</i></sub>)</span> can be viewed as the <a href="http://en.wikipedia.org/wiki/Adjacency_matrix" title="Adjacency matrix">adjacency matrix</a> of a directed graph, with <span class="texhtml"><i>a</i><sub><i>i</i><i>j</i></sub></span> representing the weight of the edge from vertex <i>i</i> to vertex <i>j</i>. A <a href="http://en.wikipedia.org/wiki/Vertex_cycle_cover" title="Vertex cycle cover">cycle cover</a> of a weighted directed graph is a collection of vertex-disjoint <a href="http://en.wikipedia.org/wiki/Directed_cycle" title="Directed cycle" class="mw-redirect">directed cycles</a> in the graph that covers all nodes in the graph. Thus, each vertex <i>i</i> in the graph has a unique "successor" <span class="texhtml">σ(<i>i</i>)</span> in the cycle cover, and <span class="texhtml">σ</span> is a <a href="http://en.wikipedia.org/wiki/Permutation" title="Permutation">permutation</a> on <img class="tex" alt="\{1,2,\dots,n\}" src="Permanent_files/bda208c95bbbd23871e5ec673a8c9db5.png"> where <i>n</i> is the number of vertices in the graph. Conversely, any permutation <span class="texhtml">σ</span> on <img class="tex" alt="\{1,2,\dots,n\}" src="Permanent_files/bda208c95bbbd23871e5ec673a8c9db5.png"> corresponds to a cycle cover in which there is an edge from vertex <i>i</i> to vertex <span class="texhtml">σ(<i>i</i>)</span> for each <i>i</i>.</p>
+<p>The weight of a cycle-cover is defined to be the product of the weights of the edges in each cycle:</p>
+<dl>
+<dd><img class="tex" alt=" \operatorname{Weight}(\sigma) = \prod_{i=1}^n a_{i,\sigma(i)}" src="Permanent_files/5c52ff6ec377a14242f7a4bea72bef22.png"></dd>
+</dl>
+<p>The permanent of an <img class="tex" alt="n \times n" src="Permanent_files/607acaa73c762411b20745149a11e90b.png"> matrix <i>A</i> is defined as</p>
+<dl>
+<dd><img class="tex" alt=" \operatorname{Perm}(A)=\sum_\sigma \prod_{i=1}^{n} a_{i,\sigma(i)}" src="Permanent_files/55ca7b75db28f5ec05e268e49b69b48e.png"></dd>
+</dl>
+<p>where <span class="texhtml">σ</span> is a permutation over <img class="tex" alt="\{1,2,\dots,n\}" src="Permanent_files/bda208c95bbbd23871e5ec673a8c9db5.png">. Thus the permanent of <i>A</i> is equal to the sum of the weights of all cycle-covers of the graph.</p>
+<p><a name="Perfect_matchings" id="Perfect_matchings"></a></p>
+<h3><span class="editsection">[<a href="http://en.wikipedia.org/w/index.php?title=Permanent&amp;action=edit&amp;section=4" title="Edit section: Perfect matchings">edit</a>]</span> <span class="mw-headline">Perfect matchings</span></h3>
+<p>A square matrix <span class="texhtml"><i>A</i> = (<i>a</i><sub><i>i</i><i>j</i></sub>)</span> can also be viewed as the <a href="http://en.wikipedia.org/wiki/Biadjacency_matrix" title="Biadjacency matrix" class="mw-redirect">biadjacency matrix</a> of a <a href="http://en.wikipedia.org/wiki/Bipartite_graph" title="Bipartite graph">bipartite graph</a> which has <a href="http://en.wikipedia.org/wiki/Vertex_%28graph_theory%29" title="Vertex (graph theory)">vertices</a> <img class="tex" alt="x_1, x_2, \dots, x_n" src="Permanent_files/34feb8e4d8944bfb796e8813d614d3bd.png"> on one side and <img class="tex" alt="y_1, y_2, \dots, y_n" src="Permanent_files/5663d103914b20152ffe31dca5251520.png"> on the other side, with <span class="texhtml"><i>a</i><sub><i>i</i><i>j</i></sub></span> representing the weight of the edge from vertex <span class="texhtml"><i>x</i><sub><i>i</i></sub></span> to vertex <span class="texhtml"><i>y</i><sub><i>j</i></sub></span>. The weight of a perfect matching <span class="texhtml">σ</span> that matches <span class="texhtml"><i>x</i><sub><i>i</i></sub></span> to <span class="texhtml"><i>y</i><sub>σ(<i>i</i>)</sub></span> is defined to be the product of the weights of the edges in the matching:</p>
+<dl>
+<dd><img class="tex" alt=" \operatorname{Weight}(\sigma) = \prod_{i=1}^n a_{i,\sigma(i)}" src="Permanent_files/5c52ff6ec377a14242f7a4bea72bef22.png"></dd>
+</dl>
+<p>Thus the permanent of <i>A</i> is equal to the sum of the weights of all perfect matchings of the graph.</p>
+<p><a name="0-1_permanents:_counting_in_unweighted_graphs" id="0-1_permanents:_counting_in_unweighted_graphs"></a></p>
+<h3><span class="editsection">[<a href="http://en.wikipedia.org/w/index.php?title=Permanent&amp;action=edit&amp;section=5" title="Edit section: 0-1 permanents: counting in unweighted graphs">edit</a>]</span> <span class="mw-headline">0-1 permanents: counting in unweighted graphs</span></h3>
+<p>In an unweighted, directed, simple graph, if we set each <span class="texhtml"><i>a</i><sub><i>i</i><i>j</i></sub></span> to be 1 if there is an edge from vertex <i>i</i> to vertex <i>j</i>,
+then each nonzero cycle cover has weight 1, and the adjacency matrix
+has 0-1 entries. Thus the permanent of a 01-matrix is equal to the <i>number</i> of cycle-covers of an unweighted directed graph.</p>
+<p>For an unweighted bipartite graph, if we set <i>a</i><sub><i>i,j</i></sub> = 1 if there is an <a href="http://en.wikipedia.org/wiki/Graph_theory" title="Graph theory">edge</a> between the vertices <span class="texhtml"><i>x</i><sub><i>i</i></sub></span> and <span class="texhtml"><i>y</i><sub><i>j</i></sub></span> and <i>a</i><sub><i>i,j</i></sub> = 0 otherwise, then each perfect matching has weight 1. Thus the number of perfect matchings in <i>G</i> is equal to the permanent of matrix <i>A</i>.<sup id="cite_ref-Kozen_0-0" class="reference"><a href="#cite_note-Kozen-0"><span>[</span>1<span>]</span></a></sup></p>
+<p><a name="Computation_of_the_permanent" id="Computation_of_the_permanent"></a></p>
+<h2><span class="editsection">[<a href="http://en.wikipedia.org/w/index.php?title=Permanent&amp;action=edit&amp;section=6" title="Edit section: Computation of the permanent">edit</a>]</span> <span class="mw-headline">Computation of the permanent</span></h2>
+<div class="rellink noprint relarticle mainarticle">Main article: <a href="http://en.wikipedia.org/wiki/Computation_of_the_permanent_of_a_matrix" title="Computation of the permanent of a matrix" class="mw-redirect">Computation of the permanent of a matrix</a></div>
+<p>The permanent is also more difficult to compute than the determinant. While the determinant can be computed in <a href="http://en.wikipedia.org/wiki/Polynomial_time" title="Polynomial time">polynomial time</a> by <a href="http://en.wikipedia.org/wiki/Gaussian_elimination" title="Gaussian elimination">Gaussian elimination</a>,
+Gaussian elimination cannot be used to compute the permanent. Moreover,
+computing the permanent of a 0-1 matrix (matrix whose entries are 0 or
+1) is <a href="http://en.wikipedia.org/wiki/Sharp-P-complete" title="Sharp-P-complete">#P-complete</a>. Thus, if the permanent can be computed in <a href="http://en.wikipedia.org/wiki/Polynomial_time" title="Polynomial time">polynomial time</a> by any method, then <b><a href="http://en.wikipedia.org/wiki/FP_%28complexity%29" title="FP (complexity)">FP</a>&nbsp;=&nbsp;<a href="http://en.wikipedia.org/wiki/Sharp-P" title="Sharp-P">#P</a></b> which is an even stronger statement than <a href="http://en.wikipedia.org/wiki/P_%3D_NP_problem" title="P = NP problem">P&nbsp;=&nbsp; NP</a>. When the entries of <i>A</i> are nonnegative, however, the permanent can be computed <a href="http://en.wikipedia.org/wiki/Approximation_algorithm" title="Approximation algorithm">approximately</a> in <a href="http://en.wikipedia.org/wiki/Randomized_algorithm" title="Randomized algorithm">probabilistic</a> polynomial time, up to an error of ε<i>M</i>, where <i>M</i> is the value of the permanent and ε &gt; 0 is arbitrary.</p>
+<p><a name="See_also" id="See_also"></a></p>
+<h2><span class="editsection">[<a href="http://en.wikipedia.org/w/index.php?title=Permanent&amp;action=edit&amp;section=7" title="Edit section: See also">edit</a>]</span> <span class="mw-headline">See also</span></h2>
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Bapat-Beg_theorem" title="Bapat-Beg theorem" class="mw-redirect">Bapat-Beg theorem</a>, an application of permanent in <a href="http://en.wikipedia.org/wiki/Order_statistics" title="Order statistics" class="mw-redirect">order statistics</a></li>
+<li><a href="http://en.wikipedia.org/wiki/Permanent_is_sharp-P-complete" title="Permanent is sharp-P-complete">Permanent is #P-complete</a></li>
+</ul>
+<p><a name="References" id="References"></a></p>
+<h2><span class="editsection">[<a href="http://en.wikipedia.org/w/index.php?title=Permanent&amp;action=edit&amp;section=8" title="Edit section: References">edit</a>]</span> <span class="mw-headline">References</span></h2>
+<div class="references-small">
+<ol class="references">
+<li id="cite_note-Kozen-0"><b><a href="#cite_ref-Kozen_0-0">^</a></b> Dexter Kozen. <a href="http://books.google.com/books?id=L_AMnf9UF9QC&amp;pg=PA141&amp;dq=%22permanent+of+a+matrix%22+valiant&amp;as_brr=3&amp;ei=h8BKScClJYOUMtTP6LEO#PPA142,M1" class="external text" title="http://books.google.com/books?id=L_AMnf9UF9QC&amp;pg=PA141&amp;dq=%22permanent+of+a+matrix%22+valiant&amp;as_brr=3&amp;ei=h8BKScClJYOUMtTP6LEO#PPA142,M1" rel="nofollow"><i>The Design and Analysis of Algorithms.</i></a> <a href="http://en.wikipedia.org/wiki/Springer-Verlag" title="Springer-Verlag" class="mw-redirect">Springer-Verlag</a>, New York, 1991. <a href="http://en.wikipedia.org/wiki/Special:BookSources/9780387976877" class="internal">ISBN 9780387976877</a>; pp. 141–142</li>
+</ol>
+</div>
+<p><cite style="font-style: normal;" class="" id="CITEREFJerrumSinclairVigoda2004"><a href="http://en.wikipedia.org/wiki/Mark_Jerrum" title="Mark Jerrum">Jerrum, M.</a>; <a href="http://en.wikipedia.org/wiki/Alistair_Sinclair" title="Alistair Sinclair">Sinclair, A.</a>; Vigoda, E. (2004), "A polynomial-time approximation algorithm for the permanent of a matrix with nonnegative entries", <i>Journal of the ACM</i> <b>51</b>: 671–697</cite><span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft.genre=article&amp;rft.atitle=A+polynomial-time+approximation+algorithm+for+the+permanent+of+a+matrix+with+nonnegative+entries&amp;rft.jtitle=Journal+of+the+ACM&amp;rft.aulast=Jerrum&amp;rft.aufirst=M.&amp;rft.au=Jerrum%2C+M.&amp;rft.au=Sinclair%2C+A.&amp;rft.au=Vigoda%2C+E.&amp;rft.date=2004&amp;rft.volume=51&amp;rft.pages=671%E2%80%93697&amp;rfr_id=info:sid/en.wikipedia.org:Permanent"><span style="display: none;">&nbsp;</span></span></p>
+<p><a name="External_links" id="External_links"></a></p>
+<h2><span class="editsection">[<a href="http://en.wikipedia.org/w/index.php?title=Permanent&amp;action=edit&amp;section=9" title="Edit section: External links">edit</a>]</span> <span class="mw-headline">External links</span></h2>
+<ul>
+<li><a href="http://planetmath.org/encyclopedia/Permanent.html" class="external text" title="http://planetmath.org/encyclopedia/Permanent.html" rel="nofollow">Permanent at PlanetMath</a></li>
+</ul>
+
+
+<!-- 
+NewPP limit report
+Preprocessor node count: 764/1000000
+Post-expand include size: 5639/2048000 bytes
+Template argument size: 1447/2048000 bytes
+Expensive parser function count: 0/500
+-->
+
+<!-- Saved in parser cache with key enwiki:pcache:idhash:215889-0!1!0!default!!en!2 and timestamp 20090707034106 -->
+<div class="printfooter">
+Retrieved from "<a href="http://en.wikipedia.org/wiki/Permanent">http://en.wikipedia.org/wiki/Permanent</a>"</div>
+			<div id="catlinks" class="catlinks"><div id="mw-normal-catlinks"><a href="http://en.wikipedia.org/wiki/Special:Categories" title="Special:Categories">Categories</a>: <span dir="ltr"><a href="http://en.wikipedia.org/wiki/Category:Algebra" title="Category:Algebra">Algebra</a></span> | <span dir="ltr"><a href="http://en.wikipedia.org/wiki/Category:Linear_algebra" title="Category:Linear algebra">Linear algebra</a></span> | <span dir="ltr"><a href="http://en.wikipedia.org/wiki/Category:Matrix_theory" title="Category:Matrix theory">Matrix theory</a></span> | <span dir="ltr"><a href="http://en.wikipedia.org/wiki/Category:Permutations" title="Category:Permutations">Permutations</a></span></div></div>			<!-- end content -->
+						<div class="visualClear"></div>
+		</div>
+	</div>
+		</div>
+		<div id="column-one">
+	<div id="p-cactions" class="portlet">
+		<h5>Views</h5>
+		<div class="pBody">
+			<ul xml:lang="en" lang="en">
+	
+				 <li id="ca-nstab-main" class="selected"><a href="http://en.wikipedia.org/wiki/Permanent" title="View the content page [alt-shift-c]" accesskey="c">Article</a></li>
+				 <li id="ca-talk"><a href="http://en.wikipedia.org/wiki/Talk:Permanent" title="Discussion about the content page [alt-shift-t]" accesskey="t">Discussion</a></li>
+				 <li id="ca-edit"><a href="http://en.wikipedia.org/w/index.php?title=Permanent&amp;action=edit" title="You can edit this page. 
+Please use the preview button before saving. [alt-shift-e]" accesskey="e">Edit this page</a></li>
+				 <li id="ca-history"><a href="http://en.wikipedia.org/w/index.php?title=Permanent&amp;action=history" title="Past versions of this page [alt-shift-h]" accesskey="h">History</a></li>			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-personal">
+		<h5>Personal tools</h5>
+		<div class="pBody">
+			<ul xml:lang="en" lang="en">
+				<li id="pt-login"><a href="http://en.wikipedia.org/w/index.php?title=Special:UserLogin&amp;returnto=Permanent" title="You are encouraged to log in; however, it is not mandatory. [alt-shift-o]" accesskey="o">Log in / create account</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-logo">
+		<a style="background-image: url(http://upload.wikimedia.org/wikipedia/en/b/bc/Wiki.png);" href="http://en.wikipedia.org/wiki/Main_Page" title="Visit the main page [alt-shift-z]" accesskey="z"></a>
+	</div>
+	<script type="text/javascript"> if (window.isMSIE55) fixalpha(); </script>
+	<div class="generated-sidebar portlet" id="p-navigation">
+		<h5 xml:lang="en" lang="en">Navigation</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-mainpage-description"><a href="http://en.wikipedia.org/wiki/Main_Page" title="Visit the main page [alt-shift-z]" accesskey="z">Main page</a></li>
+				<li id="n-contents"><a href="http://en.wikipedia.org/wiki/Portal:Contents" title="Guides to browsing Wikipedia">Contents</a></li>
+				<li id="n-featuredcontent"><a href="http://en.wikipedia.org/wiki/Portal:Featured_content" title="Featured content — the best of Wikipedia">Featured content</a></li>
+				<li id="n-currentevents"><a href="http://en.wikipedia.org/wiki/Portal:Current_events" title="Find background information on current events">Current events</a></li>
+				<li id="n-randompage"><a href="http://en.wikipedia.org/wiki/Special:Random" title="Load a random article [alt-shift-x]" accesskey="x">Random article</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="p-search" class="portlet">
+		<h5 xml:lang="en" lang="en"><label for="searchInput">Search</label></h5>
+		<div id="searchBody" class="pBody">
+			<form action="/w/index.php" id="searchform"><div>
+				<input name="title" value="Special:Search" type="hidden">
+				<input autocomplete="off" id="searchInput" name="search" title="Search Wikipedia [alt-shift-f]" accesskey="f" value="" type="text">
+				<input name="go" class="searchButton" id="searchGoButton" value="Go" title="Go to a page with this exact name if one exists" type="submit">&nbsp;
+				<input name="fulltext" class="searchButton" id="mw-searchButton" value="Search" title="Search Wikipedia for this text" type="submit">
+			</div></form>
+		</div>
+	</div>
+	<div class="generated-sidebar portlet" id="p-interaction">
+		<h5 xml:lang="en" lang="en">Interaction</h5>
+		<div class="pBody">
+			<ul>
+				<li id="n-aboutsite"><a href="http://en.wikipedia.org/wiki/Wikipedia:About" title="Find out about Wikipedia">About Wikipedia</a></li>
+				<li id="n-portal"><a href="http://en.wikipedia.org/wiki/Wikipedia:Community_portal" title="About the project, what you can do, where to find things">Community portal</a></li>
+				<li id="n-recentchanges"><a href="http://en.wikipedia.org/wiki/Special:RecentChanges" title="The list of recent changes in the wiki [alt-shift-r]" accesskey="r">Recent changes</a></li>
+				<li id="n-contact"><a href="http://en.wikipedia.org/wiki/Wikipedia:Contact_us" title="How to contact Wikipedia">Contact Wikipedia</a></li>
+				<li id="n-sitesupport"><a href="http://wikimediafoundation.org/wiki/Donate/Now/en?utm_source=donate&amp;utm_medium=sidebar&amp;utm_campaign=spontaneous_donation" title="Support us">Donate to Wikipedia</a></li>
+				<li id="n-help"><a href="http://en.wikipedia.org/wiki/Help:Contents" title="Guidance on how to use and edit Wikipedia">Help</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="portlet" id="p-tb">
+		<h5 xml:lang="en" lang="en">Toolbox</h5>
+		<div class="pBody">
+			<ul>
+				<li id="t-whatlinkshere"><a href="http://en.wikipedia.org/wiki/Special:WhatLinksHere/Permanent" title="List of all English Wikipedia pages containing links to this page [alt-shift-j]" accesskey="j">What links here</a></li>
+				<li id="t-recentchangeslinked"><a href="http://en.wikipedia.org/wiki/Special:RecentChangesLinked/Permanent" title="Recent changes in pages linked from this page [alt-shift-k]" accesskey="k">Related changes</a></li>
+<li id="t-upload"><a href="http://en.wikipedia.org/wiki/Wikipedia:Upload" title="Upload files [alt-shift-u]" accesskey="u">Upload file</a></li>
+<li id="t-specialpages"><a href="http://en.wikipedia.org/wiki/Special:SpecialPages" title="List of all special pages [alt-shift-q]" accesskey="q">Special pages</a></li>
+				<li id="t-print"><a href="http://en.wikipedia.org/w/index.php?title=Permanent&amp;printable=yes" rel="alternate" title="Printable version of this page [alt-shift-p]" accesskey="p">Printable version</a></li>				<li id="t-permalink"><a href="http://en.wikipedia.org/w/index.php?title=Permanent&amp;oldid=281155948" title="Permanent link to this revision of the page">Permanent link</a></li><li id="t-cite"><a href="http://en.wikipedia.org/w/index.php?title=Special:Cite&amp;page=Permanent&amp;id=281155948">Cite this page</a></li>			</ul>
+		</div>
+	</div>
+	<div id="p-lang" class="portlet">
+		<h5 xml:lang="en" lang="en">Languages</h5>
+		<div class="pBody">
+			<ul>
+				<li class="interwiki-de"><a href="http://de.wikipedia.org/wiki/Permanente">Deutsch</a></li>
+				<li class="interwiki-fr"><a href="http://fr.wikipedia.org/wiki/Permanent_%28math%C3%A9matiques%29">Français</a></li>
+				<li class="interwiki-it"><a href="http://it.wikipedia.org/wiki/Permanente_%28matematica%29">Italiano</a></li>
+				<li class="interwiki-he"><a href="http://he.wikipedia.org/wiki/%D7%A4%D7%A8%D7%9E%D7%A0%D7%A0%D7%98%D7%94">עברית</a></li>
+				<li class="interwiki-pl"><a href="http://pl.wikipedia.org/wiki/Permanent">Polski</a></li>
+			</ul>
+		</div>
+	</div>
+		</div><!-- end of the left (by default at least) column -->
+			<div class="visualClear"></div>
+			<div id="footer">
+				<div id="f-poweredbyico"><a href="http://www.mediawiki.org/"><img src="Permanent_files/poweredby_mediawiki_88x31.png" alt="Powered by MediaWiki"></a></div>
+				<div id="f-copyrightico"><a href="http://wikimediafoundation.org/"><img src="Permanent_files/wikimedia-button.png" alt="Wikimedia Foundation" border="0"></a></div>
+			<ul id="f-list">
+					<li id="lastmod"> This page was last modified on 1 April 2009 at 21:15.</li>
+					<li id="copyright">Text is available under the <a href="http://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License">Creative Commons Attribution/Share-Alike License</a>;
+additional terms may apply.
+See <a href="http://wikimediafoundation.org/wiki/Terms_of_Use">Terms of Use</a> for details.<br>
+Wikipedia® is a registered trademark of the <a href="http://www.wikimediafoundation.org/">Wikimedia Foundation, Inc.</a>, a non-profit organization.</li>
+					<li id="privacy"><a href="http://wikimediafoundation.org/wiki/Privacy_policy" class="extiw" title="wikimedia:Privacy policy">Privacy policy</a></li>
+					<li id="about"><a href="http://en.wikipedia.org/wiki/Wikipedia:About" title="Wikipedia:About">About Wikipedia</a></li>
+					<li id="disclaimer"><a href="http://en.wikipedia.org/wiki/Wikipedia:General_disclaimer" title="Wikipedia:General disclaimer">Disclaimers</a></li>
+			</ul>
+		</div>
+</div>
+
+		<script type="text/javascript">if (window.runOnloadHook) runOnloadHook();</script>
+<!-- Served by srv199 in 0.044 secs. --></body></html>

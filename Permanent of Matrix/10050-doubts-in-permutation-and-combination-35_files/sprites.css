@@ -1,0 +1,204 @@
+a.iblock_links:link, a.iblock_links:visited{
+   display: inline-block;
+}
+td.alt1Active{
+   vertical-align: top;
+}
+.Rankings {
+   font-size: 30px;
+}
+.RankingsHighLight{
+   color: #6799C7;
+}
+.RankingsLowLight{
+   color: #CCC;
+}
+a.MediumLink:link,a.MediumLink:visited{
+   font-weight: bold;
+   font-size: 15px;
+   text-decoration: underline;
+   margin: 8px 0px;
+   display: inline-block;
+}
+a.SmallMediumLinks:link, a.SmallMediumLinks:visited{
+   font-weight: bold;
+   font-size: 12px;
+   text-decoration: underline;
+}
+a.RightBar:link, a.RightBar:visited{
+   border-right: 1px solid #000;
+   padding: 0 15px 0 0;
+   margin: 0 15px 0 0;
+}
+a.GreenLink:link, a.GreenLink:visited{
+   color: #008000;
+}
+a.RedLink:link, a.RedLink:visited{
+   color: #8B4000;
+}
+a.GroanLink:link, a.GroanLink:visited {
+   background:#8B4000 none repeat scroll 0 0;
+   border:2px outset #000000;
+   color:#FFFFFF;
+   margin:0;
+   padding:2px 15px;
+   text-decoration:none;
+}
+a.ThankLink:link, a.ThankLink:visited {
+   background:#008000 none repeat scroll 0 0;
+   border:2px outset #000000;
+   color:#FFFFFF;
+   margin: 0 15px 0 0;
+   padding:2px 15px;
+   text-decoration:none;
+}
+.SmallLinks{
+   font-weight: bold;
+   font-size: 10px;
+}
+.RatingSymbols{
+   font-weight: bold;
+   font-size: 15px;
+}
+.RatingHighlight{
+   color: #ff6e00;
+}
+.RatingLowlight{
+   color: #CCC;
+}
+a.SpanLink:link,a.SpanLink:visited{
+   text-decoration:none;
+   cursor: default;
+}
+.vb_ad_server_blocks div{
+   border-bottom: 2px groove #888;
+   padding: 5px 0px;
+}
+/*Status Icon*/
+   .image_status { display: inline-block; background: url(http://static.pagalguy.net/pagalguy/minima/sprites/statusicon/status_15x15.gif) no-repeat top left;}
+.sprite-announcement_new { width: 15px; height: 15px; background-position: 0 -2px; } 
+.sprite-announcement_old { width: 15px; height: 15px; background-position: 0 -19px; } 
+.sprite-forum_new { width: 15px; height: 15px; background-position: 0 -36px; } 
+.sprite-forum_new_lock { width: 15px; height: 15px; background-position: 0 -53px; } 
+.sprite-forum_old { width: 15px; height: 15px; background-position: 0 -70px; } 
+.sprite-forum_old_lock { width: 15px; height: 15px; background-position: 0 -87px; } 
+.sprite-project_forum_old { width: 15px; height: 15px; background-position: 0 -104px; } 
+.sprite-project_forum_on { width: 15px; height: 15px; background-position: 0 -121px; } 
+.sprite-stats { width: 15px; height: 15px; background-position: 0 -138px; } 
+.sprite-thread { width: 15px; height: 15px; background-position: 0 -155px; } 
+.sprite-thread_dot { width: 15px; height: 15px; background-position: 0 -172px; } 
+.sprite-thread_dot_hot { width: 15px; height: 15px; background-position: 0 -189px; } 
+.sprite-thread_dot_hot_lock { width: 15px; height: 15px; background-position: 0 -206px; } 
+.sprite-thread_dot_hot_lock_new { width: 15px; height: 15px; background-position: 0 -223px; } 
+.sprite-thread_dot_hot_new { width: 15px; height: 15px; background-position: 0 -240px; } 
+.sprite-thread_dot_lock { width: 15px; height: 15px; background-position: 0 -257px; } 
+.sprite-thread_dot_lock_new { width: 15px; height: 15px; background-position: 0 -274px; } 
+.sprite-thread_dot_new { width: 15px; height: 15px; background-position: 0 -291px; } 
+.sprite-thread_hot { width: 15px; height: 15px; background-position: 0 -308px; } 
+.sprite-thread_hot_lock { width: 15px; height: 15px; background-position: 0 -325px; } 
+.sprite-thread_hot_lock_new { width: 15px; height: 15px; background-position: 0 -342px; } 
+.sprite-thread_hot_new { width: 15px; height: 15px; background-position: 0 -359px; } 
+.sprite-thread_lock { width: 15px; height: 15px; background-position: 0 -376px; } 
+.sprite-thread_moved { width: 15px; height: 15px; background-position: 0 -393px; } 
+.sprite-thread_new { width: 15px; height: 15px; background-position: 0 -410px; } 
+.sprite-user_invisible { width: 15px; height: 15px; background-position: 0 -427px; } 
+.sprite-user_offline { width: 15px; height: 15px; background-position: 0 -444px; } 
+.sprite-user_online { width: 15px; height: 15px; background-position: 0 -463px; }
+/*-----------*/
+/*Status Icon 2*/
+.image_status2 { display: inline-block; background: url(http://static.pagalguy.net/pagalguy/minima/sprites/statusicon/status_2.gif) no-repeat top left;}
+.sprite-wol_lockedout { width: 13px; height: 16px; background-position: 0 -2px; } 
+.sprite-subforum_old { width: 10px; height: 11px; background-position: 0 -20px; } 
+.sprite-pm_old { width: 14px; height: 16px; background-position: 0 -33px; } 
+.sprite-pm_replied { width: 14px; height: 16px; background-position: 0 -51px; } 
+.sprite-pm_new { width: 14px; height: 16px; background-position: 0 -69px; } 
+.sprite-subforum_new { width: 10px; height: 11px; background-position: 0 -87px; } 
+.sprite-subforum_link { width: 15px; height: 15px; background-position: 0 -100px; } 
+.sprite-post_new { width: 10px; height: 11px; background-position: 0 -117px; } 
+.sprite-pm_forwarded { width: 14px; height: 16px; background-position: 0 -130px; } 
+.sprite-post_old { width: 10px; height: 11px; background-position: 0 -148px; } 
+/*-----------*/
+/*Misc*/
+.image_misc { display: inline-block; background: url(http://static.pagalguy.net/pagalguy/minima/sprites/misc/misc_01.gif) no-repeat top left;}
+.sprite-birthday { width: 15px; height: 15px; background-position: 0 -2px; } 
+.sprite-expires { width: 15px; height: 15px; background-position: 0 -19px; } 
+.sprite-navbits_finallink_ltr { width: 30px; height: 15px; background-position: 0 -36px; } 
+.sprite-navbits_finallink_rtl { width: 30px; height: 15px; background-position: 0 -53px; } 
+.sprite-navbits_start { width: 15px; height: 15px; background-position: 0 -70px; } 
+.sprite-paperclip { width: 15px; height: 15px; background-position: 0 -87px; } 
+.sprite-poll_posticon { width: 15px; height: 15px; background-position: 0 -104px; } 
+.sprite-sticky { width: 15px; height: 15px; background-position: 0 -121px; } 
+.sprite-subscribedcopy { width: 15px; height: 15px; background-position: 0 -138px; } 
+.sprite-subscribed { width: 15px; height: 15px; background-position: 0 -155px; } 
+.sprite-trashcan_small { width: 15px; height: 15px; background-position: 0 -172px; } 
+.sprite-vb_bullet { width: 15px; height: 15px; background-position: 0 -189px; } 
+.sprite-whos_online { width: 15px; height: 15px; background-position: 0 -206px; } 
+.sprite-moderated_small { background-position: 0 -225px; } 
+/*-----------*/
+
+/*Buttons 15x15*/
+.image_buttons_15x15 { display: inline-block; background: url(http://static.pagalguy.net/pagalguy/minima/sprites/buttons/buttons_15x15.gif) no-repeat top left;}
+.sprite-refresh { width:15px; height: 15px; background-position: 0 -2px; } 
+.sprite-collapse_thead_collapsed { width:15px; height: 15px; background-position: 0 -23px; } 
+.sprite-viewpost { width:15px; height: 15px; background-position: 0 -40px; } 
+.sprite-addpoll { width:15px; height: 15px; background-position: 0 -57px; } 
+.sprite-sortasc { width:15px; height: 15px; background-position: 0 -74px; } 
+.sprite-subscribe { width:15px; height: 15px; background-position: 0 -91px; } 
+.sprite-multiquote_off { width:15px; height: 15px; background-position: 0 -108px; } 
+.sprite-printer { width:15px; height: 15px; background-position: 0 -127px; } 
+.sprite-lastpost { width:15px; height: 15px; background-position: 0 -144px; } 
+.sprite-quickreply { width:15px; height: 15px; background-position: 0 -161px; } 
+.sprite-collapse_alt_collapsed { width:15px; height: 15px; background-position: 0 -180px; } 
+.sprite-sendtofriend { width:15px; height: 15px; background-position: 0 -197px; } 
+.sprite-report { width:15px; height: 15px; background-position: 0 -214px; } 
+.sprite-collapse_tcat_collapsed { width:15px; height: 15px; background-position: 0 -231px; } 
+.sprite-collapse_alt { width:15px; height: 15px; background-position: 0 -248px; } 
+.sprite-collapse_thead { width:15px; height: 15px; background-position: 0 -265px; } 
+.sprite-subscribed { width:15px; height: 15px; background-position: 0 -282px; } 
+.sprite-firstnew { width:15px; height: 15px; background-position: 0 -299px; } 
+.sprite-collapse_tcat { width:15px; height: 15px; background-position: 0 -316px; } 
+.sprite-ip { width:15px; height: 15px; background-position: 0 -333px; } 
+.sprite-sortdesc { width:15px; height: 15px; background-position: 0 -350px; } 
+/*-----------*/
+
+/*ICONS*/
+.image_icons { display: inline-block; background: url(http://static.pagalguy.net/pagalguy/minima/sprites/icons/icons.gif) no-repeat top left;}
+.sprite-icon3 { width: 16px; height: 16px; background-position: 0 -2px; } 
+.sprite-icon8 { width: 16px; height: 16px; background-position: 0 -20px; } 
+.sprite-icon11 { width: 16px; height: 16px; background-position: 0 -38px; } 
+.sprite-icon2 { width: 16px; height: 16px; background-position: 0 -56px; } 
+.sprite-icon14 { width: 16px; height: 16px; background-position: 0 -74px; } 
+.sprite-icon4 { width: 16px; height: 16px; background-position: 0 -92px; } 
+.sprite-icon13 { width: 16px; height: 16px; background-position: 0 -110px; } 
+.sprite-icon10 { width: 16px; height: 16px; background-position: 0 -128px; } 
+.sprite-icon1 { width: 16px; height: 16px; background-position: 0 -146px; } 
+.sprite-icon6 { width: 16px; height: 16px; background-position: 0 -164px; } 
+.sprite-icon12 { width: 16px; height: 16px; background-position: 0 -182px; } 
+.sprite-icon7 { width: 16px; height: 16px; background-position: 0 -200px; } 
+.sprite-icon9 { width: 16px; height: 16px; background-position: 0 -218px; } 
+.sprite-icon5 { width: 16px; height: 16px; background-position: 0 -236px; } 
+/*-----------*/
+
+/*Misc 2*/
+.image_misc_2 { display: inline-block; background: url(http://static.pagalguy.net/pagalguy/minima/sprites/misc/misc_02.gif) no-repeat top left;}
+.sprite-tree_i { background-position: 0 -2px; } 
+.sprite-tree_t { background-position: 0 -24px; } 
+.sprite-menu_open { background-position: 0 -46px; } 
+.sprite-tree_l { background-position: 0 -54px; } 
+.sprite-colorpicker_transparent { background-position: 0 -76px; } 
+.sprite-tree_tr { background-position: 0 -87px; } 
+.sprite-menu_open_usercss { background-position: 0 -109px; } 
+.sprite-tree_ltr { background-position: 0 -118px; } 
+.sprite-down9x9 { background-position: 0 -140px; } 
+/*-----------*/
+
+/*College Name*/
+div.CollegeName{
+   border: 1px dotted #698CAE;
+   padding: 3px;
+   background: #D6E7F7;
+   font-size: 11px;
+   font-weight: bold;
+   color: #254156;
+}
+/*-----------*/

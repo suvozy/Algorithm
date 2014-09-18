@@ -1,0 +1,201 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<link href="chap02_files/style.css" rel="stylesheet" type="text/css">
+<title>02 TAJGA FASM Tutorial</title>
+</head>
+
+<body>
+
+<center><b>CHAPTER 2 - First program</b></center><br><br>
+
+You may have asked why am i fooling with creating some text files when you
+want to learn assembly. But text files are just some "arrays" of bytes. You
+didn't just learn how to create text file, you learnt how to define file
+containing any data you want. And this is what runnable program is - special
+"data" file, array of numeric values, called "machine code". You only have to
+know meaning of these values :). Of course it is very hard to remember all
+values and their's meanings, and this is what assembler is for. It translates
+programs from human acceptable language to machine code. So you only have to
+learn this human acceptable language :)<br><br>
+
+<blockquote class="term">
+<b>machine code</b><br>
+array of numeric values, that represents instructions to processor (CPU)
+</blockquote>
+
+Now we will care about DOS .COM programs (rarely called "memory image", you
+will learn why later, when you get into thing). These are most-simple
+executable (runable) files under DOS and Windows.<br><br>
+
+So let's create first .COM file, which won't do anything.
+<blockquote class="code"><pre>  org <font color="#339933">256</font>
+  int <font color="#339933">20h</font>
+</pre></blockquote>
+
+Compile this to .COM file and run it. Nothing should happen. Now let's look
+what that two lines means. (This will be funny...)
+<blockquote class="code"><pre>  org <font color="#339933">256</font>
+</pre></blockquote>
+I won't explain what this directive does now. Just put this line in the
+begginning of every .COM file! It doesn't define any data, even does nothing
+you can notice now. We will get to this later.
+<blockquote class="code"><pre>  int <font color="#339933">20h</font>
+</pre></blockquote>
+This is "instruction". Instruction is command for processor, which is stored
+in created file as one or more bytes. When you run .COM executable file,
+processor walks thru it and decodes instructions from machine code and does
+what these instructions instruct it to. Instruction <code>int 20h</code> says
+that this is end of execution of file. So first instruction in this says
+processor to stop execution, so executable file does nothing, as you saw.<br><br>
+
+<blockquote class="term">
+<b>instruction</b><br>
+single command to processor
+</blockquote>
+
+(by the way - int 20h is NOT instruction to processor which ends execution of
+.COM program. It is instructs processor to call some system procedure.
+System procedure is chosen by number following <code>int</code>, in this case number 20h
+(it IS sort of number) which means procedure to end .COM file . <code>int</code> can be
+followed by another number and another system procedure will be called. But
+for now we can abstract from this, forget about it and take <code>int 20h</code> as
+instruction to stop program.)<br><br>
+
+So "machine code" is set of "instructions". Differ between directives and
+instructions. Directive is command for compiler, how it should define data
+and what data should it define. Instructions are defined data which encodes
+what processor will do when you execute program. For example <code>db 0,0</code> is
+directive which defines two zero bytes, but it is instruction in case it is
+executed, because two zero bytes have special meaning for processor (don't
+care what is their meaning).  <code>org 256</code> is directive, not instruction,
+because it doesn't define any data. You will get into this by practice.<br><br>
+
+Instruction <code>int 20h</code> is simple, it don't need any arguments (=parameters, or
+values which changes it's effect). But what if some instruction DOES need any
+arguments? For this reason processor has it's own "variables" (variable is
+general term for space which stores some value). These variables are called
+"registers". First registers we'll learn are <code>al</code>, <code>ah</code>,
+<code>bl</code>, <code>bh</code>, <code>cl</code>, <code>ch</code>,
+<code>dl</code>, <code>dh</code> which are byte sized (they contain value in
+range 0 to 255).<br><br>
+
+<blockquote class="term">
+<b>register</b><br>
+"internal" processor's variable
+</blockquote>
+
+(by the way <code>int 20h</code> takes argument in AL register, but, again, we can
+abstract from this. And, in fact, value 20h is instruction argument too, but
+we abstracted from this before. This is what i was talking about when i wrote
+that "it will be funny").<br><br>
+
+Now how to set value of register? There is a instruction which does this, for
+example:
+<blockquote class="code"><pre>  mov al<font color="#333399">,</font><font color="#339933">10</font>
+</pre></blockquote>
+
+this instruction sets value of <code>al</code> register to 10. <code>mov</code>
+stands for "move". Destination of "moving" follows
+<code>mov</code> (separated with spaces), in this case it is <code>al</code>
+register. Then comes source of moving separated with comma (<code>,</code>), in
+this case it is number 10.  So this instruction "moves" value 10 to register
+<code>al</code>.
+
+Another example of moving:
+<blockquote class="code"><pre>  mov al<font color="#333399">,</font>bl
+</pre></blockquote>
+
+This copies value in <code>bl</code> register to <code>al</code> register. It
+won't change value in <code>bl</code> register. Source of <code>mov</code> always stays
+unchanged.
+
+<b>NOTE:</b> You will often (always?) see some people talking about
+<code>mov</code> instruction. But <code>mov</code> is not instruction, and
+<code>int</code> is not an instruction too. <code>mov al,bl</code> or
+<code>int 20h</code> is instruction for example. <code>mov</code> or
+<code>int</code> is called "instruction mnemonics". But accept this, everyone calls it
+"instruction" and you probably will too after some time (and i probably
+will too, sorry :). Arguments of instruction (part of instruction without
+instruction mnemonics, like <code>al</code> and <code>10</code> in
+<code>mov al,10</code> are called "instruction operands" (or "instruction
+arguments" :)
+
+<blockquote class="term">
+<b>instruction mnemonics</b> (this term is not so improtant now)<br>
+<b>instruction operand</b>
+</blockquote>
+
+Now let's go to usage of registers. We will use <code>int 21h</code> instruction
+which can do MANY things depending on value in <code>ah</code> register. We
+won't learn meaning of all values, now we will talk only about value 2. If
+value 2 is in <code>ah</code> register when <code>int 21h</code> instruction is
+executed then character in <code>dl</code> (more extactly: character whose ASCII
+code is in <code>dl</code>) is writen to screen (console).<br><br>
+
+<b>NOTE:</b> if you are using some Windows and file manager (like Total Commander)
+You will see window appear for very short time and then disappear. But our
+character is displayed in this window and you probably can't notice that.
+You must run shell (<code>cmd</code> on XP, <code>command</code> on older
+windozes) and run your program from it. Anyway, if you can't handle this, forget
+about assembly for a while and learn using your operating system. And then, dont
+forget to return to assembly!<br><br>
+
+Okay so let's look on program which writes character "a":
+<blockquote class="code"><pre>  org <font color="#339933">256</font>
+  mov ah<font color="#333399">,</font><font color="#339933">2</font>
+  mov dl<font color="#333399">,<font color="#bb0000">'a'</font></font>
+  int <font color="#339933">21h</font>
+  int <font color="#339933">20h</font>
+</pre></blockquote>
+
+so anylisis
+<blockquote class="code"><pre>  mov ah<font color="#333399">,</font><font color="#339933">2</font>
+</pre></blockquote>
+
+sets value of "ah" register to 2, this should be clear
+<blockquote class="code"><pre>  mov dl<font color="#333399">,<font color="#bb0000">'a'</font></font>
+</pre></blockquote>
+
+this moves "a" character into <code>dl</code> register. (In fact, there is nothing like
+"character a" in assembly. You could have noticed i wrote registers can
+contain numeric values. Nothing about characters. Way this works is that compiler
+translates character enclosed in apostrophes into it's numeric (ASCII) code,
+which is recognized by <code>int 21h</code> as code for this character. In assembly
+character "a" means ASCII code for character "a")
+<blockquote class="code"><pre>  int <font color="#339933">21h</font>
+</pre></blockquote>
+In this case, when "ah" contains value 2, this writes character in "dl"
+<blockquote class="code"><pre>  int <font color="#339933">20h</font>
+</pre></blockquote>
+
+And we can't forget to stop execution. Otherwise program will most-probably
+crash.<br><br>
+
+<b>NOTE:</b> in assembly character enclosed in apostrophes is same as ASCII
+code for this character<br><br>
+
+So writing multiple characters ("ab") is:
+<blockquote class="code"><pre>  org <font color="#339933">256</font>
+  mov ah<font color="#333399">,</font><font color="#339933">2</font>
+  mov dl<font color="#333399">,<font color="#bb0000">'a'</font></font>
+  int <font color="#339933">21h</font>
+  mov dl<font color="#333399">,<font color="#bb0000">'b'</font></font>
+  int <font color="#339933">21h</font>
+  int <font color="#339933">20h</font>
+</pre></blockquote>
+we don't have to set <code>ah</code> to 2 again for second <code>int 21h</code>
+because value 2 will reamin in <code>ah</code> from previous settings. Value in
+<code>dl</code> will remain too, so code
+<blockquote class="code"><pre>  org <font color="#339933">256</font>
+  mov ah<font color="#333399">,</font><font color="#339933">2</font>
+  mov dl<font color="#333399">,<font color="#bb0000">'a'</font></font>
+  int <font color="#339933">21h</font>
+  int <font color="#339933">21h</font>
+  int <font color="#339933">21h</font>
+  int <font color="#339933">20h</font>
+</pre></blockquote>
+will write "aaa".
+
+
+
+</body></html>

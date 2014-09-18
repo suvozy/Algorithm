@@ -1,0 +1,737 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+
+
+
+
+
+<title>Algorithm Tutorials</title>
+
+
+<script language="JavaScript" type="text/javascript" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/tcscript.js"></script><link type="image/x-icon" rel="shortcut icon" href="http://www.topcoder.com/i/favicon.ico">
+
+
+
+
+
+
+<link type="text/css" rel="stylesheet" href="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/style.css">
+<link type="text/css" rel="stylesheet" href="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/coders.css">
+<link type="text/css" rel="stylesheet" href="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/tcStyles20080219.css">
+<link type="text/css" rel="stylesheet" href="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/jobsRemix.css">
+
+
+<script language="JavaScript" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/print.js"></script>
+<style type="text/css">
+.math
+{
+   font-family: times, times new roman, serif;
+   font-weight: normal;
+   font-style: italic;
+   font-size: 15px;
+}
+</style>
+</head><body>
+<div id="onTop">
+    
+
+
+
+
+
+<script type="text/javascript" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/popup.js"></script>
+
+<div id="shortcutBar">
+    <div class="icon"><a href="http://www.topcoder.com/tc"><img src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/scHome.png" alt="" onmouseover="postPopUpText('globalPopupText','Home'); popUp(this,'globalPopup');" onmouseout="popHide()"></a></div>
+    <div class="icon"><a href="javascript:arena();"><img src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/scAlgo.png" alt="" onmouseover="postPopUpText('globalPopupText','Algorithm Competitions'); popUp(this,'globalPopup');" onmouseout="popHide()"></a></div>
+    <div class="icon"><a href="http://www.topcoder.com/tc?module=ActiveContests&amp;pt=23"><img src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/scConceptualization.png" alt="" onmouseover="postPopUpText('globalPopupText','Software Conceptualization Competitions'); popUp(this,'globalPopup');" onmouseout="popHide()"></a></div>
+    <div class="icon"><a href="http://www.topcoder.com/tc?module=ActiveContests&amp;pt=6"><img src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/scSpecification.png" alt="" onmouseover="postPopUpText('globalPopupText','Software Specification Competitions'); popUp(this,'globalPopup');" onmouseout="popHide()"></a></div>
+    <div class="icon"><a href="http://www.topcoder.com/tc?module=ActiveContests&amp;pt=7"><img src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/scArchitecture.png" alt="" onmouseover="postPopUpText('globalPopupText','Software Architecture Competitions'); popUp(this,'globalPopup');" onmouseout="popHide()"></a></div>
+    <div class="icon"><a href="http://www.topcoder.com/tc?module=ViewActiveContests&amp;ph=112"><img src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/scDesign.png" alt="" onmouseover="postPopUpText('globalPopupText','Component Design Competitions'); popUp(this,'globalPopup');" onmouseout="popHide()"></a></div>
+    <div class="icon"><a href="http://www.topcoder.com/tc?module=ViewActiveContests&amp;ph=113"><img src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/scDevelopment.png" alt="" onmouseover="postPopUpText('globalPopupText','Component Development Competitions'); popUp(this,'globalPopup');" onmouseout="popHide()"></a></div>
+
+    <div class="icon"><a href="http://www.topcoder.com/tc?module=ViewAssemblyActiveContests"><img src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/scAssembly.png" alt="" onmouseover="postPopUpText('globalPopupText','Software Assembly Competitions'); popUp(this,'globalPopup');" onmouseout="popHide()"></a></div>
+    <div class="icon"><a href="javascript:arena();"><img src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/scTCHS.png" alt="" onmouseover="postPopUpText('globalPopupText','High School Competitions'); popUp(this,'globalPopup');" onmouseout="popHide()"></a></div>
+    <div class="icon"><a href="http://www.topcoder.com/longcontest/?module=ViewActiveContests"><img src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/scMarathon.png" alt="" onmouseover="postPopUpText('globalPopupText','Marathon Matches'); popUp(this,'globalPopup');" onmouseout="popHide()"></a></div>
+    <div class="icon"><a href="http://studio.topcoder.com/?module=ViewActiveContests"><img src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/scStudio.png" alt="" onmouseover="postPopUpText('globalPopupText','TopCoder Studio Competitions'); popUp(this,'globalPopup');" onmouseout="popHide()"></a></div>
+</div>
+
+<div style="left: 282px; top: 64px; display: none;" id="globalPopup" class="popUp"><div id="globalPopupText">TopCoder Studio Competitions</div></div>
+
+
+<div style="position: absolute; right: 0px; top: 31px;"><a href="http://www.topcoder.com/tc?module=MyHome"><img src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/myTopCoder.png" alt="My TopCoder" style="display: block;"></a></div>
+
+
+<div style="margin: 0px 290px 0px 280px;" align="center">
+   <div id="outerLogo">
+      <div id="innerLogo">
+      <a href="http://www.topcoder.com/"><img src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/topcoder.gif" alt="TopCoder" style="display: block;"></a>
+      </div>
+   </div>
+</div>
+
+<div class="memberCountBox">
+Member Count: 187,901 - 
+
+
+March 10, 2009
+
+&nbsp;<a class="gMetal" href="javascript:tcTime()">[Get Time]</a>
+</div>
+
+<div class="topBar">
+    <div style="margin: 5px 0px 0px; float: right;">
+        
+            Hello,&nbsp;<a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=22764304" class="coderTextWhite">bitsits</a>
+            
+                | <a class="gMetal" href="http://www.topcoder.com/tc?module=Logout">Logout</a>
+            
+        
+    </div>
+</div>
+</div>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+   <tbody><tr valign="top">
+<!-- Left Column Begins-->
+        <td id="onLeft" width="180">
+         
+
+
+
+
+
+
+    
+    
+
+
+
+
+
+
+
+
+<script language="JavaScript" type="text/javascript" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/arena.js"></script>
+
+
+<script language="JavaScript" type="text/javascript">
+<!--
+function toggleMenu(menuTitle,menuID){
+   var menu = document.getElementById(menuID);
+   if(menu.style.display == 'block') menu.className = 'CLOSED';
+   else if(menu.className == 'OPEN' && menu.style.display != 'none') menu.className = 'CLOSED';
+   else {
+      menu.className = 'OPEN';
+   }
+   if(menuTitle.blur)menuTitle.blur();
+   if(menuTitle.className == 'exp') menuTitle.className = 'exp_ed';
+   else menuTitle.className = 'exp';
+   return;
+}
+function flipMenu(myMenuName){
+   var menuName = document.getElementById(myMenuName);
+   menuName.className = 'exp_ed';
+}
+
+// -->
+</script>
+
+<div style="padding: 0px;"><img src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/leftnav_top.gif" alt=""></div>
+<div id="navbar">
+    
+<ul>
+<li class="exp_ed"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_competitions')">Competitions</a>
+<ul id="m_competitions" class="OPEN">
+<li><a href="http://www.topcoder.com/tc">Home</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_competitor_stats')">The Tops</a>
+<ul id="m_competitor_stats">
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_top_rated_competitors')">Top Ranked</a>
+<ul id="m_top_rated_competitors">
+<li><a href="http://www.topcoder.com/tc?module=AlgoRank">Algorithm</a></li>
+<li><a href="http://www.topcoder.com/stat?c=top_designers">Design</a></li>
+<li><a href="http://www.topcoder.com/stat?c=top_developers">Development</a></li>
+<li><a href="http://www.topcoder.com/tc?module=HSRank">High School</a></li>
+<li><a href="http://www.topcoder.com/longcontest/stats/?module=CoderRank">Marathon Match</a></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_recordbook')">Record Book</a>
+<ul id="m_recordbook">
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=statistics&amp;d2=recordbook_home">Algorithm</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=compstats&amp;d2=comp_recordbook_home">Component</a></li>
+<li><a href="http://www.topcoder.com/longcontest/?module=Static&amp;d1=stats&amp;d2=recordbook_home">Marathon Match</a></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_com')">Coder of the Month</a>
+<ul id="m_com">
+<li><a href="http://www.topcoder.com/tc?module=COMHistory&amp;achtid=5">Algorithm</a></li>
+<li><a href="http://www.topcoder.com/tc?module=COMHistory&amp;achtid=6">Design</a></li>
+<li><a href="http://www.topcoder.com/tc?module=COMHistory&amp;achtid=7">Development</a></li>
+</ul></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_algo_competitions')">Algorithm</a>
+<ul id="m_algo_competitions">
+<li><a href="javascript:arena();">Launch Arena</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_algo_stats')">Statistics</a>
+<ul id="m_algo_stats">
+<li><a href="http://www.topcoder.com/tc?module=MatchList">Match Archive</a></li>
+<li><a href="http://www.topcoder.com/stat?c=round_overview">Match Overviews</a></li>
+<li><a href="http://www.topcoder.com/tc?module=SrmDivisionWins">Match Winners</a></li>
+<li><a href="http://www.topcoder.com/stat?c=last_match">Match Results</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Algorithm+Problem+Set+Analysis">Match Editorials</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ProblemArchive">Problem Archive</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ColorChange&amp;ratid=1">Recent Color Changes</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Algorithm+Data+Feeds">Data Feeds</a></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_algo_support')">Support / FAQs</a>
+<ul id="m_algo_support">
+<li><a href="http://www.topcoder.com/wiki/display/tc/How+To+Compete+in+Algorithm+Competitions">How to Compete</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Algorithm+Competition+FAQs">FAQs</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Algorithm+Competition+Rating+System">Rating System</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Write+Problems+for+TopCoder">Write Problems</a></li>
+</ul></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_conceptualization_competitions')">Software Conceptualization</a>
+<ul id="m_conceptualization_competitions">
+<li><a href="http://www.topcoder.com/wiki/display/tc/TopCoder+Conceptualization+Contests">Overview</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ActiveContests&amp;pt=23">Active Contests</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ContestStatus&amp;pt=23">Contest Status</a></li>
+<li><a href="http://software.topcoder.com/review">Submit &amp; Review</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/TopCoder+UML+Tool">UML Tool</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_conceptualization_support')">Support / FAQs</a>
+<ul id="m_conceptualization_support">
+<li><a href="http://www.topcoder.com/wiki/display/tc/Software+Specification+How+To">How to Compete</a></li>
+</ul></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_specification_competitions')">Software Specification</a>
+<ul id="m_specification_competitions">
+<li><a href="http://www.topcoder.com/wiki/display/tc/TopCoder+Conceptualization+Contests">Overview</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ActiveContests&amp;pt=6">Active Contests</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ContestStatus&amp;pt=6">Contest Status</a></li>
+<li><a href="http://software.topcoder.com/review">Submit &amp; Review</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/TopCoder+UML+Tool">UML Tool</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_specification_support')">Support / FAQs</a>
+<ul id="m_specification_support">
+<li><a href="http://www.topcoder.com/wiki/display/tc/Software+Specification+How+To">How to Compete</a></li>
+</ul></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_architecture_competitions')">Software Architecture</a>
+<ul id="m_architecture_competitions">
+<li><a href="http://www.topcoder.com/wiki/display/tc/Architecture+Overview">Overview</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ActiveContests&amp;pt=7">Active Contests</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ContestStatus&amp;pt=7">Contest Status</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ViewReviewProjects&amp;pt=7">Review Opportunities</a></li>
+<li><a href="http://software.topcoder.com/review">Submit &amp; Review</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/TopCoder+UML+Tool">UML Tool</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ReviewBoard&amp;pt=7">Meet the Review Board</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_architecture_support')">Support / FAQs</a>
+<ul id="m_architecture_support">
+<li><a href="http://www.topcoder.com/wiki/display/tc/How+to+Compete+in+Architecture+Competitions">How to Compete</a></li>
+</ul></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_des_competitions')">Software Design</a>
+<ul id="m_des_competitions">
+<li><a href="http://www.topcoder.com/tc?module=ViewActiveContests&amp;ph=112">Active Contests</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ContestStatus&amp;pt=1">Contest Status</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ViewReviewProjects&amp;pt=1">Review Opportunities</a></li>
+<li><a href="http://software.topcoder.com/review">Submit &amp; Review</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/TopCoder+UML+Tool">UML Tool</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_des_stats')">Statistics</a>
+<ul id="m_des_stats">
+<li><a href="http://www.topcoder.com/tc?module=CompList&amp;ph=112">Past Contests</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ColorChange&amp;ph=112">Recent Color Changes</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Component+Design+Data+Feeds">Data Feeds</a></li>
+</ul></li>
+<li><a href="http://www.topcoder.com/tc?module=ReviewBoard&amp;pt=1">Meet the Review Board</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_des_support')">Support / FAQs</a>
+<ul id="m_des_support">
+<li><a href="http://www.topcoder.com/wiki/display/tc/How+to+Compete+in+Component+Design+Competitions">How to Compete</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Component+Design+Documentation">Documentation</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Component+Design+Ratings">Ratings</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Component+Design+Reliability+Ratings">Reliability Ratings</a></li>
+</ul></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_dev_competitions')">Software Development</a>
+<ul id="m_dev_competitions">
+<li><a href="http://www.topcoder.com/tc?module=ViewActiveContests&amp;ph=113">Active Contests</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ContestStatus&amp;pt=2">Contest Status</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ViewReviewProjects&amp;pt=2">Review Opportunities</a></li>
+<li><a href="http://software.topcoder.com/review">Submit &amp; Review</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/TopCoder+UML+Tool">UML Tool</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_dev_stats')">Statistics</a>
+<ul id="m_dev_stats">
+<li><a href="http://www.topcoder.com/tc?module=CompList&amp;ph=113">Past Contests</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ColorChange&amp;ph=113">Recent Color Changes</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Component+Development+Data+Feeds">Data Feeds</a></li>
+</ul></li>
+<li><a href="http://www.topcoder.com/tc?module=ReviewBoard&amp;pt=2">Meet the Review Board</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_dev_support')">Support / FAQs</a>
+<ul id="m_dev_support">
+<li><a href="http://www.topcoder.com/wiki/display/tc/How+to+Compete+in+Component+Development+Competitions">How to Compete</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Component+Development+Documentation">Documentation</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Component+Development+Ratings">Ratings</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Component+Development+Reliability+Ratings">Reliability Ratings</a></li>
+</ul></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_assembly_competitions')">Software Assembly</a>
+<ul id="m_assembly_competitions">
+<li><a href="http://www.topcoder.com/wiki/display/tc/Assembly">Overview</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ViewAssemblyActiveContests">Active Contests</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ContestStatus&amp;pt=14">Contest Status</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ViewReviewProjects&amp;pt=14">Review Opportunities</a></li>
+<li><a href="http://software.topcoder.com/review">Submit &amp; Review</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ReviewBoard&amp;pt=14">Meet the Review Board</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_assembly_support')">Support / FAQs</a>
+<ul id="m_assembly_support">
+<li><a href="http://www.topcoder.com/wiki/display/tc/How+to+Compete+in+Assembly+Competitions">How to Compete</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Assembly+Competition+Tutorial">Tutorial</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Assembly+Competition+Documentation">Documentation</a></li>
+</ul></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_testing_competitions')">Application Testing</a>
+<ul id="m_testing_competitions">
+<li><a href="http://www.topcoder.com/wiki/display/tc/Testing">Overview</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ActiveContests&amp;pt=13">Active Contests</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ContestStatus&amp;pt=13">Contest Status</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_testing_support')">Support / FAQs</a>
+<ul id="m_testing_support">
+<li><a href="http://www.topcoder.com/wiki/display/tc/How+to+Compete+in+Testing+Competitions">How to Compete</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Testing+Competition+Tutorial">Tutorial</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Testing+Competition+Documentation">Documentation</a></li>
+</ul></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_bugraces_competitions')">Bug Races</a>
+<ul id="m_bugraces_competitions">
+<li><a href="http://www.topcoder.com/wiki/display/tc/Bug+Races">Overview</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Active+Bug+Races">Active Contests</a></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/Bug+Races+Reviews">Review Opportunities</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_bugraces_support')">Support / FAQs</a>
+<ul id="m_bugraces_support">
+<li><a href="http://www.topcoder.com/wiki/display/tc/How+to+Compete+in+Bug+Races">How to Compete</a></li>
+</ul></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_hs_competitions')">High School</a>
+<ul id="m_hs_competitions">
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=hs&amp;d2=home">Overview</a></li>
+<li><a href="javascript:arena();">Launch Arena</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_hs_stats')">Statistics</a>
+<ul id="m_hs_stats">
+<li><a href="http://www.topcoder.com/tc?module=HSRoundOverview">Match Overview</a></li>
+<li><a href="http://www.topcoder.com/tc?module=HSRoundStatsTeam">Match Results (Team)</a></li>
+<li><a href="http://www.topcoder.com/tc?module=HSRoundStatsInd">Match Results (Indiv.)</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=hs&amp;d2=match_editorials&amp;d3=archive">Match Editorials</a></li>
+<li><a href="http://www.topcoder.com/tc?module=ColorChange&amp;ratid=2">Recent Color Changes</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=hs&amp;d2=support&amp;d3=dataFeed">Data Feeds</a></li>
+</ul></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=hs&amp;d2=sponsorship">Sponsorship</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_hs_support')">Support / FAQs</a>
+<ul id="m_hs_support">
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=hs&amp;d2=support&amp;d3=index">How to Compete</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=hs&amp;d2=support&amp;d3=faqIndex">FAQs</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=hs&amp;d2=support&amp;d3=sampleProblems">Sample Problems</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=hs&amp;d2=support&amp;d3=ratings">Rating System</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=help&amp;d2=problemWriter&amp;node=hs_write">Write Problems</a></li>
+</ul></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_long_contests')">Marathon Matches</a>
+<ul id="m_long_contests">
+<li><a href="http://www.topcoder.com/longcontest/?module=ViewActiveContests">Active Contests</a></li>
+<li><a href="http://www.topcoder.com/longcontest/?module=ViewPractice">Practice</a></li>
+<li><a href="http://www.topcoder.com/longcontest/?module=ViewQueue">Queue Status</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_long_stats')">Statistics</a>
+<ul id="m_long_stats">
+<li><a href="http://www.topcoder.com/longcontest/stats/?module=MatchList">Match Archive</a></li>
+<li><a href="http://www.topcoder.com/longcontest/stats/?module=ViewOverview">Match Overview</a></li>
+<li><a href="http://www.topcoder.com/longcontest/stats/?module=MatchWinners">Match Winners</a></li>
+<li><a href="http://www.topcoder.com/longcontest/?module=Static&amp;d1=match_editorials&amp;d2=archive">Match Editorials</a></li>
+<li><a href="http://www.topcoder.com/longcontest/?module=Static&amp;d1=support&amp;d2=dataFeed">Data Feeds</a></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_long_support')">Support / FAQs</a>
+<ul id="m_long_support">
+<li><a href="http://www.topcoder.com/longcontest/?module=Static&amp;d1=instructions">How to Compete</a></li>
+<li><a href="http://www.topcoder.com/longcontest/?module=Static&amp;d1=support&amp;d2=ratings">Rating System</a></li>
+</ul></li>
+</ul></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_tournaments')">Tournaments</a>
+<ul id="m_tournaments">
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=tournaments&amp;d2=home">TopCoder</a></li>
+<li><a href="http://www.topcoder.com/pl/">Powered by TopCoder</a></li>
+<li><a href="http://www.topcoder.com/tc?module=CRPFStatic&amp;d1=crpf&amp;d2=crpf_overview">Charity</a></li>
+</ul></li>
+<li><a href="http://www.topcoder.com/dr">The Digital Run</a></li>
+<li class="exp_ed"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_edu_content')">Educational Content</a>
+<ul id="m_edu_content" class="OPEN">
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=education&amp;d2=overview">Overview</a></li>
+<li class="highlight"><a href="http://www.topcoder.com/tc?module=Static&amp;d1=tutorials&amp;d2=alg_index">Algorithm Tutorials</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=tutorials&amp;d2=comp_index">Component Tutorials</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=tutorials&amp;d2=mm_index">Marathon Tutorials</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=features&amp;d2=archive">Features</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=help&amp;d2=writeForTC">Write for TopCoder</a></li>
+</ul></li>
+<li><a href="http://www.topcoder.com/wiki/display/tc/How+to+Get+Paid+for+Competing">How to Get Paid</a></li>
+</ul></li>
+<li><a href="http://forums.topcoder.com/">Forums</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=calendar&amp;d2=thisMonth">Event Calendar</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=pressroom&amp;d2=index">Press Room</a></li>
+<li><a href="http://www.topcoder.com/tc?&amp;module=SurveyList">Surveys</a></li>
+<li><a href="http://www.topcoder.com/tc?module=MyHome">My TopCoder</a></li>
+<li class="exp"><a href="javascript:void(0)" onclick="Javascript:toggleMenu(this.parentNode,'m_about_tc')">About TopCoder</a>
+<ul id="m_about_tc">
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=about&amp;d2=index">Overview</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=about&amp;d2=contactus">Contact Us</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=about&amp;d2=whyjoin">Why Join TopCoder?</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=about&amp;d2=jobs">Working at TopCoder</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=about&amp;d2=management">Management Team</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=about&amp;d2=terms">Terms, Revisions</a></li>
+<li><a href="http://www.topcoder.com/tc?module=Static&amp;d1=about&amp;d2=privacy">Privacy Policy</a></li>
+</ul></li></ul>
+
+    <div style="padding: 10px 0px 0px 17px; float: left;">
+        
+        
+        
+        
+        <a href="http://www.topcoder.com/tc?module=LinkTracking&amp;link=http://software.topcoder.com/&amp;refer=leftnav"><img src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/tc_direct.png" alt="TopCoder Direct"></a>
+
+        
+    </div>
+    
+
+<div id="navbarSearch">
+<b>Member Search:</b>
+<form action="http://www.topcoder.com/tc" method="get" name="simpleSearchForm" class="noSpace" id="simpleSearchForm">
+   <input class="noSpace" name="module" value="SimpleSearch" type="hidden">
+   <input class="noSpace" name="ha" value="Handle:" size="12" maxlength="15" onfocus="javascript: if (document.simpleSearchForm.ha.value=='Handle:') document.simpleSearchForm.ha.value = '';" onblur="javascript:if (document.simpleSearchForm.ha.value == '')document.simpleSearchForm.ha.value = 'Handle:';" type="text">
+   <a class="gMetal" href="javascript:void%20document.simpleSearchForm.submit();">Go</a><br>
+   <a class="gMetal" href="http://www.topcoder.com/tc?module=ViewAdvanced">Advanced Search</a>
+</form>
+</div>
+</div>
+<div style="padding: 0px 0px 23px; float: left; clear: left;"><img src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/leftnav_bottom.gif" alt=""></div>
+
+
+    <div style="margin: 0px; float: left; clear: left; width: 170px;" align="center">
+        <img src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/brackets.png" alt="" style="margin-bottom: 23px;">
+    </div>
+
+
+
+        </td>
+<!-- Left Column Ends -->
+
+<!-- Center Column Begins -->
+         <td align="center" width="100%">
+
+         <div class="tutorBodyFull">
+
+
+
+
+
+
+<table class="pageTitleTable" cellpadding="0" cellspacing="0">
+    <tbody><tr>
+        <td class="pageTitle" width="100%"><img src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/header_alg_tut.gif" alt="alg_tut" border="0"></td>
+        <td class="pageSubtitle" align="right">&nbsp;&nbsp;</td>
+    </tr>
+</tbody></table>
+
+
+
+<div class="linkBox">
+    <a href="http://www.topcoder.com/tc?module=Static&amp;d1=tutorials&amp;d2=alg_index">Archive</a><br>
+    <span id="printableLink"><a href="javascript:makeInvisible();">Printable view</a><br></span>
+    <span id="navigableLink" class="invisible"><a href="javascript:makeNavigable();">Normal view</a><br></span>
+    <a href="http://forums.topcoder.com/?module=ThreadList&amp;forumID=515317">Discuss this article</a><br>
+    <a href="http://www.topcoder.com/tc?module=Static&amp;d1=help&amp;d2=writeForTC">Write for TopCoder</a>
+</div>
+
+<span class="bigTitle">Minimum Cost Flow, Part 1: Key Concepts</span>
+<br><br>
+
+<div class="authorPhoto">
+    <img src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/Zealint_big.jpg" alt="Author">
+</div>
+
+<div class="authorText">
+  By&nbsp;<a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=22671469&amp;tab=alg" class="coderTextBlue">Zealint</a> <br>
+      <em>TopCoder Member</em>
+</div>
+
+<br clear="all">
+<p>This article covers the so-called "min-cost flow" problem, which has
+many applications for both TopCoder competitors and professional
+programmers. The article is targeted to readers who are not familiar
+with the subject, with a focus more on providing a general
+understanding of the ideas involved rather than heavy theory or
+technical details; for a more in-depth look at this topic, check out
+the references at the end of this article, in particular [<a href="#1">1</a>]. In addition, readers of this article should be familiar with the basic concepts of graph theory -- including shortest paths [<a href="#4">4</a>], paths with negative cost arcs, negative cycles [<a href="#1">1</a>] -- and maximum flow theory's basic algorithms [<a href="#3">3</a>].</p>
+
+<p>The article is divided into three parts. In Part 1, we'll look at
+the problem itself. The next part will describe three basic algorithms,
+and Part 3 some applications to the problem will be covered in Part 3.</p>
+
+<p><span class="bodySubtitle">Statement of the Problem</span><br>
+What is the minimum cost flow problem? Let's begin with some important terminology.</p>
+
+<p>Let <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_001.png" style="padding: 0px 3px;" align="top"> be a directed network defined by a set <span class="math">V</span> of vertexes (nodes) and set <span class="math">E</span> of edges (arcs). For each edge <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_002.png" style="padding: 0px 3px;" align="top"> we associate a <b>capacity</b> <span class="math">u<sub>ij</sub></span> that denotes the maximum amount that can flow on the edge. Each edge <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_003.png" style="padding: 0px 3px;" align="top"> also has an associated <b>cost</b> <span class="math">c<sub>ij</sub></span> that denotes the cost per unit flow on that edge.</p>
+
+<p>We associate with each vertex <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_004.png" style="padding: 0px 3px;" align="top"> a number <span class="math">b<sub>i</sub></span>. This value represents supply/demand of the vertex.  If <span class="math">b<sub>i</sub></span> &gt; 0, node <span class="math">i</span> is a <b>supply node</b>; if <span class="math">b<sub>i</sub></span> &lt; 0, node <span class="math">i</span> is a <b>demand node</b> (its demand is equal to <span class="math">-b<sub>i</sub></span>). We call vertex <span class="math">i</span> a <b>transshipment</b> if <span class="math">b<sub>i</sub></span> is zero.</p>
+
+<p>For simplification, let's call <span class="math">G</span> a <b>transportation network</b> and write <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_005.png" style="padding: 0px 3px;" align="top"> in case we want to show all the network parameters explicitly.</p>
+
+<div align="center"><img src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/Figure_1_1.png" alt="Figure 1_1" style="" border="0"></div>
+
+<blockquote><b>Figure 1</b>. An example of the transportation network.
+In this we have 2 supply vertexes (with supply values 5 and 2), 3
+demand vertexes (with demand values 1, 4 and 2), and 1 transshipment
+node. Each edge has two numbers, capacity and cost, divided by comma.</blockquote>
+
+<p>Representing the flow on arc <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_002.png" style="padding: 0px 3px;" align="top"> by <span class="math">x<sub>ij</sub></span>, we can obtain the optimization model for the minimum cost flow problem:</p>
+
+<div align="center"><img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_006.png" style="padding: 10px;" align="top"></div>
+<p>subject to</p>
+<div align="center"><img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_007.png" style="padding: 10px;" align="top"></div>
+
+<p>The first constraint states that the total outflow of a node minus
+the total inflow of the node must be equal to mass balance
+(supply/demand value) of this node. This is known as the <b>mass balance constraints</b>. Next, the <b>flow bound constraints</b>
+model physical capacities or restrictions imposed on the flow's range.
+As you can see, this optimization model describes a typical
+relationship between warehouses and shops, for example, in a case where
+we have only one kind of product. We need to satisfy the demand of each
+shop by transferring goods from the subset of warehouses, while
+minimizing the expenses on transportation.</p>
+
+<p>This problem could be solved using simplex-method, but in this
+article we concentrate on some other ideas related to network flow
+theory. Before we move on to the three basic algorithms used to solve
+the minimum cost flow problem, let's review the necessary theoretical
+base.</p>
+
+<p><span class="bodySubtitle">Finding a solution</span><br>
+When does the minimum cost flow problem have a feasible (though not
+necessarily optimal) solution? How do we determine whether it is
+possible to translate the goods or not?</p>
+
+<p>If <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_008.png" style="padding: 0px 3px;" align="top">
+then the problem has no solution, because either the supply or the
+demand dominates in the network and the mass balance constraints come
+into play.</p>
+
+<p>We can easily avoid this situation, however, if we add a special node <span class="math">r</span> with the supply/demand value <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_009.png" style="padding: 0px 3px;" align="top">. Now we have two options: If <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_010.png" style="padding: 0px 3px;" align="top"> (supply dominates) then for each node <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_004.png" style="padding: 0px 3px;" align="top"> with <span class="math">b<sub>i</sub></span> &gt; 0 we add an arc <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_011.png" style="padding: 0px 3px;" align="top"> with infinite capacity and zero cost; otherwise (demand dominates), for each node <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_004.png" style="padding: 0px 3px;" align="top"> with  <span class="math">b<sub>i</sub></span> &lt; 0, we add an arc <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_012.png" style="padding: 0px 3px;" align="top"> with the same properties. Now we have a new network with <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_013.png" style="padding: 0px 3px;" align="top"> -- and it is easy to prove that this network has the same optimal value as the objective function.</p>
+
+<p>Consider the vertex r as a rubbish or scrap dump. If the shops
+demand is less than what the warehouse supplies, then we have to eject
+the useless goods as rubbish. Otherwise, we take the missing goods from
+the dump. This would be considered shady in real life, of course, but
+for our purposes it is very convenient. Keep in mind that, in this
+case, we cannot say what exactly the "solution" of the corrected (with
+scrap) problem is. And it is up to the reader how to classify the
+emergency uses of the "dump." For example, we can suggest that goods
+remain in the warehouses or some of the shop's demands remain
+unsatisfied.</p>
+
+<p>Even if we have <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_014.png" style="padding: 0px 3px;" align="top">
+we are not sure that the edge's capacities allow us to transfer enough
+flow from supply vertexes to demand ones. To determine if the network
+has a feasible flow, we want to find any transfer way what will satisfy
+all the problem's constraints. Of course, this feasible solution is not
+necessarily optimal, but if it is absent we cannot solve the problem.</p>
+
+<p>Let us introduce a source node <span class="math">s</span> and a sink node <span class="math">t</span>. For each node <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_004.png" style="padding: 0px 3px;" align="top"> with <span class="math">b<sub>i</sub></span> &gt; 0, we add a source arc <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_015.png" style="padding: 0px 3px;" align="top"> to <span class="math">G</span> with capacity <span class="math">b<sub>i</sub></span> and cost 0. For each node <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_004.png" style="padding: 0px 3px;" align="top"> with <span class="math">b<sub>i</sub></span> &lt; 0, we add a sink arc <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_016.png" style="padding: 0px 3px;" align="top"> to <span class="math">G</span> with capacity <span class="math">-b<sub>i</sub></span> and cost 0.</p>
+
+<div align="center"><img src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/Figure_1_2.png" alt="Figure 1_2" style="" border="0"></div>
+
+<blockquote><b>Figure 2</b>. Maximum flow in the transformed network. For simplicity we are ignoring the costs.</blockquote>
+
+<p>The new network is called a <b>transformed network</b>. Next, we solve a maximum flow problem from <span class="math">s</span> to <span class="math">t</span>
+(ignoring costs, see fig.2). If the maximum flow saturates all the
+source and sink arcs, then the problem has a feasible solution;
+otherwise, it is infeasible. As for why this approach works, we'll
+leave its proof to the reader.</p>
+
+<p>Having found a maximum flow, we can now remove source, sink, and all adjacent arcs and obtain a feasible flow in <span class="math">G</span>. How do we detect whether the flow is optimal or not? Does this flow minimize costs of the objective function <span class="math">z</span>?
+We usually verify "optimality conditions" for the answer to these
+questions, but let us put them on hold for a moment and discuss some
+assumptions.</p>
+
+<p>Now, suppose that we have a network that has a feasible solution.
+Does it have an optimal solution? If our network contains the negative
+cost cycle of infinite capacity then the objective function will be
+unbounded. However, in some tasks, we are able to assign finite
+capacity to each uncapacitated edge escaping such a situation.</p>
+
+<p>So, from the theoretical point of view, for any minimum cost flow
+problem we have to check some conditions: The supply/demand balance,
+the existence of a feasible solution, and the last situation with
+uncapacitated negative cycles. These are necessary conditions for
+resolving the problem. But from the practical point of view, we can
+check the conditions while the solution is being found.</p>
+
+<p><span class="bodySubtitle">Assumptions</span><br>
+In understanding the basics of network flow theory it helps to make
+some assumptions, although sometimes they can lead to a loss of
+generality. Of course, we could solve the problems without these
+assumptions, but the solutions would rapidly become too complex.
+Fortunately, these assumptions are not as restrictive as they might
+seem.</p>
+
+<p><i><b>Assumption 1</b>. All data (<span class="math">u<sub>ij</sub></span>, <span class="math">c<sub>ij</sub></span>, <span class="math">b<sub>i</sub></span>) are integral.</i><br>
+As we have to deal with a computer, which works with rational numbers,
+this assumption is not restrictive in practice. We can convert rational
+numbers to integers by multiplying by a suitable large number.</p>
+
+<p><i><b>Assumption 2</b>. The network is directed.</i><br>
+If the network were undirected we would transform it into a directed
+one. Unfortunately, this transformation requires the edge's cost to be
+nonnegative. Let's validate this assumption.</p>
+
+<p>To transform an undirected case to a directed one, we replace each undirected edge connecting vertexes <span class="math">i</span> and <span class="math">j</span> by two directed edges <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_017.png" style="padding: 0px 3px;" align="top"> and <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_018.png" style="padding: 0px 3px;" align="top">,
+both with the capacity and cost of the replaced arc. To establish the
+correctness of this transformation, first we note that for undirected
+arc <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_002.png" style="padding: 0px 3px;" align="top"> we have constraint <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_019.png" style="padding: 0px 3px;" align="top"> and the term <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_020.png" style="padding: 0px 3px;" align="top"> in the objective function. Given that <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_021.png" style="padding: 0px 3px;" align="top"> we see that in some optimal solution either <span class="math">x<sub>ij</sub></span> or <span class="math">x<sub>ji</sub></span>
+will be zero. We call such a solution non-overlapping. Now it is easy
+to make sure (and we leave it to the reader) that every non-overlapping
+flow in the original network has an associated flow in the transformed
+network with the same cost, and vise versa.</p>
+
+<p><i><b>Assumption 3</b>. All costs associated with edges are nonnegative.</i><br>
+This assumption imposes a loss of generality. We will show below that
+if a network with negative costs had no negative cycle it would be
+possible to transform it into one with nonnegative costs. However, one
+of the algorithms (namely cycle-canceling algorithm) which we are going
+to discuss is able to work without this assumption.</p>
+
+<p>For each vertex <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_004.png" style="padding: 0px 3px;" align="top"> let's denote by <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_022.png" style="padding: 0px 3px;" align="top"> a number associated with the vertex and call it the <b>potential</b> of node <span class="math">i</span>. Next define the <b>reduced cost</b>  <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_023.png" style="padding: 0px 3px;" align="top"> of an edge <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_002.png" style="padding: 0px 3px;" align="top"> as</p>
+
+<div align="center"><img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_024.png" style="padding: 10px;" align="top"></div>
+
+<p>How does our objective value change? Let's denote reduced value by <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_025.png" style="padding: 0px 3px;" align="top">. Evidently, if <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_026.png" style="padding: 0px 3px;" align="top">, then</p>
+
+<div align="center"><img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_027.png" style="padding: 10px;" align="top"></div>
+
+<p>For other values of <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_028.png" style="padding: 0px 3px;" align="top"> we obtain following result:</p>
+
+<div align="center"><img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_029.png" style="padding: 10px;" align="top"></div>
+
+<p>For a fixed <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_028.png" style="padding: 0px 3px;" align="top">, the difference <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_030.png" style="padding: 0px 3px;" align="top"> is constant. Therefore, a flow that minimizes <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_031.png" style="padding: 0px 3px;" align="top"> also minimizes <span class="math">z(x)</span> and vice versa. We have proved:</p>
+
+<p><i><b>Theorem 1</b>. For any node potential <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_028.png" style="padding: 0px 3px;" align="top"> the minimum cost flow problems with edge costs <span class="math">c<sub>ij</sub></span> or <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_023.png" style="padding: 0px 3px;" align="top"> have the same optimal solutions. Moreover,</i></p>
+
+<div align="center"><img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_032.png" style="padding: 10px;" align="top"></div>
+
+<p>The following result contains very useful properties of reduced costs.</p>
+
+<p><i><b>Theorem 2</b>.  Let <span class="math">G</span> be a transportation network. Suppose <span class="math">P</span> is a directed path from <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_033.png" style="padding: 0px 3px;" align="top"> to <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_034.png" style="padding: 0px 3px;" align="top">. Then for any node potential <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_028.png" style="padding: 0px 3px;" align="top"></i></p>
+
+<div align="center"><img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_035.png" style="padding: 10px;" align="top"></div>
+
+<p><i>Suppose <span class="math">W</span> is a directed cycle. Then for any node potential <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_028.png" style="padding: 0px 3px;" align="top"></i></p>
+
+<div align="center"><img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_036.png" style="padding: 10px;" align="top"></div>
+
+<p>This theorem implies the following reasoning. Let's introduce a vertex <span class="math">s</span> and for each node <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_004.png" style="padding: 0px 3px;" align="top">, we add an arc <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_015.png" style="padding: 0px 3px;" align="top"> to <span class="math">G</span> with some positive capacity and zero cost.  Suppose that for each <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_004.png" style="padding: 0px 3px;" align="top"> number <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_022.png" style="padding: 0px 3px;" align="top"> denotes length of the shortest path from <span class="math">s</span> to <span class="math">i</span> with respect to cost function <span class="math">c</span>. (Reminder: there is no negative length cycle). If so, one can justify (or read it in [<a href="#2">2</a>]) that for each <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_002.png" style="padding: 0px 3px;" align="top"> the shortest path optimality condition is satisfied:</p>
+
+<div align="center"><img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_037.png" style="padding: 10px;" align="top"></div>
+
+<p>Since, <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_038.png" style="padding: 0px 3px;" align="top"> and <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_039.png" style="padding: 0px 3px;" align="top"> yields <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_040.png" style="padding: 0px 3px;" align="top">. Moreover, applying theorem 2, we can note that if <span class="math">G</span> contains negative cycle, it will be negative for any node potential <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_028.png" style="padding: 0px 3px;" align="top">
+in reduced network. So, if the transportation network has no negative
+cycle, we will be able to reduce costs and make them positive by
+finding the shortest paths from the introduced vertex <span class="math">s</span>,
+otherwise, our assumption doesn't work. If the reader asks how to find
+the shortest path in graph with negative costs, I'll refer you back to
+the basics of the graph theory. One can use Bellman-Ford
+(label-correcting) algorithm to achieve this goal [<a href="#1">1</a>, <a href="#2">2</a>].</p>
+
+<p>Remember this reduced cost technique, since it appears in many
+applications and other algorithms (for example, Johnson's algorithm for
+all pair shortest path in sparse networks uses it [<a href="#2">2</a>]).</p>
+
+<p><i><b>Assumption 4</b>. The supply/demand at the vertexes satisfy the condition <img alt="" src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/01_041.png" style="padding: 0px 3px;" align="top"> and the minimum cost flow problem has a feasible solution.</i></p>
+
+<p>This assumption is a consequence of the "Finding a Solution" section
+of this article. If the network doesn't satisfy the first part of this
+assumption, we can either say that the problem has no solution or make
+corresponding transformation according to the steps outlined in that
+section. If the second part of the assumption isn't met then the
+solution doesn't exist.</p>
+
+<p>By making these assumptions we do transform our original
+transportation network. However, many problems are often given in such
+a way which satisfies all the assumptions.</p>
+
+<p>Now that all the preparations are behind us, we can start to discuss the algorithms in <a href="http://www.topcoder.com/tc?module=Static&amp;d1=tutorials&amp;d2=minimumCostFlow2">Part 2</a>.</p>
+
+<p><span class="bodySubtitle">References</span><br>
+[<a name="1">1</a>]&nbsp;&nbsp;Ravindra K. Ahuja, Thomas L. Magnanti, and James B. Orlin. <i>Network Flows: Theory, Algorithms, and Applications</i>.<br>
+[<a name="2">2</a>]&nbsp;&nbsp;Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest. <i>Introduction to Algorithms</i>.<br>
+[<a name="3">3</a>]&nbsp;&nbsp;<a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=8593420&amp;tab=alg" class="coderTextRed">_efer_</a>. Algorithm Tutorial: <a href="http://www.topcoder.com/tc?module=Static&amp;d1=tutorials&amp;d2=maxFlow" target="_blank">Maximum Flow</a>.<br>
+[<a name="4">4</a>]&nbsp;&nbsp;<a href="http://www.topcoder.com/tc?module=MemberProfile&amp;cr=268851&amp;tab=alg" class="coderTextBlue">gladius</a>. Algorithm Tutorial: <a href="http://www.topcoder.com/tc?module=Static&amp;d1=tutorials&amp;d2=graphsDataStrucs3" target="_blank">Introduction to graphs and their data structures: Section 3</a>.<br>
+</p>
+
+        </div>
+        <p><br></p>
+        </td>
+<!-- Center Column Ends -->
+
+<!-- Right Column Begins -->
+         <td id="onRight" width="170">
+            
+
+
+
+<script type="text/javascript" language="javascript">
+
+</script>
+
+
+
+
+    <div style="width: 150px;">
+        &nbsp;
+    </div>
+
+
+         </td>
+<!-- Right Column Ends -->
+
+<!-- Gutter -->
+         <td width="10"><img src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/clear.gif" border="0" width="10" height="1"></td>
+<!-- Gutter Ends -->
+    </tr>
+</tbody></table>
+
+<div id="onBottom">
+
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody>
+    <tr>
+        <td class="footer" width="100%">
+            <a href="http://www.topcoder.com/" class="footerLinks">Home</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="http://www.topcoder.com/tc?module=Static&amp;d1=about&amp;d2=index" class="footerLinks">About TopCoder</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="http://www.topcoder.com/tc?module=Static&amp;d1=pressroom&amp;d2=index" class="footerLinks">Press Room</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="http://www.topcoder.com/tc?module=Static&amp;d1=about&amp;d2=contactus" class="footerLinks">Contact Us</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="http://www.topcoder.com/tc?module=Static&amp;d1=about&amp;d2=jobs" class="footerLinks">Careers</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="http://www.topcoder.com/tc?module=Static&amp;d1=about&amp;d2=privacy" class="footerLinks">Privacy</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="http://www.topcoder.com/tc?module=Static&amp;d1=about&amp;d2=terms" class="footerLinks">Terms</a>
+            <br>
+            <a href="http://www.topcoder.com/tc" class="footerLinks">Competitions</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <a href="http://software.topcoder.com/" class="footerLinks">Software</a>        </td>
+    </tr>
+    <tr><td class="copyright" width="100%">Copyright © 2001-2008, TopCoder, Inc. All rights reserved.</td></tr>
+</tbody>
+</table>
+
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="Minimum%20Cost%20Flow,%20Part%201-%20Key%20Concepts_files/ga.js" type="text/javascript"></script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-6340959-1");
+pageTracker._trackPageview();
+</script>
+</div>
+
+</body></html>

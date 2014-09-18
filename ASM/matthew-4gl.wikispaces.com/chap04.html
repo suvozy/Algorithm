@@ -1,0 +1,307 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<link href="chap04_files/style.css" rel="stylesheet" type="text/css">
+<title>04 TAJGA FASM Tutorial</title>
+</head>
+
+<body>
+
+<center><b>CHAPTER 4 - Endian encodings &amp; word registers</b></center><br><br>
+
+
+<b>4.1. Endian encodings</b><br>
+We should already have some quite exact idea about byte variables. You already
+know they are 8 bit large (not so important now) and that they can contain
+numeric value from 0 to 255. About word variables you know that they are 16
+bits long and they contain value 0 to 65535.<br><br>
+
+Either you see it or not - word is same size as two bytes. Now let's think
+about how to store value in two bytes. Both bytes can contain value 0 to 255.
+Combination of this, we get 256*256, that is 65536. But how is this value
+stored in these bytes? Let's say one of bytes (byte #1) contains 0. Then
+other byte (byte #2) can hold value 0 to 255. So now we store values from 0
+to 255 in our word. Now, when byte #1 contains 1, we can store another 256
+number, 256 to 511. When byte #1 contains 2 we can store another 256 number,
+512 to 767 etc. So totally it is 256*256, as i said, 65536. It is like in
+decimal numbers: every digit is value 0 to 9, and "true" value of digit
+depends on it's position. Last digit holds value 0 to 9, next (?previous?)
+digit hold 10*(0 to 9), next 100*(0 to 9) etc. It is same in words: One of
+bytes hold value 0 to 255, other holds value 256*(0 to 255). The one which
+holds 0..255 is called "low order byte", other (which holds 256*(0..255)) is
+called "high order byte".
+
+<blockquote class="term">
+terms: <b>low order byte</b>, <b>high order byte</b><br>
+</blockquote>
+
+Examples (word value = high order byte : low order byte)<br><br>
+<pre>0     = 0 : 0
+1     = 0 : 1
+255   = 0 : 255
+256   = 1 : 0
+257   = 1 : 1
+511   = 1 : 255
+512   = 2 : 0
+513   = 2 : 1	    (513 / 256 = 2, 513 mod 256 = 1)
+65535 = 255 : 255   (65535 / 256 = 255, 65535 mod 256 = 255)
+</pre>
+<br>
+Last problem remains: Order of these bytes. (eg: which is first, low order
+byte or high order byte?). This is different on different computers. On IBM
+PCs (and compatible) low order byte is first, high order byte comes then. For
+example:
+
+<blockquote class="code"><pre>label variable
+dw <font color="#339933">0</font>
+</pre></blockquote>
+
+then <code>byte [variable]</code> is low order byte and <code>byte
+[variable + 1]</code> is high order byte. (addition + 1 to offset in
+<code>variable</code> is done by compiler, value of <code>variable</code>
+is constant, so <code>variable + 1</code> is constant as well). It means next byte behind offset in
+<code>variable</code>, i think this clear enough to need any more explaination).
+<br><br>
+
+<b>NOTE:</b> When low order byte is first then it is called "little endian encoding",
+when high order byte then it is called "big endian encoding", but these terms
+are not important, especially for beginner asm coder.<br><br><br>
+
+<b>4.2. Word registers</b>
+
+<br>
+Processor has except byte registers (like <code>al</code>,<code>ah</code>,
+<code>dl</code>...) some word registrs too, of course. You know, word is
+combination of two bytes, and this is same for registers. Word registers are
+combination of byte registers.
+First word registers we'll learn are <code>ax</code>, <code>bx</code>,
+<code>cx</code> and <code>dx</code>. <code>ax</code> is combination of
+<code>al</code> and <code>ah</code>. <code>al</code> is low order byte,
+<code>ah</code> is high order byte. Same for bx = bh:bl, cx = ch:cl, dx = dh:dl.
+If you would like "emulate" register <code>ex</code> in memory it will be:
+
+<blockquote class="code"><pre>label ex word
+el db <font color="#339933">0</font>
+eh db <font color="#339933">0</font>
+</pre></blockquote>
+
+<code>el</code> would be low order byte, so it is first.
+
+<blockquote class="term">
+terms: <b>word register</b><br>
+word registers: <b>ax</b>, <b>bx</b>, <b>cx</b>, <b>dx</b>
+</blockquote>
+
+<b>NOTE:</b> letters a,b,c,d stays for "accumulator", "base", "counter" and "data",
+it has nothing to do with alphabetical order. Real order of these registers
+is ax,cx,dx,bx but it is not important until you want to generate/change
+machine code yourself.<br><br>
+
+Now, if you want to set value in register <code>ax</code> to 52 you use
+
+<blockquote class="code"><pre>mov ax<font color="#333399">,</font><font color="#339933">52</font>
+</pre></blockquote>
+
+but you also could use
+
+<blockquote class="code"><pre>mov al<font color="#333399">,</font><font color="#339933">52</font>
+mov ah<font color="#333399">,</font><font color="#339933">0</font>
+</pre></blockquote>
+
+or setting <code>dx</code> to 12345
+
+<blockquote class="code"><pre>mov dx<font color="#333399">,</font><font color="#339933">12345</font>
+</pre></blockquote>
+
+but it could be (no reason to do it this way in real coding, this is just
+to demonstrate word to byte:byte relations)
+
+<blockquote class="code"><pre>mov dh<font color="#333399">,</font><font color="#339933">48</font>
+mov dl<font color="#333399">,</font><font color="#339933">57</font>
+</pre></blockquote>
+
+because 48 is equal to 12345 / 256, 57 is 12345 modulo 57 (modulo is remainder
+from division).<br><br>
+
+<b>NOTE:</b> You know that instruction operand can be number (numeric constant), like
+"0", "256", "12345" etc. But every assembler i know allows you to put some
+expression as operand. During compilation value of expression is evaluated
+and expression is "replaced" by it's result. So <code>mov dx,(1 + 5)</code> is
+same as <code>mov dx,6</code>. Or better, code that is upwards can be writen as
+
+<blockquote class="code"><pre>mov dh<font color="#333399">,</font><font color="#339933">12345</font><font color="#333399">/</font> <font color="#339933">256</font>
+mov dl<font color="#333399">,</font><font color="#339933">12345</font> mod <font color="#339933">256</font>
+</pre></blockquote>
+
+(<code>/</code> is operator for division, <code>mod</code> is operator which
+returns remainder from division (modulo). You don't have to know these operators
+now, anyway you should already know something about expressions).<br><br>
+
+Processor has also other word registers, <code>sp</code>, <code>bp</code>,
+<code>si</code>, <code>di</code>. But you can't directly access byte parts of
+this registers, you must access whole word. This is limitation of processor,
+there's nothing to do with it. For example if you want set high order byte of
+<code>si</code> to 17 you must (?) do it like this:
+
+<blockquote class="code"><pre>mov ax<font color="#333399">,</font>si
+mov ah<font color="#333399">,</font><font color="#339933">17</font>
+mov si<font color="#333399">,</font>ax
+</pre></blockquote>
+
+So first you copy value of <code>si</code> to <code>ax</code>. High order byte
+of <code>ax</code> can be dirctly accessed (it is <code>ah</code> register) so
+set it. Low order word remains. Then copy value back from <code>ax</code> to
+<code>si</code>. High order word is changed to 17, low order word remains
+unchanged.
+<br><br>
+
+<b>NOTE:</b> register <code>sp</code> always has special function,
+<code>bp</code> usually has special function (in code generated by most (all?)
+non-assembly compilers).
+Registers <code>si</code> and <code>di</code> can be used whenever you want.
+This means you shouldn't change <code>sp</code> and <code>bp</code> unless you
+know what you are doing.<br><br><br>
+
+<b>4.3. String output using int 21h/ah=9</b>
+
+<br>
+This should be part of chapter 3 about addresses, but you need to know
+<code>dx</code> register which is explained here. <br><br>
+
+Here we will talk about another usage of <code>int 21h</code>. You already
+should know that when <code>ah</code> contains 2 then <code>int 21h</code>
+writes character in <code>dl</code>. But if we want to display some longer text
+we must set <code>dl</code> for every char and this is bad method. Wouldn't it
+be better if we just store string we want to display somehere in file (like we
+did in chapter 1) and then just display it from here?<br><br>
+
+For this we can use <code>int 21h</code> with value 9 in <code>ah</code> and
+address of string in <code>dx</code> register. Something like:
+
+<blockquote class="code"><pre>mov ah<font color="#333399">,</font><font color="#339933">9</font>
+mov dx<font color="#333399">,</font>address_of_string
+int <font color="#339933">21h</font>
+</pre></blockquote>
+
+But another problems comes out - how to determine length of string, eq. number
+of characters to display from given address. There are more methods about this,
+we will talk about simplest one, used by int 21h/ah=9. There is just some
+special character reserved as end-of-string marker. For int 21h/ah=9 it is
+character "$". So to store string "Hello World", you define "Hello World$",
+where "$" means end of string. Example of displaying string:
+
+<blockquote class="code"><pre>org <font color="#339933">256</font>
+mov ah<font color="#333399">,</font><font color="#339933">9</font>
+mov dx<font color="#333399">,</font>text_to_display
+int <font color="#339933">21h</font>
+int <font color="#339933">20h</font>
+label text_to_display
+db <font color="#bb0000">'Hello World$'</font>
+</pre></blockquote>
+
+This program will display "Hello World".<br><br>
+
+This method of marking end of string has limitation - you can't display
+character "$". For example:
+
+<blockquote class="code"><pre>org <font color="#339933">256</font>
+mov ah<font color="#333399">,</font><font color="#339933">9</font>
+mov dx<font color="#333399">,</font>text_to_display
+int <font color="#339933">21h</font>
+int <font color="#339933">20h</font>
+label text_to_display
+db <font color="#bb0000">'It costed 50$, maybe more$'</font>
+</pre></blockquote>
+
+will of course display only "It costed 50". This case can be solved this way:
+
+<blockquote class="code"><pre>org <font color="#339933">256</font>
+mov ah<font color="#333399">,</font><font color="#339933">9</font>
+mov dx<font color="#333399">,</font>text1
+int <font color="#339933">21h</font>
+mov ah<font color="#333399">,</font><font color="#339933">2</font>
+mov dl<font color="#333399">,<font color="#bb0000">'$'</font></font>
+int <font color="#339933">21h</font>
+mov ah<font color="#333399">,</font><font color="#339933">9</font>
+mov dx<font color="#333399">,</font>text2
+int <font color="#339933">21h</font>
+int <font color="#339933">20h</font>
+label text1
+db <font color="#bb0000">'It costed 50$'</font>
+label text2
+db <font color="#bb0000">', maybe more$'</font>
+</pre></blockquote>
+
+first part (first <code>int 21h</code>) will write "It costed 50", then
+<code>int 21h/ah=2,</code> will write "$" and second <code>int 21h/ah=9</code>
+will write ", maybe more". We won't care about this limitation anymore for now,
+this was just to improve explaination.<br><br>
+
+Deeper about <code>int 21h/ah=9</code>. As you maybe already realized, this will display
+every character (exact: every character whose ASCII code is in byte) from
+address in <code>dx</code> to first character "$" behind address in
+<code>dx</code>.<br><br>
+
+<b>NOTE:</b> ASCII codes 0 to 31 (i think) have special meaning for <code>int
+21h/ah=9</code>.  These codes have characters assigned to them (smiling faces, 
+diamonds etc.), but int 21h/ah=9 doesnt display them but does something other.
+For example character with ascii code 7 will case it to beep for a short while.
+Try this:
+
+<blockquote class="code"><pre>org <font color="#339933">256</font>
+mov ah<font color="#333399">,</font><font color="#339933">9</font>
+mov dx<font color="#333399">,</font>text
+int <font color="#339933">21h</font>
+int <font color="#339933">20h</font>
+label text
+db <font color="#bb0000">'Beep'</font><font color="#333399">,</font><font color="#339933">7</font><font color="#333399">,<font color="#bb0000">'$'</font></font>
+</pre></blockquote>
+
+It should write "Beep" and then beep.<br><br>
+
+Another common values are 10 and 13. 10 cases cursor to return to first column
+of current row. 13 causes cursor to move one row down (if bottom of screen is
+reached then screen is scrolled). So combination of this causes cursor to move
+to first column of next row. These two should (but doesn't always) work in any
+order, but you always should put 13 first. These two characters are often
+called EOL (end of line). Try this example:
+
+<blockquote class="code"><pre>org <font color="#339933">256</font>
+mov ah<font color="#333399">,</font><font color="#339933">9</font>
+mov dx<font color="#333399">,</font>text
+int <font color="#339933">21h</font>
+int <font color="#339933">20h</font>
+label text
+db <font color="#bb0000">'Line 1'</font><font color="#333399">,</font><font color="#339933">13</font><font color="#333399">,</font><font color="#339933">10</font><font color="#333399">,<font color="#bb0000">'Line 2$'</font></font>
+</pre></blockquote>
+
+it should write:
+<blockquote class="console"><pre>Line 1
+Line 2
+</pre></blockquote>
+
+<b>NOTE:</b> ASCII code 13 is called CR (carriage return) and code 10 is called LF
+(line feed).<br><br>
+
+Another example on addresses (previous chapter), but with word registers.
+Check yourself whether you comprehended chapter 3:
+
+<blockquote class="code"><pre>org <font color="#339933">256</font>
+mov ah<font color="#333399">,</font><font color="#339933">9</font>
+mov dx<font color="#333399">,[</font>address_of_text<font color="#333399">]</font>
+int <font color="#339933">21h</font>
+text db <font color="#bb0000">'Hello World$'</font>
+address_of_text dw text
+</pre></blockquote>
+
+Here we load <code>dx</code> register with contents of
+<code>address_of_text</code> variable, which holds value <code>text</code>,
+and as we know, <code>text</code> is placeholder for offset of 'Hello World$'
+string. So word-sized variable <code>address_of_text</code> holds offset
+of that string. And thus loading <code>dx</code> with contents of
+<code>address_of_text</code> will load it with offset of string we want to
+write. I hope you got it.
+
+
+
+
+</body></html>

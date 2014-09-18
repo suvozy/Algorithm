@@ -1,0 +1,337 @@
+/* Created using Style Master from Western Civilisation CSS1 { 43 90 729 457 } */
+body
+{
+  background-color: #4a88be;
+  font-family: Verdana, Helvetica, Arial, sans-serif
+}
+
+/* This is for the big table that contains all the other tables. */
+
+table.maintable
+{
+  margin-left:  2%;
+  margin-right:  2%;
+  width:  96%
+}
+
+/* This is to make the text in the table appear correctly in Netscape 4.5. */
+
+td
+{
+  font-family: Verdana, Helvetica, Arial, sans-serif
+}
+
+.warning
+{
+  color: red
+}
+
+/* This is for the main section of the table, where the actual text appears. */
+
+td.blurb
+{background-color: white;
+border-bottom:  2px black solid;
+border-right:  2px black solid;
+border-top:  2px black solid;
+border-left: 2px black solid;
+padding-bottom:  1em;
+padding-left:  0px;
+padding-right:  0px;
+padding-top:  0px}
+
+td.blurb p
+{margin-left:  1em;
+margin-right:  1em}
+
+td.blurb a:link
+{background-color: #b5cae1;
+color: black;
+text-decoration: none}
+
+td.blurb a:visited
+{background-color: #b5cae1;
+color: black;
+text-decoration: none}
+
+td.blurb a:hover
+{background-color: #7ea8cf;
+color: black;
+text-decoration: underline}
+
+td.blurb a:active
+{background-color: #7ea8cf;
+color: black;
+text-decoration: underline}
+
+td.blurb code
+{
+  font-size: larger
+}
+
+h1
+{font-size:  1.3em;
+font-weight: bold;
+margin-left:  1em;
+margin-right:  1em}
+
+h2
+{font-size:  1.2em;
+font-weight: bold;
+margin-left:  1em;
+margin-right:  1em}
+
+h3
+{font-size:  1.1em;
+font-weight: bold;
+margin-left:  1em;
+margin-right:  1em}
+
+h4, h5, h6
+{margin-left:  1em;
+margin-right:  1em}
+
+dl, pre
+{ 
+  margin-left: 1em;
+  margin-right: 1em
+}
+
+/* This is all for the navigation panels at the top of the table. */
+
+td.top
+{background-color: #7ea8cf;
+border-left:  1px black solid;
+border-right:  1px black solid;
+border-top:  2px black solid;
+height:  3em;
+text-align: center;
+width:  16.66%}
+
+td.topright
+{background-color: #7ea8cf;
+border-left:  1px black solid;
+border-right:  2px black solid;
+border-top:  2px black solid;
+height:  3em;
+padding-left:  3px;
+padding-right:  3px;
+text-align: center;
+width:  16.66%}
+
+td.topleft
+{background-color: #7ea8cf;
+border-left:  2px black solid;
+border-right:  1px black solid;
+border-top:  2px black solid;
+height:  3em;
+text-align: center;
+width:  16.66%}
+
+td.top a:link
+{color: black;
+font-weight: bold;
+text-decoration: none}
+
+td.top a:visited
+{color: black;
+font-weight: bold;
+text-decoration: none}
+
+td.top a:hover
+{color: black;
+font-weight: bold;
+text-decoration: underline}
+
+td.top a:active
+{color: black;
+font-weight: bold;
+text-decoration: underline}
+
+td.topright a:link
+{color: black;
+font-weight: bold;
+text-decoration: none}
+
+td.topright a:visited
+{color: black;
+font-weight: bold;
+text-decoration: none}
+
+td.topright a:hover
+{color: black;
+font-weight: bold;
+text-decoration: underline}
+
+td.topright a:active
+{color: black;
+font-weight: bold;
+text-decoration: underline}
+
+/* This is for all the navigation panels at the side of the table. */
+
+td.side
+{background-color: #b5c9e2;
+border-bottom:  2px black solid;
+padding-right:  3px;
+text-align: right}
+
+td.emptyside
+{background-color: #b5cbe2;
+border-bottom:  2px black solid;
+border-left:  2px black solid;
+border-right:  2px black solid;
+border-top:  2px black solid}
+
+table.sidetable
+{height:  20em}
+
+td.side a:link
+{color: black;
+font-weight: bold;
+text-decoration: none}
+
+td.side a:visited
+{color: black;
+font-weight: bold;
+text-decoration: none}
+
+td.side a:hover
+{color: black;
+font-weight: bold;
+text-decoration: underline}
+
+td.side a:active
+{color: black;
+font-weight: bold;
+text-decoration: underline}
+
+/* This is just to make the "webware" logo right justified. */
+
+td.webware
+{text-align: right}
+
+/* This is for the tutorials, guide and so on. */
+
+div.navigation-bar
+{background-color: #b5cbe2;
+margin-bottom:  0px;
+margin-left:  0px;
+margin-right:  0px;
+padding-bottom:  .3em;
+padding-top:  .3em;
+text-align: center}
+
+/* This is for the arrows at the bottom of the tutorials. */
+
+table.arrowtable
+{width:  100%}
+
+td.nextbackarrow
+{text-align: right;
+width:  50px}
+
+td.uparrow
+{text-align: right;
+width: auto}
+
+td.nextbackarrow a img
+{background-color: white}
+
+td.uparrow a img
+{background-color: white}
+
+/* This is for the banner ads throughout the house of style. */
+
+div.smbanner
+{background-color: #ff7d00;
+color: white;
+font-size:  1.3em;
+font-style: italic;
+font-weight: bold;
+margin-bottom:  0px;
+margin-left:  0px;
+margin-right:  0px;
+margin-top:  0px;
+padding-bottom:  .5em;
+padding-top:  .5em;
+text-align: center}
+
+div.smbanner a:link
+{background-color: #ff7d00;
+color: white;
+text-decoration: underline}
+
+div.smbanner a:visited
+{background-color: #ff7d00;
+color: white;
+text-decoration: underline}
+
+div.smbanner a:hover
+{background-color: #ff7d00;
+color: #4c2500;
+text-decoration: underline}
+
+div.smbanner a:active
+{background-color: #ff7d00;
+color: #4c2500;
+text-decoration: underline}
+
+div.lmbanner
+{background-color: #70bc1f;
+color: white;
+font-size:  1.3em;
+font-style: italic;
+font-weight: bold;
+margin-bottom:  0px;
+margin-left:  0px;
+margin-right:  0px;
+margin-top:  0px;
+padding-bottom:  .5em;
+padding-top:  .5em;
+text-align: center}
+
+div.lmbanner a:link
+{background-color: #70bc1f;
+color: white;
+text-decoration: underline}
+
+div.lmbanner a:visited
+{background-color: #70bc1f;
+color: white;
+text-decoration: underline}
+
+div.lmbanner a:hover
+{background-color: #70bc1f;
+color: #2d4c0c;
+text-decoration: underline}
+
+div.lmbanner a:active
+{background-color: #70bc1f;
+color: #2d4c0b;
+text-decoration: underline}
+
+/* This is for quotes, mainly in articles, for example in A Dao of Web Design. */
+
+td.blurb .quote
+{background-color: #b5c9e2;
+margin-left:  5%;
+margin-right:  5%;
+padding-bottom:  3px;
+padding-left:  5px;
+padding-right:  5px;
+padding-top:  3px}
+
+li.faq {
+font-size:  1.1em;
+font-weight: bold;
+margin-left:  1em;
+margin-right:  1em
+}
+
+.faqans {
+  margin-left: 2em;
+  font-weight: normal;
+  font-size: smaller
+}
+
+
