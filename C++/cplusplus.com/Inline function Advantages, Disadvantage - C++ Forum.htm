@@ -1,0 +1,722 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Inline function Advantages, Disadvantage - C++ Forum</title>
+<link rel="shortcut icon" type="image/x-icon" href="http://www.cplusplus.com/favicon.ico">
+<link rel="stylesheet" type="text/css" href="Inline%20function%20Advantages,%20Disadvantage%20-%20C++%20Forum_files/main29f.css">
+<script src="Inline%20function%20Advantages,%20Disadvantage%20-%20C++%20Forum_files/main29f.js" type="text/javascript"></script>
+<script type="text/javascript">
+new LoginBox('CH_boxLogin',1);function NavFor(us) {document.getElementById('CH_subnav').innerHTML=us.ok?'<table class="box"><tr><th><a href="/user/'+us.uniqid+'/">'+us.user+'</a></th></tr><tr><td><a href="/forum/myposts.cgi">My topics</a></td></tr></table>':'';}onPrint(function(){onSession(NavFor)});</script>
+</head>
+<body>
+<div id="CH_header">
+	<a href="http://www.cplusplus.com/"><img src="Inline%20function%20Advantages,%20Disadvantage%20-%20C++%20Forum_files/cpp-logo.png" alt="cplusplus.com" height="75" width="198"></a>
+	<div id="CH_bar">
+		<b><a href="http://www.cplusplus.com/">C++</a> : <a href="http://www.cplusplus.com/forum/">Forum</a> : <a href="http://www.cplusplus.com/forum/articles/">Articles</a> : Inline function Advantages, Disadvantage</b>
+	</div>
+	
+	<div id="CH_searchbox">
+		<form id="search" action="/search.do" method="get">
+		Search: <input name="q" size="13" class="txt"> <input value="Search" class="btn" type="submit">
+		</form>
+	</div>
+	<div id="CH_boxLogin"><div class="C_LoginBox"><form style="display: block;" name="CH_frmLogin" id="CH_frmLogin" action="/user/access.cgi" onsubmit="elCH_boxLogin.send(); return false;" method="post"><table><tbody><tr><td></td><td class="right"><b>login:</b></td><td><input name="w" value="login" type="hidden"><input name="y" value="1" type="hidden"><input name="to" value="http://www.cplusplus.com/forum/articles/20600/" type="hidden"><input class="txt" name="l" size="4" title="Type user name" type="text"></td><td><input class="txt" name="p" size="4" title="Type password" type="password"></td><td><input class="btn" value="sign in" type="submit"></td></tr><tr><td>sign in using:<a href="http://www.cplusplus.com/user/access.cgi?w=login&amp;y=1&amp;pr=google&amp;to=%2Fforum%2Farticles%2F20600%2F" title="Sign in using your google account"><img src="Inline%20function%20Advantages,%20Disadvantage%20-%20C++%20Forum_files/16google.png" height="16" width="16"></a><a href="http://www.cplusplus.com/user/access.cgi?w=login&amp;y=1&amp;pr=yahoo&amp;to=%2Fforum%2Farticles%2F20600%2F" title="Sign in using your Yahoo! account"><img src="Inline%20function%20Advantages,%20Disadvantage%20-%20C++%20Forum_files/16yahoo.png" height="16" width="16"></a></td><td colspan="4" class="right"><label for="rememberme">remember me<input class="chk" name="rememberme" id="rememberme" value="1" type="checkbox"> &nbsp; [<a href="http://www.cplusplus.com/user/access.cgi?w=signup">register</a>]</label></td></tr></tbody></table></form><div id="CH_insLogin"></div></div></div>
+</div>
+<div id="CH_container">
+<table id="CH_containertbl"><tbody><tr>
+<td id="CH_nav">
+<table class="box">
+<thead>
+<tr><th><a href="http://www.cplusplus.com/">cplusplus.com</a></th></tr>
+</thead>
+<tbody>
+<tr><td class="folder"><a href="http://www.cplusplus.com/info/">Information</a></td></tr>
+<tr><td class="folder"><a href="http://www.cplusplus.com/doc/">Documentation</a></td></tr>
+<tr><td class="folder"><a href="http://www.cplusplus.com/reference/">Reference</a></td></tr>
+<tr><td class="folder"><a href="http://www.cplusplus.com/articles/">Articles</a></td></tr>
+<tr><td class="folder selected"><a href="http://www.cplusplus.com/forum/">Forum</a></td></tr>
+</tbody>
+</table>
+<table class="box">
+<thead><tr><th><a href="http://www.cplusplus.com/forum/">Forum</a></th></tr></thead>
+<tbody>
+<tr><td><a href="http://www.cplusplus.com/forum/beginner/"><b>Beginners</b></a></td></tr><tr><td><a href="http://www.cplusplus.com/forum/windows/"><b>Windows Programming</b></a></td></tr><tr><td><a href="http://www.cplusplus.com/forum/unices/"><b>UNIX/Linux Programming</b></a></td></tr><tr><td><a href="http://www.cplusplus.com/forum/general/"><b>General C++ Programming</b></a></td></tr><tr><td><a href="http://www.cplusplus.com/forum/lounge/"><b>Lounge</b></a></td></tr><tr><td><a href="http://www.cplusplus.com/forum/jobs/"><b>Jobs</b></a></td></tr></tbody>
+</table>
+<div id="CH_subnav"></div>
+<br>
+<script type="text/javascript"><!--
+google_ad_client = "pub-7688470879129516";
+/* single square */
+google_ad_slot = "7465536459";
+google_ad_width = 125;
+google_ad_height = 125;
+//-->
+</script>
+<script type="text/javascript" src="Inline%20function%20Advantages,%20Disadvantage%20-%20C++%20Forum_files/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:125px;margin:0;padding:0;position:relative;visibility:visible;width:125px"><ins id="aswift_0_anchor" style="display:block;border:none;height:125px;margin:0;padding:0;position:relative;visibility:visible;width:125px"><iframe allowtransparency="true" hspace="0" marginwidth="0" marginheight="0" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){i+='.call';setTimeout(h,0)}else if(h.match){i+='.nav';w.location.replace(h)}s.log&amp;&amp;s.log.push(i)}" vspace="0" id="aswift_0" name="aswift_0" style="left: 0pt; position: absolute; top: 0pt;" frameborder="0" height="125" scrolling="no" width="125"></iframe></ins></ins>
+	</td>
+	<td id="CH_main">
+<script type="text/javascript"><!--
+google_ad_client = "pub-7688470879129516";
+google_ad_slot = "7973859818";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="Inline%20function%20Advantages,%20Disadvantage%20-%20C++%20Forum_files/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px"><ins id="aswift_1_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px"><iframe allowtransparency="true" hspace="0" marginwidth="0" marginheight="0" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){i+='.call';setTimeout(h,0)}else if(h.match){i+='.nav';w.location.replace(h)}s.log&amp;&amp;s.log.push(i)}" vspace="0" id="aswift_1" name="aswift_1" style="left: 0pt; position: absolute; top: 0pt;" frameborder="0" height="90" scrolling="no" width="728"></iframe></ins></ins><br><h2><img src="Inline%20function%20Advantages,%20Disadvantage%20-%20C++%20Forum_files/forum_default.png" alt="post" title="post" height="16" width="16"> Inline function Advantages, Disadvantages, Performance and User Guidelines ?</h2><span id="CH_edttl"></span><div class="C_pages">Pages: <span title="Current page">1</span><a href="http://www.cplusplus.com/forum/articles/20600/2/">2</a></div><span class="rootdatPost" title="20600,root,0,-1,30,0"></span><div id="CH_PostList"><div class="C_forPost" id="msg107872"><span title="107872,31748,1023,31,0"></span><table class="box">
+<tbody><tr class="rtop">
+<td class="dwho"><a href="http://www.cplusplus.com/user/Sj6Rko23/"><b>tajendra</b> (31)</a></td>
+<td class="dwhen"><a href="#msg107872" title="Link to this post"><img src="Inline%20function%20Advantages,%20Disadvantage%20-%20C++%20Forum_files/link.png" height="8" width="16"></a> <span id="CH_zTme224fc1a37" title="Mon, 08 Mar 2010 19:25:55 +0000">Mar 9, 2010 at 12:55am</span><script type="text/javascript">WhenId('CH_zTme224fc1a37');</script><noscript>Mar 8, 2010 at 7:25pm UTC</noscript></td>
+</tr>
+<tr><td class="dwhat" colspan="2" id="CH_i107872">
+Inline function is the optimization technique used by the compilers. One
+ can simply prepend inline keyword to function prototype to make a 
+function inline. Inline function instruct compiler to insert complete 
+body of the function wherever that function got used in code.<br>
+<br>
+<b>Advantages :- </b><br>
+1) It does not require function calling overhead.<br>
+2) It also save overhead of variables push/pop on the stack, while function calling.<br>
+3) It also save overhead of return call from a function.<br>
+4) It increases locality of reference by utilizing instruction cache.<br>
+5) After in-lining compiler can also apply intraprocedural optmization 
+if specified. This is the most important one, in this way compiler can 
+now focus on dead code elimination, can give more stress on branch 
+prediction, induction variable elimination etc..<br>
+<br>
+<b>Disadvantages</b> :-<br>
+1) May increase function size so that it may not fit on the cache, causing lots of cahce miss.<br>
+2) After in-lining function if variables number which are going to use 
+register increases than they may create overhead on register variable 
+resource utilization.<br>
+3) It may cause compilation overhead as if some body changes code inside
+ inline function than all calling location will also be compiled.<br>
+4) If used in header file, it will make your header file size large and may also make it unreadable.<br>
+5) If somebody used too many inline function resultant in a larger code 
+size than it may cause thrashing in memory. More and more number of page
+ fault bringing down your program performance.<br>
+6) Its not useful for embeded system where large binary size is not preferred at all due to memory size constraints.<br>
+<br>
+<b>Performance</b> : -<br>
+Now covering the topic which most the people are interested in the "Performance".<br>
+In most of the cases Inline function boost performance if used 
+cautiously as it saves lots of overhead as discussed in our Advantages 
+section above but as we have also discussed  its disadvantages one need 
+to be very cautious while using them. Today's modern compiler inline 
+functions automatically, so no need to specify explicitly in most of the
+ cases. Although placing inline keyword only gives compiler a hint that 
+this function can be optimized by doing in-lining, its ultimately 
+compiler decision to make it inline. Though there are ways to instruct 
+compiler too, for making a function call inline like one can use 
+__forceinline to instruct compiler to inline a function while working 
+with microsoft visual c++. I suggest not to use this keyword until you 
+are very sure about performance gain. Making a function inline may or 
+may not give you performance boost, it all depends on your code flows 
+too. Don't expect a magical performance boost by prepending inline 
+keyword before a function to your code as most of the compiler nowadays 
+does that automatically.<br>
+<br>
+As we have seen inline function serves in terms of performacen but one has to use it with extreme cautions.<br>
+<br>
+I have prepared a few guidelines for its use.<br>
+<b>Uses Guidelines</b> :-<br>
+1) Always use inline function when your are sure it will give performance.<br>
+2) Always prefer inline function over macros.<br>
+3) Don't inline function with larger code size, one should always inline small code size function to get performance.<br>
+4) If you want to inline a function in class, then prefer to use inkine keyword outside the class with the function definition.<br>
+5) In c++, by default member function declared and defined within class get linlined. So no use to specify for such cases.<br>
+6) Your function will not be inlined in case there is differences 
+between exception handling model. Like if caller function follows c++ 
+structure handling and your inline function follows structured exception
+ handling.<br>
+7) For recursive function most of the compiler would not do in-lining 
+but microsoft visual c++ compiler provides a special pragma for it i.e. 
+pragma inline_recursion(on) and once can also control its limit with 
+pragma  inline_depth.<br>
+8) If the function is virtual and its called virtually then it would not
+ be inlined. So take care for such cases, same hold true for the use of 
+function pointers.<br>
+<br>
+For more such info please visit my technical blog :- <br>
+<i><a href="http://www.tajendrasengar.blogspot.com/2010/03/what-is-inline-function-in-cc.html">http://www.tajendrasengar.blogspot.com/2010/03/what-is-inline-function-in-cc.html</a></i><br>
+<br>
+That's it from my side, I hope you enjoyed reading the post.<br>
+
+</td></tr>
+<tr>
+<td colspan="2" class="dhow">
+<div class="dedit">
+<span class="sedited">Last edited on <span id="CH_zTmb9d715edd6" title="Mon, 08 Mar 2010 19:40:49 +0000">Mar 9, 2010 at 1:10am</span><script type="text/javascript">WhenId('CH_zTmb9d715edd6');</script><noscript>Mar 8, 2010 at 7:40pm UTC</noscript></span>
+<span class="dbtn" id="CH_btn107872"></span>
+
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="C_forPost" id="msg107879"><span title="107879,21799,1023,4526,0"></span><table class="box">
+<tbody><tr class="rtop">
+<td class="dwho"><a href="http://www.cplusplus.com/user/GEw0RXSz/"><b>chrisname</b> (4526)</a></td>
+<td class="dwhen"><a href="#msg107879" title="Link to this post"><img src="Inline%20function%20Advantages,%20Disadvantage%20-%20C++%20Forum_files/link.png" height="8" width="16"></a> <span id="CH_zTm768fb920e3" title="Mon, 08 Mar 2010 19:40:21 +0000">Mar 9, 2010 at 1:10am</span><script type="text/javascript">WhenId('CH_zTm768fb920e3');</script><noscript>Mar 8, 2010 at 7:40pm UTC</noscript></td>
+</tr>
+<tr><td class="dwhat" colspan="2" id="CH_i107879">
+That's a decent article. As a rule of thumb, only inline functions that are 3-8 lines long.
+</td></tr>
+<tr>
+<td colspan="2" class="dhow">
+<div class="dedit">
+<span class="dbtn" id="CH_btn107879"></span>
+
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="C_forPost" id="msg107885"><span title="107885,10532,1023,5782,0"></span><table class="box">
+<tbody><tr class="rtop">
+<td class="dwho"><a href="http://www.cplusplus.com/user/SGhbqMoL/"><b>jsmith</b> (5782)</a></td>
+<td class="dwhen"><a href="#msg107885" title="Link to this post"><img src="Inline%20function%20Advantages,%20Disadvantage%20-%20C++%20Forum_files/link.png" height="8" width="16"></a> <span id="CH_zTmb8d91af2ab" title="Mon, 08 Mar 2010 19:55:11 +0000">Mar 9, 2010 at 1:25am</span><script type="text/javascript">WhenId('CH_zTmb8d91af2ab');</script><noscript>Mar 8, 2010 at 7:55pm UTC</noscript></td>
+</tr>
+<tr><td class="dwhat" colspan="2" id="CH_i107885">
+Where did 3 and 8 come from?<br>
+
+</td></tr>
+<tr>
+<td colspan="2" class="dhow">
+<div class="dedit">
+<span class="dbtn" id="CH_btn107885"></span>
+
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="C_forPost" id="msg107887"><span title="107887,28666,1023,1394,0"></span><table class="box">
+<tbody><tr class="rtop">
+<td class="dwho"><a href="http://www.cplusplus.com/user/ECG8T05o/"><b>moorecm</b> (1394)</a></td>
+<td class="dwhen"><a href="#msg107887" title="Link to this post"><img src="Inline%20function%20Advantages,%20Disadvantage%20-%20C++%20Forum_files/link.png" height="8" width="16"></a> <span id="CH_zTmcc684dad03" title="Mon, 08 Mar 2010 20:05:47 +0000">Mar 9, 2010 at 1:35am</span><script type="text/javascript">WhenId('CH_zTmcc684dad03');</script><noscript>Mar 8, 2010 at 8:05pm UTC</noscript></td>
+</tr>
+<tr><td class="dwhat" colspan="2" id="CH_i107887">
+It should be said that profiling is an important step in performance 
+assessment and improvement.  Nor will inlining make up for poor 
+algorithm design.
+</td></tr>
+<tr>
+<td colspan="2" class="dhow">
+<div class="dedit">
+<span class="dbtn" id="CH_btn107887"></span>
+
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="C_forPost" id="msg107957"><span title="107957,13171,1023,8554,0"></span><table class="box">
+<tbody><tr class="rtop">
+<td class="dwho"><a href="http://www.cplusplus.com/user/9z8AC542/"><b>helios</b> (8554)</a></td>
+<td class="dwhen"><a href="#msg107957" title="Link to this post"><img src="Inline%20function%20Advantages,%20Disadvantage%20-%20C++%20Forum_files/link.png" height="8" width="16"></a> <span id="CH_zTmf435ebc94e" title="Tue, 09 Mar 2010 00:54:24 +0000">Mar 9, 2010 at 6:24am</span><script type="text/javascript">WhenId('CH_zTmf435ebc94e');</script><noscript>Mar 9, 2010 at 12:54am UTC</noscript></td>
+</tr>
+<tr><td class="dwhat" colspan="2" id="CH_i107957">
+<table class="quote"><tbody><tr><td class="qd">2) After in-lining 
+function if variables number which are going to use register increases 
+than they may create overhead on register variable resource utilization.</td></tr></tbody></table>What? Seriously, I have no idea how to interpret this.<br>
+<br>
+<table class="quote"><tbody><tr><td class="qd">3) It may cause 
+compilation overhead as if some body changes code inside inline function
+ than all calling location will also be compiled.</td></tr></tbody></table>Correction:
+ any source that includes the header where the inlined function is 
+defined will have to be recompiled if the function (or anything else in 
+the header, for that matter) changes.<br>
+<br>
+No mention of decreased CPU cache performance with increased binary size? For shame.
+</td></tr>
+<tr>
+<td colspan="2" class="dhow">
+<div class="dedit">
+<span class="sedited">Last edited on <span id="CH_zTmeaf18c4da0" title="Tue, 09 Mar 2010 00:55:00 +0000">Mar 9, 2010 at 6:25am</span><script type="text/javascript">WhenId('CH_zTmeaf18c4da0');</script><noscript>Mar 9, 2010 at 12:55am UTC</noscript></span>
+<span class="dbtn" id="CH_btn107957"></span>
+
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="C_forPost" id="msg107966"><span title="107966,9863,1023,4517,0"></span><table class="box">
+<tbody><tr class="rtop">
+<td class="dwho"><a href="http://www.cplusplus.com/user/G8URko23/"><b>firedraco</b> (4517)</a></td>
+<td class="dwhen"><a href="#msg107966" title="Link to this post"><img src="Inline%20function%20Advantages,%20Disadvantage%20-%20C++%20Forum_files/link.png" height="8" width="16"></a> <span id="CH_zTm1997418c58" title="Tue, 09 Mar 2010 01:23:26 +0000">Mar 9, 2010 at 6:53am</span><script type="text/javascript">WhenId('CH_zTm1997418c58');</script><noscript>Mar 9, 2010 at 1:23am UTC</noscript></td>
+</tr>
+<tr><td class="dwhat" colspan="2" id="CH_i107966">
+<table class="quote"><tbody><tr><td class="qd">2) After in-lining 
+function if variables number which are going to use register increases 
+than they may create overhead on register variable resource utilization.</td></tr></tbody></table><br>
+<br>
+My guess: After inlining a function, the number of variables which are 
+going to use registers could increase, possibly creating an overhead on 
+register utilization.
+</td></tr>
+<tr>
+<td colspan="2" class="dhow">
+<div class="dedit">
+<span class="dbtn" id="CH_btn107966"></span>
+
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="C_forPost" id="msg107993"><span title="107993,31748,1023,31,0"></span><table class="box">
+<tbody><tr class="rtop">
+<td class="dwho"><a href="http://www.cplusplus.com/user/Sj6Rko23/"><b>tajendra</b> (31)</a></td>
+<td class="dwhen"><a href="#msg107993" title="Link to this post"><img src="Inline%20function%20Advantages,%20Disadvantage%20-%20C++%20Forum_files/link.png" height="8" width="16"></a> <span id="CH_zTm6596abd216" title="Tue, 09 Mar 2010 04:17:57 +0000">Mar 9, 2010 at 9:47am</span><script type="text/javascript">WhenId('CH_zTm6596abd216');</script><noscript>Mar 9, 2010 at 4:17am UTC</noscript></td>
+</tr>
+<tr><td class="dwhat" colspan="2" id="CH_i107993">
+Hello frnds, this is tajendra again.<br>
+In current discussion i think point (2) raised some doubt let me cover it in details:-<br>
+<br>
+<b><table class="quote"><tbody><tr><td class="qd">2) After in-lining 
+function if variables number which are going to use register increases 
+than they may create overhead on register variable resource utilization.</td></tr></tbody></table></b><br>
+<br>
+Details:- As we know after inlining a funtion whole source code get inserted at the calling point.<br>
+             So the total variables going to be used also get increased.
+ So the number of register going to be used for the variables will aslo 
+get increased. So if after function inlining variable numbers increase 
+drastically then it would surely cause an overhead on register 
+utilization. To avoid such type of problem one should always inline 
+function with great caution. For that you can find uses guidelines 
+mentioned in my above article.<br>
+<br>
+Also if you want to know how to improve performance for small local chunk allocation then check :-  <br>
+<i>[u][quote][b]<a href="http://www.tajendrasengar.blogspot.com/2010/02/how-to-allocate-memory-dynami">http://www.tajendrasengar.blogspot.com/2010/02/how-to-allocate-memory-dynami</a></i>cal[/u]ly-on.html[/quote][/b]
+</td></tr>
+<tr>
+<td colspan="2" class="dhow">
+<div class="dedit">
+<span class="dbtn" id="CH_btn107993"></span>
+
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="C_forPost" id="msg108012"><span title="108012,31748,1023,31,0"></span><table class="box">
+<tbody><tr class="rtop">
+<td class="dwho"><a href="http://www.cplusplus.com/user/Sj6Rko23/"><b>tajendra</b> (31)</a></td>
+<td class="dwhen"><a href="#msg108012" title="Link to this post"><img src="Inline%20function%20Advantages,%20Disadvantage%20-%20C++%20Forum_files/link.png" height="8" width="16"></a> <span id="CH_zTmcf1904739c" title="Tue, 09 Mar 2010 06:11:34 +0000">Mar 9, 2010 at 11:41am</span><script type="text/javascript">WhenId('CH_zTmcf1904739c');</script><noscript>Mar 9, 2010 at 6:11am UTC</noscript></td>
+</tr>
+<tr><td class="dwhat" colspan="2" id="CH_i108012">
+Decrease in CPU performance is related directly to cache miss, which i 
+have covered in my very first point of disadvantages section.<br>
+Also larger binary size impact shown with point 5 in my disadvantages section.<br>
+<br>
+Please feel free to post if any more doubts.
+</td></tr>
+<tr>
+<td colspan="2" class="dhow">
+<div class="dedit">
+<span class="sedited">Last edited on <span id="CH_zTm6319a0f340" title="Tue, 09 Mar 2010 07:43:08 +0000">Mar 9, 2010 at 1:13pm</span><script type="text/javascript">WhenId('CH_zTm6319a0f340');</script><noscript>Mar 9, 2010 at 7:43am UTC</noscript></span>
+<span class="dbtn" id="CH_btn108012"></span>
+
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="C_forPost" id="msg108054"><span title="108054,13171,1023,8554,0"></span><table class="box">
+<tbody><tr class="rtop">
+<td class="dwho"><a href="http://www.cplusplus.com/user/9z8AC542/"><b>helios</b> (8554)</a></td>
+<td class="dwhen"><a href="#msg108054" title="Link to this post"><img src="Inline%20function%20Advantages,%20Disadvantage%20-%20C++%20Forum_files/link.png" height="8" width="16"></a> <span id="CH_zTmd5ec06350e" title="Tue, 09 Mar 2010 10:16:05 +0000">Mar 9, 2010 at 3:46pm</span><script type="text/javascript">WhenId('CH_zTmd5ec06350e');</script><noscript>Mar 9, 2010 at 10:16am UTC</noscript></td>
+</tr>
+<tr><td class="dwhat" colspan="2" id="CH_i108054">
+<table class="quote"><tbody><tr><td class="qd">after inlining a funtion whole source code get inserted at the calling point.<br>
+So the total variables going to be used also get increased. So the 
+number of register going to be used for the variables will aslo get 
+increased.</td></tr></tbody></table>That's <i>very</i> flimsy logic. So you're saying that this code<br>
+<div class="auto"><table class="snippet"><tbody><tr><td class="rownum"><tt>1<br>2<br>3<br></tt></td>
+<td class="source"><pre><code>f();
+<var>int</var> a=f2();
+<var>int</var> b=f3();</code></pre></td></tr></tbody></table></div>
+needs a CPU with more registers than this?<br>
+<div class="auto"><table class="snippet"><tbody><tr><td class="rownum"><tt>&nbsp;</tt></td>
+<td class="source"><pre><code>f();</code></pre></td></tr></tbody></table></div>
+<br>
+<br>
+<table class="quote"><tbody><tr><td class="qd">which i have covered in my very first point of disadvantages section.</td></tr></tbody></table>Alright, never mind, then.<br>
+<br>
+<table class="quote"><tbody><tr><td class="qd">5) If somebody used too 
+many inline function resultant in a larger code size than it may cause 
+thrashing in memory. More and more number of page fault bringing down 
+your program performance.</td></tr></tbody></table>By the time a program
+ becomes so large that the OS needs to use swap space just to know what 
+the program should do next, I think performance will be the least of 
+your concerns.
+</td></tr>
+<tr>
+<td colspan="2" class="dhow">
+<div class="dedit">
+<span class="sedited">Last edited on <span id="CH_zTm5d41afa5c5" title="Tue, 09 Mar 2010 10:21:45 +0000">Mar 9, 2010 at 3:51pm</span><script type="text/javascript">WhenId('CH_zTm5d41afa5c5');</script><noscript>Mar 9, 2010 at 10:21am UTC</noscript></span>
+<span class="dbtn" id="CH_btn108054"></span>
+
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="C_forPost" id="msg108093"><span title="108093,31748,1023,31,0"></span><table class="box">
+<tbody><tr class="rtop">
+<td class="dwho"><a href="http://www.cplusplus.com/user/Sj6Rko23/"><b>tajendra</b> (31)</a></td>
+<td class="dwhen"><a href="#msg108093" title="Link to this post"><img src="Inline%20function%20Advantages,%20Disadvantage%20-%20C++%20Forum_files/link.png" height="8" width="16"></a> <span id="CH_zTm4d76126ac8" title="Tue, 09 Mar 2010 13:58:58 +0000">Mar 9, 2010 at 7:28pm</span><script type="text/javascript">WhenId('CH_zTm4d76126ac8');</script><noscript>Mar 9, 2010 at 1:58pm UTC</noscript></td>
+</tr>
+<tr><td class="dwhat" colspan="2" id="CH_i108093">
+Lets have a look at my point with more preciseness,<br>
+if we have a function f() <br>
+<br>
+<div class="auto"><table class="snippet"><tbody><tr><td class="rownum"><tt>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br></tt></td>
+<td class="source"><pre><code>
+<var>int</var> f1()
+{
+<cite>//do something</cite>
+<cite>//this function use 10 variables</cite>
+}
+
+<var>int</var> f()
+{
+<cite>//do something</cite>
+<cite>//this function use 20 variables</cite>
+f1(); <cite>//calling function f1()</cite>
+}</code></pre></td></tr></tbody></table></div>
+<br>
+<br>
+So in above case function f() uses 20 variables at max, now if we make f1() to be inlined<br>
+then variable count of function f() would be 30. So more inlining results into more number of variable to be managed.<br>
+So like above example we can have much complicated situation too. Therefore we can say that:-<br>
+"The added variables from the inlined function may consume additional 
+registers, and in an area where register pressure is already high this 
+may force spilling, which causes additional RAM accesses."<br>
+<br>
+<br>
+<br>
+<br>
+
+</td></tr>
+<tr>
+<td colspan="2" class="dhow">
+<div class="dedit">
+<span class="dbtn" id="CH_btn108093"></span>
+
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="C_forPost" id="msg108100"><span title="108100,13171,1023,8554,0"></span><table class="box">
+<tbody><tr class="rtop">
+<td class="dwho"><a href="http://www.cplusplus.com/user/9z8AC542/"><b>helios</b> (8554)</a></td>
+<td class="dwhen"><a href="#msg108100" title="Link to this post"><img src="Inline%20function%20Advantages,%20Disadvantage%20-%20C++%20Forum_files/link.png" height="8" width="16"></a> <span id="CH_zTm71b22b0ff9" title="Tue, 09 Mar 2010 14:24:07 +0000">Mar 9, 2010 at 7:54pm</span><script type="text/javascript">WhenId('CH_zTm71b22b0ff9');</script><noscript>Mar 9, 2010 at 2:24pm UTC</noscript></td>
+</tr>
+<tr><td class="dwhat" colspan="2" id="CH_i108100">
+I think you're confusing "CPU registers" and "stack space". If a 
+function declares 40 variables, it's not necessarily going to use 40 
+registers. Mainly because the CPU may not even have that many registers.
+ x86, for instance, has nowhere near that many. And we're not even 
+taking into account types that don't fit in a register.<br>
+<br>
+As for stack space, there's probably less cost when inlining than when 
+calling, because the program doesn't need to save the CPU state 
+(instruction pointer, stack pointer, etc.).
+</td></tr>
+<tr>
+<td colspan="2" class="dhow">
+<div class="dedit">
+<span class="dbtn" id="CH_btn108100"></span>
+
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="C_forPost" id="msg108109"><span title="108109,10532,1023,5782,0"></span><table class="box">
+<tbody><tr class="rtop">
+<td class="dwho"><a href="http://www.cplusplus.com/user/SGhbqMoL/"><b>jsmith</b> (5782)</a></td>
+<td class="dwhen"><a href="#msg108109" title="Link to this post"><img src="Inline%20function%20Advantages,%20Disadvantage%20-%20C++%20Forum_files/link.png" height="8" width="16"></a> <span id="CH_zTm2388c0cc6c" title="Tue, 09 Mar 2010 15:04:00 +0000">Mar 9, 2010 at 8:34pm</span><script type="text/javascript">WhenId('CH_zTm2388c0cc6c');</script><noscript>Mar 9, 2010 at 3:04pm UTC</noscript></td>
+</tr>
+<tr><td class="dwhat" colspan="2" id="CH_i108109">
+What he's trying to say is that the compiler's attempt at optimizing away memory accesses by storing variables<br>
+in registers may be defeated if the inline function has variables in it.  (If the function were not inlined, <br>
+registers could be used, but once the function is inlined, there aren't enough registers available because the<br>
+"calling" function is already using them for its own optimized variables.<br>
+
+</td></tr>
+<tr>
+<td colspan="2" class="dhow">
+<div class="dedit">
+<span class="dbtn" id="CH_btn108109"></span>
+
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="C_forPost" id="msg108240"><span title="108240,11526,1023,1112,0"></span><table class="box">
+<tbody><tr class="rtop">
+<td class="dwho"><a href="http://www.cplusplus.com/user/iGAq5Di1/"><b>kempofighter</b> (1112)</a></td>
+<td class="dwhen"><a href="#msg108240" title="Link to this post"><img src="Inline%20function%20Advantages,%20Disadvantage%20-%20C++%20Forum_files/link.png" height="8" width="16"></a> <span id="CH_zTmd06f5bdb9a" title="Tue, 09 Mar 2010 23:51:43 +0000">Mar 10, 2010 at 5:21am</span><script type="text/javascript">WhenId('CH_zTmd06f5bdb9a');</script><noscript>Mar 9, 2010 at 11:51pm UTC</noscript></td>
+</tr>
+<tr><td class="dwhat" colspan="2" id="CH_i108240">
+I suggest that you proof read your article and fix the typos.  There are
+ a few.  Also for this type of article I would suggest that you refer 
+explicitly to the C++ std as some of the statements that you have made 
+are highly questionable and/or confusing.<br>
+<br>
+<table class="quote"><tbody><tr><td class="qd">1) Always use inline function when your are sure it will give performance.</td></tr></tbody></table><br>
+I don't see how I could possibly know in all cases.  I don't see how 
+this is a useful guideline.  It is also conflicting since you said that 
+the inline keyword is a hint and that the compiler could reject the 
+request anyway.  <br>
+<br>
+<table class="quote"><tbody><tr><td class="qd">4) If you want to inline a function in class, then prefer to use inkine keyword outside the class with the function definition.</td></tr></tbody></table><br>
+Why?<br>
+<br>
+<table class="quote"><tbody><tr><td class="qd">6) Its not useful for embeded system where large binary size is not preferred at all due to memory size constraints.</td></tr></tbody></table><br>
+How does inlining increase binary size?  You need to explain this.  I've
+ been writing embedded programs for years and have never heard or seen 
+of any coding standard that suggests this.  I would have thought the 
+opposite is true since inlining eliminates some of the jump,push, and 
+pop instructions that are required to make a function call.  Please 
+clarify that statement.<br>
+
+</td></tr>
+<tr>
+<td colspan="2" class="dhow">
+<div class="dedit">
+<span class="dbtn" id="CH_btn108240"></span>
+
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="C_forPost" id="msg108325"><span title="108325,21799,1023,4526,0"></span><table class="box">
+<tbody><tr class="rtop">
+<td class="dwho"><a href="http://www.cplusplus.com/user/GEw0RXSz/"><b>chrisname</b> (4526)</a></td>
+<td class="dwhen"><a href="#msg108325" title="Link to this post"><img src="Inline%20function%20Advantages,%20Disadvantage%20-%20C++%20Forum_files/link.png" height="8" width="16"></a> <span id="CH_zTm5982d1fbbb" title="Wed, 10 Mar 2010 08:22:54 +0000">Mar 10, 2010 at 1:52pm</span><script type="text/javascript">WhenId('CH_zTm5982d1fbbb');</script><noscript>Mar 10, 2010 at 8:22am UTC</noscript></td>
+</tr>
+<tr><td class="dwhat" colspan="2" id="CH_i108325">
+<table class="quote"><tbody><tr><td class="qd">How does inlining increase binary size?</td></tr></tbody></table><br>
+Yeah! How could copying the code from a function wherever it's called <i>possibly</i>
+ increase binary size? If you call an inline function 100 times, then it
+ copies the code for it into 100 times (with modifications, obviously).
+</td></tr>
+<tr>
+<td colspan="2" class="dhow">
+<div class="dedit">
+<span class="dbtn" id="CH_btn108325"></span>
+
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="C_forPost" id="msg108342"><span title="108342,31748,1023,31,0"></span><table class="box">
+<tbody><tr class="rtop">
+<td class="dwho"><a href="http://www.cplusplus.com/user/Sj6Rko23/"><b>tajendra</b> (31)</a></td>
+<td class="dwhen"><a href="#msg108342" title="Link to this post"><img src="Inline%20function%20Advantages,%20Disadvantage%20-%20C++%20Forum_files/link.png" height="8" width="16"></a> <span id="CH_zTmf98aa72d1b" title="Wed, 10 Mar 2010 09:26:47 +0000">Mar 10, 2010 at 2:56pm</span><script type="text/javascript">WhenId('CH_zTmf98aa72d1b');</script><noscript>Mar 10, 2010 at 9:26am UTC</noscript></td>
+</tr>
+<tr><td class="dwhat" colspan="2" id="CH_i108342">
+<table class="quote"><tbody><tr><td class="qd">1) Always use inline function when your are sure it will give performance.</td></tr></tbody></table><br>
+<br>
+Its actually a good point raised, how can we make sure that inlining a function will give performance. <br>
+<br>
+As we have discussed that inline function got both advantages and disadvantages. Bottom line is we need to use it correctly.<br>
+So whenever you are making a function inline, you should be sure about its impact.<br>
+As if you forcibly make large code size function to be inlined, it will result in larger code size and may hit performance.<br>
+<br>
+So, if you are targeting performance than you must profile your code to see its impact.<br>
+An immature inlining of function may affect performance.<br>
+<br>
+<br>
+<br>
+<br>
+
+</td></tr>
+<tr>
+<td colspan="2" class="dhow">
+<div class="dedit">
+<span class="dbtn" id="CH_btn108342"></span>
+
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="C_forPost" id="msg108347"><span title="108347,31748,1023,31,0"></span><table class="box">
+<tbody><tr class="rtop">
+<td class="dwho"><a href="http://www.cplusplus.com/user/Sj6Rko23/"><b>tajendra</b> (31)</a></td>
+<td class="dwhen"><a href="#msg108347" title="Link to this post"><img src="Inline%20function%20Advantages,%20Disadvantage%20-%20C++%20Forum_files/link.png" height="8" width="16"></a> <span id="CH_zTm1892b7ff63" title="Wed, 10 Mar 2010 09:43:01 +0000">Mar 10, 2010 at 3:13pm</span><script type="text/javascript">WhenId('CH_zTm1892b7ff63');</script><noscript>Mar 10, 2010 at 9:43am UTC</noscript></td>
+</tr>
+<tr><td class="dwhat" colspan="2" id="CH_i108347">
+<br>
+<table class="quote"><tbody><tr><td class="qd">4) If you want to inline a function in class, then prefer to use inline keyword outside the class with the function definition.</td></tr></tbody></table><br>
+<br>
+This i regards to be Best Practice.<br>
+<br>
+Lets take a code snippet for it :-<br>
+<div class="auto"><table class="snippet"><tbody><tr><td class="rownum"><tt>1<br>2<br>3<br>4<br>5<br>6<br>7<br></tt></td>
+<td class="source"><pre><code> <var>class</var> Test{
+ <var>public</var>:
+   <var>void</var> func1();  <cite>//&lt;----- best practice: Not to use inline keyword here</cite>
+  ;
+ 
+ <var>inline</var> <var>void</var> Foo::func1()  <cite>//&lt;----- best practice: Put inline keyword here</cite>
+ {  <cite>// do something }  </cite></code></pre></td></tr></tbody></table></div>
+<br>
+<br>
+Reason favoring it :-<br>
+Suppose you want to share class Test, then other party is only 
+interested in your functionality that is public API's. A user does not 
+want implementation complexity to be described with your exposed class. <br>
+So, its better not to expose other observable semantics which are purely implementation details.<br>
+It also favor abstraction concept, i.e. show only relevant content, hiding implementation details.<br>
+<br>
+ <br>
+<br>
+<br>
+
+</td></tr>
+<tr>
+<td colspan="2" class="dhow">
+<div class="dedit">
+<span class="dbtn" id="CH_btn108347"></span>
+
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="C_forPost" id="msg108355"><span title="108355,31748,1023,31,0"></span><table class="box">
+<tbody><tr class="rtop">
+<td class="dwho"><a href="http://www.cplusplus.com/user/Sj6Rko23/"><b>tajendra</b> (31)</a></td>
+<td class="dwhen"><a href="#msg108355" title="Link to this post"><img src="Inline%20function%20Advantages,%20Disadvantage%20-%20C++%20Forum_files/link.png" height="8" width="16"></a> <span id="CH_zTm9732be28a8" title="Wed, 10 Mar 2010 10:08:15 +0000">Mar 10, 2010 at 3:38pm</span><script type="text/javascript">WhenId('CH_zTm9732be28a8');</script><noscript>Mar 10, 2010 at 10:08am UTC</noscript></td>
+</tr>
+<tr><td class="dwhat" colspan="2" id="CH_i108355">
+<br>
+<table class="quote"><tbody><tr><td class="qd">How does inlining increase binary size?</td></tr></tbody></table>
+<table class="quote"><tbody><tr><td class="qd">6) Its not useful for embeded system where large binary size is not preferred at all due to memory size constraints.</td></tr></tbody></table><br>
+<br>
+I want to cover both above qoutes with this post:-<br>
+Starting with binary size :-<br>
+Too much inlining increase size of code and as result a larger binary file. <br>
+For example, if a process has 100 inline functions each of which expands
+ to 100 bytes of executable code and is called in by 100 locations, 
+that's an increase of 1MB. <br>
+An who knows this 1MB going to cause problems? this last 1MB could cause
+ the system to "thrash," and that could slow things down.<br>
+In other words, if the executable size is too big, the system might 
+spend most of its time going out to disk to fetch the next chunk of 
+code.<br>
+This is the notion of code bloat, as described above.<br>
+<br>
+Now coming to embedded system point, most of the embedded system have 
+constraint of memory size. So the first preferences is to keep binary 
+size compatible to it i.e. memory optimization. After which one can 
+apply optimization for performance.<br>
+<br>
+
+</td></tr>
+<tr>
+<td colspan="2" class="dhow">
+<div class="dedit">
+<span class="dbtn" id="CH_btn108355"></span>
+
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="C_forPost" id="msg108369"><span title="108369,13171,1023,8554,0"></span><table class="box">
+<tbody><tr class="rtop">
+<td class="dwho"><a href="http://www.cplusplus.com/user/9z8AC542/"><b>helios</b> (8554)</a></td>
+<td class="dwhen"><a href="#msg108369" title="Link to this post"><img src="Inline%20function%20Advantages,%20Disadvantage%20-%20C++%20Forum_files/link.png" height="8" width="16"></a> <span id="CH_zTm9648d23a00" title="Wed, 10 Mar 2010 12:13:54 +0000">Mar 10, 2010 at 5:43pm</span><script type="text/javascript">WhenId('CH_zTm9648d23a00');</script><noscript>Mar 10, 2010 at 12:13pm UTC</noscript></td>
+</tr>
+<tr><td class="dwhat" colspan="2" id="CH_i108369">
+<table class="quote"><tbody><tr><td class="qd">In other words, if the 
+executable size is too big, the system might spend most of its time 
+going out to disk to fetch the next chunk of code.</td></tr></tbody></table>Again
+ with that? Do you realize just how big the executable would have to be 
+for the OS to have to resort so swap space just to hold its code?
+</td></tr>
+<tr>
+<td colspan="2" class="dhow">
+<div class="dedit">
+<span class="dbtn" id="CH_btn108369"></span>
+
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="C_forPost" id="msg108381"><span title="108381,21799,1023,4526,0"></span><table class="box">
+<tbody><tr class="rtop">
+<td class="dwho"><a href="http://www.cplusplus.com/user/GEw0RXSz/"><b>chrisname</b> (4526)</a></td>
+<td class="dwhen"><a href="#msg108381" title="Link to this post"><img src="Inline%20function%20Advantages,%20Disadvantage%20-%20C++%20Forum_files/link.png" height="8" width="16"></a> <span id="CH_zTm853c749dd9" title="Wed, 10 Mar 2010 13:01:55 +0000">Mar 10, 2010 at 6:31pm</span><script type="text/javascript">WhenId('CH_zTm853c749dd9');</script><noscript>Mar 10, 2010 at 1:01pm UTC</noscript></td>
+</tr>
+<tr><td class="dwhat" colspan="2" id="CH_i108381">
+It's not that the executable is placed in swap space; it's that the variables need to be stored there...
+</td></tr>
+<tr>
+<td colspan="2" class="dhow">
+<div class="dedit">
+<span class="dbtn" id="CH_btn108381"></span>
+
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="C_forPost" id="msg108411"><span title="108411,13171,1023,8554,0"></span><table class="box">
+<tbody><tr class="rtop">
+<td class="dwho"><a href="http://www.cplusplus.com/user/9z8AC542/"><b>helios</b> (8554)</a></td>
+<td class="dwhen"><a href="#msg108411" title="Link to this post"><img src="Inline%20function%20Advantages,%20Disadvantage%20-%20C++%20Forum_files/link.png" height="8" width="16"></a> <span id="CH_zTm0a79515be8" title="Wed, 10 Mar 2010 15:28:04 +0000">Mar 10, 2010 at 8:58pm</span><script type="text/javascript">WhenId('CH_zTm0a79515be8');</script><noscript>Mar 10, 2010 at 3:28pm UTC</noscript></td>
+</tr>
+<tr><td class="dwhat" colspan="2" id="CH_i108411">
+First, it's very unlikely that the stack would end up in swap. Second, heap data is unrelated to binary size.
+</td></tr>
+<tr>
+<td colspan="2" class="dhow">
+<div class="dedit">
+<span class="dbtn" id="CH_btn108411"></span>
+
+</div>
+</td>
+</tr>
+</tbody></table>
+</div>
+</div><div class="rootinsMore"></div><div class="rootbtnMore"></div><div class="rootinsNew"></div><div id="CH_insNew"></div><div id="CH_subscription"></div><div class="rootedtNew"></div><div class="C_pages right">Pages: <span title="Current page">1</span><a href="http://www.cplusplus.com/forum/articles/20600/2/">2</a></div><script type="text/javascript">new for_PostList(20600,1,31748,0,'CH_PostList','CH_subscription',false,'CH_insNew','CH_edttl','/forum/thread.cgi','/forum/post.cgi','/forum/myposts.cgi',64,32,512,256,1024,16);</script><p>
+
+<script type="text/javascript"><!--
+google_ad_client = "pub-7688470879129516";
+google_ad_slot = "7973859818";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript" src="Inline%20function%20Advantages,%20Disadvantage%20-%20C++%20Forum_files/show_ads.js">
+</script><ins style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px"><ins id="aswift_2_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px"><iframe allowtransparency="true" hspace="0" marginwidth="0" marginheight="0" onload="var i=this.id,s=window.google_iframe_oncopy,H=s&amp;&amp;s.handlers,h=H&amp;&amp;H[i],w=this.contentWindow,d;try{d=w.document}catch(e){}if(h&amp;&amp;d&amp;&amp;(!d.body||!d.body.firstChild)){if(h.call){i+='.call';setTimeout(h,0)}else if(h.match){i+='.nav';w.location.replace(h)}s.log&amp;&amp;s.log.push(i)}" vspace="0" id="aswift_2" name="aswift_2" style="left: 0pt; position: absolute; top: 0pt;" frameborder="0" height="90" scrolling="no" width="728"></iframe></ins></ins>
+</p></td></tr></tbody></table>
+</div>
+<div id="CH_footer">
+	<a href="http://www.cplusplus.com/">Home page</a> | <a href="http://www.cplusplus.com/privacy.do">Privacy policy</a><br>© cplusplus.com, 2000-2011 - All rights reserved - <i>v2.9</i><br><a href="http://www.cplusplus.com/contact.do?referrer=http%3A%2F%2Fwww.cplusplus.com%2Fforum%2Farticles%2F20600%2F">Spotted an error? contact us</a>
+</div>
+
+<script src="Inline%20function%20Advantages,%20Disadvantage%20-%20C++%20Forum_files/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+onPrint.print();
+var gso = new Session ('ssn29','rel29',14400,86400,1314031696);
+_uacct = "UA-521783-1";
+urchinTracker();
+</script>
+
+</body></html>

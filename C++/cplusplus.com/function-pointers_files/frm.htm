@@ -1,0 +1,50 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<script type="text/javascript" src="frm_data/rd"></script>
+</head>
+<body>
+<script type="text/javascript">
+var segMap = [
+                 [ 4038049689,  "c9_ta=18-20" ],
+                 [ 4038049687,  "c9_ta=21-24" ],
+                 [ 4038049711,  "c9_ta=25-34" ],
+                 [ 4038049704,  "c9_ta=35-44" ],
+                 [ 4038049724,  "c9_ta=45-54" ],
+                 [ 4038049718,  "c9_ta=55-64" ],
+                 [ 4038049712,  "c9_ta=65+"   ],
+                 [ 4038049742,  "c9_tg=m"     ],
+                 [ 4038049733,   "c9_tg=f"    ]
+            ];
+
+function searchIndex(segMap, seg) 
+{
+  var val;
+  for (var i = 0; i < segMap.length; i++)
+   {
+     if (segMap[i][0] == seg)
+      {
+        val = segMap[i][1];
+        break;
+      }
+   }
+  return val;
+}
+
+if (_rlcdnsegs != undefined && _rlcdnsegs.length > 0)
+  {
+    var e9 = new Object();
+    e9.size = "0x0";
+    for (var i = 0; i < _rlcdnsegs.length; i++)
+     {
+       var tfStr = searchIndex(segMap,_rlcdnsegs[i]); 
+       if (tfStr != undefined)
+        {
+          nvp = tfStr.split('=');
+          e9[nvp[0]]  = nvp[1];
+        }
+     }
+    document.write('<scr' + 'ipt type="text/javascript" src="http://a.tribalfusion.com/tags/rapleaf/data/tags.js"></scr' + 'ipt>');
+  }
+</script>
+
+</body></html>

@@ -1,0 +1,638 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" id="sixapart-standard"><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="Movable Type 5.12">
+<link rel="stylesheet" href="part2_files/style.css" type="text/css">
+<link rel="start" href="http://gillius.org/" title="Home">
+<link rel="alternate" type="application/atom+xml" title="Recent Entries" href="http://gillius.org/atom.xml">
+<script type="text/javascript" src="part2_files/mt.js"></script>
+<script src="part2_files/shCore.js" type="text/javascript"></script>
+<script src="part2_files/shAutoloader.js" type="text/javascript"></script>
+<link href="part2_files/shCoreEclipse.css" rel="stylesheet" type="text/css">
+<script src="part2_files/gillius-highlight.js" type="text/javascript" defer="defer"></script>
+
+
+
+    
+    
+    
+    <title>OOP Tutorial Page 2 - Gillius's Programming</title>
+</head>
+<body>
+<div class="titleBar"><a href="http://www.gillius.org/">Gillius's Programming</a></div>
+<div class="navArea">
+  <div class="navBlock">
+    <div class="leftTitle">Sections</div>
+    <div class="leftText">
+      <a href="http://www.gillius.org/">Home</a>
+      <a href="http://www.gillius.org/blog/">Blog / News</a>
+      <a href="http://www.gillius.org/tutorial">Tutorials</a>
+      <a href="http://www.gillius.org/games">Games</a>
+      <a href="http://www.gillius.org/articles/">Articles</a>
+      <a href="http://www.gillius.org/courses">Old Courses</a>
+      <a href="http://www.gillius.org/filesandprog">Old Projects Archive</a>
+    </div>
+
+    <div class="leftTitle"><a href="http://forums.gillius.org/">Forums</a></div>
+
+    <div class="leftTitle">Projects</div>
+    <div class="leftText">
+      <a href="http://www.gillius.org/gne/">GNE v.70</a>
+      <p class="leftDesc" style="margin-bottom: 0px;">Game Networking Engine</p>
+
+      <a href="http://www.gillius.org/m3/">Mega Monkey Mayhem</a>
+      <p class="leftDesc">Monkey deathmatch (completed!)</p>
+
+      <a href="http://www.gillius.org/xundar/">Xundar</a>
+      <p class="leftDesc">Action RPG (no plans to continue)</p>
+
+      <a href="http://www.gillius.org/isobomb/">Super IsoBomb</a>
+      <p class="leftDesc">Intense bomb deathmatch (completed!)</p>
+    </div>
+    <div class="leftTitle"> <a href="http://www.gillius.org/contact">Contact Gillius</a> </div>
+    <div class="leftTitle"> <a href="http://www.gillius.org/resume">Gillius's Résumé</a>
+    </div>
+  </div>
+
+  <div class="widget-search widget">
+    <h3 class="widget-header">Search</h3>
+    <div class="widget-content">
+        <form method="get" action="http://gillius.org/cgi-bin/mt/mt-search.cgi">
+            <input id="search" class="ti" name="search" type="text">
+
+            <input name="IncludeBlogs" value="1,2" type="hidden">
+
+            <input name="limit" value="20" type="hidden">
+            <input accesskey="4" value="Search" type="submit">
+        </form>
+    </div>
+</div>
+
+<div class="widget-syndication widget">
+    <h3 class="widget-header">Follow <img src="part2_files/feed.gif" alt="Subscribe to feed" height="9" width="9"></h3>
+    <div class="widget-content">
+        <ul>
+            <li><a href="http://gillius.org/atom.xml">Subscribe to this website's feed</a></li>
+
+        </ul>
+    </div>
+</div>
+<div class="widget-powered widget">
+    <div class="widget-content">
+        <a href="http://www.movabletype.com/"><img src="part2_files/bug-pbmt-white.png" alt="Powered by Movable Type 5.12" height="75" width="120"></a>
+    </div>
+</div>
+
+  
+  <p class="browserAd">This site looks best with a standards compliant browser like <a href="http://www.spreadfirefox.com/?q=affiliates&amp;id=71313&amp;t=1">Firefox</a>.
+    <br>
+    <a href="http://www.spreadfirefox.com/?q=affiliates&amp;id=71313&amp;t=75"><img alt="Get Firefox!" title="Get Firefox!" src="part2_files/trust.gif" border="0"></a>
+  </p>
+</div>
+
+
+<div class="contentArea">
+
+                                        <h1>Chapter III -- 
+        Using OOP</h1>
+      <h2><a name="A Real Programming Example"></a>A Real Programming Example</h2>
+      <p>Let's say we want to program a card deck for a simple 
+        blackjack game we are programming. Remember <span class="keyTerm">containership</span> 
+        and <span class="keyTerm">inheritance</span>? Let's think about the types of 
+        parts that make up a deck -- and those are the cards. Since all of the 
+        cards are very similar in structure, we could use a struct to represent 
+        a single card:</p>
+      <pre>enum Suit = {Clubs, Spades, Diamonds, Hearts};</pre>
+      <pre>struct Card {
+  Suit suit;
+  char digit;
+};</pre>
+      <p>A note on the digit. If digit &lt;= 10, then it is a number, 
+        else it is the letter of the card (J, Q, K, A). You could also use it 
+        as a number 1(ace) through 13(king) as well, perhaps if you were using 
+        the card value in additions or such.</p>
+      <p>A simple object, the card deck only has one type of item. 
+        Now let's think about the types of actions you can perform on the deck, 
+        and then make a class declaration out of this list, as well as using the 
+        previously declared data.</p>
+      <pre>class Deck {
+public:
+  void CreateDeck();//Fills array with legal cards
+  void Shuffle();   //Shuffles those cards
+  Card DrawCard();  //Gets a card from the deck
+private:
+  Card cards[52];
+};</pre>
+      <p>Now we have considered all of the things we may need to 
+        use a card deck. The programmer first sets up the deck with CreateDeck(), 
+        then whenever needed can Shuffle() the deck, and when the dealer deals 
+        a card, it can be picked up using DrawCard(), and then perhaps placed 
+        in the players hand (which could also could be a class too) or whatever 
+        the programmer needs to do with it.</p>
+      <h2><a name="Constructors and Destructors"></a>Constructors and Destructors</h2>
+      <p>I'm not going to write all of the code for this class. 
+        Instead I'll leave it open as an exercise to practice on working with 
+        classes. But let's focus on the CreateDeck() function for now. You may 
+        have already noticed that variables aren't being properly pre-initalized. 
+        In C this was easy since all variables were public, and you could simply 
+        zero them out, but in classes, some of the members are private. Now what? 
+        The programmer could call the CreateDeck() function, but even so, if the 
+        programmer forgets to do this the rest of the functions could crash the 
+        program. C++'s solution to this is called the <span class="keyTerm">constructor</span>. 
+        A constructor is the function which allocates memory for the object as 
+        well as initalizing it. Every variable in C++ has a constructor, even 
+        the basic types, but the compiler takes care of these issues for you. 
+        However with classes, even though the compiler can allocate memory for 
+        you, it will not initalize them, so the remain undefined, as with any 
+        other variable. Also, when the variable goes out of scope, the memory 
+        needs to be deleted, requireing the constructors counterpart, the <span class="keyTerm">destructor</span>.</p>
+      <p>A constructor is declared by creating a function by the 
+        same name as the class. The destructor has the same name, except with 
+        a ~ (the tlide key, next to the 1) in front of it. Below is the modified 
+        Deck class which takes advantage of C++ constructors and destructors. 
+        The array change to a pointer is to allow for dynamic memory allocation 
+        using the new command, to show a very common use of the constructor and 
+        destructor:</p>
+      <pre>class Deck {
+public:
+       Deck();      //Constructor
+       ~Deck();     //Destructor
+  void CreateDeck();//Fills array with legal cards
+  void Shuffle();   //Shuffles those cards
+  Card DrawCard();  //Gets a card from the deck
+private:
+  Card* cards;
+};</pre>
+      <p>Notice that obviously the constructor does not return 
+        anything, since it is an "invisible function" which is automatically 
+        called when you make the statement Deck MyCardDeck;. The same is 
+        true for the destructor, which is called when the variable goes out of 
+        scope. Below is an example of how to define and code a constructor, where 
+        the array is allocated and the data is initalized, and the destructor 
+        compliment, which cleans up what the constructor did:</p>
+      <pre>Deck::Deck() {
+  cards = new Card[52];//Allocate memory
+  CreateDeck();        //Set up the deck
+}</pre>
+      <pre>Deck::~Deck() {
+  delete[] cards;      //Deallocate memory
+}</pre>
+      <p>Notice that all methods and members of the class are available 
+        in the constructor and destructor, just as in every other function. <a href="http://www.gillius.org/tutorial.htm#intclass">Intclass.cc</a>, executable in any DOS compiler 
+        or console mode win32 compiler shows exactly when these functions are 
+        called, and also shows many other concepts which will be explained later 
+        in this tutorial.</p>
+      <p>If you have never seen the new/delete combonation, I suggest 
+        reading the Dynamic Memory Allocation section in the <a href="http://www.gillius.org/ctut/index.htm">C/C++ 
+        tutorial</a>.</p>
+      <p align="center"><a name="Passing Data to the Constructor"><font color="#FF0000" size="5"><strong>Passing Data to the Constructor<br>
+        </strong></font></a><strong>and Overloaded 
+        Functions</strong></p>
+      <p>Let's return to our earler <a href="http://www.gillius.org/ooptut/part1.htm#Prototypes">counter example</a> which did not have a constructor but which really needed one, or at 
+        least a SetCounter() function. We can create a constructor to start the 
+        counter at zero, as well as starting it off at a value the user can enter:</p>
+      <pre>class Counter {
+public:
+       Counter();      //basic constructor
+       Counter(int x); //set the counter
+       SetCount(int x);//sets the count
+  void Count() {CurrentCount++;}
+  int  ReadDisplay() {return CurrentCount;}
+private:
+  int  CurrentCount;
+};</pre>
+      <p>Some of you who don't know about <span class="keyTerm">overloaded</span> 
+        functions may think two Counter() functions is an error, but it's not! 
+        In C++, two functions with the same name can be declared (this applies 
+        everywhere, not just classes), as long as the compiler can descern between 
+        which function is being called. In the case of the constructor, you must 
+        use this feature since the constructor must be the same name as the class. 
+        Also note that a destructor was not declared since there is nothing we 
+        need to clean up -- the compiler already has a default destructor for 
+        the int data type (CurrentCount). Let's see how we should write the code 
+        for these functions:</p>
+      <pre>Counter::Counter() {
+  SetCount(0);
+}</pre>
+      <pre>Counter::Counter(int x) {
+  SetCount(x);
+}</pre>
+      <pre>Counter::SetCount(int x) {
+  CurrentCount = x;
+}</pre>
+      <p>After seeing it in code, things become a little clearer. 
+        You can overload as many times as you want to pass different things into 
+        the constructor, just be sure that they have a different number of parameters. 
+        It is technically possible to have them with the same number, but since 
+        some basic data types can change into others (like int to float or similar), 
+        the function call becomes <span class="keyTerm">ambigous</span>, and the compiler 
+        doesn't know which to use and generates an error -- so it's best just 
+        to steer clear of overloaded functions of the same number of parameters.</p>
+      <h2><a name="Data Hiding Revisited"></a>Data Hiding Revisited</h2>
+      <p>You may wonder why I went through the trouble of calling 
+        SetCount() from the constructor functions, and the reason is data hiding. 
+        You may understand now why to hide data from the outside -- but now the 
+        inside? It may seem a little riduclous but imagine our <a href="#A%20Real%20Programming%20Example">card deck example</a>, 
+        when I mentioned two possible formats in the deck. Well what if I decided, 
+        because of some reason that I wanted to store the text representation 
+        of the counter, for easy display on a webpage or something similar, rather 
+        than in a native computer form. If I had used CurrentCount in all three 
+        of the above functions, I would have to rewrite three functions to compensate 
+        for the change. But instead I used SetCount(), so I would now only have 
+        to rewrite one.</p>
+      <p>Of course this is a small example and that wouldn't be 
+        much hassle, but imagine if I had a medium sized to large class of 20 
+        or more functions and 5 or so variables, and I used the most direct route. 
+        That's a lot to change, and I myself have encountered times where I had 
+        classes this large or larger in my Project V2143 game where I wanted to 
+        change the way the data was stored, say in the terrain, or in the save 
+        game file, I would have to rewrite all my functions again. Then I started 
+        calling functions like I did above and then when I changed formats, all 
+        I had to do was change 5 or so lines out of my tens of thousands to make 
+        a major change to the game, and that was a good feeling not having to 
+        recode all of my stuff again.</p>
+      <p>So even though it looks a little silly and out-of-the-way, 
+        doing it the above way will end up saving you a lot of time in the long 
+        run, as I had to learn the hard way myself. This is the main downfall 
+        of OOP, calling the functions and going the longer route through one set 
+        of code instead of reworking the same set over and set is slower because 
+        you can't optimize as much, as well as the overhead of calling the functions. 
+        But it's worth saving a few hours of programming time for that extra .05 
+        or .1fps gain you get in the end -- and me, being the speed freak I am, 
+        had to accept that. You would be surprised how much speed you could pull 
+        out of the computer if you spent the time optimizing -- but at some point 
+        your effort doesn't make up for the extra execution speed, and that's 
+        your decision to make.</p>
+      <p align="center"><a href="http://www.gillius.org/ooptut/index.htm#TOC"><strong>Back to 
+        Top</strong></a></p>
+      <hr>
+      <h1>Chapter IV -- Inheritance 
+        and Containership</h1>
+      <h2><a name="Building Cars"></a>Building Cars</h2>
+      <p>As you recall from the previous lession, <span class="keyTerm">containership</span> 
+        is the method of OOP where classes contain other classes. Remember back 
+        about the keyboard. Key objects made up the keyboard object, and there 
+        are also light objects. Since the keys are very similar we can make them 
+        all into one class, and the three LED lights in another, all contained 
+        within a keyboard class. Another good example would be modeling a car, 
+        with an engine, four wheels, and two doors. For simplicity we will model 
+        the enigne and the wheels all as one class, as they are directly connected. 
+        Don't get caught up in these classes' complexities but instead try to 
+        look at them at an abstract level. They are this complex so you can get 
+        a "real life" feel for OOP containership. Here are the prototypes:</p>
+      <pre>class Engine {
+public:
+              Engine();   //Sets variables to an idle engine
+
+         void Start();    //Starts the engine
+         void Stop();     //Shuts off engine
+
+         void Accel();    //increase throttle
+         void Deccel();   //decrease throttle
+
+         void Update();   //Advance engine a logic frame
+private:
+         void Calculate();
+           //Called by Update to calculate the physics
+           // for everything below
+
+        float throttle; //% throttle
+        float rpms; //Speed of the engine
+          int gear; //Current gear
+        float rotspd;//Wheel rotation speed
+        float spd;  //Wheel horizontal velocity
+};
+
+class Door {
+public:
+       Door();//Sets up for a closed door
+
+  void Update();  //Checks for user input
+private:
+  void OpenDoor();//Opens door only if closed, else nothing
+  void CloseDoor();//Opposite to OpenDoor()
+
+  bool open;      //Is door open
+};
+
+class Car {
+public:
+          void Update(); //Check user input
+private:
+        Door   doors[2];
+        Engine motor;
+};
+
+int GetUserInput(); //returns accelerate or deccelerate
+
+const int accelerate  = 1; //for example
+const int deccelerate = 2;
+
+void Car::Update() {
+  int action = GetUserInput(); //The int could be an enums or
+                               //  a keyboard scancode.
+  if (action == accelerate)
+    motor.Accel();
+  if (action == deccelerate)
+    motor.Deccel();
+
+  motor.Update();    //Allow Engine to calculate data
+  doors[0].Update(); //Allow Door to get input AND calculate
+  doors[1].Update();
+};
+</pre>
+      <p>These prototypes show some of the data typically used 
+        in a full-scale program. A class like the engine class would be used in 
+        a simulation program/game, in coordination with seperate wheel and gear 
+        classes, so to modify your car you could pull out a gear object and replace 
+        it with any gear object and the car will reactly perfectly to the new 
+        gear without modifing a single line of code (think of racing games where 
+        you can customize your car -- each item could be its own class, or the 
+        same class with different data sets).</p>
+      <h2><a name="Object Interaction/Control"></a>Object Interaction/Control</h2>
+      <p>This program also shows two methods of object interaction/control. 
+        Car could act like a "mother object," reading the input from 
+        the user and calling the appropriate functions, as it will have to do 
+        with Engine, it will check the pedal and adjust the throttle for Engine, 
+        rather than Engine doing that. Car does not keep track of Door, since 
+        Door checks the user input in its update function. In the latter method, 
+        Car simply acts as a hub for the objects, so that when you create a new 
+        Car, all of the right parts will come with it, and its Update() would 
+        simply call of its member classes' Update()s.</p>
+      <p>Making the desicion between these two methods is a matter 
+        of complexity and preference. If you have too many ways to manipulate 
+        an object, Car's Update() will become much too bulky, much more espically 
+        if Car has its own things to do, like read the final speed of the engine/wheels 
+        so it can update its position on the screen. It is also a matter of preference 
+        since you can have all of the control code in Car() rather than separated 
+        into its children classes. Most of the time I personally prefer separating 
+        the control into the respective objects.</p>
+      <p>The entire concept also brings up the concept of <span class="keyTerm">multitasking</span>. 
+        Notice that when we call the Car.Update(), it in turn calls Engine.Update() 
+        and Door.Update(). Each object has its turn to "do its thing," 
+        and in this you can model many many objects, calling update each frame 
+        in a loop. It is also usually best to separate input/calculation from 
+        output, since video/sound are tasks all by themselves, and you may need 
+        to skip drawing to the screen every logic frame to keep the program running 
+        on same speeds on all computers (this will be discussed in the game programming 
+        tutorial). You may also have a few other "global" functions 
+        such as Save() and Load() if you want to use files. This way all objects 
+        will have a common interface (which will be essental in the virtual functions 
+        lesson). Consider this "generic" class:</p>
+      <pre>class Object {
+public:
+  Object();   //Set up acceptable defaults, alloc mem
+  ~Object();  //Deallocate memory if any was reserved</pre>
+      <pre>  void Init();//Sends unique data for this <span class="keyTerm">instance</span></pre>
+      <pre>  bool Update();//returns true if the object needs to be killed
+  void Draw();//If graphical, displays itself to user</pre>
+      <pre>  void Save(int file);//Pass a file descriptor and save
+  void Load(int file);//Read Init() info from a file
+private:
+  //Object data would go here
+};</pre>
+      <p>The word <span class="keyTerm">instance</span> as used above 
+        means "variable," referring to the specific created object. 
+        To explain: the code Object obj; creates one instance and 
+        Object obj2; creates another, so I meant that each instance will have separate data, 
+        loaded through the Init() member function.</p>
+      <p>Also usually the Update function is a bool, in case the 
+        object needs to terminate itself. In a game this could be an object which 
+        has detected that its life is below zero (and therefore dies), or in other 
+        applications, it could be a window/message which only displays itself 
+        for a few seconds and then dissapears.</p>
+      <h2><a name="Inheritance"></a>Inheritance</h2>
+      <p>As I said eariler, all objects will come from this generic 
+        class. This style of OOP is called <span class="keyTerm">inheritance</span>, 
+        which inherits the traits of the class before it, from which it is <span class="keyTerm">derived</span>. 
+        However, since the Object class had no real code, deriving classes from 
+        it would be redundant, so let's create another, more specific <span class="keyTerm">bass 
+        class</span>, this time for a window, which has the properties of 
+        all windows (this is an Animal-&gt;Feline-&gt;Cat-&gt;Siamese Cat type 
+        of relationship as discussed before). A window in its most basic form 
+        is simply a box on the screen, and so far does not differ from anything 
+        already discussed:</p>
+      <pre>class Window {
+public:
+  Window() : x(0), y(0), w(5), h(5) {}
+    //Choose acceptable defaults
+  Window(int x2, y2, w2, h2) : x(x2), y(y2), w(w2), h(h2) {}
+    //Combo constructor and Init()
+  ~Window() {} //No destructor code needed
+    //But we declare it for completeness</pre>
+      <pre>  void Init(int, int, int, int);</pre>
+      <pre>  void Draw();</pre>
+      <pre>  bool Update();
+private:
+  int x, y; //Upperleft coords
+  int w, h; //width and height
+};</pre>
+      <pre>Window::Draw() {
+  //Uses graphics routines to draw a box from (x,y)-(x+w,y+h)
+}</pre>
+      <pre>Window::Update() {
+  //You could place mouse input here to detect a resize
+}</pre>
+      <pre>Window::Init(int x2, int y2, int w2, int h2) {
+  x = x2; y = y2; w = w2; h = h2;
+}</pre>
+      <p>I take a moment to discuss some of the more "hidden" 
+        capabilities of C++ before moving back to inheritance. Notice that Init() 
+        in its declaration did not declare names but instead just a data type. 
+        Since this is all the compiler needs to know this is perfectly acceptable, 
+        and the names can be delcared later in the Init() implementation (its 
+        code).</p>
+      <h2><a name="Initalizer Lists"></a>Initalizer Lists</h2>
+      <p>You also may wonder about the strange format the constructor 
+        is in. This is called an <span class="keyTerm">intializer list</span>, and 
+        in fact is a concept of OOP, which will become clearer later, but what 
+        this does is call the constructors for the members (remember earlier it 
+        was stated that all variables have constructors), and also, they are not 
+        all required -- you can construct as many here as you want. Window() with 
+        the four parameters operates exactly like Init(), and you may wonder the 
+        difference, and this is optimization. Depending on your optimizer, these 
+        constructor lists could become a set "block" of memory, so that 
+        when constructer the computer simply copies this preset object linearly 
+        rather than creating a new object and setting each variable separately 
+        (as Init() does). Initalizer lists are the only way to use mutliple parameter 
+        constructors on objects, as you see in the next example.</p>
+      <h2><a name="Derivation"></a>Derivation</h2>
+      <p>Now given this Window class, we can derive different types 
+        of Windows from this. Let's say we like our Window, except we also would 
+        like to add a title bar which we can use to drag the window around with. 
+        Normally we would create a completely separate class with virtually the 
+        same code -- but that would be a waste of time and executable size in 
+        redundant code. We would use <span class="keyTerm">inheritance</span> to make 
+        this task simpler by simply adding to the previous class:</p>
+      <pre>class BarWindow : public Window {
+public:
+  BarWindow() : thick(5) {}
+    //Default Window() will be called, so its unnessacary to call it here
+  BarWindow(int x, int y, int w, int h, int thick2)
+    : Window(x, y, w, h), thick(thick2) {}
+  //Remember C++ is whitespace insensitive, so the above two lines
+  // will work as it is read as one</pre>
+      <pre>  void Init(int x, int y, int w, int h, int thick2);</pre>
+      <pre>  void Draw();</pre>
+      <pre>  bool Update();
+private:
+  int thick; //thickness of the bar in pixels
+};</pre>
+      <pre>BarWindow::Init(int x, int y, int w, int h, int thick2) {
+  Window::Init(x, y, w, h); //Call Window's Init
+  thick = thick2;           //Init additional info
+}</pre>
+      <pre>BarWindow::Update() {
+  //Check the mouse to see if it drags the bar
+  Window::Update(); //Pass control to basic Window
+}</pre>
+      <pre>BarWindow::Draw() {
+  Window::Draw(); //Create the basic box which will act as
+                  // a background for the bar
+  //Here we will use a box graphics func to draw the bar
+};</pre>
+      <p>This class becomes a derived class through the ": 
+        public Window" after its name. The colon simply separates the two 
+        sections, and the public keyword signifies how the variables are handled 
+        in the base class. 99% of the time you will use public, and its behavior 
+        will be discussed later. If you use a comma and put in more classes (like 
+        "class BarWin : public Window, public Bar"), you can do multiple 
+        inheritance. I personally have never used it and it will not be discussed 
+        in this tutorial except for this small sidenote.</p>
+      <h2><a name="Using Derived Classes"></a>Using Derived Classes</h2>
+      <p>When using inheritence, the <span class="keyTerm">scope resolution 
+        operator</span> becomes much more important. Without we could only 
+        call this class's Init(), but with Window:: we tell the compiler to call 
+        the function from the class we are derived from.</p>
+      <p>Constructors working in inhertance always call the lowest 
+        level first, and destructors work in the opposite order, so when BarWindow() 
+        is called by the statment "BarWindow my_win;", first Window() 
+        is called then BarWindow(). When the object goes out of scope and is destructed, 
+        ~BarWindow() is called first then ~Window(). The best way to look at this 
+        is with a pyramid -- the base brick is the first brick to be built and 
+        the others are layed on top. When you take apart the pyramid the blocks 
+        on top come off first. This "pyramid" can be build as high as 
+        you need it.</p>
+      <p>With all of this new syntax, you may wonder how to use 
+        these objects in your program. Really nothing changes. Note the loop updates 
+        the menus and draws them until the program is over, which operates all 
+        of the menus:</p>
+      <pre>#include &lt;conio.h&gt;</pre>
+      <pre>void main() {
+  Window myBasicWin; //Default constructor call
+  Window myBasicWin2(10, 10, 200, 200); //Specific coordinates
+  myBasicWin.Init(20, 20, 300, 300); //Change position</pre>
+      <pre>  BarWindow myBarWin; //Same thing
+  BarWindow myBarWin2(10, 10, 200, 200, 10); //Init
+  myBarWin.Init(20, 20, 300, 300, 15);
+  myBarWin.Window::Init(20, 20, 300, 300);
+    //If we specify we can call Window's too!</pre>
+      <pre>  while (!kbhit()) { //Until user presses a key
+    myBasicWin.Update();
+    myBarWin.Update();
+    myBasicWin.Draw();  //Show the menu
+    myBarWin.Draw();
+  }
+}</pre>
+      <p>The scope resolution operator will work like above for 
+        any member or method of the class, assuming it is public. If it is only 
+        in the base class (let's say Window had a close() but BarWindow did not), 
+        the scope resolution operator is not needed -- BarWindow.close() would 
+        work and call the function from Window. If close() existed in BarWindow 
+        you need the operator to call the function from Window. The exact same 
+        thing applies to variables (you could say myBarWin.Window::h if it was 
+        public).</p>
+      <h2><a name="Data Hiding in Inheritance"></a>Data Hiding in Inheritance</h2>
+      <p>Private variables and methods are seen only the class 
+        they are declared in, but sometimes you want to give derived classes the 
+        right to access the variable or method while blocking others out. To do 
+        this you use keyword <span class="keyTerm">protected</span>, rather than making 
+        the variable or method private. This allows derived classes to access 
+        the variable, and when the class is derived as public, as in the previous 
+        example, the derived class accepts that. If the class was declared like 
+        "class BarWindow : private Window" then it could not see the 
+        protected variables/methods. Below is a chart showing what you can access 
+        and when:</p>
+      <table bordercolordark="#808080" bordercolorlight="#FFFFFF" bgcolor="#C0C0C0" border="2" bordercolor="#C0C0C0" cellpadding="0" width="100%">
+        <tbody><tr> 
+          <td colspan="4" width="100%">
+            <p align="center"><font color="#FF0000" size="5"><strong>Where you can access variables/methods 
+              declared in a class</strong></font></p>
+          </td>
+        </tr>
+        <tr> 
+          <td width="25%">
+            <p align="center"><font color="#000000"><strong>---</strong></font></p>
+          </td>
+          <td width="25%">
+            <p align="center"><font color="#000000"><strong>Public</strong></font></p>
+          </td>
+          <td width="25%">
+            <p align="center"><font color="#000000"><strong>Protected</strong></font></p>
+          </td>
+          <td width="25%">
+            <p align="center"><font color="#000000"><strong>Private</strong></font></p>
+          </td>
+        </tr>
+        <tr> 
+          <td width="25%">
+            <p align="center"><font color="#000000"><strong>Base (original class)</strong></font></p>
+          </td>
+          <td width="25%">
+            <p align="center"><font color="#FFFFFF"><strong>yes</strong></font></p>
+          </td>
+          <td width="25%">
+            <p align="center"><font color="#FFFFFF"><strong>yes</strong></font></p>
+          </td>
+          <td width="25%">
+            <p align="center"><font color="#FFFFFF"><strong>yes</strong></font></p>
+          </td>
+        </tr>
+        <tr> 
+          <td width="25%">
+            <p align="center"><font color="#000000"><strong>Derived Classes</strong></font></p>
+          </td>
+          <td width="25%">
+            <p align="center"><font color="#FFFFFF"><strong>yes</strong></font></p>
+          </td>
+          <td width="25%">
+            <p align="center"><font color="#FFFFFF"><strong>yes (if derived as 
+              public)</strong></font></p>
+          </td>
+          <td width="25%">
+            <p align="center"><font color="#FFFFFF"><strong>no</strong></font></p>
+          </td>
+        </tr>
+        <tr> 
+          <td width="25%">
+            <p align="center"><font color="#000000"><strong>Outside</strong></font></p>
+          </td>
+          <td width="25%">
+            <p align="center"><font color="#FFFFFF"><strong>yes</strong></font></p>
+          </td>
+          <td width="25%">
+            <p align="center"><font color="#FFFFFF"><strong>no</strong></font></p>
+          </td>
+          <td width="25%">
+            <p align="center"><font color="#FFFFFF"><strong>no</strong></font></p>
+          </td>
+        </tr>
+      </tbody></table>
+      <p>This may be slightly early for this, so don't worry about 
+        memorizing this now -- come back after you make your first inherited class 
+        and check this for reference.</p>
+      <p align="center"><a href="http://www.gillius.org/ooptut/index.htm#TOC"><strong>Back to 
+        Top</strong></a></p>
+      <p align="center"><a href="http://www.gillius.org/ooptut/part3.htm"><strong>Proceed to 
+        Chapter V -- Advanced OOP</strong></a></p>
+      <p>&nbsp;</p>
+
+
+
+</div>
+
+<div class="copyright">All content on this web site is copyright © 1998-2011 by Jason Winnebeck, unless otherwise noted.</div>
+
+
+
+</body></html>

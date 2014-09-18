@@ -1,0 +1,313 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML//EN">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <title>CPS 100, Spring 2000, Written Lists/Trees</title>
+  </head>
+
+  <body bgcolor="white">
+    <h1>CPS 100, Spring 2000, Written Lists/Trees</h1>
+
+These problems provide practice with lists, trees, recursion, and
+big-Oh. All work submitted must be your own.  You can talk about the
+problems with up to two other people, but each person should submit
+his/her own version of the solutions.  It's in your own interest to do
+your own work as test questions will be difficult if you cannot do these
+questions.
+<p>
+
+You are to submit solutions to these problems using
+</p><pre>   submit_cps100 trees trees.cpp README
+</pre>
+<p>
+The solutions are in the file trees.cpp so that you can have your code
+formatted automatically (e.g., if you use emacs).
+</p><p>
+You should NOT make your solutions run, you're just typing solutions
+to make them easier to read and to allow for electronic submission. 
+</p><p>
+<b>
+It's important to think about your answers, not to run them.</b>
+</p><p>
+
+</p><hr>
+Assume the following declarations have been made
+
+<xmp>
+
+    struct Node
+    {
+       int info;
+       Node * next;
+       Node(int val, Node * ptr)
+        : info(val), next(ptr)
+      { }
+    };
+
+
+    struct Tree
+    {
+       int info;
+       Tree * left,* right;
+       Tree(int val, Tree * lbranch, Tree * rbranch)
+          : info(val), left(lbranch), right(rbranch)
+       { }
+    };
+
+</xmp>
+
+<hr>
+
+<ol>
+<li>
+Write a function <em>RemoveAllBut</em> that removes all nodes except for
+those nodes containing a specified item from a linked list.  Assume
+that lists do <strong>not</strong> have header nodes. 
+<p>
+The call <tt>RemoveAllBut(ilist,33)</tt> should remove all nodes 
+except those containing 33
+from a list whose first nodes is pointed to by ilist.
+</p><p>
+The order of the nodes that aren't removed should be the same as before
+<em>RemoveAllBut</em> is called.
+</p><p>
+<strong>Write <em>RemoveAllBut</em> recursively.</strong>
+
+</p><xmp>
+
+   void RemoveAllBut(Node * &amp; list, int value)
+   // postcondition: all nodes except those containing value 
+   //                have been removed from list
+
+</xmp>
+
+
+</li><li>
+Write a function <em>ListSplit</em> that
+will split a <strong>circular</strong>
+list containing an even number of nodes, say <em>2k</em>,
+into two circular lists each of which contains <em>k</em> nodes.  
+The function should 
+have three parameters and should work so that the function call
+<pre>          ListSplit(list,sub1,sub2);
+</pre>
+will create new lists pointed to by parameters sub1, and sub2 from the
+list initially referenced by parameter list.  After <em>ListSplit</em>
+has executed, the first parameter should be 0/NULL, i.e., new nodes are 
+<strong>not</strong>
+created, but are redistributed evenly between the second and third
+parameters.   It doesn't matter how you divide the nodes between the two
+lists.  Note that you should make <em>no assumptions</em> about the 
+initial values
+of <tt>first</tt> and <tt>second</tt> as passed
+to <tt>ListSplit</tt>.
+<p>
+The prototype for the function follows,
+you should write a postcondition for the function.
+</p><xmp>
+
+   void ListSplit(Node * &amp; list, 
+                  Node * &amp; first, Node * &amp; second)
+   // pre: list is circularly-linked, with an even number of nodes
+
+
+</xmp>
+
+</li><li>
+Write a function <em>NonLeafCount</em> that has a single parameter of
+type<em>Tree *</em> and that returns the number of non-leaf nodes in the
+tree whose root is pointed to by the parameter.  You may find it useful
+to write a boolean-valued function <em>isLeaf</em> that returns true if
+and only if it's parameter is a leaf.
+<p>
+
+</p></li><li> The function <tt>Tree2List</tt> below returns a linked list
+whose nodes contain the same values stored in a tree, in the same order.
+
+<xmp>
+
+Node * Tree2List(Tree * t)
+// post: return a linked list containing same values stored in t
+//       in same order as stored in t
+{
+    if (t == 0) return 0;
+
+    Node * left =  Tree2List(t-&gt;left);
+    Node * right = Tree2List(t-&gt;right);
+
+    Node * root = new Node(t-&gt;info, right);
+    if (left != 0)
+    {
+	Node * temp = left;
+	while (temp-&gt;next != 0)
+	{
+	    temp = temp-&gt;next;
+	}
+	temp-&gt;next = root;
+	return left;
+    }
+    else
+    {
+	return root;
+    }
+}
+
+</xmp>
+The complexity of this version of <tt>Tree2List</tt>
+is not <em>O(n)</em> for an n-node tree. Write a recurrence relation
+for the function and solve it. For extra credit, write a 
+version that runs in <em>O(n)</em> time without using vectors, stack, or
+queues.
+<pre>
+
+
+</pre>
+</li><li>
+Write the function <em>HasPathSum</em> whose header is given below.
+<em>HasPathSum</em> returns true if there exists some root-to-leaf path in
+the tree whose root is <em>t</em> whose
+nodes sum to <em>target</em> and returns false otherwise.  
+<p>
+
+For example, in the tree shown below there are exactly four root-to-leaf
+paths.  The sums of the paths are 27, 22, 26, and 18.  Thus the value
+of <tt>HasPathSum(t,27)</tt> should be true and the value of
+<tt>HasPathSum(t,30)</tt> should be false 
+(assuming <em>t</em> points to the
+root of the tree --- the node whose info field has value 5.)
+</p><p>
+(hint: You'll make two recursive calls, what calls and their return
+values will help solve the problem?)
+</p><p>
+</p><center>
+<img src="CPS%20100,%20Spring%202000,%20Written%20Lists_Trees_files/pathsum.gif" alt="*"> 
+</center>
+<p>
+</p><xmp>
+   bool HasPathSum(Tree * t, int target)
+   // postcondition: returns true iff t has a root-to-leaf path
+   //                that sums to target
+
+
+
+
+</xmp>
+
+</li><li>
+The following function returns the height of a tree (the number
+of nodes on the longest root-to-leaf path).
+<p>
+</p><xmp>
+    int height(Tree * t)
+    // postcondition: returns height of tree with root t
+    {
+        if (t == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return 1 + max(height(t-&gt;left),height(t-&gt;right));
+        }
+    }
+</xmp>
+where the function <tt>max</tt> returns the largest of its two integer
+parameters.  
+
+The <em>diameter</em> of a tree (sometimes called the width) is the number
+of nodes on the longest path between two leaves in the tree.  The
+diagram below shows two trees each with diameter nine, the leaves that
+form the ends of a longest path are shaded (note that there is more than
+one path in each tree of length nine, but no path longer than nine nodes).
+<p>
+
+<img src="CPS%20100,%20Spring%202000,%20Written%20Lists_Trees_files/diameter.jpg">
+</p><p>
+
+The diameter of a tree <em>T</em> 
+is the largest of the
+following quantities:
+</p><ul>
+<li> the diameter of <em>T</em>'s left subtree
+</li><li> the diameter of <em>T</em>'s right subtree
+</li><li> the longest path between leaves that goes through the root of <em>T</em>
+(this can be computed from the heights of the subtrees of <em>T</em>)
+</li></ul>
+     <p>
+Write a function that returns a tree's diameter. You should also write a
+recurrence relation for your function and the solution to the
+recurrence. For extra credit, write a function that works in O(n) time
+for an n-node (roughly balanced) tree--you must still give a recurrence
+relation and its solution.
+</p><p>
+Hint for extra: write the function with prototype below, note that
+two values are returned, not just one.
+</p><xmp>
+  void diameter(Tree * t, int &amp; hght, int &amp; dmtr)
+  // pre: t is a binary tree
+  // post: hght = height of t, dmtr is diameter of t
+
+
+</xmp>
+</li><li>
+Two binary trees <em>s</em> and <em>t</em> are 
+<em>isomorphic</em> if they
+have the same shape; the values stored in the nodes do not affect
+whether two trees are isomorphic.  In the diagram
+below, the tree in the middle is <b>not</b> isomorphic
+to the other trees, but the tree on the right <b>is</b> isomorphic
+to the tree on the left.  
+<p>
+
+<a href="http://www.cs.duke.edu/courses/spring00/cps100/assign/trees/equiv.gif"> <img src="CPS%20100,%20Spring%202000,%20Written%20Lists_Trees_files/equiv.gif" align="middle"> </a>
+</p><p>
+
+Write a function <em>isIsomorphic</em> that returns true if its two tree
+parameters are isomorphic and false otherwise.  You must also give the
+big-Oh running time of your function with a justification. Express the
+running time in terms of the number of nodes in trees <tt>s</tt> and
+<tt>t</tt> combined.
+</p><p>
+</p><xmp>
+bool isIsomorphic(Tree * s, Tree * t)
+// post: returns true if s is isomorphic to t, else returns false
+//
+</xmp>
+
+<p>
+</p></li><li>
+Two trees <em>s</em> and <em>t</em> are <em>quasi-isomorphic</em> if 
+<em>s</em> can be transformed into <em>t</em> by swapping left
+and right children of some of the nodes of <em>s</em>.  The values in
+the nodes are <strong>NOT</strong> not important in determining
+quasi-isomorphism, only the shape is important. The trees
+below are quasi-isomorphic because if the children of the nodes A, B, and G 
+in the tree on the left are swapped, the tree on the right is obtained.
+<p>
+
+<a href="http://www.cs.duke.edu/courses/spring00/cps100/assign/trees/iso.gif"> <img src="CPS%20100,%20Spring%202000,%20Written%20Lists_Trees_files/iso.gif" align="middle"> </a>
+</p><p>
+
+Write a function <em>isQuasiIsomorphic</em> that returns true if two
+trees are quasi-isomorphic.  You <strong>must</strong> give the big-Oh
+complexity (in the average case) of your function with a
+justification. Express the running time in terms of the number of nodes
+in trees <tt>s</tt> and <tt>t</tt> combined.
+
+</p><xmp>
+bool isQuasiIsomorphic(Tree * s, Tree * t)
+// post: returns true if s is quasi-isomorphic to t, else returns false
+//
+</xmp>
+
+
+</li></ol>
+
+    <hr>
+    <address><a href="mailto:ola@cs.duke.edu">Owen L. Astrachan</a></address>
+<!-- Created: Sun Feb 13 23:11:39 EST 2000 -->
+<!-- hhmts start -->
+Last modified: Mon May  1 09:34:22 EDT 2000
+<!-- hhmts end -->
+  
+
+</body></html>

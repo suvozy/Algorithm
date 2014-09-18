@@ -1,0 +1,21 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+                  <script type="text/javascript">
+                  var data = {"ReadSession":"http://stackauth.com/auth/global/read-session","Request":"dPiZgP9c0RUzkzS2GpkoQBEhpM78Zh5bIFx3b1qHxK2S+Kbi8Z3uydrpKIQ4WAykRVvbDx9KcJX1cw0fMhvZ4w==","Nonce":"hHhPTgAAAADfbFL7PWsDGg==","Referrer":"http://stackoverflow.com/questions/493276/modelling-an-elevator-using-object-oriented-analysis-and-design","StorageName":"GlobalLogin"};
+
+                  var obj = localStorage.getItem(data.StorageName);
+                  if(obj != null) {
+                  var req = new XMLHttpRequest();
+                  req.open('POST', data.ReadSession+'?request='+encodeURIComponent(data.Request)+'&nonce='+encodeURIComponent(data.Nonce)+'&seriesAndToken='+encodeURIComponent(obj), false);
+                  req.send(null);
+                  
+                    if(req.status == 200){
+                      top.postMessage(req.responseText, data.Referrer);
+                    }else{
+                      top.postMessage('No Session', data.Referrer);
+                    }
+                  }else{
+                    top.postMessage('No Local Storage', data.Referrer);
+                  }
+                  </script>
+                  </head><body></body></html>

@@ -1,0 +1,94 @@
+bool isLeaf(Node *p) // O(1)
+{
+	return p == 0 || (p->left == 0 && p->right == 0);
+}
+
+int height(Node *root)   // O(n)
+{
+	if(root == 0) return 0;
+	else return 1 + max(height(root->left), height(root->right));
+}
+
+int diameter(Node *root) // O(n2)
+{
+	if(root == 0) return 0;
+
+	int lHeight = height(root->left);
+	int rHeight = height(root->right);
+
+	return max(1 + lHeight + rHeight, max(diameter(root->left), diameter(root->right)));
+}
+
+void diameter(Node* root, int &h, int &d)  // O(n)
+{
+	if(root == NULL) { h = d =0; return; }
+
+	int lHeight, rHeight, lDia, rDia;
+
+	diameter(root->left, lHeight, lDia);
+	diameter(root->right, rHeight, rDia);
+
+	h = max(lHeight, rHeight);
+	d = max(lHeight + rHeight + 1, max(lDia, rDia));
+}
+
+int NonLeafCount(Node *root) // O(n)
+{
+	if(root == 0) return 0;
+	return isLeaf(root) ? 0 : 1 + NonLeafCount(root->left) + NonLeafCount(root->right);
+}
+
+bool HasPathSum(Node *root, int target)
+{
+	if(root == 0) if(target == 0) return true; else return false;
+
+	if(isLeaf(root)) if(target == root->info) return true; else return false;
+
+	return HasPathSum(root->left, target - root->info) 
+		|| HasPathSum(root->right, target - root->info);
+}
+
+bool isIsomorphic(Node *s, Node *t) // O(n)
+{
+	if(s == 0 || t == 0)
+	{
+		if(s == t)return true; 
+		else return false;
+	}
+
+	return isIsomorphic(s->left, t->left) && isIsomorphic(s->right, t->right);
+}
+
+bool isQuasiIsomorphic(Node *s, Node *t) // best case = O(n); ave case = O(?)
+{
+	if(s == 0 || t == 0)
+	{
+		if(s == t)return true; 
+		else return false;
+	}
+
+	return (isQuasiIsomorphic(s->left, t->left) && isQuasiIsomorphic(s->right, t->right))
+		|| (isQuasiIsomorphic(s->right, t->left) && isQuasiIsomorphic(s->left, t->right));
+}
+
+void attach(Node *s, Node *t)
+{
+	if(s->right == NULL) s->right = t;
+	else
+		attach(s->right, t);
+}
+Node* Tree2List(Node *root) // O(n)
+{
+	if(root == NULL) return NULL;
+
+	if(root->left != NULL)
+	{
+		attach(root->left, root->right);
+		root->right = root->left;
+		root->left = NULL;
+	}
+
+	Tree2List(root->right);
+
+	return root;
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML//EN">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <title>Tree Diameter</title>
+  </head>
+
+  <body bgcolor="white">
+    <h1>Tree Diameter</h1>
+
+The function below returns the diameter of a tree. A tree's diameter is
+defined after the function.  Write a recurrence for this function and
+solve it yielding the running time using big-Oh in terms of the number
+of nodes in a tree.
+<xmp>
+
+int diameter(Tree * t)
+// post: return diameter of t
+{
+    if (t == 0) return 0;
+
+    int lheight = height(tree-&gt;left);
+    int rheight = height(tree-&gt;right);
+
+    int ldiameter = diameter(tree-&gt;left);
+    int rdiameter = diameter(tree-&gt;right);
+
+    return max(lheight + rheight + 1,
+	       max(ldiameter,rdiameter));
+}
+
+</xmp>
+
+
+The following function returns the height of a tree (the number
+of nodes on the longest root-to-leaf path).
+<p>
+</p><xmp>
+    int height(Tree * t)
+    // postcondition: returns height of tree with root t
+    {
+        if (t == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return 1 + max(height(t-&gt;left),height(t-&gt;right));
+        }
+    }
+</xmp>
+where the function <tt>max</tt> returns the largest of its two integer
+parameters.  
+
+The <em>diameter</em> of a tree (sometimes called the width) is the number
+of nodes on the longest path between two leaves in the tree.  The
+diagram below shows two trees each with diameter nine, the leaves that
+form the ends of a longest path are shaded (note that there is more than
+one path in each tree of length nine, but no path longer than nine nodes).
+<p>
+
+<img src="diameter_files/diameter.jpg">
+</p><p>
+
+The diameter of a tree <em>T</em> 
+is the largest of the
+following quantities:
+</p><ul>
+<li> the diameter of <em>T</em>'s left subtree
+</li><li> the diameter of <em>T</em>'s right subtree
+</li><li> the longest path between leaves that goes through the root of <em>T</em>
+(this can be computed from the heights of the subtrees of <em>T</em>)
+</li></ul>
+
+
+    <hr>
+    <address><a href="mailto:ola@cs.duke.edu">Owen L. Astrachan</a></address>
+<!-- Created: Sun Mar 19 22:06:29 EST 2000 -->
+<!-- hhmts start -->
+Last modified: Sun Mar 19 22:09:31 EST 2000
+<!-- hhmts end -->
+  
+
+</body></html>

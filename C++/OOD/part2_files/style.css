@@ -1,0 +1,185 @@
+body { font-family: Verdana, Arial, Helvetica, sans-serif; color: Black; background-color: white; margin: 0em; padding: 0px; font-size: 90%; }
+
+@media print {
+  body{ font-size: 10pt; }
+}
+
+.codeInline { font-family: "Courier New", Courier, monospace; font-weight: bold; background-color: #C3D3FF; padding: 0em 0.1em 0em 0.1em; }
+
+.contentArea { background-color: #EFF3FF; margin: 0.4em 0.5em 1em 13.8em; border-style: solid; border-color: black; border-width: 2px; }
+.contentArea p { margin: 1em 1em 1em 1em; }
+.contentArea h1 { font-size: 225%; color: white; background-color: #5c6991; font-weight: bold; font-family: Georgia, "Times New Roman", Times, serif; padding: 0.2em; margin: 0px 0px 0.5em 0px; }
+.contentArea h2 { font-size: 175%; color: white; background-color: #5c6991; font-weight: bold; font-family: Georgia, "Times New Roman", Times, serif; padding: 0.2em; margin: 0px 0px 0.5em 0px; }
+.contentArea h3 { font-size: 115%; font-weight: bold; margin: 0.5em; padding: 0px 0px 0.15em 0px; border-style: solid; border-color: #999999; border-width: 0px 0px 1px 0px; }
+.contentArea h4 { font-size: 100%; font-weight: bold; margin: 0.5em; }
+.contentArea pre { font-family: "Courier New", Courier, monospace; background-color: white; margin: 1em 3em 1em 3em; border-color: blue; border-style: solid; border-width: 1px; padding: 0.2em}
+.contentArea table { margin: 1em; }
+.contentArea dl { margin: 1em; }
+.copyright { color: #666666; font-size: 75%; clear: both; text-align: center; border-style: dashed; border-color: black; border-width: 2px 0px 0px 0px; }
+
+.titleBar { font-family: Georgia, "Times New Roman", Times, serif; font-size: 300%; font-weight: bold; padding: 0.2em 0em 0.2em 4.27em; border-color: blue; border-style: solid; border-width: 0px 0px 2px 0px }
+.titleBar a:link { color: black; text-decoration: none;}
+.titleBar a:visited { color: black; text-decoration: none;}
+.titleBar a:hover { color: black; text-decoration: none;}
+.titleBar a:active { color: black; text-decoration: none;}
+.header1 { font-size: 225%; color: #5c6991; font-weight: bold; text-align: center; font-family: Georgia, "Times New Roman", Times, serif}
+.header2 { font-size: 175%; color: #5c6991; font-weight: bold; text-align: center; font-family: Georgia, "Times New Roman", Times, serif}
+.header3 { font-size: 115%; font-weight: bold;}
+
+.navArea { float: left; width: 13em; float: left; padding: 0.4em; }
+.navBlock { border-color: black; border-width: 1px 2px 2px 2px; border-style: solid; margin: 0em 0em 1em 0em; }
+
+.leftTitle { font-size: 115%; font-family: "Times New Roman", Times, serif; text-align: center; font-weight: bold; color: white; background-color: #7788bc; border-color: black; border-style: solid; border-width: 1px 0px 0px 0px; padding: 0.3em 0.1em 0.3em 0.1em; }
+.leftTitle:hover { color: white; }
+
+.leftTitle a:link { color: white; text-decoration: none; border-style: dotted; border-color: white; border-width: 0px 0px 2px 0px; }
+.leftTitle a:visited { color: white; text-decoration: none; border-style: dotted; border-color: white; border-width: 0px 0px 2px 0px; }
+.leftTitle a:active { color: white; text-decoration: none; border-style: solid; border-color: white; border-width: 0px 0px 2px 0px; }
+.leftTitle a:hover { color: white; text-decoration: none; border-style: solid; border-color: white; border-width: 0px 0px 2px 0px; }
+
+.leftText { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 90%; background-color: #C3D3FF; padding: 2px 1px 2px 1px}
+.leftText p { margin-top: 0px; }
+.leftText a {
+display: block;
+margin: 0px;
+padding: 0px;
+text-align: center;
+border-width: 1px;
+border-style: solid;
+border-color: #C3D3FF;
+text-decoration: none;
+}
+.leftText a:hover {
+border-color: black;
+background-color: white;
+text-decoration: none;
+}
+.leftText a:active {
+border-color: black;
+background-color: white;
+text-decoration: none;
+}
+.leftDesc { font-size: 80%; text-align: center; }
+.browserAd { text-align: center; font-size: 75%; color: #666666; }
+.browserAd a:link { color: #666666; text-decoration: none;}
+.browserAd a:visited { color: #666666; text-decoration: none;}
+.browserAd a:hover { color: black; text-decoration: underline;}
+.browserAd a:active { color: black; text-decoration: underline;}
+
+.newsItem { margin: 1em; border-color: black; border-style: solid; border-width: 1px; }
+/*Using em works in Opera and IE, but is broken in Firefox (looks like rounding bug that causes divs to over or underflow by a pixel*/
+.newsTitle { font-weight: bold; background-color: #d8d8d8; padding: 3px; border-color: black; border-style: solid; border-width: 0px 0px 1px 0px }
+.newsDate{ font-family: Georgia, "Times New Roman", Times, serif; font-size: 75%; color: #5c6991; }
+.newsSubject{ }
+.newsInfo { font-size: 70%; background-color: #f0f0f0; padding: 0.1em 0.3em 0em 0.3em;}
+.newsText { background-color: #f0f0f0; padding: 3px 4px 3px 4px; }
+
+.pollTitle {  font-family: "Times New Roman", Times, serif; font-size: 90%; font-weight: bold; color: #FFFFCC; background-color: #202020; text-align: center}
+.pollQuestion {  font-family: "Times New Roman", Times, serif; font-size: 80%; color: #000000; font-weight: bold}
+.pollResponses {  font-family: "Times New Roman", Times, serif; font-size: 80%; color: #000000}
+
+a:link { color: #000099}
+a:visited { color: #000066}
+a:active { color: #660066}
+a:hover { color: #990099}
+
+dt { font-weight: bold; }
+
+.pollLink:link { color: #000000}
+.pollLink:visited { color: #000000}
+.pollLink:active { color: #660066}
+.pollLink:hover { color: #FFFF00}
+
+.programEntryTitle {  font-size: 125%; text-align: center}
+.keyTerm {  font-style: italic; font-weight: bold}
+/* docLink differs from backToTopLink only in context at this time. */
+.docLink{ font-weight: bold; text-align: center; }
+.backToTopLink { font-weight: bolder; text-align: center; }
+
+/* Resume styles */
+.resumeHeader { background-color: #CCCCCC; font-style: italic; border-color: black; border-style: solid; border-width: 1px 0px 0px 0px; font-weight: bold; font-family: Arial, Helvetica, sans-serif; padding-top: 0.5em; padding-right: 0.25em; padding-bottom: 0.5em; padding-left: 0.25em}
+.resumeText {  border-color: black; font-family: Verdana, Arial, Helvetica, sans-serif; padding: 0.5em 0.25em 0.5em 0.25em; border-style: solid; border-width: 1px 0px 0px 1px; }
+.resumeText ul {  margin-top: 0.2em; margin-bottom: 0px}
+.resumeText li {  margin-top: 0px; margin-bottom: 0px}
+.resumeSubHeader {  font-weight: bold; color: #CC0000}
+.resumeExpTable {  border-color: black black #606060; border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 1px; border-left-width: 0px; font-weight: bold; font-family: Arial, Helvetica, sans-serif}
+.resumeRefs {  font-weight: bold; text-align: center; font-family: "Times New Roman", Times, serif}
+.skillLine{}
+.firstJobTitle {  margin-top:0.5em; margin-bottom:0.5em; font-weight: bold; }
+.jobTitle {  margin-bottom:0.5em; font-weight: bold; }
+.subtleLink {}
+.header1 {}
+.topTable { margin-bottom: 0.5em; margin-top: 0.25em; }
+.topHeader { font-weight: bold; }
+.topLinks {  font-size: 75%; margin-top: 0px; margin-bottom: 0.75em}
+/* End Resume Styles */
+
+/* Styles added for MT support */
+.inline { display: inline; }
+.hidden { display: none; }
+
+.widget-header { font-size: 115%; font-family: "Times New Roman", Times, serif; text-align: center; font-weight: bold; color: white; background-color: #7788bc; border-color: black; border-style: solid; border-width: 1px 0px 0px 0px; padding: 0.3em 0.1em 0.3em 0.1em; margin: 0px; }
+.widget-header:hover { color: white; }
+
+.widget-header a:link { color: white; text-decoration: none; border-style: dotted; border-color: white; border-width: 0px 0px 2px 0px; }
+.widget-header a:visited { color: white; text-decoration: none; border-style: dotted; border-color: white; border-width: 0px 0px 2px 0px; }
+.widget-header a:active { color: white; text-decoration: none; border-style: solid; border-color: white; border-width: 0px 0px 2px 0px; }
+.widget-header a:hover { color: white; text-decoration: none; border-style: solid; border-color: white; border-width: 0px 0px 2px 0px; }
+
+/* Only certain widgets we want to act like boxes */
+.widget-search,
+.widget-recent-comments,
+.widget-recent-entries,
+.widget-syndication,
+.widget-about-this-page,
+.widget-archive
+  { border-color: black; border-width: 1px 2px 2px 2px; border-style: solid; margin: 0em 0em 1em 0em; }
+
+.widget-search .widget-content,
+.widget-recent-comments .widget-content,
+.widget-recent-entries .widget-content,
+.widget-syndication .widget-content,
+.widget-about-this-page .widget-content,
+.widget-archive .widget-content
+  { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 90%; background-color: #C3D3FF; padding: 2px 1px 2px 1px}
+
+/* The following widgets have lists of links in ul/li, we want to supress the normal appearance */
+.widget-syndication .widget-content ul,
+.widget-recent-comments .widget-content ul,
+.widget-recent-entries .widget-content ul,
+.widget-archive .widget-content ul { margin: 0em; padding: 2px 1px 2px 1px; list-style-type: none; }
+
+.widget-syndication a,
+.widget-archive .widget-content a { display: block; margin: 0px; padding: 0px; border-width: 1px; border-style: solid; border-color: #C3D3FF; text-decoration: none; }
+
+.widget-recent-comments li { margin-bottom: 0.5em; }
+
+.widget-recent-entries a { display: block; text-align: center; margin: 0px; padding: 0px; border-width: 1px; border-style: solid; border-color: #C3D3FF; text-decoration: none; }
+.widget-recent-entries li { border-width: 0px 0px 1px 0px; border-style:solid; border-color: #AAAAAA;}
+
+.widget-syndication a:hover,
+.widget-recent-entries a:hover,
+.widget-archive .widget-content a:hover { border-color: black; background-color: white; text-decoration: none; }
+
+.widget-syndication a:active,
+.widget-recent-entries a:active,
+.widget-archive .widget-content a:active { border-color: black; background-color: white; text-decoration: none; }
+
+.widget-powered { text-align: center; }
+
+@media print {
+  .titleBar{ padding-left: 0em; }
+  .contentArea { margin-left: 0.5em; background-color: white; }
+  .navArea { display: none; }
+}
+
+/* For some reason IE Mobile does not like multiple styles in the same block.*/
+@media handheld {
+  .titleBar{ padding-left: 0.5em; font-size: 200%; }
+}
+@media handheld {
+  .contentArea { border-width: 1px; }
+}
+@media handheld {
+  .navBlock{ border-width: 0px 1px 1px 1px; }
+}

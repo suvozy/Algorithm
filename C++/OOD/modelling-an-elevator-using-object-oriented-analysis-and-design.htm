@@ -1,0 +1,1025 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <title>language agnostic - Modelling an elevator using Object-Oriented Analysis and Design - Stack Overflow</title>
+    <link rel="shortcut icon" href="http://cdn.sstatic.net/stackoverflow/img/favicon.ico">
+    <link rel="apple-touch-icon" href="http://cdn.sstatic.net/stackoverflow/img/apple-touch-icon.png">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="http://stackoverflow.com/opensearch.xml">
+    <script src="modelling-an-elevator-using-object-oriented-analysis-and-design_files/ga.js" async="" type="text/javascript"></script><script src="modelling-an-elevator-using-object-oriented-analysis-and-design_files/adzerk1_2_4_43adzerk2_2_17_45adzerk3_2_4_44.htm" async="" type="text/javascript"></script><script type="text/javascript" src="modelling-an-elevator-using-object-oriented-analysis-and-design_files/jquery.js"></script>
+    <script type="text/javascript" src="modelling-an-elevator-using-object-oriented-analysis-and-design_files/stub.js"></script>
+    <link rel="stylesheet" type="text/css" href="modelling-an-elevator-using-object-oriented-analysis-and-design_files/all.css">
+    
+    <link rel="canonical" href="http://stackoverflow.com/questions/493276/modelling-an-elevator-using-object-oriented-analysis-and-design">
+    <link rel="alternate" type="application/atom+xml" title="Feed for question 'Modelling an elevator using Object-Oriented Analysis and Design'" href="http://stackoverflow.com/feeds/question/493276">
+    <script type="text/javascript">
+        
+        StackExchange.ready(function () {
+
+            StackExchange.question.init({showAnswerHelp:true,questionId:493276});
+
+            styleCode();
+
+            
+            if(/^#autocomment/.test(window.location.hash)) {
+                var link = $('.comments-link:first')
+                var commentId = "#comment-" + window.location.hash.substring(12);
+
+                var showNotice = 
+                    function(){
+                        var targetComment = $(commentId);
+                        var msg = $('<span><strong>Trivial answer converted to comment</strong></span>');
+                        targetComment.find('.comment-date').append($('<br>')).append(msg);
+                        targetComment.css({ backgroundColor: '#F4A83D' });
+                        targetComment.animate({ backgroundColor:'#FFF' }, 2000, 'linear', function() { $(this).css('background-color', ''); })
+
+                        $(commentId)[0].scrollIntoView(true);
+                    };
+
+                
+                    
+                        showNotice();
+                    
+            }
+
+            
+            if(/^#comment/.test(window.location.hash)) {
+                var breaker = window.location.hash.indexOf('_');
+                var cid = +window.location.hash.substring(8, breaker);
+                var pid = +window.location.hash.substring(breaker + 1);
+
+                var commentsLink = $('#comments-link-'+pid);
+
+                var commentSelector = '#comment-'+cid;
+
+                var alreadyLoaded = $(commentSelector).length != 0;
+
+                if(alreadyLoaded) {
+                    $(commentSelector)[0].scrollIntoView(true);
+                }else{
+                    StackExchange.commentsPassive.loadRest(
+                        commentsLink,
+                        function() {
+                            if(commentsLink.text().indexOf('add') != -1) {commentsLink.text('add comment'); commentsLink.click();} else{ commentsLink.remove(); }
+
+                            $(commentSelector)[0].scrollIntoView(true);
+                        }
+                    );
+                }
+            }
+        });
+    </script>
+
+
+    <script type="text/javascript">
+        StackExchange.init({"stackAuthUrl":"http://stackauth.com","serverTime":1313831033,"styleCode":true,"newTagEditor":true,"site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers"},"user":{"isAnonymous":true,"fkey":"a91de78d4acdd1f4897a2a46c59c357b","inboxUnviewedCount":-1}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.js":"dcf6d862901d","js/moderator.js":"f01ca0022a21","js/full-anon.js":"92782f161954","js/full.js":"4c88476ae78d","js/wmd.js":"1f096d3b5e89","js/third-party/jquery.autocomplete.min.js":"e5f01e97f7c3","js/mobile.js":"885c1c04d396","js/help.js":"df776678f967","js/tageditor.js":"1d9dda61b487","js/tageditornew.js":"2b4785646273"});
+    </script>
+
+</head>
+<body class="question-page">
+    <noscript><div id="noscript-padding"></div></noscript>
+    <div id="notify-container"></div>
+    <div id="overlay-header"></div>
+    <div id="custom-header"></div>
+
+    <div class="container">
+        <div id="header">
+            <div id="portalLink">
+                <a class="genu" onclick="StackExchange.ready(function(){genuwine.click();});return false;">Stack Exchange</a>
+            </div>
+            <div id="topbar">
+                <div id="hlinks">
+                    <span id="hlinks-user">
+                  
+                  </span>
+                  <span id="hlinks-nav">
+                  <a href="http://stackoverflow.com/users/login?returnurl=%2fquestions%2f493276%2fmodelling-an-elevator-using-object-oriented-analysis-and-design">log in</a>
+ <span class="lsep">|</span>
+<a href="http://careers.stackoverflow.com/">careers</a>
+ <span class="lsep">|</span>
+<a href="http://devdays.stackoverflow.com/">dev days</a>
+ <span class="lsep">|</span>
+
+                  </span>
+                  <span id="hlinks-custom">
+                  <a href="http://chat.stackoverflow.com/">chat</a>
+ <span class="lsep">|</span>
+<a href="http://meta.stackoverflow.com/">meta</a>
+ <span class="lsep">|</span>
+<a href="http://stackoverflow.com/about">about</a>
+ <span class="lsep">|</span>
+<a href="http://stackoverflow.com/faq">faq</a>
+                  </span>
+                </div>
+                <div id="hsearch">
+                    <form id="search" action="/search" method="get" autocomplete="off">
+                    <div>
+                        <input autocomplete="off" name="q" class="textbox" placeholder="search" tabindex="1" maxlength="140" size="28" type="text">
+                    </div>
+                    </form>
+                </div>
+            </div>
+            <br class="cbt">
+            <div id="hlogo">
+                <a href="http://stackoverflow.com/">Stack Overflow</a>
+            </div>
+            <div id="hmenus">
+                <div class="nav mainnavs">
+                    <ul>
+                        <li class="youarehere"><a id="nav-questions" href="http://stackoverflow.com/questions">Questions</a></li>
+                        <li><a id="nav-tags" href="http://stackoverflow.com/tags">Tags</a></li>
+                        <li><a id="nav-users" href="http://stackoverflow.com/users">Users</a></li>
+                        <li><a id="nav-badges" href="http://stackoverflow.com/badges">Badges</a></li>
+                        <li><a id="nav-unanswered" href="http://stackoverflow.com/unanswered">Unanswered</a></li>
+                    </ul>
+                </div>
+                <div class="nav askquestion">
+                    <ul>
+                        <li>
+                            <a id="nav-askquestion" href="http://stackoverflow.com/questions/ask">Ask Question</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        
+
+
+        <div id="content">
+            
+
+
+
+<div id="question-header">
+    <h1><a href="http://stackoverflow.com/questions/493276/modelling-an-elevator-using-object-oriented-analysis-and-design" class="question-hyperlink">Modelling an elevator using Object-Oriented Analysis and Design</a></h1>
+</div>
+<div id="mainbar">
+
+
+<div id="question">
+
+    
+
+    
+    <table>
+    <tbody><tr>
+    <td class="votecell">
+        
+<div class="vote">
+    <input value="493276" type="hidden">
+    <a class="vote-up-off" title="This question shows research effort; it is useful and clear (click again to undo)">up vote</a>
+    <span class="vote-count-post">11</span>
+    <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful (click again to undo)">down vote</a>
+
+    <a class="star-off" href="#" title="This is a favorite question (click again to undo)">favorite</a>
+    <div class="favoritecount"><b>16</b></div>    
+
+</div>
+
+    </td>
+
+<td class="postcell">
+<div>          
+    <div class="post-text">
+        <p>There are a set of questions that seem to be commonly-used in
+ interviews and classes when it comes to object-oriented design and 
+analysis. This is one of them; unfortunately, my OOP professor in 
+college never actually gave an answer to it, and so I've been wondering.</p>
+
+<p>The problem is as follows: design a basic set of objects/methods to 
+be used to simulate an elevator bank. What are the objects and their 
+attributes/methods?</p>
+
+<p>For the sake of argument, let us assume that our building has twenty 
+floors; the bottom floor is the lobby, and the second floor connects to 
+the parking garage (therefore, people will enter/exit the building on 
+either the bottom floor or the second floor). There is one elevator bank
+ that services all the floors; there are three elevator shafts in the 
+elevator bank, and one elevator per shaft.</p>
+
+<p>What would be the correct way to model this in an object-oriented model?</p>
+
+    </div>            
+    <div class="post-taglist">
+        <a href="http://stackoverflow.com/questions/tagged/language-agnostic" class="post-tag" title="show questions tagged 'language-agnostic'" rel="tag">language-agnostic</a> <a href="http://stackoverflow.com/questions/tagged/oop" class="post-tag" title="show questions tagged 'oop'" rel="tag">oop</a> <a href="http://stackoverflow.com/questions/tagged/interview-questions" class="post-tag" title="" rel="tag">interview-questions</a> 
+    </div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+        <div class="post-menu"><a href="http://stackoverflow.com/q/493276" title="short permalink to this question" id="link-post-493276">link</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/493276/edit">improve this question</a></div>
+    </td>
+    <td class="post-signature" align="right">
+<div class="user-info user-hover "><div class="user-action-time">edited <a href="http://stackoverflow.com/posts/493276/revisions" title="show all edits to this post"><span title="2009-01-29 20:35:21Z" class="relativetime">Jan 29 '09 at 20:35</span></a></div><div class="user-gravatar32"><a href="http://stackoverflow.com/users/41613/iu"><div class=""><img src="modelling-an-elevator-using-object-oriented-analysis-and-design_files/ad8ce044df0db106f0400f81827b5060.png" alt=""></div></a></div><div class="user-details"><a href="http://stackoverflow.com/users/41613/iu">ʞɔıu</a><br><span class="reputation-score" title="reputation score">6,493</span><span title="14 silver badges"><span class="badge2"></span><span class="badgecount">14</span></span><span title="41 bronze badges"><span class="badge3"></span><span class="badgecount">41</span></span></div></div>    </td>
+                        
+
+    <td class="post-signature owner">
+    <div class="user-info"><div class="user-action-time">asked <span title="2009-01-29 20:30:38Z" class="relativetime">Jan 29 '09 at 20:30</span></div><div class="user-gravatar32"><a href="http://stackoverflow.com/users/16633/keith-b"><div class=""><img src="modelling-an-elevator-using-object-oriented-analysis-and-design_files/687fd5a4181d3727eda30fd86f3447ed.png" alt=""></div></a></div><div class="user-details"><a href="http://stackoverflow.com/users/16633/keith-b">Keith B</a><br><span class="reputation-score" title="reputation score">345</span><span title="3 silver badges"><span class="badge2"></span><span class="badgecount">3</span></span><span title="10 bronze badges"><span class="badge3"></span><span class="badgecount">10</span></span></div></div>
+        <br class="cbt">
+        <div class="accept-rate cool" title="this user has accepted an answer for 3 of 4 eligible questions">75% accept rate</div>
+    </td>
+    </tr>
+    </tbody></table>
+</div>
+</td>
+    </tr>
+
+
+<tr>
+<td class="votecell"></td>
+<td>
+    <div id="comments-493276" class="comments">
+        <table>
+        <tbody>
+                    
+    <tr id="comment-308928" class="comment">
+        <td></td>
+        <td class="comment-text"><div><span class="comment-copy">This is
+ my favorite interview question.  It is simple to ask but surprisingly 
+complex to get right.  It involves things like queues and can easily be 
+extended to throw in more challenges.  For example, how would you 
+optimize the algorithm to reduce wait times.</span> –&nbsp;<a href="http://stackoverflow.com/users/24195/rob-di-marco" title="5389 reputation" class="comment-user">Rob Di Marco</a> <span class="comment-date"><span title="2009-01-29 20:38:08Z">Jan 29 '09 at 20:38</span></span></div></td>
+    </tr>
+            
+    <tr id="comment-308950" class="comment">
+        <td></td>
+        <td class="comment-text"><div><span class="comment-copy">Yea, it's a really great open-ended question. Never got asked that one, unfortunately :(</span> –&nbsp;<a href="http://stackoverflow.com/users/23072/uri" title="36719 reputation" class="comment-user">Uri</a> <span class="comment-date"><span title="2009-01-29 20:43:19Z">Jan 29 '09 at 20:43</span></span></div></td>
+    </tr>
+
+        </tbody>
+    
+        </table>
+    </div>
+    
+    
+    <div style="color: rgb(0, 0, 0);" class="was-this-helpful">Was this post useful to you? &nbsp;&nbsp;<input style="" class="anon-vote" value="Yes" type="button"> &nbsp;<input style="" class="anon-vote" value="No" type="button"></div>
+    
+</td>
+</tr>    </tbody></table>    
+</div>
+
+
+
+<div id="answers">
+
+    <a name="tab-top"></a>
+    <div id="answers-header">
+        <div class="subheader answers-subheader">
+            <h2>3 Answers</h2>
+            <div id="tabs">
+                <a href="http://stackoverflow.com/questions/493276/modelling-an-elevator-using-object-oriented-analysis-and-design?answertab=active#tab-top" title="Answers with the latest activity first">active</a>
+<a href="http://stackoverflow.com/questions/493276/modelling-an-elevator-using-object-oriented-analysis-and-design?answertab=oldest#tab-top" title="Answers in the order they were provided">oldest</a>
+<a class="youarehere" href="http://stackoverflow.com/questions/493276/modelling-an-elevator-using-object-oriented-analysis-and-design?answertab=votes#tab-top" title="Answers with the highest score first">votes</a>
+
+            </div>
+        </div>
+    </div>
+
+
+  
+    <a name="493350"></a>
+    <div id="answer-493350" class="answer">
+        <table>
+        <tbody><tr>
+        <td class="votecell">
+            
+<div class="vote">
+    <input value="493350" type="hidden">
+    <a class="vote-up-off" title="This answer is useful (click again to undo)">up vote</a>
+    <span class="vote-count-post">6</span>
+    <a class="vote-down-off" title="This answer is not useful (click again to undo)">down vote</a>
+<span class="vote-accepted-on" title="The question owner accepted this as the best answer Feb 3 '09 at 20:19">accepted</span>
+</div>
+
+        </td>
+
+
+<td class="answercell">
+    <div class="post-text"><p>First there is an elevator class. It has a
+ direction (up, down, stand, maintenance), a current floor and a list of
+ floor requests sorted in the direction. It receives request from this 
+elevator.</p>
+
+<p>Then there is a bank. It contains the elevators and receives the 
+requests from the floors. These are scheduled to all active elevators 
+(not in maintenance).</p>
+
+<p>The scheduling will be like:</p>
+
+<ul>
+<li>if available pick a standing elevator for this floor.</li>
+<li>else pick an elevator moving to this floor.</li>
+<li>else pick a standing elevator on an other floor.</li>
+<li>else pick the elevator with the lowest load.</li>
+</ul>
+
+<p>Each elevator has a set of states. </p>
+
+<ul>
+<li>Maintenance: the elevator does not react to external signals (only to its own signals).</li>
+<li>Stand: the elevator is fixed on a floor. If it receives a call. And 
+the elevator is on that floor, the doors open. If it is on another 
+floor, it moves in that direction.</li>
+<li>Up: the elevator moves up. Each time it reaches a floor, it checks 
+if it needs to stop. If so it stops and opens the doors. It waits for a 
+certain amount of time and closes the door (unless someting is moving 
+through them. Then it removes the floor from the request list and checks
+ if there is another request. If so the elevator starts moving again. If
+ not it enters the state stand.</li>
+<li>Down: like up but in reverse direction.</li>
+</ul>
+
+<p>There are additional signals:</p>
+
+<ul>
+<li>alarm. The elevator stops. And if it is on a floor, the doors open, the request list is cleared.</li>
+<li>door open. Opens the doors if an elevator is on a floor and not moving.</li>
+<li>door closes. Closed the door if they are open.</li>
+</ul>
+</div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+        <div class="post-menu"><a href="http://stackoverflow.com/questions/493276/modelling-an-elevator-using-object-oriented-analysis-and-design/493350#493350" title="permalink to this answer" id="link-post-493350">link</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/493350/edit">improve this answer</a></div>
+    </td>
+            
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover "><div class="user-action-time">answered <span title="2009-01-29 20:48:34Z" class="relativetime">Jan 29 '09 at 20:48</span></div><div class="user-gravatar32"><a href="http://stackoverflow.com/users/18061/gamecat"><div class=""><img src="modelling-an-elevator-using-object-oriented-analysis-and-design_files/0b4b433679e1fb52f7e2ef4ea492496d.jpg" alt=""></div></a></div><div class="user-details"><a href="http://stackoverflow.com/users/18061/gamecat">Gamecat</a><br><span class="reputation-score" title="reputation score 26729">26.7k</span><span title="7 gold badges"><span class="badge1"></span><span class="badgecount">7</span></span><span title="43 silver badges"><span class="badge2"></span><span class="badgecount">43</span></span><span title="113 bronze badges"><span class="badge3"></span><span class="badgecount">113</span></span></div></div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>        </tr>
+
+
+<tr>
+<td class="votecell"></td>
+<td>
+    <div id="comments-493350" class="comments dno">
+        <table>
+        <tbody>
+        
+            <tr><td></td><td></td></tr>
+        
+        </tbody>
+    
+        </table>
+    </div>
+    
+    
+    <div style="color: rgb(136, 136, 136);" class="was-this-helpful">
+        feedback
+    </div>
+    
+</td>
+</tr>    </tbody></table>
+</div>
+
+    <div class="everyonelovesstackoverflow" id="adzerk3"><a href="http://engine.adzerk.net/redirect/0/2564/2444/8277/4e3e5c11c9164457988198eae60074a8/44/1178/2288/634494278425273378?keywords=language-agnostic%2coop%2cinterview-questions" rel="nofollow" target="_blank" title=""><img src="modelling-an-elevator-using-object-oriented-analysis-and-design_files/2564.jpg" title="" alt="" border="0" height="90" width="728"></a></div>
+
+    
+  
+    <a name="493307"></a>
+    <div id="answer-493307" class="answer">
+        <table>
+        <tbody><tr>
+        <td class="votecell">
+            
+<div class="vote">
+    <input value="493307" type="hidden">
+    <a class="vote-up-off" title="This answer is useful (click again to undo)">up vote</a>
+    <span class="vote-count-post">3</span>
+    <a class="vote-down-off" title="This answer is not useful (click again to undo)">down vote</a>
+
+</div>
+
+        </td>
+
+
+<td class="answercell">
+    <div class="post-text"><p>I've seen many variants of this problem. 
+One of the main differences (that determines the difficulty) is whether 
+there is some centralized attempt to have a "smart and efficient system"
+ that would have load balancing (e.g., send more idle elevators to lobby
+ in morning). If that is the case, the design will include a whole 
+subsystem with really fun design. </p>
+
+<p>A full design is obviously too much to present here and there are 
+many altenatives.  The breadth is also not clear. In an interview, 
+they'll try to figure out how you would think. However, these are some 
+of the things you would need:</p>
+
+<p>1) Representation of the central controller (assuming there is one).</p>
+
+<p>2) Representations of elevators</p>
+
+<p>3) Representations of the interface units of the elevator (these may be different from 
+elevator to elevator). Obviously also call buttons on every floor, etc. </p>
+
+<p>4) Representations of the arrows or indicators on each floor (almost a "view" of the elevator model).</p>
+
+<p>5) Representation of a human and cargo (may be important for factoring in maximal loads)</p>
+
+<p>6) Representation of the building (in some cases, as certain floors may be blocked at times, etc.)</p>
+</div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+        <div class="post-menu"><a href="http://stackoverflow.com/questions/493276/modelling-an-elevator-using-object-oriented-analysis-and-design/493307#493307" title="permalink to this answer" id="link-post-493307">link</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/493307/edit">improve this answer</a></div>
+    </td>
+            
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info user-hover "><div class="user-action-time">answered <span title="2009-01-29 20:39:24Z" class="relativetime">Jan 29 '09 at 20:39</span></div><div class="user-gravatar32"><a href="http://stackoverflow.com/users/23072/uri"><div class=""><img src="modelling-an-elevator-using-object-oriented-analysis-and-design_files/ad19b9146f4ffd608bf137323f68de0c.png" alt=""></div></a></div><div class="user-details"><a href="http://stackoverflow.com/users/23072/uri">Uri</a><br><span class="reputation-score" title="reputation score 36719">36.7k</span><span title="4 gold badges"><span class="badge1"></span><span class="badgecount">4</span></span><span title="54 silver badges"><span class="badge2"></span><span class="badgecount">54</span></span><span title="167 bronze badges"><span class="badge3"></span><span class="badgecount">167</span></span></div></div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>        </tr>
+
+
+<tr>
+<td class="votecell"></td>
+<td>
+    <div id="comments-493307" class="comments dno">
+        <table>
+        <tbody>
+        
+            <tr><td></td><td></td></tr>
+        
+        </tbody>
+    
+        </table>
+    </div>
+    
+    
+    <div class="was-this-helpful">
+        feedback
+    </div>
+    
+</td>
+</tr>    </tbody></table>
+</div>
+
+  
+    <a name="6857984"></a>
+    <div id="answer-6857984" class="answer">
+        <table>
+        <tbody><tr>
+        <td class="votecell">
+            
+<div class="vote">
+    <input value="6857984" type="hidden">
+    <a class="vote-up-off" title="This answer is useful (click again to undo)">up vote</a>
+    <span class="vote-count-post">1</span>
+    <a class="vote-down-off" title="This answer is not useful (click again to undo)">down vote</a>
+
+</div>
+
+        </td>
+
+
+<td class="answercell">
+    <div class="post-text"><p>Donald Knuth's The Art of Computer 
+Programming Vol.1 has a demonstration of elevator and the 
+data-structures. Knuth presents a very thorough discussion and program.</p>
+
+<p>Knuth(1997) "Information Structures", <em>The Art of Computer Programming</em> Vol. 1 <a href="http://books.google.com/books?id=MooMkK6ERuYC&amp;lpg=PA304&amp;dq=knuth%20elevator&amp;pg=PA302#v=onepage&amp;q&amp;f=false" rel="nofollow">pp.302-308</a></p>
+</div>
+    <table class="fw">
+    <tbody><tr>
+    <td class="vt">
+        <div class="post-menu"><a href="http://stackoverflow.com/questions/493276/modelling-an-elevator-using-object-oriented-analysis-and-design/6857984#6857984" title="permalink to this answer" id="link-post-6857984">link</a><span class="lsep">|</span><a href="http://stackoverflow.com/posts/6857984/edit">improve this answer</a></div>
+    </td>
+    <td class="post-signature" align="right">
+<div class="user-info"><div class="user-action-time">edited <a href="http://stackoverflow.com/posts/6857984/revisions" title="show all edits to this post"><span title="2011-08-01 08:18:55Z" class="relativetime">Aug 1 at 8:18</span></a></div><div class="user-gravatar32"></div><div class="user-details"><br></div></div>    </td>
+            
+
+    <td class="post-signature" align="right">   
+       
+
+    <div class="user-info"><div class="user-action-time">answered <span title="2011-07-28 11:11:19Z" class="relativetime">Jul 28 at 11:11</span></div><div class="user-gravatar32"><a href="http://stackoverflow.com/users/478028/ethnv"><div class=""><img src="modelling-an-elevator-using-object-oriented-analysis-and-design_files/c56f9bce6b1811da478f4511d8b6d97c.png" alt=""></div></a></div><div class="user-details"><a href="http://stackoverflow.com/users/478028/ethnv">ethnv</a><br><span class="reputation-score" title="reputation score">29</span><span title="2 bronze badges"><span class="badge3"></span><span class="badgecount">2</span></span></div></div>
+    </td>
+    </tr>
+    </tbody></table>
+</td>        </tr>
+
+
+<tr>
+<td class="votecell"></td>
+<td>
+    <div id="comments-6857984" class="comments">
+        <table>
+        <tbody>
+                    
+    <tr id="comment-8155826" class="comment">
+        <td></td>
+        <td class="comment-text"><div><span class="comment-copy">[citation needed]</span> –&nbsp;<a href="http://stackoverflow.com/users/82062/arnis-l" title="11884 reputation" class="comment-user">Arnis L.</a> <span class="comment-date"><span title="2011-07-28 11:13:57Z">Jul 28 at 11:13</span></span></div></td>
+    </tr>
+            
+    <tr id="comment-8209180" class="comment">
+        <td class="comment-actions"><table><tbody><tr>
+<td class="comment-score">
+<span title="number of 'great comment' votes received" class="cool">1</span>
+</td>
+<td>
+&nbsp;
+</td></tr>
+</tbody></table></td>
+        <td class="comment-text"><div><span class="comment-copy">linked to google books above.</span> –&nbsp;<a href="http://stackoverflow.com/users/478028/ethnv" title="29 reputation" class="comment-user">ethnv</a> <span class="comment-date"><span title="2011-08-01 08:21:48Z">Aug 1 at 8:21</span></span></div></td>
+    </tr>
+
+        </tbody>
+    
+        </table>
+    </div>
+    
+    
+    <div class="was-this-helpful">
+        feedback
+    </div>
+    
+</td>
+</tr>    </tbody></table>
+</div>
+    <a name="new-answer"></a>
+    <form id="post-form" action="/questions/493276/answer/submit" method="post" class="post-form">
+        <h2 class="space">Your Answer</h2>
+       
+
+<script type="text/javascript">
+    StackExchange.ready(function() {
+        initTagRenderer("".split(" "), "".split(" "));
+
+              
+            prepareEditor({
+                
+                heartbeatType: 'answer',
+                bindNavPrevention: true,
+                postfix: "",
+                onDemand: true                ,immediatelyShowMarkdownHelp:true
+            });
+            
+    });  
+</script>
+
+
+<div id="post-editor" class="post-editor">  
+
+    
+    <div class="wmd-container">
+        <div id="wmd-button-bar" class="wmd-button-bar"><ul id="wmd-button-row" class="wmd-button-row"><li style="left: 0px;" class="wmd-button" id="wmd-bold-button"><span style="background-position: 0px -20px;"></span></li><li style="left: 25px;" class="wmd-button" id="wmd-italic-button"><span style="background-position: -20px -20px;"></span></li><li style="left: 50px;" class="wmd-spacer" id="wmd-spacer1"><span style="background-position: -40px -20px;"></span></li><li style="left: 75px;" class="wmd-button" id="wmd-link-button"><span style="background-position: -40px -20px;"></span></li><li style="left: 100px;" class="wmd-button" id="wmd-quote-button"><span style="background-position: -60px -20px;"></span></li><li style="left: 125px;" class="wmd-button" id="wmd-code-button"><span style="background-position: -80px -20px;"></span></li><li style="left: 150px;" class="wmd-button" id="wmd-image-button"><span style="background-position: -100px -20px;"></span></li><li style="left: 175px;" class="wmd-spacer" id="wmd-spacer2"><span style="background-position: -120px -20px;"></span></li><li style="left: 200px;" class="wmd-button" id="wmd-olist-button"><span style="background-position: -120px -20px;"></span></li><li style="left: 225px;" class="wmd-button" id="wmd-ulist-button"><span style="background-position: -140px -20px;"></span></li><li style="left: 250px;" class="wmd-button" id="wmd-heading-button"><span style="background-position: -160px -20px;"></span></li><li style="left: 275px;" class="wmd-button" id="wmd-hr-button"><span style="background-position: -180px -20px;"></span></li><li style="left: 300px;" class="wmd-spacer" id="wmd-spacer3"><span style="background-position: -200px -20px;"></span></li><li style="left: 325px;" class="wmd-button" id="wmd-undo-button"><span style="background-position: -200px -20px;"></span></li><li style="left: 350px;" class="wmd-button" id="wmd-redo-button"><span style="background-position: -220px -20px;"></span></li></ul></div>
+        <textarea id="wmd-input" class="wmd-input" name="post-text" cols="92" rows="15" tabindex="101"></textarea>
+    </div>
+
+    <div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
+    <div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">draft saved</div>
+
+
+
+    <div id="wmd-preview" class="wmd-preview"></div>
+    <div></div>
+    <div class="edit-block">
+        <input id="fkey" name="fkey" value="a91de78d4acdd1f4897a2a46c59c357b" type="hidden">
+        <input id="author" name="author" type="text">
+    </div>
+</div>   
+    <div class="form-item">
+        <table>
+        <tbody><tr>
+        <td class="vm open-id-login">
+            <a id="login-link" style="font-size: 200%; margin-left: 30px;" href="http://stackoverflow.com/users/login?returnurl=%2fquestions%2f493276%2fmodelling-an-elevator-using-object-oriented-analysis-and-design">log in</a>
+            <script type="text/javascript">
+                StackExchange.ready(function () {
+                    StackExchange.helpers.onClickDraftSave('#login-link');
+                });
+            </script>
+        </td>
+
+    
+        <td class="orcell">
+            <div class="orword">or</div>
+            <div class="orline"></div>
+        </td>
+        <td class="vm">
+            <div>
+                <label for="display-name">Name</label>
+                <input id="display-name" name="display-name" size="30" maxlength="30" tabindex="105" type="text">
+            </div>
+            <div>
+                <label for="m-address">Email</label>
+                <input id="m-address" name="m-address" size="40" maxlength="100" tabindex="106" type="text">
+                <span class="edit-field-overlay">required, but never shown</span>
+            </div>
+            <div>
+                <label for="home-page">Home Page</label>
+                <input id="home-page" name="home-page" size="40" maxlength="200" tabindex="107" type="text">
+            </div>
+        </td>
+    
+        </tr>
+        </tbody></table>
+    </div>
+               
+        <div class="form-submit cbt"><input id="submit-button" value="Post Your Answer" tabindex="110" type="submit"></div>
+    </form>
+
+    <h2 class="bottom-notice">
+        Not the answer you're looking for? 
+        Browse other questions tagged <a href="http://stackoverflow.com/questions/tagged/language-agnostic" class="post-tag" title="show questions tagged 'language-agnostic'" rel="tag">language-agnostic</a> <a href="http://stackoverflow.com/questions/tagged/oop" class="post-tag" title="show questions tagged 'oop'" rel="tag">oop</a> <a href="http://stackoverflow.com/questions/tagged/interview-questions" class="post-tag" title="show questions tagged 'interview-questions'" rel="tag">interview-questions</a> 
+                or <a href="http://stackoverflow.com/questions/ask">ask your own question</a>.
+    </h2>
+</div>
+</div>
+<div id="sidebar">
+
+
+
+    <div class="module newuser newuser-greeting" style="">
+        <h4>Hello World!</h4>
+        <div>
+            <p>This is a collaboratively edited question and answer site for <b>professional and enthusiast programmers</b>. It's 100% free, no registration required.</p>
+            <p class="ar"><a href="http://stackoverflow.com/about">about »</a>&nbsp;&nbsp;&nbsp;<a href="http://stackoverflow.com/faq">faq »</a></p>
+        </div>
+    </div>
+    <div class="module">
+        <p class="label-key">tagged</p>
+        <div class="tagged"><a href="http://stackoverflow.com/questions/tagged/oop" class="post-tag" title="show questions tagged 'oop'" rel="tag">oop</a>&nbsp;<span class="item-multiplier">×&nbsp;9273</span><br>
+<a href="http://stackoverflow.com/questions/tagged/language-agnostic" class="post-tag" title="show questions tagged 'language-agnostic'" rel="tag">language-agnostic</a>&nbsp;<span class="item-multiplier">×&nbsp;4792</span><br>
+<a href="http://stackoverflow.com/questions/tagged/interview-questions" class="post-tag" title="show questions tagged 'interview-questions'" rel="tag">interview-questions</a>&nbsp;<span class="item-multiplier">×&nbsp;1799</span><br>
+</div>
+        <table id="qinfo">
+            <tbody><tr>
+                <td><p class="label-key">asked</p></td>
+                <td style="padding-left: 10px;"><p class="label-key" title="2009-01-29 20:30:38Z"><b>2 years ago</b></p></td>
+            </tr>
+            <tr>
+                <td><p class="label-key">viewed</p></td>
+
+                <td style="padding-left: 10px;"><p class="label-key"><b>8,087 times</b></p></td>
+            </tr>
+            <tr>
+                <td><p class="label-key">active</p></td>
+                <td style="padding-left: 10px;"><p class="label-key"><b><a href="http://stackoverflow.com/questions/493276/modelling-an-elevator-using-object-oriented-analysis-and-design?lastactivity" class="lastactivity-link" title="2011-08-01 08:18:55Z">19 days ago</a></b></p></td>
+            </tr>
+        </tbody></table>
+    </div>
+    
+        <script type="text/javascript">
+            var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = "http://engine2.adzerk.net/z/8277/adzerk1_2_4_43,adzerk2_2_17_45,adzerk3_2_4_44?keywords=language-agnostic,oop,interview-questions"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);
+        </script>
+    
+    <div class="everyonelovesstackoverflow" id="adzerk2"><div id="careersadsdoublehigh" style="display:none;"></div></div>
+
+    
+    <div>
+        <script type="text/javascript">
+            (function(){var q="http://careers.stackoverflow.com/ad/js",d=location.hash.indexOf("#large")>-1,a=location.hash.indexOf("#ninjas")>-1,c=location.hash.indexOf("#tagme")>-1,b,f=100,h="#adzerk2",e="#adzerk1",i="#herebeninjas";(function(){var b="min-height:220px;margin:15px 0",c=$("<div>").addClass("hireme").attr("style",b),a=$("<div>").html(c);document.write(a.html())})();$(function(){setTimeout(r,2e3);b=setTimeout(g,f)});var g=function(){clearTimeout(b);if(m()&&!k()){b=setTimeout(g,f);return}a=a||n();a&&$(e).css("height",$(e).outerHeight()).attr("id","stop-adzerk");if(l()&&!j()){b=setTimeout(g,f);return}d=d||o();p()},r=function(){clearTimeout(b);var a=$("div.hireme, "+i);a.each(function(){var a=$(this),d=a.html().replace(/\s+/g,"").length==0;if(d){var c=a,b=a.parents(".everyonelovesstackoverflow").first();if(b.length>0)c=b;c.remove()}})},l=function(){return $(h).length>0},j=function(){var a=$(h);return a.length==0?false:a.html().replace(/\s+/g,"").length>0},o=function(){return $("#careersadsdoublehigh").length>0},m=function(){return $(e).length>0},k=function(){var a=$(e);return a.length==0?false:a.html().replace(/\s+/g,"").length>0},n=function(){return $(i).length>0},p=function(){$.ajax({url:s(),dataType:"script",cache:true})},s=function(){var b=q+(d||a||c?"?":"");if(d)b+="large="+d.toString()+(a||c?"&":"");if(a)b+="banner="+a.toString()+(c?"&":"");if(c)b+="tagged="+c.toString();return b}})();
+        </script>
+    </div>
+
+            <div style="margin-bottom: 10px;">
+            
+<style type="text/css">
+#newsletter-ad {
+    width: 190px;
+    height: 250px;
+    overflow: hidden;
+    background: url('http://sstatic.net/stackoverflow/img//newsletter-ad.png');
+    padding: 0 15px 0 15px;
+}
+#newsletter-ad-header {
+    margin-top: 60px;
+}
+#newsletter-ad ul {
+    margin: 1em 0 1em 1.5em;
+}
+#newsletter-ad ul li {
+    margin-bottom: 5px;
+}
+#newsletter-signup-container {
+    text-align: center;
+}
+#newsletter-preview-container {
+    margin-top: 10px;
+    text-align: center;
+}
+#newsletter-email-input {
+    width: 200px;
+}
+</style>
+
+<script>
+    $(function () {
+        function showPopup(contents) {
+            var popup = $('<div id="lightbox-panel" class="popup" style="display:block"></div>')
+                .append('<div class="popup-close"><a title="close this popup (or hit Esc)">&times;</a></div>')
+                .append(contents);
+
+            // opaque lightbox background
+            $('<div id="lightbox"></div>').appendTo($('body')).css('height', $(document).height()).fadeIn('fast');
+
+            popup
+                .appendTo($('body'))
+                .center()
+                .fadeIn('fast')
+                .find('.popup-close').click(function () { $('#lightbox, #lightbox-panel').fadeOutAndRemove(); });
+        }
+
+        function showAnonSubscriptionForm() {
+            var contents = $([
+                '<div style="text-align: left;">',
+                    '<h2 style="margin-bottom: 15px;">Subscribe to the Stack Overflow weekly newsletter</h2>',
+                    '<p><strong><a href="/users/login?returnurl=/newsletter/signup/redirect">Create an account on Stack Overflow</a> or <a href="/users/login?returnurl=/newsletter/signup/redirect">log in</a> if you already have one.</strong></p>',
+                    '<form><label for="newsletter-email-input">Or, send newsletter emails to:</label> <input type="text" id="newsletter-email-input" maxlength="100" title="your email address" /> <input type="submit" value="Subscribe" id="newsletter-email-submit" /></form>',
+                '</div>'].join(''));
+
+            contents.find('form').submit(function () {
+                var $that = $(this);
+
+                var email = $.trim(contents.find('#newsletter-email-input').val());
+
+                if (email.length == 0) {
+                    return false;
+                }
+
+                StackExchange.helpers.addSpinner($that);
+
+                $.ajax({
+                    url: '/newsletter/signup/anon',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { email: email },
+                    success: function (data, status, xhr) {
+                        if (data.status == 'confirmed' && !data.error) {
+                            $that.find('#newsletter-email-input').attr('disabled', true);
+                            $that.find('#newsletter-email-submit').replaceWith('<span style="line-height: 120%; text-align: center;"><strong>Subscribed!</strong></span>');
+                            $('#newsletter-signup-container').replaceWith('<div style="line-height: 200%; text-align: center;"><strong>Subscribed!</strong></div>');
+                        }
+                        else if (data.status == 'unconfirmed' && !data.error) {
+                            $that.find('#newsletter-email-input').attr('disabled', true);
+                            $that.find('#newsletter-email-submit').replaceWith('<span style="line-height: 120%; text-align: center;"><strong>Subscribed!</strong></span>');
+                            $that.append('<br /><br/><p><em>Please click the link in the confirmation email to activate your subscription.</em></p>');
+                            $('#newsletter-signup-container').replaceWith('<span style="line-height: 120%;"><strong>Success!</strong> Please click the link in the confirmation email to activate your subscription.</span>');
+                        }
+                        else {
+                            $that.showErrorPopup(data.error || 'there was a problem signing up for the newsletter<br />please try again later');
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        $that.showErrorPopup('there was a problem signing up for the newsletter<br />please try again later');
+                    },
+                    complete: function () {
+                        StackExchange.helpers.removeSpinner($that);
+                    }
+                });
+
+                return false;
+            });
+
+            showPopup(contents);
+        }
+
+        $('#newsletter-signup').click(function () {
+            var $that = $(this);
+
+            if (StackExchange.options.user.isAnonymous) {
+                showAnonSubscriptionForm();
+                return false;
+            }
+
+            StackExchange.helpers.addSpinner('#newsletter-signup-container');
+
+            $.ajax({
+                url: '/newsletter/signup',
+                type: 'POST',
+                dataType: 'json',
+                success: function (data, status, xhr) {
+                    if (data.url) {
+                        window.location.href = data.url;
+                    }
+                    else if (data.status == 'confirmed') {
+                        $('#newsletter-signup-container').replaceWith('<div style="line-height: 200%; text-align: center;"><strong>Subscribed!</strong></div>');
+                    }
+                    else if (data.status == 'unconfirmed') {
+                        $('#newsletter-signup-container').replaceWith('<span style="line-height: 120%;"><strong>Success!</strong> Please click the link in the confirmation email to activate your subscription.</span>');
+                    }
+                    else {
+                        $that.parent().showErrorPopup('there was a problem signing up for the newsletter<br />please try again later');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    $that.parent().showErrorPopup('there was a problem signing up for the newsletter<br />please try again later');
+                },
+                complete: function () {
+                    StackExchange.helpers.removeSpinner('#newsletter-signup-container');
+                }
+            });
+        });
+
+        $("#newsletter-preview").click(function () {
+            var maxHeight = $(window).height();
+            var height = Math.min(600, maxHeight - 100);
+
+            var previewPane = [
+                '<div id="newsleter-preview-pane" style="overflow: hidden; width: 660px; height: ', height, 'px;">',
+                    '<iframe src="', $(this).attr('href'), '" width="660" height="', height, '" frameborder="0"></iframe>',
+                '</div>'].join('');
+
+            showPopup(previewPane);
+            return false;
+        });
+    });
+</script>
+
+<div id="newsletter-ad">
+    <p id="newsletter-ad-header">Get the <strong>weekly newsletter!</strong></p>
+    <ul>
+        <li>Top questions and answers</li>
+        <li>Important announcements</li>
+        <li>Unanswered questions</li>
+    </ul>
+    <div id="newsletter-signup-container"><input id="newsletter-signup" value="Sign up for the newsletter" type="button"></div>
+    <p id="newsletter-preview-container">see an <a href="http://stackexchange.com/newsletters/newsletter?site=stackoverflow.com" id="newsletter-preview">example newsletter</a></p>
+</div>
+
+        </div>
+  
+
+    <div class="module">
+    <h4 id="h-related">Related</h4>
+    <div class="related">
+    <div class="spacer">
+<a href="http://stackoverflow.com/questions/29099/what-makes-a-language-object-oriented" class="question-hyperlink">What makes a language Object-Oriented?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/246499/database-guy-asks-object-oriented-design-theory" class="question-hyperlink">Database Guy Asks: Object-Oriented Design Theory?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/246808/when-is-object-oriented-not-the-correct-solution" class="question-hyperlink">When is Object Oriented not the correct solution?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/476422/object-normalization" class="question-hyperlink">Object Normalization</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/764933/amazon-interview-question-design-an-oo-parking-lot" class="question-hyperlink">Amazon Interview Question: Design an OO parking lot</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/969519/object-relationships" class="question-hyperlink">Object relationships</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/1044572/any-source-of-good-object-oriented-design-practises" class="question-hyperlink">Any source of good object-oriented design practises?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/1243504/object-oriented-analysis-and-design-can-a-process-be-a-class" class="question-hyperlink">Object oriented analysis and design: can a process be a class?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/1723786/object-oriented-design-saving-complex-objects" class="question-hyperlink">Object-oriented design: Saving complex objects</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/1814653/object-oriented-design-interview-question" class="question-hyperlink">Object Oriented Design Interview Question</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/2007204/advise-on-object-oriented-design" class="question-hyperlink">Advise on object-oriented design</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/2406491/can-i-change-class-types-in-a-setter-with-an-object-oriented-language" class="question-hyperlink">Can I change class types in a setter with an object-oriented language?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/2744254/is-there-a-naming-convention-for-a-method-that-should-set-the-properties-of-the-p" class="question-hyperlink">Is there a naming convention for a method that should set the properties of the passed object</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/2807119/object-oriented-design-questions" class="question-hyperlink">Object Oriented Design Questions</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/2831190/is-this-bad-object-oriented-design-derived-class-used-in-base-class" class="question-hyperlink">Is this bad Object Oriented Design? (derived class used in base class)</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/2929126/how-should-i-implement-items-that-are-normalized-in-the-database-in-object-orien" class="question-hyperlink">How should I implement items that are normalized in the Database, in Object Oriented Design?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/3141957/a-good-object-oriented-analogy" class="question-hyperlink">A good Object-Oriented analogy</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/3252263/object-oriented-paradigm-question" class="question-hyperlink">Object-oriented Paradigm Question</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/3503392/the-object-oriented-relationship" class="question-hyperlink">The object oriented relationship</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/3744345/object-oriented-style-programming-for-interaction-between-objects" class="question-hyperlink">Object Oriented style programming for interaction between objects</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/4726149/confusion-using-object-oriented-design-need-help" class="question-hyperlink">Confusion using object oriented design .. need help</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/4759513/should-object-oriented-principles-be-applied-in-procedural-languages" class="question-hyperlink">Should object-oriented principles be applied in procedural languages?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/5734436/why-are-function-pointers-not-considered-object-oriented" class="question-hyperlink">Why are function pointers not considered object oriented?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/5782842/is-model-view-controller-poor-object-oriented-design" class="question-hyperlink">Is Model-View-Controller Poor Object-Oriented Design?</a>
+</div>
+<div class="spacer">
+<a href="http://stackoverflow.com/questions/5931692/design-a-bus-stand" class="question-hyperlink">Design a bus stand</a>
+</div>
+
+    </div>
+    </div>
+</div>
+
+<div id="feed-link">
+    <div id="feed-link-text"><a href="http://stackoverflow.com/feeds/question/493276" title="feed of this question and its answers"><span class="feed-icon"></span>question feed</a></div>
+</div>
+<script type="text/javascript" src="modelling-an-elevator-using-object-oriented-analysis-and-design_files/6065.txt"></script>
+<noscript>
+    <div><img src="/posts/493276/ivc/6065" class="dno" alt=""></div>
+</noscript>
+<div style="display:none" id="prettify-lang"></div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="footerwrap">
+            <div id="footer-menu">
+                <a href="http://stackoverflow.com/about">about</a> |
+                <a href="http://stackoverflow.com/faq">faq</a> |
+                
+                    <span onclick="if(window.localStorage){localStorage.setItem('blog-new',1313874348000); $('.new-blog-post').fadeOut();}">
+                        <script type="text/javascript">if(!window.localStorage || new Date(+localStorage.getItem('blog-new'))<new Date())document.write('<span title="The Future of Community Wiki, by Grace Note - 11 hours ago" class="new-blog-post">new<\/span>');</script><span title="The Future of Community Wiki, by Grace Note - 11 hours ago" class="new-blog-post">new</span>
+                        <a href="http://blog.stackexchange.com/">blog</a>
+                    </span> |
+                    <a href="http://chat.stackoverflow.com/">chat</a> |
+                <a href="http://data.stackexchange.com/">data</a> |
+                <a href="http://blog.stackoverflow.com/category/podcasts/">podcast</a> |
+                <a href="http://shop.stackexchange.com/">shop</a> |
+                <a href="http://stackexchange.com/legal">legal</a> |
+                <a href="http://engine.adzerk.net/redirect/0/2776/2751/0/4de3c60f719c4dfcb1a57531c7050090/0">advertising info</a> |
+
+                <a onclick="StackExchange.switchMobile('on', '/questions/493276/modelling-an-elevator-using-object-oriented-analysis-and-design')">mobile</a> |
+
+                <b><a href="mailto:team@stackoverflow.com">contact us</a></b>
+                  | <b><a href="http://meta.stackoverflow.com/">feedback</a></b>
+                <div id="footer-sites">
+                    
+                        <span style="color:#FE7A15;font-size:140%">■</span>&nbsp;<a href="http://stackoverflow.com/">stackoverflow.com</a>&nbsp; 
+                        <span style="color:#FE7A15;font-size:140%">■</span>&nbsp;<a href="http://stackapps.com/">api/apps</a>&nbsp; 
+                        <span style="color:#FE7A15;font-size:140%">■</span>&nbsp;<a href="http://careers.stackoverflow.com/">careers</a>&nbsp; 
+                        <span style="color:#E8272C;font-size:140%">■</span>&nbsp;<a href="http://serverfault.com/">serverfault.com</a>&nbsp; 
+                        <span style="color:#00AFEF;font-size:140%">■</span>&nbsp;<a href="http://superuser.com/">superuser.com</a>&nbsp; 
+                        <span style="color:#969696;font-size:140%">■</span>&nbsp;<a href="http://meta.stackoverflow.com/">meta</a>&nbsp; 
+                        <span style="color:#46937D;font-size:140%">■</span>&nbsp;<a href="http://area51.stackexchange.com/">area&nbsp;51</a>&nbsp; 
+                        <span style="color:#C0D0DC;font-size:140%">■</span>&nbsp;<a href="http://webapps.stackexchange.com/">webapps</a>&nbsp; 
+                        <span style="color:#000000;font-size:140%">■</span>&nbsp;<a href="http://gaming.stackexchange.com/">gaming</a>&nbsp; 
+                        <span style="color:#dd4814;font-size:140%">■</span>&nbsp;<a href="http://askubuntu.com/">ubuntu</a>&nbsp; 
+                        <span style="color:#9ce4fe;font-size:140%">■</span>&nbsp;<a href="http://webmasters.stackexchange.com/">webmasters</a>&nbsp; 
+                        <span style="color:#cf4d3f;font-size:140%">■</span>&nbsp;<a href="http://cooking.stackexchange.com/">cooking</a>&nbsp; 
+                        <span style="color:#f4f28d;font-size:140%">■</span>&nbsp;<a href="http://gamedev.stackexchange.com/">game development</a>&nbsp; 
+                        <span style="color:#0f3559;font-size:140%">■</span>&nbsp;<a href="http://math.stackexchange.com/">math</a>&nbsp; 
+                        <span style="color:#f2f2f2;font-size:140%">■</span>&nbsp;<a href="http://photo.stackexchange.com/">photography</a>&nbsp; 
+                        <span style="color:#037187;font-size:140%">■</span>&nbsp;<a href="http://stats.stackexchange.com/">stats</a>&nbsp; 
+                        <span style="color:#f1e7cc;font-size:140%">■</span>&nbsp;<a href="http://tex.stackexchange.com/">tex</a>&nbsp; 
+                        <span style="color:#e1cdae;font-size:140%">■</span>&nbsp;<a href="http://english.stackexchange.com/">english</a>&nbsp; 
+                        <span style="color:#a2d9f6;font-size:140%">■</span>&nbsp;<a href="http://cstheory.stackexchange.com/">theoretical cs</a>&nbsp; 
+                        <span style="color:#1b3e6c;font-size:140%">■</span>&nbsp;<a href="http://programmers.stackexchange.com/">programmers</a>&nbsp; 
+                        <span style="color:#293a5d;font-size:140%">■</span>&nbsp;<a href="http://unix.stackexchange.com/">unix</a>&nbsp;
+                        <span style="color:#bec0cb;font-size:140%">■</span>&nbsp;<a href="http://apple.stackexchange.com/">apple</a>&nbsp;
+                        <span style="color:#939185;font-size:140%">■</span>&nbsp;<a href="http://wordpress.stackexchange.com/">wordpress</a>&nbsp;
+                        <span style="color:#b5cda4;font-size:140%">■</span>&nbsp;<a href="http://physics.stackexchange.com/">physics</a>&nbsp;
+                        <span style="color:#4176ab;font-size:140%">■</span>&nbsp;<a href="http://diy.stackexchange.com/">home&nbsp;improvement</a>&nbsp;
+                        <span style="color:#d1d8d7;font-size:140%">■</span>&nbsp;<a href="http://gis.stackexchange.com/">gis</a>&nbsp;
+                        <span style="color:#e5e2d3;font-size:140%">■</span>&nbsp;<a href="http://electronics.stackexchange.com/">electronics</a>&nbsp;
+                        <span style="color:#a4c639;font-size:140%">■</span>&nbsp;<a href="http://android.stackexchange.com/">android</a>&nbsp;
+                        <span style="color:#2e4e60;font-size:140%">■</span>&nbsp;<a href="http://security.stackexchange.com/">security</a>&nbsp;
+                        <span style="color:#45bcb5;font-size:140%">■</span>&nbsp;<a href="http://bicycles.stackexchange.com/">bicycles</a>&nbsp;
+                        <span style="color:#00adee;font-size:140%">■</span>&nbsp;<a href="http://dba.stackexchange.com/">dba</a>&nbsp;
+                </div>
+            </div>
+            <div id="footer-flair">
+                <a class="peer1" href="http://www.peer1.com/stackoverflow"></a>  
+	            <a href="http://creativecommons.org/licenses/by-sa/3.0/" class="cc-wiki-link"></a>
+                <div id="svnrev">rev 2011.8.19.2</div>
+            </div>
+            <div id="copyright">
+                site design / logo © 2011 stack exchange inc; 
+                user contributions licensed under <a href="http://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc-wiki</a> with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            
+
+        </div>
+    <iframe id="global-auth-frame" style="display: none;" src="modelling-an-elevator-using-object-oriented-analysis-and-design_files/read.htm"></iframe></div>
+    
+    <noscript>
+        <div id="noscript-warning">Stack Overflow works best with JavaScript enabled<img src="http://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"></div>
+    </noscript>
+    
+    <script type="text/javascript">var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-5620270-1']);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src='http://www.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);})();_qoptions={qacct:"p-c1rF4kxgLUzNc"};</script>
+    <script type="text/javascript" src="modelling-an-elevator-using-object-oriented-analysis-and-design_files/quant.js"></script>
+    
+
+
+</body></html>
