@@ -1,0 +1,16 @@
+{
+    "type": "FeatureCollection",
+    "features": [{ "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [22.610949999999999, 88.428644000000006]
+        },
+        "properties": {
+            "title": "44 Bus Stand",
+            "description": "more info » Algo. Teacher",
+            "marker-size": "medium",
+            "marker-symbol": "bus",
+            "marker-color": "#ace"
+        }
+    }]
+}
