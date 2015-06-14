@@ -3,11 +3,12 @@
     "features": [{ "type": "Feature",
         "geometry": {
             "type": "Point",
-            "coordinates": [22.610949999999999, 88.428644000000006]
+            "coordinates": [22.610950, 88.428644]
         },
         "properties": {
             "title": "44 Bus Stand",
-            "description": "more info » Algo. Teacher",
+            "description": "more info » Algo. Teacher
+(/maps/iw?lyr=unknown&hl=en&ie=UTF8&latlng=&ei=OQGhSfXaOIrUugORtd3gDw&sig2=8EheKpffo2q5ZzwZni-LoQ&ftid=0x3a027588368d11b9:0x16560cb2f173e690)",
             "marker-size": "medium",
             "marker-symbol": "bus",
             "marker-color": "#ace"
