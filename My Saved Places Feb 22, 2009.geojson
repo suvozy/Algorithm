@@ -3,7 +3,10 @@
     "features": [{ "type": "Feature",
         "geometry": {
             "type": "Point",
-            "coordinates": [22.61, 88.43]
+            "coordinates": [
+                22.610950,
+                88.428644
+            ]
         },
         "properties": {
             "title": "44 Bus Stand",
