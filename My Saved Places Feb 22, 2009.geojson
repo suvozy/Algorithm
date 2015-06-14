@@ -11,9 +11,9 @@
         ]
       },
       "properties": {
-        "marker-symbol": "bar",
-        "name": "The Exchange",
-        "address": "1719 G St NW"
+        "title": "44 Bus Stand",
+        "description": "more info » Algo. Teacher",
+        "marker-symbol": "bar"
       }
     }
   ]
