@@ -13,7 +13,8 @@
       "properties": {
         "title": "44 Bus Stand",
         "description": "more info » Algo. Teacher",
-        "marker-symbol": "bar"
+        "marker-size": "large",
+        "marker-symbol": "bus"
       }
     }
   ]
