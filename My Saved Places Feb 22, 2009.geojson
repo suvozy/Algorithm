@@ -14,7 +14,8 @@
         "title": "44 Bus Stand",
         "description": "more info » Algo. Teacher",
         "marker-size": "large",
-        "marker-symbol": "bus"
+        "marker-symbol": "bus",
+        "marker-color": "#ace"
       }
     }
   ]
